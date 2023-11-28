@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import "../../styles/Global.css";
 import Slider from "../components/slider";
+import Link from "next/link";
 
 const Step2 = () => {
   const [displayedText, setDisplayedText] = useState("");
@@ -32,10 +33,8 @@ const Step2 = () => {
       <header>{displayedText}</header>
       <Slider onSliderChange={handleSliderChange} />
       <section className="prevenext">
-        <a href="" disabled>
-          Vorige{" "}
-        </a>
-        <a href="/step2">Volgende </a>
+        <Link href="/">Vorige</Link>
+        <Link href={`/step2?sliderValue=${sliderValue}`}>Volgende</Link>
       </section>
       <>
         <svg
