@@ -1,0 +1,61 @@
+svg {
+    width: 15vw;
+    position: fixed;
+    bottom: 1em;
+    left: 3em;
+}
+
+.cls-1 {
+    fill: #201f32;
+  }
+
+  .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+    stroke-width: 0px;
+  }
+
+  .cls-2 {
+    fill: #201e32;
+  }
+
+  .cls-8 {
+    stroke: #201e31;
+    stroke-width: 5px;
+  }
+
+  .cls-8, .cls-9, .cls-10 {
+    stroke-miterlimit: 10;
+  }
+
+  .cls-8, .cls-10 {
+    fill: none;
+  }
+
+  .cls-3 {
+    fill: #c2bfe0;
+  }
+
+  .cls-9 {
+    stroke: #201f32;
+    stroke-width: 10px;
+  }
+
+  .cls-9, .cls-6 {
+    fill: #f1d1b5;
+  }
+
+  .cls-4 {
+    fill: #fff;
+  }
+
+  .cls-5 {
+    fill: #3f6dff;
+  }
+
+  .cls-7 {
+    fill: #033b00;
+  }
+
+  .cls-10 {
+    stroke: #201e32;
+    stroke-width: 2px;
+  }

@@ -1,3 +1,45 @@
 * {
-    background-color: red;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+header {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1em;
+    margin: .3em;
+    text-transform: uppercase;
+}
+
+body {
+    height: 100vh;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: "lores-12", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.7em;
+    background: linear-gradient(#BEEDF7, #fff);
+}
+
+.prevenext {
+    top:45%;
+    width: 96vw;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 2vw;
+    align-items: center;
+    position: absolute;
+    z-index: 0;
+}
+
+.slider {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
