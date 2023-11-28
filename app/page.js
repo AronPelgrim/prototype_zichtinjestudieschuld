@@ -3,16 +3,11 @@
 import { useState, useEffect } from "react";
 import "../styles/Global.css";
 import Character from "./components/character";
+import Slider from "./components/slider";
 
-const Onboarding = () => {
+const Step1 = () => {
   const [displayedText, setDisplayedText] = useState("");
-
-  const [value, setValue] = useState(50);
-  const [test, setTest] = useState("");
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
+  const [sliderValue, setSliderValue] = useState(0);
 
   useEffect(() => {
     const text = `De eerste 2 jaar na je studie heb je een zogenaamde
@@ -32,32 +27,24 @@ const Onboarding = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleSliderChange = (value) => {
+    setSliderValue(value);
+  };
+
   return (
     <>
       <header>{displayedText}</header>
 
-      <section className="slider">
-        <input
-          type="range"
-          min="0"
-          max="1000"
-          value={value}
-          onChange={handleChange}
-          step="1"
-        />
-        <p>Lening per maand: €{value}</p>
-      </section>
+      <Slider onSliderChange={handleSliderChange} />
       <section className="prevenext">
-        <a href="https://ahrefs.com" target="_blank">
+        <a href="" disabled>
           Vorige{" "}
         </a>
-        <a href="https://ahrefs.com" target="_blank">
-          Volgende{" "}
-        </a>
+        <a href="/step2">Volgende </a>
       </section>
       <Character></Character>
     </>
   );
 };
 
-export default Onboarding;
+export default Step1;
