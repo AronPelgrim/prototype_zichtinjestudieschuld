@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../../styles/Global.css";
 import Slider from "../components/slider";
 import Link from "next/link";
@@ -8,12 +8,19 @@ import Link from "next/link";
 const Step4 = () => {
   const [sliderValue, setSliderValue] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
+  const sliderRef = useRef(null);
 
   const handleSliderChange = (value) => {
     setSliderValue(value);
   };
 
   useEffect(() => {
+    if (sliderValue === 1000 && sliderRef.current) {
+      sliderRef.current.classList.add("active");
+    } else if (sliderRef.current) {
+      sliderRef.current.classList.remove("active");
+    }
+
     const headerText = `Met nu jou aflosfase ingesteld op 35 jaar, met jou uiteindelijke studieschuld van € ${
       sliderValue * 12 * 4
     }, heb je na 35 jaar € ${Math.round(
@@ -39,6 +46,7 @@ const Step4 = () => {
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 1344 767.469"
           className="background"
+          ref={sliderRef}
         >
           <defs>
             <clipPath id="clippath-4">
