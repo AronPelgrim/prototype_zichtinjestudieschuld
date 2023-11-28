@@ -5,7 +5,6 @@ const Slider = ({ onSliderChange }) => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const initialSliderValue = urlParams.get("sliderValue");
-  console.log(initialSliderValue);
 
   const [value, setValue] = useState(initialSliderValue);
 
