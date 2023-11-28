@@ -47,9 +47,12 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    bottom: 5%;
+    bottom: 3%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: #F1C2E6;
+    padding: 1em;
+    border-radius: .5em;
 }
 
 .character1 {
@@ -63,7 +66,7 @@ h1 {
 .background {
     width: 100vw;
     position: fixed;
-    opacity: .4;
+    opacity: .5;
     z-index: -200;
     bottom: 0;
 }
@@ -78,9 +81,9 @@ h1 {
   }
 
   a {
-    background-color: #0F927C; 
+    background-color: #46F7BF; 
     border: none;
-    color: white;
+    color: black;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
@@ -89,9 +92,10 @@ h1 {
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: .5em;
   }
   
   a:hover {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
   }
+  
