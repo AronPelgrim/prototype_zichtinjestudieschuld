@@ -32,7 +32,7 @@ const Step4 = () => {
 
   return (
     <>
-      <header>{displayedText}</header>
+      <header className="animateHeader">{displayedText}</header>
       <Slider onSliderChange={handleSliderChange} />
       <section className="prevenext">
         <Link href={`/step3?sliderValue=${sliderValue}`}>Vorige</Link>

@@ -12,6 +12,10 @@ header {
     text-transform: uppercase;
 }
 
+header.animateHeader {
+    animation: appear 2s both;
+}
+
 body {
     height: 100vh;
     letter-spacing: 1px;
@@ -63,6 +67,10 @@ h1 {
     animation: slide-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
+.character1:hover {
+    animation: slide-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
 .background {
     width: 100vw;
     position: fixed;
@@ -102,21 +110,6 @@ h1 {
   a:hover {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
   }
-  
-  @keyframes dd {
-	0% {
-		transform: 0;
-		visibility: visible;
-	}
-	30% {
-		transform:scale(2);	
-		filter: hue-rotate(10000000000000000000000000000000000deg) blur(.2em);	
-	}
-	100% {
-		transform:scale(0);
-		filter: hue-rotate(0);
-	}
-}
 
 @keyframes explosion {
     0% {
@@ -156,3 +149,13 @@ h1 {
               filter: hue-rotate(0);
     }
   }
+
+  @keyframes appear {
+	0% {
+		clip-path: polygon(0 0, -50% 0, 0 100%, 0 100%);
+	}
+	100% {
+		clip-path: polygon(0 0, 120% 0, 120% 120%, 0 120%);
+		opacity: 1;
+	}
+}
