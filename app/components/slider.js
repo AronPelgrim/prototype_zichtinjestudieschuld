@@ -1,8 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../styles/Global.css";
 
 const Slider = ({ onSliderChange }) => {
-  const [value, setValue] = useState(0);
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const initialSliderValue = urlParams.get("sliderValue");
+  console.log(initialSliderValue);
+
+  const [value, setValue] = useState(initialSliderValue);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (initialSliderValue !== null) {
+        setValue(parseInt(initialSliderValue));
+      } else {
+        setValue(0);
+      }
+    }, 0);
+
+    return () => clearTimeout(timeout);
+  }, [initialSliderValue]);
 
   const handleChange = (e) => {
     const updatedValue = parseInt(e.target.value);
@@ -24,4 +41,5 @@ const Slider = ({ onSliderChange }) => {
     </section>
   );
 };
+
 export default Slider;
