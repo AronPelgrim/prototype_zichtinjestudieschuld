@@ -6,15 +6,16 @@ import Slider from "../components/slider";
 import Link from "next/link";
 
 const Step3 = () => {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const initialSliderValue = urlParams.get("sliderValue");
-
   const [sliderValue, setSliderValue] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
-    setSliderValue(initialSliderValue);
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const initialSliderValue = urlParams.get("sliderValue");
+
+    setSliderValue(initialSliderValue || 0);
+
     const headerText = `Tijdens de aflosfase kun je maximaal 60 maanden aflosvrije periodes aanvragen, bijvoorbeeld bij financiële tegenvallers of werkloosheid. De niet-afgeloste maanden worden aan het einde van je aflosfase (15 of 35 jaar) toegevoegd.`;
 
     let index = 0;

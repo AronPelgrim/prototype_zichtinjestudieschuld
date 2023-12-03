@@ -15,6 +15,16 @@ const Step4 = () => {
   };
 
   useEffect(() => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const initialSliderValue = urlParams.get("sliderValue");
+
+    if (initialSliderValue !== null && sliderValue === 0) {
+      setSliderValue(Number(initialSliderValue));
+    }
+  }, []);
+
+  useEffect(() => {
     if (sliderValue === 1000 && sliderRef.current) {
       sliderRef.current.classList.add("active");
     } else if (sliderRef.current) {
