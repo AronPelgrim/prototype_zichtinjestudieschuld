@@ -4,6 +4,21 @@
   overflow: hidden;
 }
 
+::-webkit-scrollbar {
+  width: 0.6em;
+}
+::-webkit-scrollbar-track {
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ececec;
+}
+
 header {
   color: white;
   background-color: rgba(0, 0, 0, 0.8);
@@ -46,21 +61,36 @@ h1 {
 }
 
 .slider {
-  position: absolute;
   display: flex;
+  overflow: auto;
   flex-direction: column;
-  gap: 1.2em;
-  bottom: 0;
+  white-space: nowrap;
+  position: absolute;
+  gap: 2em;
+  bottom: 1em;
   left: 50%;
   transform: translate(-50%, -15%);
   background-color: #f1c2e6;
-  padding: 1.5em;
+  padding: 2.5em;
   border-radius: 0.5em;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  max-height: 5vh;
 }
 
-.slider label {
+.slider div {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: fit-content;
+  padding: 0;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+}
+
+.slider div label {
   margin: 10px 0 -10px 0;
-  text-align: center;
+  font-size: 1.7em;
 }
 
 input[type="text"] {

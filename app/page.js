@@ -37,7 +37,7 @@ const Step1 = () => {
       <Slider onSliderChange={handleSliderChange} />
       <section className="prevenext">
         <Link href="/">Vorige</Link>
-        <Link href={`/step2?sliderValue=${sliderValue}`}>Volgende</Link>
+        <Link href={`/step2?leningpm=${sliderValue}`}>Volgende</Link>
       </section>
       <svg
         id="Laag_1"

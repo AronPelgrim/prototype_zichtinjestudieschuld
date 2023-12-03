@@ -28,40 +28,50 @@ const Slider = ({ onSliderChange }) => {
 
   return (
     <section className="slider">
-      <label>Lening per maand: €{leningpm}</label>
-      <input
-        type="range"
-        min="0"
-        max="1000"
-        value={leningpm}
-        onChange={handleChange}
-        step="1"
-      />
-      <label>Leenduur: {leningpm} jaar</label>
-      <input
-        type="range"
-        min="0"
-        max="7"
-        // value={value}
-        onChange={handleChange}
-        step="1"
-      />
-      <label>Aflosfase: {leningpm} jaar</label>
-      <input
-        type="range"
-        min="0"
-        max="35"
-        // value={value}
-        onChange={handleChange}
-        step="1"
-      />
-      <label>Rentepercentage: {leningpm} %</label>
-      <input
-        // value={value}
-        type="text"
-        onChange={handleChange}
-        step="1"
-      />
+      <div>
+        {" "}
+        <label>Lening per maand: €{leningpm}</label>
+        <input
+          type="range"
+          min="0"
+          max="1000"
+          value={leningpm}
+          onChange={handleChange}
+          step="1"
+        />
+      </div>
+      <div>
+        {" "}
+        <label>Leenduur: {leningpm} jaar</label>
+        <input
+          type="range"
+          min="0"
+          max="7"
+          // value={value}
+          onChange={handleChange}
+          step="1"
+        />
+      </div>
+      <div>
+        <label>Aflosfase: {leningpm} jaar</label>
+        <input
+          type="range"
+          min="0"
+          max="35"
+          // value={value}
+          onChange={handleChange}
+          step="1"
+        />
+      </div>
+      <div>
+        <label>Rentepercentage: {leningpm} %</label>
+        <input
+          // value={value}
+          type="text"
+          onChange={handleChange}
+          step="1"
+        />
+      </div>
     </section>
   );
 };
