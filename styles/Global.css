@@ -6,17 +6,12 @@
 
 ::-webkit-scrollbar {
   width: 0.6em;
-}
-::-webkit-scrollbar-track {
-  display: none;
-}
-::-webkit-scrollbar-thumb {
-  background: black;
-  border-radius: 0.5em;
   cursor: pointer;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #ececec;
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 0.5em;
 }
 
 header {
@@ -26,6 +21,7 @@ header {
   margin: 0.5em;
   text-transform: uppercase;
   font-size: 1.7em;
+  border-radius: 0.5em;
 }
 
 header.animateHeader {
@@ -66,41 +62,42 @@ h1 {
   flex-direction: column;
   white-space: nowrap;
   position: absolute;
-  gap: 2em;
-  bottom: 1em;
+  gap: 3em;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -15%);
+  transform: translate(-50%, -50%);
   background-color: #f1c2e6;
   padding: 2.5em;
   border-radius: 0.5em;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-  max-height: 5vh;
+  max-height: 7vh;
+  align-items: center;
+  width: fit-content;
 }
 
 .slider div {
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1em;
   width: fit-content;
-  padding: 0;
   flex-shrink: 0;
   scroll-snap-align: center;
 }
 
 .slider div label {
-  margin: 10px 0 -10px 0;
   font-size: 1.7em;
 }
 
-input[type="text"] {
+input[type="number"] {
   border-radius: 0.5em;
   font-size: 1em;
   text-align: left;
   border: none;
-  padding: 0.5em 0.5em;
+  padding: 0.2em 0.2em;
   font-family: "lores-12", sans-serif;
   font-weight: 700;
+  text-align: center;
 }
 
 input[type="range"] {

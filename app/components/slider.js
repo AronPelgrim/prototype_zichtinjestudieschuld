@@ -30,7 +30,6 @@ const Slider = ({ onSliderChange }) => {
     <section className="slider">
       <div>
         {" "}
-        <label>Lening per maand: €{leningpm}</label>
         <input
           type="range"
           min="0"
@@ -39,10 +38,10 @@ const Slider = ({ onSliderChange }) => {
           onChange={handleChange}
           step="1"
         />
+        <label>Lening per maand: €{leningpm}</label>
       </div>
       <div>
         {" "}
-        <label>Leenduur: {leningpm} jaar</label>
         <input
           type="range"
           min="0"
@@ -51,9 +50,9 @@ const Slider = ({ onSliderChange }) => {
           onChange={handleChange}
           step="1"
         />
+        <label>Leenduur: {leningpm} jaar</label>
       </div>
       <div>
-        <label>Aflosfase: {leningpm} jaar</label>
         <input
           type="range"
           min="0"
@@ -62,15 +61,16 @@ const Slider = ({ onSliderChange }) => {
           onChange={handleChange}
           step="1"
         />
+        <label>Aflosfase: {leningpm} jaar</label>
       </div>
       <div>
-        <label>Rentepercentage: {leningpm} %</label>
         <input
           // value={value}
-          type="text"
+          type="number"
           onChange={handleChange}
           step="1"
         />
+        <label>Rentepercentage: {leningpm}%</label>
       </div>
     </section>
   );
