@@ -10,6 +10,7 @@ header {
   padding: 1em;
   margin: 0.5em;
   text-transform: uppercase;
+  font-size: 1.7em;
 }
 
 header.animateHeader {
@@ -23,7 +24,6 @@ body {
   font-family: "lores-12", sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 1.7em;
   background: linear-gradient(#beedf7, #fff);
 }
 
@@ -51,12 +51,17 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  bottom: 1%;
+  bottom: 5%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -25%);
   background-color: #f1c2e6;
-  padding: 1em;
+  padding: 2em;
   border-radius: 0.5em;
+}
+
+.slider p {
+  font-size: 1.2em;
+  margin-bottom: -10px;
 }
 
 .character1 {
