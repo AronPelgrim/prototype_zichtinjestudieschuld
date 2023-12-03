@@ -1,189 +1,189 @@
 * {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 header {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 1em;
-    margin: .5em;
-    text-transform: uppercase;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1em;
+  margin: 0.5em;
+  text-transform: uppercase;
 }
 
 header.animateHeader {
-    animation: appear 2s both;
+  animation: appear 2s both;
 }
 
 body {
-    height: 100vh;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-family: "lores-12", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 1.7em;
-    background: linear-gradient(#BEEDF7, #fff);
+  height: 100vh;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: "lores-12", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.7em;
+  background: linear-gradient(#beedf7, #fff);
 }
 
 h1 {
-    text-align: center;
-    font-size: 1em;
-    width: 50vw;
-    margin-left: 25vw;
-    margin-top: 2em;
+  text-align: center;
+  font-size: 1em;
+  width: 50vw;
+  margin-left: 25vw;
+  margin-top: 2em;
 }
 
 .prevenext {
-    top:45%;
-    width: 96vw;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 2vw;
-    align-items: center;
-    position: absolute;
-    z-index: 0;
+  top: 45%;
+  width: 96vw;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2vw;
+  align-items: center;
+  position: absolute;
+  z-index: 0;
 }
 
 .slider {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    bottom: 1%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #F1C2E6;
-    padding: 1em;
-    border-radius: .5em;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  bottom: 1%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f1c2e6;
+  padding: 1em;
+  border-radius: 0.5em;
 }
 
 .character1 {
-    width: 15vw;
-    position: fixed;
-    bottom: 1em;
-    left: 5em;
-    animation: slide-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  width: 15vw;
+  position: fixed;
+  bottom: 1em;
+  left: 5em;
+  animation: slide-right 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .character1:hover {
-    animation: slide-right 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-right 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .background {
-    width: 100vw;
-    position: fixed;
-    opacity: .6;
-    z-index: -200;
-    bottom: 0;
+  width: 100vw;
+  position: fixed;
+  opacity: 0.6;
+  z-index: -200;
+  bottom: 0;
 }
 
 .background.active {
-    animation: explosion 0.5s linear infinite both;
+  animation: explosion 0.5s linear infinite both;
 }
 
 @keyframes slide-right {
-    0% {
-              transform: translateX(-200px);
-    }
-    100% {
-              transform: translateX(0);
-    }
+  0% {
+    transform: translateX(-200px);
   }
+  100% {
+    transform: translateX(0);
+  }
+}
 
-  a {
-    background-color: #46F7BF; 
-    border: none;
-    color: black;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: .5em;
-  }
-  
-  a:hover {
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-  }
+a {
+  background-color: #46f7bf;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 0.5em;
+}
+
+a:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
 
 @keyframes explosion {
-    0% {
-              transform: translate(0);
-              visibility: visible;
-    }
-    10% {
-              transform: translate(-2px, -2px);
-    }
-    20% {
-              transform: translate(2px, -2px);
-    }
-    30% {
-              transform: translate(-2px, 2px);
-    }
-    40% {
-              transform: translate(2px, 2px);
-    }
-    50% {
-              transform: translate(-2px, -2px);
-              filter: hue-rotate(10000000000000000000000000000000000deg) blur(.2em);	
-    }
-    60% {
-              transform: translate(2px, -2px);
-    }
-    70% {
-              transform: translate(-2px, 2px);
-    }
-    80% {
-              transform: translate(-2px, -2px);
-    }
-    90% {
-              transform: translate(2px, -2px);
-    }
-    100% {
-              transform: translate(0);
-              filter: hue-rotate(0);
-    }
+  0% {
+    transform: translate(0);
+    visibility: visible;
   }
+  10% {
+    transform: translate(-2px, -2px);
+  }
+  20% {
+    transform: translate(2px, -2px);
+  }
+  30% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(2px, 2px);
+  }
+  50% {
+    transform: translate(-2px, -2px);
+    filter: hue-rotate(10000000000000000000000000000000000deg) blur(0.2em);
+  }
+  60% {
+    transform: translate(2px, -2px);
+  }
+  70% {
+    transform: translate(-2px, 2px);
+  }
+  80% {
+    transform: translate(-2px, -2px);
+  }
+  90% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+    filter: hue-rotate(0);
+  }
+}
 
-  @keyframes appear {
-	0% {
-		clip-path: polygon(0 0, -50% 0, 0 100%, 0 100%);
-	}
-	100% {
-		clip-path: polygon(0 0, 120% 0, 120% 120%, 0 120%);
-		opacity: 1;
-	}
+@keyframes appear {
+  0% {
+    clip-path: polygon(0 0, -50% 0, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 120% 0, 120% 120%, 0 120%);
+    opacity: 1;
+  }
 }
 
 .path-animation {
-    animation: jello 0.9s both;
+  animation: jello 0.9s both;
 }
 
 @keyframes jello {
-    0% {
-              transform: scale3d(1, 1, 1);
-    }
-    30% {
-              transform: scale3d(1.25, 0.75, 1);
-    }
-    40% {
-              transform: scale3d(0.75, 1.25, 1);
-    }
-    50% {
-              transform: scale3d(1.15, 0.85, 1);
-    }
-    65% {
-              transform: scale3d(0.95, 1.05, 1);
-    }
-    75% {
-              transform: scale3d(1.05, 0.95, 1);
-    }
-    100% {
-              transform: scale3d(1, 1, 1);
-    }
+  0% {
+    transform: scale3d(1, 1, 1);
   }
+  30% {
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
