@@ -20,7 +20,6 @@ header.animateHeader {
 body {
   height: 100vh;
   letter-spacing: 1px;
-  text-transform: uppercase;
   font-family: "lores-12", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -50,18 +49,32 @@ h1 {
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  bottom: 5%;
+  gap: 1.2em;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -25%);
+  transform: translate(-50%, -15%);
   background-color: #f1c2e6;
-  padding: 2em;
+  padding: 1.5em;
   border-radius: 0.5em;
 }
 
-.slider p {
-  font-size: 1.2em;
-  margin-bottom: -10px;
+.slider label {
+  margin: 10px 0 -10px 0;
+  text-align: center;
+}
+
+input[type="text"] {
+  border-radius: 0.5em;
+  font-size: 1em;
+  text-align: left;
+  border: none;
+  padding: 0.5em 0.5em;
+  font-family: "lores-12", sans-serif;
+  font-weight: 700;
+}
+
+input[type="range"] {
+  cursor: pointer;
 }
 
 .character1 {

@@ -6,14 +6,14 @@ const Slider = ({ onSliderChange }) => {
   const urlParams = new URLSearchParams(queryString);
   const initialSliderValue = urlParams.get("sliderValue");
 
-  const [value, setValue] = useState(initialSliderValue);
+  const [leningpm, setLeningpm] = useState(initialSliderValue);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (initialSliderValue !== null) {
-        setValue(parseInt(initialSliderValue));
+        setLeningpm(parseInt(initialSliderValue));
       } else {
-        setValue(0);
+        setLeningpm(0);
       }
     }, 0);
 
@@ -22,21 +22,46 @@ const Slider = ({ onSliderChange }) => {
 
   const handleChange = (e) => {
     const updatedValue = parseInt(e.target.value);
-    setValue(updatedValue);
+    setLeningpm(updatedValue);
     onSliderChange(updatedValue);
   };
 
   return (
     <section className="slider">
+      <label>Lening per maand: €{leningpm}</label>
       <input
         type="range"
         min="0"
         max="1000"
-        value={value}
+        value={leningpm}
         onChange={handleChange}
         step="1"
       />
-      <p>Lening per maand: €{value}</p>
+      <label>Leenduur: {leningpm} jaar</label>
+      <input
+        type="range"
+        min="0"
+        max="7"
+        // value={value}
+        onChange={handleChange}
+        step="1"
+      />
+      <label>Aflosfase: {leningpm} jaar</label>
+      <input
+        type="range"
+        min="0"
+        max="35"
+        // value={value}
+        onChange={handleChange}
+        step="1"
+      />
+      <label>Rentepercentage: {leningpm} %</label>
+      <input
+        // value={value}
+        type="text"
+        onChange={handleChange}
+        step="1"
+      />
     </section>
   );
 };
