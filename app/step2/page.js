@@ -6,15 +6,18 @@ import Slider from "../components/slider";
 import Link from "next/link";
 
 const Step2 = () => {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const initialSliderValue = urlParams.get("sliderValue");
-
   const [sliderValue, setSliderValue] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
-    setSliderValue(initialSliderValue);
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const initialSliderValue = urlParams.get("sliderValue");
+
+    if (initialSliderValue !== null) {
+      setSliderValue(Number(initialSliderValue));
+    }
+
     const headerText = `Er zijn verschillende aflosregelingen. Val je onder de regelingen van vóór 2018 dan duurt je aflosfase maximaal 15 jaar. Val je onder de regels vanaf 2018 dan duurt je aflosfase maximaal 35 jaar.`;
 
     let index = 0;
