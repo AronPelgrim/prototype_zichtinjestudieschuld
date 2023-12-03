@@ -83,15 +83,6 @@ h1 {
   animation: explosion 0.5s linear infinite both;
 }
 
-@keyframes slide-right {
-  0% {
-    transform: translateX(-200px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
 a {
   background-color: #46f7bf;
   border: none;
@@ -109,6 +100,19 @@ a {
 
 a:hover {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+.path-animation {
+  animation: jello 0.9s both;
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @keyframes explosion {
@@ -158,10 +162,6 @@ a:hover {
     clip-path: polygon(0 0, 120% 0, 120% 120%, 0 120%);
     opacity: 1;
   }
-}
-
-.path-animation {
-  animation: jello 0.9s both;
 }
 
 @keyframes jello {
