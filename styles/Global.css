@@ -89,7 +89,7 @@ h1 {
   font-size: 1.7em;
 }
 
-input[type="number"] {
+input[type="text"] {
   border-radius: 0.5em;
   font-size: 1em;
   text-align: left;

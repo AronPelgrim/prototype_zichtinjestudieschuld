@@ -55,7 +55,7 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4 }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (initialRentepercentage !== null) {
-        setRentepercentage(parseInt(initialRentepercentage));
+        setRentepercentage(parseFloat(initialRentepercentage));
       } else {
         setRentepercentage(0);
       }
@@ -83,9 +83,13 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4 }) => {
   };
 
   const handleRentepercentage = (e) => {
-    const updatedValue = parseInt(e.target.value);
-    setRentepercentage(updatedValue);
-    onChange4(updatedValue);
+    const inputValue = e.target.value;
+
+    const regex = /^\d*\.?\d{0,2}$/;
+    if (regex.test(inputValue) || inputValue === "") {
+      setRentepercentage(inputValue);
+      onChange4(inputValue);
+    }
   };
 
   return (
@@ -125,11 +129,14 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4 }) => {
       </div>
       <div>
         <input
-          type="number"
+          type="text"
           value={rentepercentage}
           onChange={handleRentepercentage}
+          placeholder="0.00"
         />
-        <label>Rentepercentage: {rentepercentage}%</label>
+        <label>
+          Rentepercentage: {parseFloat(rentepercentage).toFixed(2)}%
+        </label>
       </div>
     </section>
   );
