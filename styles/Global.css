@@ -4,6 +4,16 @@
   overflow: hidden;
 }
 
+::-webkit-scrollbar {
+  width: 0.6em;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b592ad;
+  border-radius: 0.5em;
+}
+
 header {
   color: white;
   background-color: rgba(0, 0, 0, 0.8);
@@ -11,6 +21,7 @@ header {
   margin: 0.5em;
   text-transform: uppercase;
   font-size: 1.7em;
+  border-radius: 0.5em;
 }
 
 header.animateHeader {
@@ -20,7 +31,6 @@ header.animateHeader {
 body {
   height: 100vh;
   letter-spacing: 1px;
-  text-transform: uppercase;
   font-family: "lores-12", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -47,21 +57,51 @@ h1 {
 }
 
 .slider {
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+  white-space: nowrap;
   position: absolute;
+  gap: 3em;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f1c2e6;
+  padding: 2.5em;
+  border-radius: 0.5em;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  max-height: 7vh;
+  align-items: center;
+  width: fit-content;
+}
+
+.slider div {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  bottom: 5%;
-  left: 50%;
-  transform: translate(-50%, -25%);
-  background-color: #f1c2e6;
-  padding: 2em;
-  border-radius: 0.5em;
+  width: fit-content;
+  flex-shrink: 0;
+  scroll-snap-align: center;
 }
 
-.slider p {
-  font-size: 1.2em;
-  margin-bottom: -10px;
+.slider div label {
+  font-size: 1.7em;
+}
+
+input[type="text"] {
+  border-radius: 0.5em;
+  font-size: 1em;
+  text-align: left;
+  border: none;
+  padding: 0.2em 0.2em;
+  font-family: "lores-12", sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+
+input[type="range"] {
+  cursor: pointer;
 }
 
 .character1 {
