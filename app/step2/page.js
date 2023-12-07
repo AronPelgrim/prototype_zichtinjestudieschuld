@@ -15,10 +15,25 @@ const Step2 = () => {
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const initialSliderValue = urlParams.get("leningpm");
+    const initialLeningpm = urlParams.get("leningpm");
+    const initialLeenduur = urlParams.get("leenduur");
+    const initialAflosFase = urlParams.get("aflosfase");
+    const initialRentepercentage = urlParams.get("rentepercentage");
 
-    if (initialSliderValue !== null) {
-      setSliderValue1(Number(initialSliderValue));
+    if (initialLeningpm !== null) {
+      setSliderValue1(Number(initialLeningpm));
+    }
+
+    if (initialLeenduur !== null) {
+      setSliderValue2(Number(initialLeenduur));
+    }
+
+    if (initialAflosFase !== null) {
+      setSliderValue3(Number(initialAflosFase));
+    }
+
+    if (initialRentepercentage !== null) {
+      setSliderValue4(Number(initialRentepercentage));
     }
 
     const headerText = `Er zijn verschillende aflosregelingen. Val je onder de regelingen van vóór 2018 dan duurt je aflosfase maximaal 15 jaar. Val je onder de regels vanaf 2018 dan duurt je aflosfase maximaal 35 jaar.`;
