@@ -33,7 +33,7 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4 }) => {
       if (initialLeenduur !== null) {
         setLeenduur(parseInt(initialLeenduur));
       } else {
-        setLeenduur(1);
+        setLeenduur(0);
       }
     }, 0);
 
@@ -108,7 +108,7 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4 }) => {
       <div>
         <input
           type="range"
-          min="1"
+          min="0"
           max="10"
           value={leenduur}
           onChange={handleLeenduur}
