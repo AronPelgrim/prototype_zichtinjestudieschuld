@@ -12,6 +12,7 @@ const Step4 = () => {
   const [sliderValue2, setSliderValue2] = useState(0);
   const [sliderValue3, setSliderValue3] = useState(0);
   const [sliderValue4, setSliderValue4] = useState(0);
+  const [studieSchuld, setStudieSchuld] = useState(0);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -37,7 +38,7 @@ const Step4 = () => {
       setSliderValue4(Number(initialRentepercentage));
     }
 
-    const headerText = `Tijdens de aflosfase kun je maximaal 60 maanden aflosvrije periodes aanvragen, bijvoorbeeld bij financiële tegenvallers of werkloosheid. De niet-afgeloste maanden worden aan het einde van je aflosfase (15 of 35 jaar) toegevoegd.`;
+    const headerText = `Tijdens je studie bouw je ook al rente op. Hieronder kan je met de sliders berekenen wat je studieschuld na je studie is, afhankelijk van het rentepercentage.`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -50,6 +51,23 @@ const Step4 = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const rentepercentage = sliderValue4 / 100;
+    let berekenSchuld = 0;
+
+    if (rentepercentage !== 0) {
+      berekenSchuld =
+        (sliderValue1 *
+          12 *
+          (Math.pow(1 + rentepercentage, sliderValue2) - 1)) /
+        rentepercentage;
+    } else {
+      berekenSchuld = sliderValue1 * 12 * sliderValue2;
+    }
+
+    setStudieSchuld(berekenSchuld.toFixed(2));
+  }, [sliderValue1, sliderValue2, sliderValue4]);
 
   const handleSliderChange1 = (value) => {
     setSliderValue1(value);
@@ -77,16 +95,8 @@ const Step4 = () => {
         onChange4={handleSliderChange4}
       />{" "}
       <div className="step4H1">
-        <h1>Studieschuld: €{sliderValue1 * 12 * sliderValue2}</h1>
         <h1>Rentepercentage: {sliderValue4}%</h1>
-        <h1>
-          Rente betaald na {sliderValue3} jaar: €
-          {Math.round(
-            (((sliderValue1 * 12 * sliderValue2 * sliderValue4) / 100) *
-              (1 - Math.pow(1 + sliderValue4 / 100, -sliderValue3 * 12))) /
-              (1 - Math.pow(1 + sliderValue4 / 100, -12))
-          )}
-        </h1>
+        <h1>Studieschuld: €{studieSchuld}</h1>
       </div>
       <section className="prevenext">
         <Link

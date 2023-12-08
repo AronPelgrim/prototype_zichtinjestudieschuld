@@ -37,7 +37,7 @@ body {
   position: fixed;
   display: flex;
   flex-direction: column;
-  bottom: 25%;
+  bottom: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 1.4em;
@@ -46,7 +46,7 @@ body {
   border-radius: 0.5em;
   gap: 0.5em;
   padding: 1.5em;
-  animation: appear 2s 3s both;
+  background: rgba(70, 247, 191, 0.2);
 }
 
 .prevenext {

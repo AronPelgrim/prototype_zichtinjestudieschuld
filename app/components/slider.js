@@ -135,7 +135,10 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4 }) => {
           placeholder="0.00"
         />
         <label>
-          Rentepercentage: {parseFloat(rentepercentage).toFixed(2)}%
+          Rentepercentage:{" "}
+          {rentepercentage !== null && !isNaN(parseFloat(rentepercentage))
+            ? parseFloat(rentepercentage).toFixed(2) + "%"
+            : "0.00%"}
         </label>
       </div>
     </section>
