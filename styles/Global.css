@@ -24,10 +24,6 @@ header {
   border-radius: 0.5em;
 }
 
-header.animateHeader {
-  animation: appear 2s both;
-}
-
 body {
   height: 100vh;
   letter-spacing: 1px;
@@ -37,12 +33,20 @@ body {
   background: linear-gradient(#beedf7, #fff);
 }
 
-h1 {
+.step4H1 {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.4em;
   text-align: center;
-  font-size: 1em;
-  width: 50vw;
-  margin-left: 25vw;
-  margin-top: 2em;
+  width: max-content;
+  border-radius: 0.5em;
+  gap: 0.5em;
+  padding: 1.5em;
+  animation: appear 2s 3s both;
 }
 
 .prevenext {
@@ -122,10 +126,6 @@ input[type="range"] {
   opacity: 0.6;
   z-index: -200;
   bottom: 0;
-}
-
-.background.active {
-  animation: explosion 0.5s linear infinite both;
 }
 
 a {

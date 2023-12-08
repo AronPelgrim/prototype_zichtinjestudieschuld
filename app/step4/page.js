@@ -36,24 +36,20 @@ const Step4 = () => {
     if (initialRentepercentage !== null) {
       setSliderValue4(Number(initialRentepercentage));
     }
+
+    const headerText = `Tijdens de aflosfase kun je maximaal 60 maanden aflosvrije periodes aanvragen, bijvoorbeeld bij financiële tegenvallers of werkloosheid. De niet-afgeloste maanden worden aan het einde van je aflosfase (15 of 35 jaar) toegevoegd.`;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(headerText.substring(0, index));
+      index++;
+      if (index > headerText.length) {
+        clearInterval(interval);
+      }
+    }, 15);
+
+    return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    if (sliderValue1 === 1000 && sliderRef.current) {
-      sliderRef.current.classList.add("active");
-    } else if (sliderRef.current) {
-      sliderRef.current.classList.remove("active");
-    }
-
-    const headerText = `Met nu jou aflosfase ingesteld op 35 jaar, met jou uiteindelijke studieschuld van € ${
-      sliderValue1 * 12 * 4
-    }, heb je na 35 jaar € ${Math.round(
-      sliderValue1 * 12 * 4 * Math.pow(1 + 0.46 / 100, 35) -
-        sliderValue1 * 12 * 4
-    )} aan rente betaald, berekent met een rentepercentage van 0,46 %. dit kan dus verhogen met een nieuw percentage.`;
-
-    setDisplayedText(headerText);
-  }, [sliderValue1]);
 
   const handleSliderChange1 = (value) => {
     setSliderValue1(value);
@@ -73,13 +69,25 @@ const Step4 = () => {
 
   return (
     <>
-      <header className="animateHeader">{displayedText}</header>
+      <header>{displayedText}</header>
       <Slider
         onChange1={handleSliderChange1}
         onChange2={handleSliderChange2}
         onChange3={handleSliderChange3}
         onChange4={handleSliderChange4}
       />{" "}
+      <div className="step4H1">
+        <h1>Studieschuld: €{sliderValue1 * 12 * sliderValue2}</h1>
+        <h1>Rentepercentage: {sliderValue4}%</h1>
+        <h1>
+          Rente betaald na {sliderValue3} jaar: €
+          {Math.round(
+            (((sliderValue1 * 12 * sliderValue2 * sliderValue4) / 100) *
+              (1 - Math.pow(1 + sliderValue4 / 100, -sliderValue3 * 12))) /
+              (1 - Math.pow(1 + sliderValue4 / 100, -12))
+          )}
+        </h1>
+      </div>
       <section className="prevenext">
         <Link
           href={`/step3?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
