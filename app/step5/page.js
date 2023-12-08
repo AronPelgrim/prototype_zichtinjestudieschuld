@@ -5,7 +5,7 @@ import "../../styles/Global.css";
 import Slider from "../components/slider";
 import Link from "next/link";
 
-const Step4 = () => {
+const Step5 = () => {
   const [displayedText, setDisplayedText] = useState("");
   const sliderRef = useRef(null);
   const [sliderValue1, setSliderValue1] = useState(0);
@@ -38,7 +38,7 @@ const Step4 = () => {
       setSliderValue4(Number(initialRentepercentage));
     }
 
-    const headerText = `Tijdens je studie, wordt elk jaar opnieuw bepaald wat het rentepercentage is. Als je klaar bent met studeren, kan je dit percentage steeds voor 5 jaar vastzetten, vanaf de start van je aanloopfase.`;
+    const headerText = `Tijdens je studie bouw je ook al rente op. Hieronder kan je met de sliders berekenen wat je studieschuld na je studie is, afhankelijk van het rentepercentage en hoelang je wil lenen. Let op: hoelang je mag lenen heeft te maken met de duur van je studie, zoek dat dus goed uit!`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -51,6 +51,23 @@ const Step4 = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const rentepercentage = sliderValue4 / 100;
+    let berekenSchuld = 0;
+
+    if (rentepercentage !== 0) {
+      berekenSchuld =
+        (sliderValue1 *
+          12 *
+          (Math.pow(1 + rentepercentage, sliderValue2) - 1)) /
+        rentepercentage;
+    } else {
+      berekenSchuld = sliderValue1 * 12 * sliderValue2;
+    }
+
+    setStudieSchuld(berekenSchuld.toFixed(2));
+  }, [sliderValue1, sliderValue2, sliderValue4]);
 
   const handleSliderChange1 = (value) => {
     setSliderValue1(value);
@@ -77,14 +94,18 @@ const Step4 = () => {
         onChange3={handleSliderChange3}
         onChange4={handleSliderChange4}
       />{" "}
+      <div className="step4H1">
+        <h1>Rentepercentage: {sliderValue4}%</h1>
+        <h1>Studieschuld: €{studieSchuld}</h1>
+      </div>
       <section className="prevenext">
         <Link
-          href={`/step3?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
+          href={`/step4?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
         >
           Vorige
         </Link>{" "}
         <Link
-          href={`/step5?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
+          href={`/step6?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
         >
           Volgende
         </Link>{" "}
@@ -919,7 +940,7 @@ const Step4 = () => {
         data-name="Laag 1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 506.78 775.059"
-        className="character1 sliding-right"
+        className="character1 slide-out"
       >
         <path
           d="m385.539,492.19s.054-9.322-9.268-10.169c-9.322-.847-27.119-3.742-27.119-3.742h-175.696l-27.694,9.674s-7.627-3.39-7.627,8.475v171.186s-3.39,11.017,6.78,12.712c10.169,1.695,49.26,0,49.26,0v67.797h43.827c.829-4.887,1.662-9.774,2.553-14.65,1.655-9.056,3.683-17.942,4.695-27.104.93-8.417,2.123-16.499,5.517-24.329.517-1.192,1.283-1.925,2.153-2.301.404-.56.935-1.029,1.591-1.359.562-1.781,2.215-2.705,4.008-2.807,1.645-.88,3.648-.759,5.185,1.218,10.714,13.787,11.378,32.338,16.507,48.457,2.445,7.685,5.08,15.305,7.851,22.875h41.841v-63.559l43.893-.847s11.602,0,11.699-10.169,0-79.661,0-79.661l.043-101.695Z"
@@ -1120,4 +1141,4 @@ const Step4 = () => {
   );
 };
 
-export default Step4;
+export default Step5;
