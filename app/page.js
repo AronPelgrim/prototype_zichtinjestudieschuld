@@ -8,7 +8,7 @@ import Link from "next/link";
 const Step1 = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [sliderValue1, setSliderValue1] = useState(0);
-  const [sliderValue2, setSliderValue2] = useState(0);
+  const [sliderValue2, setSliderValue2] = useState(1);
   const [sliderValue3, setSliderValue3] = useState(0);
   const [sliderValue4, setSliderValue4] = useState(0);
 
