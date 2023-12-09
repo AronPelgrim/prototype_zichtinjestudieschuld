@@ -45,7 +45,7 @@ const Step2 = () => {
       if (index > headerText.length) {
         clearInterval(interval);
       }
-    }, 15);
+    }, 10);
 
     return () => clearInterval(interval);
   }, []);

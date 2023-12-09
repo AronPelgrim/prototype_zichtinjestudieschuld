@@ -12,7 +12,6 @@ const Step4 = () => {
   const [sliderValue2, setSliderValue2] = useState(0);
   const [sliderValue3, setSliderValue3] = useState(0);
   const [sliderValue4, setSliderValue4] = useState(0);
-  const [studieSchuld, setStudieSchuld] = useState(0);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -47,7 +46,7 @@ const Step4 = () => {
       if (index > headerText.length) {
         clearInterval(interval);
       }
-    }, 15);
+    }, 10);
 
     return () => clearInterval(interval);
   }, []);
