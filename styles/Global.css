@@ -53,7 +53,7 @@ body {
   position: fixed;
   display: flex;
   flex-direction: column;
-  bottom: 40%;
+  bottom: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
