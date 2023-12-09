@@ -94,7 +94,7 @@ const Step5 = () => {
         onChange3={handleSliderChange3}
         onChange4={handleSliderChange4}
       />{" "}
-      <div className="step4H1">
+      <div className="step5Calculator">
         <h1>Rentepercentage: {sliderValue4}%</h1>
         <h1>Studieschuld: €{studieSchuld}</h1>
       </div>

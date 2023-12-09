@@ -10,7 +10,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #005cc8;
+  background: #0075ff;
   border-radius: 0.5em;
 }
 
@@ -33,7 +33,7 @@ body {
   background: linear-gradient(#beedf7, #fff);
 }
 
-.step4H1 {
+.step5Calculator {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -47,6 +47,21 @@ body {
   gap: 0.5em;
   padding: 1.5em;
   background: rgba(255, 96, 96, 0.8);
+}
+
+.moreInfo {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: max-content;
+}
+
+.moreInfo > a {
+  font-size: 1.6em;
 }
 
 .prevenext {
@@ -127,6 +142,14 @@ input[type="range"] {
   animation: slide-in 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
+.path-animation {
+  animation: jello 0.9s both;
+}
+
+.wobble {
+  animation: wobble 0.8s both;
+}
+
 .background {
   width: 100vw;
   position: fixed;
@@ -135,7 +158,8 @@ input[type="range"] {
   bottom: 0;
 }
 
-a {
+a,
+button {
   background-color: #46f7bf;
   border: none;
   color: black;
@@ -148,14 +172,12 @@ a {
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 0.5em;
+  font-family: "lores-12", sans-serif;
+  font-weight: 700;
 }
 
 a:hover {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-}
-
-.path-animation {
-  animation: jello 0.9s both;
 }
 
 @keyframes slide-right {
@@ -284,5 +306,27 @@ a:hover {
   }
   100% {
     transform: translate(0);
+  }
+}
+@keyframes wobble {
+  0%,
+  100% {
+    transform: translateX(0%);
+    transform-origin: 50% 50%;
+  }
+  15% {
+    transform: translateX(-30px) rotate(-6deg);
+  }
+  30% {
+    transform: translateX(15px) rotate(6deg);
+  }
+  45% {
+    transform: translateX(-15px) rotate(-3.6deg);
+  }
+  60% {
+    transform: translateX(9px) rotate(2.4deg);
+  }
+  75% {
+    transform: translateX(-6px) rotate(-1.2deg);
   }
 }
