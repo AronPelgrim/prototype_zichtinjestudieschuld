@@ -162,10 +162,15 @@ input[type="range"] {
   animation: wobble 0.8s both;
 }
 
+.poor {
+  animation: shrink 0.8s both;
+  transform-origin: center;
+}
+
 .background {
   width: 100vw;
   position: fixed;
-  opacity: 0.7;
+  opacity: 0.6;
   z-index: -200;
   bottom: 0;
 }
@@ -340,5 +345,17 @@ a:hover {
   }
   75% {
     transform: translateX(-6px) rotate(-1.2deg);
+  }
+}
+
+@keyframes shrink {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8) rotate(50deg);
+  }
+  100% {
+    transform: scale(0.6);
   }
 }
