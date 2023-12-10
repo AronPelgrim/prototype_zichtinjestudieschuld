@@ -163,7 +163,7 @@ input[type="range"] {
 }
 
 .poor {
-  animation: shrink 0.8s both;
+  animation: shrink 0.3s both;
   transform-origin: center;
 }
 
