@@ -37,7 +37,7 @@ const Step8 = () => {
       setSliderValue4(Number(initialRentepercentage));
     }
 
-    const headerText = `Tijdens je studie, wordt elk jaar opnieuw bepaald wat het rentepercentage is. Als je klaar bent met studeren, kan je dit percentage steeds voor 5 jaar vastzetten, vanaf de start van je aanloopfase.`;
+    const headerText = `HIERONDER KAN JE MET DE SLIDERS BEREKENEN Hoeveel hypotheek je kan aanvragen met jou uiteindelijke studieschuld. LEt op: dit is een schatting, ook gaan we uit van een salaris van €3000. Dit verschilt natuurlijk per persoon en kan groeien. Het gaat er vooral om dat de vergelijking duidelijk wordt.`;
 
     let index = 0;
     const interval = setInterval(() => {
