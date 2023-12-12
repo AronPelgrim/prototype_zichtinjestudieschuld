@@ -7,11 +7,12 @@ import Link from "next/link";
 
 const Step8 = () => {
   const [displayedText, setDisplayedText] = useState("");
-  const sliderRef = useRef(null);
   const [sliderValue1, setSliderValue1] = useState(0);
   const [sliderValue2, setSliderValue2] = useState(0);
   const [sliderValue3, setSliderValue3] = useState(0);
   const [sliderValue4, setSliderValue4] = useState(0);
+  const [studieSchuld, setStudieSchuld] = useState(0);
+  const [hypotheek, setHypotheek] = useState(0);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -37,7 +38,7 @@ const Step8 = () => {
       setSliderValue4(Number(initialRentepercentage));
     }
 
-    const headerText = `HIERONDER KAN JE MET DE SLIDERS BEREKENEN Hoeveel hypotheek je kan aanvragen met jou uiteindelijke studieschuld. LEt op: dit is een schatting, ook gaan we uit van een salaris van €3000. Dit verschilt natuurlijk per persoon en kan groeien. Het gaat er vooral om dat de vergelijking duidelijk wordt.`;
+    const headerText = `HIERONDER KAN JE MET DE SLIDERS BEREKENEN Hoeveel hypotheek je kan aanvragen met jou uiteindelijke studieschuld. LEt op: dit is een schatting, ook gaan we uit van een salaris van €3000 per maand. Dat salaris verschilt natuurlijk per persoon en kan gaan groeien. Het gaat er vooral om dat de vergelijking duidelijk wordt.`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -50,6 +51,27 @@ const Step8 = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const rentepercentage = sliderValue4 / 100;
+    let berekenSchuld = 0;
+
+    if (rentepercentage !== 0) {
+      berekenSchuld =
+        (sliderValue1 *
+          12 *
+          (Math.pow(1 + rentepercentage, sliderValue2) - 1)) /
+        rentepercentage;
+    } else {
+      berekenSchuld = sliderValue1 * 12 * sliderValue2;
+    }
+
+    setStudieSchuld(berekenSchuld.toFixed(2));
+  }, [sliderValue1, sliderValue2, sliderValue4]);
+
+  useEffect(() => {
+    setHypotheek((164000 - (studieSchuld / 10000) * 12500).toFixed(2));
+  }, [studieSchuld]);
 
   const handleSliderChange1 = (value) => {
     setSliderValue1(value);
@@ -76,6 +98,10 @@ const Step8 = () => {
         onChange3={handleSliderChange3}
         onChange4={handleSliderChange4}
       />{" "}
+      <div className="step5Calculator">
+        <h1>Studieschuld: €{studieSchuld}</h1>
+        <h1>Hypotheek: {hypotheek}</h1>
+      </div>
       <section className="prevenext">
         <Link
           href={`/step7?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
