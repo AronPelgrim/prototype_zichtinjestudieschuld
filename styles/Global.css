@@ -114,7 +114,7 @@ body {
   background-color: #46f7bf;
   width: var(--progress-width);
   border-radius: 0.5em;
-  animation: increaseProgress 1s ease-in both;
+  animation: increaseProgress 0.2s ease-in both;
   transform-origin: left;
 }
 
