@@ -70,7 +70,11 @@ const Step8 = () => {
   }, [sliderValue1, sliderValue2, sliderValue4]);
 
   useEffect(() => {
-    setHypotheek((164000 - (studieSchuld / 10000) * 12500).toFixed(2));
+    const hypotheekResult = (164000 - (studieSchuld / 10000) * 12500).toFixed(
+      2
+    );
+    const hypotheek = hypotheekResult < 0 ? 0 : hypotheekResult;
+    setHypotheek(hypotheek);
   }, [studieSchuld]);
 
   const handleSliderChange1 = (value) => {
