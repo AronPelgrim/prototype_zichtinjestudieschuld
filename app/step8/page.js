@@ -100,7 +100,7 @@ const Step8 = () => {
       />{" "}
       <div className="step5Calculator">
         <h1>Studieschuld: €{studieSchuld}</h1>
-        <h1>Hypotheek: {hypotheek}</h1>
+        <h1>Hypotheek: €{hypotheek}</h1>
       </div>
       <section className="prevenext">
         <Link
