@@ -92,16 +92,14 @@ body {
   flex-direction: column;
   white-space: nowrap;
   position: absolute;
-  gap: 3em;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, -30%);
+  gap: 2em;
+  bottom: 2vh;
+  right: 2vw;
   background-color: #f1c2e6;
-  padding: 2.5em;
+  padding: 1.5em;
   border-radius: 0.5em;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-  max-height: 7vh;
   align-items: center;
   width: fit-content;
 }
@@ -116,7 +114,7 @@ body {
 }
 
 .slider div label {
-  font-size: 1.7em;
+  font-size: 1em;
 }
 
 input[type="text"] {
@@ -137,8 +135,8 @@ input[type="range"] {
 .character1 {
   width: 15vw;
   position: fixed;
-  bottom: 1em;
-  left: 5em;
+  bottom: 2vh;
+  left: 8em;
 }
 
 .sliding-right {
