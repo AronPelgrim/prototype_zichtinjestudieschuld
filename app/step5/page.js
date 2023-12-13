@@ -13,6 +13,7 @@ const Step5 = () => {
   const [sliderValue3, setSliderValue3] = useState(0);
   const [sliderValue4, setSliderValue4] = useState(0);
   const [studieSchuld, setStudieSchuld] = useState(0);
+  const progressWidth = "62.5%";
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -87,6 +88,12 @@ const Step5 = () => {
 
   return (
     <>
+      <section
+        className="completeness-meter"
+        style={{ "--progress-width": progressWidth }}
+      >
+        <p>Stap 5 van 8</p>
+      </section>
       <header>{displayedText}</header>
       <Slider
         onChange1={handleSliderChange1}

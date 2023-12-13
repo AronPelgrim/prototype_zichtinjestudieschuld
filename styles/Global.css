@@ -24,7 +24,6 @@ header {
   background-color: rgba(0, 0, 0, 0.8);
   padding: 1em;
   margin: 0.5em;
-  text-transform: uppercase;
   font-size: 1.7em;
   border-radius: 0.5em;
 }
@@ -87,22 +86,52 @@ body {
   z-index: 0;
 }
 
+.completeness-meter {
+  height: 10px;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  margin: 2.5em 1em 1em 1em;
+  border-radius: 0.5em;
+}
+
+.completeness-meter > p {
+  position: fixed;
+  font-size: 1.3em;
+  padding: 0.2em;
+  border-radius: 0.5em;
+  margin-top: -1.7em;
+  text-align: center;
+  width: 100%;
+}
+
+.completeness-meter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #46f7bf;
+  width: var(--progress-width);
+  border-radius: 0.5em;
+  animation: increaseProgress 0.2s ease-in both;
+  transform-origin: left;
+}
+
 .slider {
   display: flex;
   overflow: auto;
   flex-direction: column;
   white-space: nowrap;
   position: absolute;
-  gap: 3em;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, -30%);
+  gap: 2em;
+  bottom: 2vh;
+  right: 2vw;
   background-color: #f1c2e6;
-  padding: 2.5em;
+  padding: 1.5em;
   border-radius: 0.5em;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-  max-height: 7vh;
   align-items: center;
   width: fit-content;
 }
@@ -117,7 +146,7 @@ body {
 }
 
 .slider div label {
-  font-size: 1.7em;
+  font-size: 1em;
 }
 
 input[type="text"] {
@@ -138,8 +167,8 @@ input[type="range"] {
 .character1 {
   width: 15vw;
   position: fixed;
-  bottom: 1em;
-  left: 5em;
+  bottom: 2vh;
+  left: 8em;
 }
 
 .sliding-right {
@@ -357,5 +386,14 @@ a:hover {
   }
   100% {
     transform: scale(0.6);
+  }
+}
+
+@keyframes increaseProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
   }
 }

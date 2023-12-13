@@ -13,6 +13,7 @@ const Step8 = () => {
   const [sliderValue4, setSliderValue4] = useState(0);
   const [studieSchuld, setStudieSchuld] = useState(0);
   const [hypotheek, setHypotheek] = useState(0);
+  const progressWidth = "100%";
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -38,7 +39,7 @@ const Step8 = () => {
       setSliderValue4(Number(initialRentepercentage));
     }
 
-    const headerText = `HIERONDER KAN JE MET DE SLIDERS BEREKENEN Hoeveel hypotheek je kan aanvragen met jou uiteindelijke studieschuld. LEt op: dit is een schatting, ook gaan we uit van een salaris van €3000 per maand. Dat salaris verschilt natuurlijk per persoon en kan gaan groeien. Het gaat er vooral om dat de vergelijking duidelijk wordt.`;
+    const headerText = `Hieronder kan je met de sliders berekenen hoeveel hypotheek je kan aanvragen met jouw uiteindelijke studieschuld. Let op: dit is een schatting, ook gaan we uit van een salaris van €3000 per maand. Dat salaris verschilt natuurlijk per persoon en kan gaan groeien. Het gaat er vooral om dat de vergelijking duidelijk wordt.`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -70,7 +71,11 @@ const Step8 = () => {
   }, [sliderValue1, sliderValue2, sliderValue4]);
 
   useEffect(() => {
-    setHypotheek((164000 - (studieSchuld / 10000) * 12500).toFixed(2));
+    const hypotheekResult = (164000 - (studieSchuld / 10000) * 12500).toFixed(
+      2
+    );
+    const hypotheek = hypotheekResult < 0 ? 0 : hypotheekResult;
+    setHypotheek(hypotheek);
   }, [studieSchuld]);
 
   const handleSliderChange1 = (value) => {
@@ -91,6 +96,12 @@ const Step8 = () => {
 
   return (
     <>
+      <section
+        className="completeness-meter"
+        style={{ "--progress-width": progressWidth }}
+      >
+        <p>Stap 8 van 8</p>
+      </section>
       <header>{displayedText}</header>
       <Slider
         onChange1={handleSliderChange1}
