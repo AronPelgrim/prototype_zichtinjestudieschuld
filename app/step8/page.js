@@ -38,7 +38,7 @@ const Step8 = () => {
       setSliderValue4(Number(initialRentepercentage));
     }
 
-    const headerText = `HIERONDER KAN JE MET DE SLIDERS BEREKENEN Hoeveel hypotheek je kan aanvragen met jou uiteindelijke studieschuld. LEt op: dit is een schatting, ook gaan we uit van een salaris van €3000 per maand. Dat salaris verschilt natuurlijk per persoon en kan gaan groeien. Het gaat er vooral om dat de vergelijking duidelijk wordt.`;
+    const headerText = `Hieronder kan je met de sliders berekenen hoeveel hypotheek je kan aanvragen met jouw uiteindelijke studieschuld. Let op: dit is een schatting, ook gaan we uit van een salaris van €3000 per maand. Dat salaris verschilt natuurlijk per persoon en kan gaan groeien. Het gaat er vooral om dat de vergelijking duidelijk wordt.`;
 
     let index = 0;
     const interval = setInterval(() => {
