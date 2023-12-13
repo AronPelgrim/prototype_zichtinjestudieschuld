@@ -86,6 +86,38 @@ body {
   z-index: 0;
 }
 
+.completeness-meter {
+  height: 10px;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  margin: 2.5em 1em 1em 1em;
+  border-radius: 0.5em;
+}
+
+.completeness-meter > p {
+  position: fixed;
+  font-size: 1.3em;
+  padding: 0.2em;
+  border-radius: 0.5em;
+  margin-top: -1.7em;
+  text-align: center;
+  width: 100%;
+}
+
+.completeness-meter::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #46f7bf;
+  width: var(--progress-width);
+  border-radius: 0.5em;
+  animation: increaseProgress 1s ease-in both;
+  transform-origin: left;
+}
+
 .slider {
   display: flex;
   overflow: auto;
@@ -354,5 +386,14 @@ a:hover {
   }
   100% {
     transform: scale(0.6);
+  }
+}
+
+@keyframes increaseProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
   }
 }

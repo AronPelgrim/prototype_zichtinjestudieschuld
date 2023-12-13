@@ -11,6 +11,7 @@ const Step1 = () => {
   const [sliderValue2, setSliderValue2] = useState(1);
   const [sliderValue3, setSliderValue3] = useState(0);
   const [sliderValue4, setSliderValue4] = useState(0);
+  const progressWidth = "12.5%";
 
   useEffect(() => {
     const headerText = `De eerste 2 jaar na je studie heb je een zogenaamde
@@ -48,6 +49,12 @@ const Step1 = () => {
 
   return (
     <>
+      <section
+        className="completeness-meter"
+        style={{ "--progress-width": progressWidth }}
+      >
+        <p>Stap 1 van 8</p>
+      </section>
       <header>{displayedText}</header>
       <Slider
         onChange1={handleSliderChange1}
