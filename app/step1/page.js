@@ -14,6 +14,29 @@ const Step1 = () => {
   const progressWidth = "12.5%";
 
   useEffect(() => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const initialLeningpm = urlParams.get("leningpm");
+    const initialLeenduur = urlParams.get("leenduur");
+    const initialAflosFase = urlParams.get("aflosfase");
+    const initialRentepercentage = urlParams.get("rentepercentage");
+
+    if (initialLeningpm !== null) {
+      setSliderValue1(Number(initialLeningpm));
+    }
+
+    if (initialLeenduur !== null) {
+      setSliderValue2(Number(initialLeenduur));
+    }
+
+    if (initialAflosFase !== null) {
+      setSliderValue3(Number(initialAflosFase));
+    }
+
+    if (initialRentepercentage !== null) {
+      setSliderValue4(Number(initialRentepercentage));
+    }
+
     const headerText = `De eerste 2 jaar na je studie heb je een zogenaamde
       'aanloopfase'. Hierin hoef je nog niks af te lossen, maar als
       je dat wil dan kan dat wel. Na twee jaar volgt de zogenaamde

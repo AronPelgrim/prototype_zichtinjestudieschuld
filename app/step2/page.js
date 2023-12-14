@@ -83,7 +83,11 @@ const Step2 = () => {
         onChange4={handleSliderChange4}
       />{" "}
       <section className="prevenext">
-        <Link href="/">Vorige</Link>
+        <Link
+          href={`/step1?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
+        >
+          Vorige
+        </Link>
         <Link
           href={`/step3?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
         >
