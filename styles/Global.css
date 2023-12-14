@@ -28,6 +28,14 @@ header {
   border-radius: 0.5em;
 }
 
+header.onboarding {
+  width: fit-content;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
 body {
   height: 100vh;
   letter-spacing: 1px;
@@ -68,6 +76,7 @@ body {
   font-size: 1.6em;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+  transition-duration: 0.4s;
 }
 
 .moreInfo > a:hover {
@@ -84,6 +93,32 @@ body {
   align-items: center;
   position: absolute;
   z-index: 0;
+}
+
+.prevenext.onboarding {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  z-index: 0;
+  position: fixed;
+  bottom: 2vh;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  gap: 0.5em;
+}
+
+.prevenext.onboarding > a:nth-of-type(2) {
+  transition-duration: 0.4s;
+  background-color: transparent;
+  border: 3px solid #46f7bf;
+}
+
+.prevenext.onboarding > a:nth-of-type(2):hover {
+  box-shadow: none;
+  border: 3px solid black;
 }
 
 .completeness-meter {
@@ -171,6 +206,14 @@ input[type="range"] {
   left: 8em;
 }
 
+.character2 {
+  width: 15vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .sliding-right {
   animation: slide-right 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
@@ -209,7 +252,7 @@ button {
   background-color: #46f7bf;
   border: none;
   color: black;
-  padding: 16px 32px;
+  padding: 12px 30px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
