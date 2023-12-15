@@ -54,20 +54,50 @@ body {
   background: linear-gradient(#beedf7, #fff);
 }
 
-.step5Calculator {
+.studieschuldCalculator {
   position: fixed;
   display: flex;
   flex-direction: column;
-  bottom: 30%;
+  bottom: 2vh;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.4em;
+  transform: translate(-50%);
+  font-size: 1em;
   text-align: center;
   width: max-content;
   border-radius: 0.5em;
   gap: 0.5em;
   padding: 1.5em;
-  background: rgba(255, 96, 96, 0.8);
+  background: rgba(255, 96, 96);
+}
+
+.studieschuldCalculator > h1 {
+  border-bottom: 1px solid black;
+  padding-bottom: 0.2em;
+}
+
+.studieschuldCalculator > p {
+  font-size: 1.3em;
+}
+
+.studieschuldCalculator > p:first-of-type {
+  margin-top: 0.5em;
+}
+
+.studieschuldCalculator.stap5 {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.4em;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 0.5em;
+  gap: 0.5em;
+  padding: 1.5em;
+  background: rgba(255, 96, 96);
 }
 
 .moreInfo {

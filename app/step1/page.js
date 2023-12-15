@@ -11,6 +11,7 @@ const Step1 = () => {
   const [sliderValue2, setSliderValue2] = useState(1);
   const [sliderValue3, setSliderValue3] = useState(0);
   const [sliderValue4, setSliderValue4] = useState(0);
+  const [studieSchuld, setStudieSchuld] = useState(0);
   const progressWidth = "12.5%";
 
   useEffect(() => {
@@ -54,6 +55,23 @@ const Step1 = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const rentepercentage = sliderValue4 / 100;
+    let berekenSchuld = 0;
+
+    if (rentepercentage !== 0) {
+      berekenSchuld =
+        (sliderValue1 *
+          12 *
+          (Math.pow(1 + rentepercentage, sliderValue2) - 1)) /
+        rentepercentage;
+    } else {
+      berekenSchuld = sliderValue1 * 12 * sliderValue2;
+    }
+
+    setStudieSchuld(berekenSchuld.toFixed(2));
+  }, [sliderValue1, sliderValue2, sliderValue4]);
+
   const handleSliderChange1 = (value) => {
     setSliderValue1(value);
   };
@@ -85,6 +103,11 @@ const Step1 = () => {
         onChange3={handleSliderChange3}
         onChange4={handleSliderChange4}
       />
+      <section className="studieschuldCalculator">
+        <h1>Studieschuld na de studie</h1>
+        <p>Rentepercentage: {sliderValue4}%</p>
+        <p>Studieschuld: €{studieSchuld}</p>
+      </section>
       <section className="prevenext">
         <Link href="/">Vorige</Link>
         <Link

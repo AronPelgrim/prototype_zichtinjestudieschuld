@@ -39,7 +39,7 @@ const Step5 = () => {
       setSliderValue4(Number(initialRentepercentage));
     }
 
-    const headerText = `Tijdens je studie bouw je ook al rente op. Hieronder kan je met de sliders berekenen wat je studieschuld na je studie is, afhankelijk van het rentepercentage en hoelang je wil lenen. Let op: hoelang je mag lenen heeft te maken met de duur van je studie, zoek dat dus goed uit!`;
+    const headerText = `Tijdens je studie bouw je ook al rente op. Hieronder kan je met de sliders berekenen wat je studieschuld na je studie is, afhankelijk van het rentepercentage en hoelang je wil lenen. Let op: hoelang je mag lenen heeft te maken met de duur van je studie!`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -101,10 +101,11 @@ const Step5 = () => {
         onChange3={handleSliderChange3}
         onChange4={handleSliderChange4}
       />{" "}
-      <div className="step5Calculator">
-        <h1>Rentepercentage: {sliderValue4}%</h1>
-        <h1>Studieschuld: €{studieSchuld}</h1>
-      </div>
+      <section className="studieschuldCalculator stap5">
+        <h1>Studieschuld na de studie</h1>
+        <p>Rentepercentage: {sliderValue4}%</p>
+        <p>Studieschuld: €{studieSchuld}</p>
+      </section>
       <section className="prevenext">
         <Link
           href={`/step4?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
