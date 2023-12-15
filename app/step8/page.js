@@ -121,9 +121,13 @@ const Step8 = () => {
           Vorige
         </Link>{" "}
         <Link
-          href={`/step9?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
+          href={`/result?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
+          style={{
+            background: "linear-gradient(to right, #FFD26F, #3677FF, #FF6F6F)",
+            color: "white",
+          }}
         >
-          Volgende
+          Voltooien
         </Link>{" "}
       </section>
       <>

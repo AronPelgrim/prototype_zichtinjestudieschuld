@@ -26,6 +26,7 @@
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
+  z-index: -100;
 }
 
 header {
@@ -118,6 +119,14 @@ body {
   gap: 0.5em;
   padding: 1.5em;
   background: rgb(250, 215, 66);
+}
+
+section:has(.hypotheekCalculator.stap8) > .hypotheekCalculator {
+  left: 75%;
+}
+
+section:has(.hypotheekCalculator.stap8) > .studieschuldCalculator {
+  left: 25%;
 }
 
 .moreInfo {
