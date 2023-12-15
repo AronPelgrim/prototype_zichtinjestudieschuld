@@ -11,6 +11,8 @@ const Step7 = () => {
   const [sliderValue2, setSliderValue2] = useState(0);
   const [sliderValue3, setSliderValue3] = useState(0);
   const [sliderValue4, setSliderValue4] = useState(0);
+  const [studieSchuld, setStudieSchuld] = useState(0);
+  const [hypotheek, setHypotheek] = useState(0);
   const progressWidth = "87.5%";
 
   useEffect(() => {
@@ -52,6 +54,31 @@ const Step7 = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const rentepercentage = sliderValue4 / 100;
+    let berekenSchuld = 0;
+
+    if (rentepercentage !== 0) {
+      berekenSchuld =
+        (sliderValue1 *
+          12 *
+          (Math.pow(1 + rentepercentage, sliderValue2) - 1)) /
+        rentepercentage;
+    } else {
+      berekenSchuld = sliderValue1 * 12 * sliderValue2;
+    }
+
+    setStudieSchuld(berekenSchuld.toFixed(2));
+  }, [sliderValue1, sliderValue2, sliderValue4]);
+
+  useEffect(() => {
+    const hypotheekResult = (164000 - (studieSchuld / 10000) * 12500).toFixed(
+      2
+    );
+    const hypotheek = hypotheekResult < 0 ? 0 : hypotheekResult;
+    setHypotheek(hypotheek);
+  }, [studieSchuld]);
+
   const handleSliderChange1 = (value) => {
     setSliderValue1(value);
   };
@@ -83,6 +110,11 @@ const Step7 = () => {
         onChange3={handleSliderChange3}
         onChange4={handleSliderChange4}
       />{" "}
+      <section className="hypotheekCalculator">
+        <h1>Jouw hypotheek</h1>
+        <p>Studieschuld: €{studieSchuld}</p>
+        <p>Hypotheek: €{hypotheek}</p>
+      </section>
       <div className="moreInfo">
         <Link
           href={`https://www.nhg.nl/`}

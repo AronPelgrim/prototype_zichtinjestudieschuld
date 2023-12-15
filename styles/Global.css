@@ -54,7 +54,8 @@ body {
   background: linear-gradient(#beedf7, #fff);
 }
 
-.studieschuldCalculator {
+.studieschuldCalculator,
+.hypotheekCalculator {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -70,17 +71,19 @@ body {
   background: rgba(255, 96, 96);
 }
 
-.studieschuldCalculator > h1 {
-  border-bottom: 1px solid black;
+.hypotheekCalculator {
+  background: rgb(250, 215, 66);
+}
+
+.studieschuldCalculator > h1,
+.hypotheekCalculator > h1 {
+  text-decoration: underline;
   padding-bottom: 0.2em;
 }
 
-.studieschuldCalculator > p {
+.studieschuldCalculator > p,
+.hypotheekCalculator > p {
   font-size: 1.3em;
-}
-
-.studieschuldCalculator > p:first-of-type {
-  margin-top: 0.5em;
 }
 
 .studieschuldCalculator.stap5 {
@@ -98,6 +101,23 @@ body {
   gap: 0.5em;
   padding: 1.5em;
   background: rgba(255, 96, 96);
+}
+
+.hypotheekCalculator.stap8 {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.4em;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 0.5em;
+  gap: 0.5em;
+  padding: 1.5em;
+  background: rgb(250, 215, 66);
 }
 
 .moreInfo {
