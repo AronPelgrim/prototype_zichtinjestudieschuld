@@ -80,6 +80,12 @@ const Result = () => {
   return (
     <>
       <header className="onboarding">{displayedText}</header>
+      <section className="prevenext onboarding">
+        <Link href={`/onboarding2`}>Niet tevreden</Link>
+        <Link href="/" style={{ visibility: "hidden" }}>
+          Vorige
+        </Link>
+      </section>
       <section>
         <section
           className="hypotheekCalculator stap8"
