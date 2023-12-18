@@ -46,7 +46,6 @@ const Onboarding1 = () => {
 
   return (
     <>
-      {" "}
       {orientation === "Landscape" ? (
         <>
           <header className="onboarding">{displayedText}</header>

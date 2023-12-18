@@ -569,7 +569,7 @@ a:hover {
     bottom: 2vh;
     right: 2vw;
     gap: 0;
-    background-color: #f1c2e6;
+    background-color: rgb(241, 194, 230, 0.7);
     border-radius: 0.5em;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
@@ -608,5 +608,26 @@ a:hover {
 
   input[type="range"] {
     cursor: pointer;
+  }
+
+  .studieschuldCalculator,
+  .hypotheekCalculator {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    bottom: 2vh;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 1em;
+    text-align: center;
+    width: max-content;
+    border-radius: 0.5em;
+    gap: 0.3em;
+    padding: 1.5em;
+    background: rgba(255, 96, 96, 0.8);
+  }
+
+  .hypotheekCalculator {
+    background: rgb(250, 215, 66, 0.8);
   }
 }
