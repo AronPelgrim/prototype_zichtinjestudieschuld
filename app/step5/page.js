@@ -101,7 +101,7 @@ const Step5 = () => {
         onChange3={handleSliderChange3}
         onChange4={handleSliderChange4}
       />{" "}
-      <section className="studieschuldCalculator stap5">
+      <section className="studieschuldCalculator">
         <h1>Studieschuld na de studie</h1>
         <p>Rentepercentage: {sliderValue4}%</p>
         <p>Studieschuld: €{studieSchuld}</p>

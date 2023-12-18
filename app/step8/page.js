@@ -109,8 +109,8 @@ const Step8 = () => {
         onChange3={handleSliderChange3}
         onChange4={handleSliderChange4}
       />{" "}
-      <section className="hypotheekCalculator stap8">
-        <h1>Jouw hypotheek</h1>
+      <section className="hypotheekCalculator">
+        <h1>Jouw hypotheekbedrag</h1>
         <p>Studieschuld: €{studieSchuld}</p>
         <p>Hypotheek: €{hypotheek}</p>
       </section>
