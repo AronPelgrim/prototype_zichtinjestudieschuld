@@ -1,16 +1,46 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import "../styles/Global.css";
+import { useState, useEffect, useRef } from "react";
+import "../../styles/Global.css";
+import Slider from "../components/slider";
 import Link from "next/link";
 
-const Onboarding1 = () => {
+const Result = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
 
+  const [sliderValue1, setSliderValue1] = useState(0);
+  const [sliderValue2, setSliderValue2] = useState(0);
+  const [sliderValue3, setSliderValue3] = useState(0);
+  const [sliderValue4, setSliderValue4] = useState(0);
+  const [studieSchuld, setStudieSchuld] = useState(0);
+  const [hypotheek, setHypotheek] = useState(0);
+
   useEffect(() => {
-    const headerText = `Goeiedag, ik ben 
-    frederik, expert in studieschulden.`;
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const initialLeningpm = urlParams.get("leningpm");
+    const initialLeenduur = urlParams.get("leenduur");
+    const initialAflosFase = urlParams.get("aflosfase");
+    const initialRentepercentage = urlParams.get("rentepercentage");
+
+    if (initialLeningpm !== null) {
+      setSliderValue1(Number(initialLeningpm));
+    }
+
+    if (initialLeenduur !== null) {
+      setSliderValue2(Number(initialLeenduur));
+    }
+
+    if (initialAflosFase !== null) {
+      setSliderValue3(Number(initialAflosFase));
+    }
+
+    if (initialRentepercentage !== null) {
+      setSliderValue4(Number(initialRentepercentage));
+    }
+
+    const headerText = `Dit zijn de resultaten gebaseerd op jouw lening.`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -23,6 +53,31 @@ const Onboarding1 = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const rentepercentage = sliderValue4 / 100;
+    let berekenSchuld = 0;
+
+    if (rentepercentage !== 0) {
+      berekenSchuld =
+        (sliderValue1 *
+          12 *
+          (Math.pow(1 + rentepercentage, sliderValue2) - 1)) /
+        rentepercentage;
+    } else {
+      berekenSchuld = sliderValue1 * 12 * sliderValue2;
+    }
+
+    setStudieSchuld(berekenSchuld.toFixed(2));
+  }, [sliderValue1, sliderValue2, sliderValue4]);
+
+  useEffect(() => {
+    const hypotheekResult = (164000 - (studieSchuld / 10000) * 12500).toFixed(
+      2
+    );
+    const hypotheek = hypotheekResult < 0 ? 0 : hypotheekResult;
+    setHypotheek(hypotheek);
+  }, [studieSchuld]);
 
   useEffect(() => {
     const handleOrientationChange = () => {
@@ -46,130 +101,45 @@ const Onboarding1 = () => {
 
   return (
     <>
+      {" "}
       {orientation === "Landscape" ? (
         <>
           <header className="onboarding">{displayedText}</header>
           <section className="prevenext onboarding">
-            <Link href={`/onboarding2`}>Vertel meer</Link>
+            <Link href={`/onboarding2`}>Niet tevreden</Link>
             <Link href="/" style={{ visibility: "hidden" }}>
               Vorige
             </Link>
           </section>
-          <svg
-            id="Laag_1"
-            data-name="Laag 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 2040.936 163.218"
-            className="logo"
-          >
-            <path
-              d="M74.271,115.515h10.467v1.006l15.699,15.9v30.998H16.907l-15.901-15.7H0v-40.86h10.063v-17.309h5.837v-13.889h5.637v-10.668h6.037v-6.844h-10.667L1.006,42.249H0V10.044h84.738v1.006l15.699,15.902v48.709h-8.654v17.512h-8.857v17.511h-8.654v4.831ZM75.68,138.661v-14.09H31.802v-3.422h8.655v-17.712h9.057v-17.511h8.655v-17.512h8.856v-17.512h8.654v-31.802H9.057v14.089h43.879v12.279h-8.855v17.712h-8.856v17.511h-8.655v17.512h-8.855v17.713h-8.656v22.744h66.623Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M99.027,147.517h-1.209V1.188h41.062v1.006l15.7,15.9v145.123h-39.854l-15.699-15.7ZM129.822,50.702V10.245h-22.945v40.457h22.945ZM129.822,138.46V62.98h-22.945v75.479h22.945Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M207.717,116.118h27.977v1.006l15.7,15.7v26.972h-70.851l-4.629-4.63h-8.051l-15.901-15.7h-1.007V54.526h8.656v-8.855h76.082v1.207l15.7,15.699v31.199h-43.677v22.342ZM226.637,139.265v-14.09h-43.879v-56.156h43.879v-14.291h-57.969v8.856h-8.654v66.825h8.654v8.855h57.969Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M304.329,53.923h19.323v1.006l24.354,24.557v83.732h-39.853l-3.824-3.824v3.824h-39.853l-15.902-15.7h-1.006V1.188h40.859v1.006l15.901,15.9v35.828ZM279.371,138.46v-61.391h21.134v61.391h22.745v-66.824h-8.656v-8.655h-35.223V10.245h-22.745v128.215h22.745Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M409.598,115.313h1.811v1.006l15.699,15.9v30.998h-57.564l-15.701-15.7h-1.207v-62.598l-7.648-7.649h-1.006v-32.204h8.654V1.188h41.061v1.006l15.902,15.9v26.972h10.465v1.007l15.701,15.699v31.198h-26.166v22.343ZM402.352,138.46v-14.09h-17.713v-56.156h26.367v-14.09h-26.367V10.245h-22.945v43.879h-8.656v14.09h8.656v70.246h40.658Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M431.133,147.719h-1.207V10.044h41.061v1.006l15.699,15.902v136.467h-39.854l-15.699-15.7ZM461.928,138.661V19.101h-22.945v119.56h22.945Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M482.057,148.323h-1.008V45.671h76.084v1.207l24.355,24.557v92.588h-39.854l-3.824-4.025v4.025h-39.854l-15.9-15.699ZM512.852,139.265v-70.246h21.135v70.246h22.744V63.584h-8.654v-8.856h-57.969v84.537h22.744Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M571.422,147.719h-1.008v-32.204h35.225V10.044h40.859v1.006l15.699,15.902v136.467h-74.875l-15.9-15.7ZM637.441,138.661V19.101h-22.746v105.47h-35.223v14.09h57.969Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M661.594,139.466h-1.008V54.526h8.656v-8.855h76.082v1.207l15.701,15.699v66.221h-3.824l3.824,4.026v31.198h-66.221l-9.26-8.856h-8.051l-15.9-15.7ZM736.268,139.265v-14.09h-43.879v-12.479h35.225v-8.655h8.654v-49.313h-57.969v8.856h-8.654v66.825h8.654v8.855h57.969ZM692.389,98.808v-29.789h21.135v29.789h-21.135Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M813.959,62.779h19.322v1.007l24.355,24.757v74.876h-83.531l-15.9-15.7h-1.006v-32.204h43.879v-7.648h-14.291v-6.039h-12.682l-15.9-15.699h-1.006V10.044h84.738v1.006l15.699,15.902v31.197h-43.678v4.63ZM832.879,138.661v-57.969h-8.654v-8.855h-35.225v-38.646h43.879v-14.089h-66.623v57.968h8.656v8.857h35.223v38.645h-43.879v14.09h66.623Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M921.24,115.313h1.811v1.006l15.699,15.9v30.998h-57.564l-15.701-15.7h-1.207v-62.598l-7.648-7.649h-1.006v-32.204h8.654V1.188h41.061v1.006l15.902,15.9v26.972h10.465v1.007l15.701,15.699v31.198h-26.166v22.343ZM913.994,138.46v-14.09h-17.713v-56.156h26.367v-14.09h-26.367V10.245h-22.945v43.879h-8.656v14.09h8.656v70.246h40.658Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M943.379,139.466h-1.006V45.671h41.061v1.207l7.85,7.648h36.029v1.208l15.699,15.7v52.533l8.857,8.856v26.972h-79.707l-4.629-4.63h-8.254l-15.9-15.7ZM1027.111,139.265v-14.09h-8.857v-61.591h-22.744v61.591h-21.133V54.727h-22.947v75.682h8.857v8.855h66.824Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1042.004,138.862h-1.008V62.577h8.656v-8.654h35.223V1.188h40.859v1.006l15.701,15.9v145.123h-74.877l-24.555-24.355ZM1116.678,138.46V10.245h-22.744v52.735h-35.225v8.655h-8.654v58.169h8.654v8.655h57.969ZM1072.799,124.37v-47.301h21.135v47.301h-21.135Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1138.012,147.517h-1.207V1.188h41.061v1.006l15.701,15.9v145.123h-39.854l-15.701-15.7ZM1168.809,50.702V10.245h-22.945v40.457h22.945ZM1168.809,138.46V62.98h-22.945v75.479h22.945Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1190.947,139.466h-1.006V54.526h8.654v-8.855h76.084v1.207l15.699,15.699v66.221h-3.824l3.824,4.026v31.198h-66.221l-9.258-8.856h-8.053l-15.9-15.7ZM1265.621,139.265v-14.09h-43.879v-12.479h35.225v-8.655h8.654v-49.313h-57.967v8.856h-8.656v66.825h8.656v8.855h57.967ZM1221.742,98.808v-29.789h21.135v29.789h-21.135Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1287.561,148.323h-1.006v-32.205h12.881l-11.875-11.875h-1.006v-49.717h8.654v-8.855h76.084v1.207l15.699,15.699v31.199h-12.68l12.68,12.881v48.509h-8.654v8.856h-74.877l-15.9-15.699ZM1353.58,139.265v-8.855h8.654v-31.602h-8.654v-8.855h-35.225v-20.934h43.879v-14.291h-57.967v8.856h-8.656v31.601h8.656v8.856h35.223v21.134h-43.879v14.09h57.969Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1441.939,116.118h27.977v1.006l15.701,15.7v26.972h-70.852l-4.629-4.63h-8.051l-15.9-15.7h-1.008V54.526h8.656v-8.855h76.082v1.207l15.701,15.699v31.199h-43.678v22.342ZM1460.859,139.265v-14.09h-43.879v-56.156h43.879v-14.291h-57.969v8.856h-8.654v66.825h8.654v8.855h57.969Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1538.553,53.923h19.322v1.006l24.355,24.557v83.732h-39.854l-3.824-3.824v3.824h-39.854l-15.9-15.7h-1.008V1.188h40.859v1.006l15.902,15.9v35.828ZM1513.594,138.46v-61.391h21.135v61.391h22.744v-66.824h-8.654v-8.655h-35.225V10.245h-22.744v128.215h22.744Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1579.41,139.466h-1.006V45.671h41.061v1.207l7.85,7.648h36.029v1.208l15.699,15.7v52.533l8.857,8.856v26.972h-79.707l-4.629-4.63h-8.254l-15.9-15.7ZM1663.143,139.265v-14.09h-8.857v-61.591h-22.744v61.591h-21.133V54.727h-22.947v75.682h8.857v8.855h66.824Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1677.432,147.517h-1.207V1.188h41.061v1.006l15.699,15.9v145.123h-39.854l-15.699-15.7ZM1708.227,138.46V10.245h-22.945v128.215h22.945Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1732.379,138.862h-1.008V62.577h8.656v-8.654h35.223V1.188h40.859v1.006l15.701,15.9v145.123h-74.877l-24.555-24.355ZM1807.053,138.46V10.245h-22.744v52.735h-35.225v8.655h-8.654v58.169h8.654v8.655h57.969ZM1763.174,124.37v-47.301h21.135v47.301h-21.135Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1831.406,148.927h-1.207v-49.516h41.061v1.007l15.699,15.7v48.709h-39.852l-15.701-15.9ZM1862.203,139.868v-31.398h-22.947v31.398h22.947Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1887.361,148.323h-1.008V45.671h76.084v1.207l24.355,24.557v92.588h-39.854l-3.824-4.025v4.025h-39.854l-15.9-15.699ZM1918.156,139.265v-70.246h21.135v70.246h22.744V63.584h-8.654v-8.856h-57.969v84.537h22.744Z"
-              style={{ stroke: "#000" }}
-            />
-            <path
-              d="M1985.381,147.517h-1.207V1.188h41.061v1.006l15.701,15.9v145.123h-39.854l-15.701-15.7ZM2016.178,138.46V10.245h-22.945v128.215h22.945Z"
-              style={{ stroke: "#000" }}
-            />
-          </svg>
+          <section>
+            <section
+              className="hypotheekCalculator stap8"
+              style={{ animation: "appear 1s both" }}
+            >
+              <h1>Jouw hypotheek</h1>
+              <p>Studieschuld: €{studieSchuld}</p>
+              <p>Hypotheek: €{hypotheek}</p>
+            </section>
+            <section
+              className="studieschuldCalculator stap5"
+              style={{ animation: "appear 1s both" }}
+            >
+              <h1>Studieschuld na de studie</h1>
+              <p>Rentepercentage: {sliderValue4}%</p>
+              <p>Studieschuld: €{studieSchuld}</p>
+            </section>
+          </section>
           <svg
             id="Laag_1"
             data-name="Laag 1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 506.78 775.059"
             className="character2"
-            style={{ animation: "appear 1s both .5s" }}
           >
             <path
               d="m385.539,492.19s.054-9.322-9.268-10.169c-9.322-.847-27.119-3.742-27.119-3.742h-175.696l-27.694,9.674s-7.627-3.39-7.627,8.475v171.186s-3.39,11.017,6.78,12.712c10.169,1.695,49.26,0,49.26,0v67.797h43.827c.829-4.887,1.662-9.774,2.553-14.65,1.655-9.056,3.683-17.942,4.695-27.104.93-8.417,2.123-16.499,5.517-24.329.517-1.192,1.283-1.925,2.153-2.301.404-.56.935-1.029,1.591-1.359.562-1.781,2.215-2.705,4.008-2.807,1.645-.88,3.648-.759,5.185,1.218,10.714,13.787,11.378,32.338,16.507,48.457,2.445,7.685,5.08,15.305,7.851,22.875h41.841v-63.559l43.893-.847s11.602,0,11.699-10.169,0-79.661,0-79.661l.043-101.695Z"
               style={{ fill: "#201f32", strokeWidth: 0 }}
+              className={`${sliderValue1 > 800 ? "path-animation" : ""}`}
             />
             <path
               d="m224.176,660.834h71.587v-148.91s-25.378,25.463-71.587,4.559v144.35Z"
@@ -183,7 +153,7 @@ const Onboarding1 = () => {
                 strokeMiterlimit: 10,
                 strokeWidth: 10,
                 transition: "fill .5s ease-in-out",
-                fill: "#f1d1b5",
+                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
               }}
             />
             <path
@@ -217,7 +187,7 @@ const Onboarding1 = () => {
               ry="60.96"
               transform="translate(-61.059 20.872) rotate(-11.15)"
               style={{
-                fill: "#f1d1b5",
+                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
                 transition: "fill 1s ease-in-out",
                 stroke: "#201f32",
                 strokeMiterlimit: 10,
@@ -231,7 +201,7 @@ const Onboarding1 = () => {
               ry="26.422"
               transform="translate(28.908 689.882) rotate(-78.85)"
               style={{
-                fill: "#f1d1b5",
+                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
                 transition: "fill 1s ease-in-out",
                 stroke: "#201f32",
                 strokeMiterlimit: 10,
@@ -279,7 +249,7 @@ const Onboarding1 = () => {
               rx="17.797"
               ry="11.017"
               style={{
-                fill: "#f1d1b5",
+                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
                 transition: "fill 1.5s ease-in-out",
                 strokeWidth: 0,
               }}
@@ -290,7 +260,7 @@ const Onboarding1 = () => {
               rx="17.797"
               ry="11.017"
               style={{
-                fill: "#f1d1b5",
+                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
                 transition: "fill 1.5s ease-in-out",
                 strokeWidth: 0,
               }}
@@ -298,6 +268,7 @@ const Onboarding1 = () => {
             <polygon
               points="241.525 538.801 257.841 551.512 240.429 649.818 259.969 674.394 279.661 649.818 263.203 552.36 274.681 538.801 260.045 524.715 241.525 538.801"
               style={{ fill: "#3f6dff", strokeWidth: 0 }}
+              className={`${sliderValue1 > 800 ? "path-animation" : ""}`}
             />
             <ellipse
               cx="204.208"
@@ -325,9 +296,9 @@ const Onboarding1 = () => {
             <path
               d="m173.456,401.512s62.999,155.288,180.025-4.983l-180.025,4.983Z"
               style={{
-                fill: "#fff",
+                fill: sliderValue1 > 500 ? "#F7D100" : "#fff",
                 transition: "fill 0.5s ease-in-out",
-                strokeWidth: 0,
+                strokeWidth: sliderValue1 > 50 ? 2 : 0,
                 strokeMiterlimit: 10,
               }}
             />
@@ -370,4 +341,4 @@ const Onboarding1 = () => {
   );
 };
 
-export default Onboarding1;
+export default Result;
