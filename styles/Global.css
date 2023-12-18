@@ -352,6 +352,19 @@ a:hover {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
 }
 
+.portretMode {
+  width: 90vw;
+  text-align: center;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  margin: 5vh 5vw;
+}
+
+.portretMode > h1 {
+  font-size: 3.5em;
+}
+
 @keyframes slide-right {
   0% {
     transform: translateX(-200px);
