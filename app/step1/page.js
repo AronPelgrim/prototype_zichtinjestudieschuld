@@ -43,7 +43,7 @@ const Step1 = () => {
     const headerText = `De eerste 2 jaar na je studie heb je een zogenaamde
       'aanloopfase'. Hierin hoef je nog niks af te lossen, maar als
       je dat wil dan kan dat wel. Na twee jaar volgt de zogenaamde
-      'aflosfase'. Je moet vanaf dan maandelijks gaan afbetalen.`;
+      'aflosfase'. Je moet vanaf dan maandelijks gaan afbetalen. Zou jij hier gebruik van maken?`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -94,22 +94,6 @@ const Step1 = () => {
     };
   }, []);
 
-  const handleSliderChange1 = (value) => {
-    setSliderValue1(value);
-  };
-
-  const handleSliderChange2 = (value) => {
-    setSliderValue2(value);
-  };
-
-  const handleSliderChange3 = (value) => {
-    setSliderValue3(value);
-  };
-
-  const handleSliderChange4 = (value) => {
-    setSliderValue4(value);
-  };
-
   return (
     <>
       {orientation === "Landscape" ? (
@@ -117,29 +101,8 @@ const Step1 = () => {
           <section
             className="completeness-meter"
             style={{ "--progress-width": progressWidth }}
-          >
-            <p>Stap 1 van 8</p>
-          </section>
+          ></section>
           <header>{displayedText}</header>
-          <Slider
-            onChange1={handleSliderChange1}
-            onChange2={handleSliderChange2}
-            onChange3={handleSliderChange3}
-            onChange4={handleSliderChange4}
-          />
-          <section className="studieschuldCalculator">
-            <h1>Studieschuld na de studie</h1>
-            <p>Rentepercentage: {sliderValue4}%</p>
-            <p>Studieschuld: €{studieSchuld}</p>
-          </section>
-          <section className="prevenext">
-            <Link href="/">Vorige</Link>
-            <Link
-              href={`/step2?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
-            >
-              Volgende
-            </Link>
-          </section>
           <svg
             id="Laag_1"
             data-name="Laag 1"

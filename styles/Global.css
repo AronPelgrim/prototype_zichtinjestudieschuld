@@ -32,11 +32,10 @@
 
 header {
   color: white;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 1em;
   margin: 0.5em;
-  font-size: clamp(0.5em, 1.8vw, 1.7em);
-  border-radius: 0.5em;
+  font-size: clamp(0.5em, 1.9vw, 1.7em);
 }
 
 header.onboarding {
@@ -51,7 +50,7 @@ body {
   height: 100vh;
   letter-spacing: 1px;
   font-family: "lores-12", sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   font-style: normal;
   background: linear-gradient(#beedf7, #fff);
 }
@@ -209,15 +208,13 @@ section:has(.hypotheekCalculator.stap8) > .studieschuldCalculator {
   background-color: white;
   position: relative;
   overflow: hidden;
-  margin: 2em 1em 1em 1em;
-  border-radius: 0.5em;
+  margin: 1em;
 }
 
 .completeness-meter > p {
   position: fixed;
   font-size: clamp(0.5em, 1.8vw, 1.2em);
   padding: 0.2em;
-  border-radius: 0.5em;
   margin-top: -1.7em;
   text-align: center;
   width: 100%;
@@ -231,7 +228,6 @@ section:has(.hypotheekCalculator.stap8) > .studieschuldCalculator {
   height: 100%;
   background-color: #46f7bf;
   width: var(--progress-width);
-  border-radius: 0.5em;
   animation: increaseProgress 0.5s ease-in both;
   transform-origin: left;
 }
@@ -298,7 +294,7 @@ input[type="range"] {
 }
 
 .sliding-right {
-  animation: slide-right 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-right 1s linear both;
 }
 
 .slide-out {
@@ -328,6 +324,7 @@ input[type="range"] {
   opacity: 0.6;
   z-index: -200;
   bottom: 0;
+  animation: kenburns-top 5s ease-out infinite;
 }
 
 a,
@@ -367,10 +364,37 @@ a:hover {
 
 @keyframes slide-right {
   0% {
-    transform: translateX(-200px);
+    transform: translateX(-150px) rotate(-3deg);
+  }
+  10% {
+    transform: translateX(-120px) rotate(3deg);
+  }
+  20% {
+    transform: translateX(-90px) rotate(-3deg);
+  }
+  30% {
+    transform: translateX(-60px) rotate(3deg);
+  }
+  40% {
+    transform: translateX(-30px) rotate(-3deg);
+  }
+  50% {
+    transform: translateX(0) rotate(3deg);
+  }
+  60% {
+    transform: translateX(30px) rotate(-3deg);
+  }
+  70% {
+    transform: translateX(60px) rotate(3deg);
+  }
+  80% {
+    transform: translateX(90px) rotate(-3deg);
+  }
+  90% {
+    transform: translateX(120px) rotate(3deg);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(150px) rotate(0deg);
   }
 }
 
@@ -556,6 +580,19 @@ a:hover {
     clip-path: circle(100% at 50% 50%);
     filter: grayscale(0);
     opacity: 1;
+  }
+}
+
+@keyframes kenburns-top {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.01) translateY(1px);
+    transform-origin: top;
+  }
+  100% {
+    transform: scale(1) translateY(0);
   }
 }
 
