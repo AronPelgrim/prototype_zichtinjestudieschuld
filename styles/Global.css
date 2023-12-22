@@ -63,18 +63,27 @@ body {
   width: max-content;
   padding: 1em;
   background: white;
-  border: 10px solid black;
-  border-radius: 2em;
+  border: 0.4em solid black;
   align-items: center;
   position: absolute;
   bottom: 10%;
   left: 60%;
   transform: translate(-50%, 0);
+  font-size: clamp(0.5em, 1.9vw, 1.7em);
+  gap: 0.5em;
 }
 
-.antwoord > a {
+.antwoord > a:not(.opslaan) {
   background-color: transparent;
-  font-size: clamp(0.5em, 1.9vw, 1.7em);
+}
+
+.antwoord div {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: fit-content;
+  flex-shrink: 0;
+  scroll-snap-align: center;
 }
 
 .studieschuldCalculator,
@@ -355,7 +364,8 @@ input[type="range"] {
 }
 
 a,
-button {
+button,
+.opslaan {
   background-color: #46f7bf;
   border: none;
   color: black;

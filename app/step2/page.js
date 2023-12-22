@@ -1,46 +1,28 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../../styles/Global.css";
-import Slider from "../components/slider";
 import Link from "next/link";
 
 const Step2 = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
+  const svgRef = useRef(null);
 
-  const [sliderValue1, setSliderValue1] = useState(0);
-  const [sliderValue2, setSliderValue2] = useState(0);
-  const [sliderValue3, setSliderValue3] = useState(0);
-  const [sliderValue4, setSliderValue4] = useState(0);
-  const [studieSchuld, setStudieSchuld] = useState(0);
+  const [aflosFase, setAflosFase] = useState(0);
+  const [aanloopfase, setAanloopfase] = useState("");
   const progressWidth = "25%";
 
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const initialLeningpm = urlParams.get("leningpm");
-    const initialLeenduur = urlParams.get("leenduur");
-    const initialAflosFase = urlParams.get("aflosfase");
-    const initialRentepercentage = urlParams.get("rentepercentage");
+    const initialAanloop = urlParams.get("aanloopfase");
 
-    if (initialLeningpm !== null) {
-      setSliderValue1(Number(initialLeningpm));
-    }
+    setAanloopfase(initialAanloop);
+  }, []);
 
-    if (initialLeenduur !== null) {
-      setSliderValue2(Number(initialLeenduur));
-    }
-
-    if (initialAflosFase !== null) {
-      setSliderValue3(Number(initialAflosFase));
-    }
-
-    if (initialRentepercentage !== null) {
-      setSliderValue4(Number(initialRentepercentage));
-    }
-
-    const headerText = `Er zijn verschillende aflosregelingen. Val je onder de regelingen van vóór 2018 dan duurt je aflosfase maximaal 15 jaar. Val je onder de regels vanaf 2018 dan duurt je aflosfase maximaal 35 jaar.`;
+  useEffect(() => {
+    const headerText = `Er zijn verschillende aflosregelingen. Val je onder de regelingen van vóór 2018 dan duurt je aflosfase maximaal 15 jaar. Val je onder de regels vanaf 2018 dan duurt je aflosfase maximaal 35 jaar. In hoeveel tijd zou jij je studieschuld willen afbetalen?`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -53,23 +35,6 @@ const Step2 = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    const rentepercentage = sliderValue4 / 100;
-    let berekenSchuld = 0;
-
-    if (rentepercentage !== 0) {
-      berekenSchuld =
-        (sliderValue1 *
-          12 *
-          (Math.pow(1 + rentepercentage, sliderValue2) - 1)) /
-        rentepercentage;
-    } else {
-      berekenSchuld = sliderValue1 * 12 * sliderValue2;
-    }
-
-    setStudieSchuld(berekenSchuld.toFixed(2));
-  }, [sliderValue1, sliderValue2, sliderValue4]);
 
   useEffect(() => {
     const handleOrientationChange = () => {
@@ -91,20 +56,16 @@ const Step2 = () => {
     };
   }, []);
 
-  const handleSliderChange1 = (value) => {
-    setSliderValue1(value);
+  const handleAflosFase = (e) => {
+    const updatedValue = parseInt(e.target.value);
+    setAflosFase(updatedValue);
   };
 
-  const handleSliderChange2 = (value) => {
-    setSliderValue2(value);
-  };
-
-  const handleSliderChange3 = (value) => {
-    setSliderValue3(value);
-  };
-
-  const handleSliderChange4 = (value) => {
-    setSliderValue4(value);
+  const characterAnimation = () => {
+    const svgElement = svgRef.current;
+    if (svgElement) {
+      svgElement.classList.add("explode");
+    }
   };
 
   return (
@@ -115,32 +76,29 @@ const Step2 = () => {
           <section
             className="completeness-meter"
             style={{ "--progress-width": progressWidth }}
-          >
-            <p>Stap 2 van 8</p>
-          </section>
+          ></section>
           <header>{displayedText}</header>
-          <Slider
-            onChange1={handleSliderChange1}
-            onChange2={handleSliderChange2}
-            onChange3={handleSliderChange3}
-            onChange4={handleSliderChange4}
-          />{" "}
-          <section className="studieschuldCalculator">
-            <h1>Studieschuld na de studie</h1>
-            <p>Rentepercentage: {sliderValue4}%</p>
-            <p>Studieschuld: €{studieSchuld}</p>
+          <section className="antwoord">
+            <div>
+              <label>Aflosfase: {aflosFase} jaar</label>
+              <input
+                type="range"
+                min="0"
+                max="35"
+                value={aflosFase}
+                onChange={handleAflosFase}
+                step="1"
+              />
+            </div>
+            <Link
+              href={`/step3?aanloopfase=${aanloopfase}&aflosfase=${aflosFase}`}
+              className="opslaan"
+            >
+              Opslaan
+            </Link>
           </section>
           <section className="prevenext">
-            <Link
-              href={`/step1?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
-            >
-              Vorige
-            </Link>
-            <Link
-              href={`/step3?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
-            >
-              Volgende
-            </Link>{" "}
+            <Link href={`/step1`}>Vorige</Link>
           </section>
           <>
             <svg
@@ -1354,11 +1312,13 @@ const Step2 = () => {
             </svg>
           </>
           <svg
+            ref={svgRef}
             id="Laag_1"
             data-name="Laag 1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 506.78 775.059"
             className="character1 sliding-right"
+            onClick={characterAnimation}
           >
             <path
               d="m385.539,492.19s.054-9.322-9.268-10.169c-9.322-.847-27.119-3.742-27.119-3.742h-175.696l-27.694,9.674s-7.627-3.39-7.627,8.475v171.186s-3.39,11.017,6.78,12.712c10.169,1.695,49.26,0,49.26,0v67.797h43.827c.829-4.887,1.662-9.774,2.553-14.65,1.655-9.056,3.683-17.942,4.695-27.104.93-8.417,2.123-16.499,5.517-24.329.517-1.192,1.283-1.925,2.153-2.301.404-.56.935-1.029,1.591-1.359.562-1.781,2.215-2.705,4.008-2.807,1.645-.88,3.648-.759,5.185,1.218,10.714,13.787,11.378,32.338,16.507,48.457,2.445,7.685,5.08,15.305,7.851,22.875h41.841v-63.559l43.893-.847s11.602,0,11.699-10.169,0-79.661,0-79.661l.043-101.695Z"
@@ -1376,7 +1336,7 @@ const Step2 = () => {
                 strokeMiterlimit: 10,
                 strokeWidth: 10,
                 transition: "fill .5s ease-in-out",
-                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: "#f1d1b5",
               }}
             />
             <path
@@ -1410,7 +1370,7 @@ const Step2 = () => {
               ry="60.96"
               transform="translate(-61.059 20.872) rotate(-11.15)"
               style={{
-                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: "#f1d1b5",
                 transition: "fill 1s ease-in-out",
                 stroke: "#201f32",
                 strokeMiterlimit: 10,
@@ -1424,7 +1384,7 @@ const Step2 = () => {
               ry="26.422"
               transform="translate(28.908 689.882) rotate(-78.85)"
               style={{
-                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: "#f1d1b5",
                 transition: "fill 1s ease-in-out",
                 stroke: "#201f32",
                 strokeMiterlimit: 10,
@@ -1472,7 +1432,7 @@ const Step2 = () => {
               rx="17.797"
               ry="11.017"
               style={{
-                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: "#f1d1b5",
                 transition: "fill 1.5s ease-in-out",
                 strokeWidth: 0,
               }}
@@ -1483,7 +1443,7 @@ const Step2 = () => {
               rx="17.797"
               ry="11.017"
               style={{
-                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: "#f1d1b5",
                 transition: "fill 1.5s ease-in-out",
                 strokeWidth: 0,
               }}
@@ -1518,9 +1478,8 @@ const Step2 = () => {
             <path
               d="m173.456,401.512s62.999,155.288,180.025-4.983l-180.025,4.983Z"
               style={{
-                fill: sliderValue1 > 500 ? "#F7D100" : "#fff",
+                fill: "#fff",
                 transition: "fill 0.5s ease-in-out",
-                strokeWidth: sliderValue1 > 50 ? 2 : 0,
                 strokeMiterlimit: 10,
               }}
             />
