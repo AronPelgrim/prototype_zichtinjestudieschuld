@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../../styles/Global.css";
 import Slider from "../components/slider";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import Link from "next/link";
 const Step1 = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
+  const svgRef = useRef(null);
 
   const [sliderValue1, setSliderValue1] = useState(0);
   const [sliderValue2, setSliderValue2] = useState(1);
@@ -94,6 +95,13 @@ const Step1 = () => {
     };
   }, []);
 
+  const characterAnimation = () => {
+    const svgElement = svgRef.current;
+    if (svgElement) {
+      svgElement.classList.add("explode");
+    }
+  };
+
   return (
     <>
       {orientation === "Landscape" ? (
@@ -103,6 +111,21 @@ const Step1 = () => {
             style={{ "--progress-width": progressWidth }}
           ></section>
           <header>{displayedText}</header>
+          <section className="antwoord">
+            <Link
+              href={`/step2?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}&aanloopfase=ja`}
+            >
+              Zeker, zo lang mogelijk uitstellen die handel.
+            </Link>
+            <Link
+              href={`/step2?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}&aanloopfase=nee`}
+            >
+              Nee joh, ik betaal de schuld zo snel mogelijk af!
+            </Link>
+          </section>
+          <section className="prevenext">
+            <Link href={`/`}>Vorige</Link>
+          </section>
           <svg
             id="Laag_1"
             data-name="Laag 1"
@@ -2226,11 +2249,13 @@ const Step1 = () => {
             </g>
           </svg>
           <svg
+            ref={svgRef}
             id="Laag_1"
             data-name="Laag 1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 506.78 775.059"
             className="character1 sliding-right"
+            onClick={characterAnimation}
           >
             <path
               d="m385.539,492.19s.054-9.322-9.268-10.169c-9.322-.847-27.119-3.742-27.119-3.742h-175.696l-27.694,9.674s-7.627-3.39-7.627,8.475v171.186s-3.39,11.017,6.78,12.712c10.169,1.695,49.26,0,49.26,0v67.797h43.827c.829-4.887,1.662-9.774,2.553-14.65,1.655-9.056,3.683-17.942,4.695-27.104.93-8.417,2.123-16.499,5.517-24.329.517-1.192,1.283-1.925,2.153-2.301.404-.56.935-1.029,1.591-1.359.562-1.781,2.215-2.705,4.008-2.807,1.645-.88,3.648-.759,5.185,1.218,10.714,13.787,11.378,32.338,16.507,48.457,2.445,7.685,5.08,15.305,7.851,22.875h41.841v-63.559l43.893-.847s11.602,0,11.699-10.169,0-79.661,0-79.661l.043-101.695Z"

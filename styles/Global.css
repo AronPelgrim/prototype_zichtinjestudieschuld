@@ -55,6 +55,28 @@ body {
   background: linear-gradient(#beedf7, #fff);
 }
 
+.antwoord {
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  text-align: center;
+  width: max-content;
+  padding: 1em;
+  background: white;
+  border: 10px solid black;
+  border-radius: 2em;
+  align-items: center;
+  position: absolute;
+  bottom: 10%;
+  left: 60%;
+  transform: translate(-50%, 0);
+}
+
+.antwoord > a {
+  background-color: transparent;
+  font-size: clamp(0.5em, 1.9vw, 1.7em);
+}
+
 .studieschuldCalculator,
 .hypotheekCalculator {
   position: fixed;
@@ -282,7 +304,8 @@ input[type="range"] {
   width: 14vw;
   position: fixed;
   bottom: 2vh;
-  left: 4em;
+  left: 5em;
+  cursor: pointer;
 }
 
 .character2 {
@@ -294,7 +317,7 @@ input[type="range"] {
 }
 
 .sliding-right {
-  animation: slide-right 1s linear both;
+  animation: slide-right 0.8s linear both;
 }
 
 .slide-out {
@@ -311,6 +334,10 @@ input[type="range"] {
 
 .wobble {
   animation: wobble 0.8s both;
+}
+
+.explode {
+  animation: explosion 1s ease-in both;
 }
 
 .poor {
@@ -338,7 +365,7 @@ button {
   display: inline-block;
   font-size: clamp(0.5em, 1.5vw, 1.2em);
   margin: 4px 2px;
-  transition-duration: 0.4s;
+  transition-duration: 0.01s;
   cursor: pointer;
   border-radius: 0.5em;
   font-family: "lores-12", sans-serif;
@@ -364,37 +391,22 @@ a:hover {
 
 @keyframes slide-right {
   0% {
-    transform: translateX(-150px) rotate(-3deg);
-  }
-  10% {
-    transform: translateX(-120px) rotate(3deg);
+    transform: translateX(-250px) rotate(-3deg);
   }
   20% {
-    transform: translateX(-90px) rotate(-3deg);
-  }
-  30% {
-    transform: translateX(-60px) rotate(3deg);
+    transform: translateX(-200px) rotate(3deg);
   }
   40% {
-    transform: translateX(-30px) rotate(-3deg);
-  }
-  50% {
-    transform: translateX(0) rotate(3deg);
+    transform: translateX(-150px) rotate(-3deg);
   }
   60% {
-    transform: translateX(30px) rotate(-3deg);
-  }
-  70% {
-    transform: translateX(60px) rotate(3deg);
+    transform: translateX(-100px) rotate(3deg);
   }
   80% {
-    transform: translateX(90px) rotate(-3deg);
-  }
-  90% {
-    transform: translateX(120px) rotate(3deg);
+    transform: translateX(-50px) rotate(-3deg);
   }
   100% {
-    transform: translateX(150px) rotate(0deg);
+    transform: translateX(0) rotate(0deg);
   }
 }
 
