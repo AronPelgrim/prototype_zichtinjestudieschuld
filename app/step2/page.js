@@ -17,8 +17,10 @@ const Step2 = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const initialAanloop = urlParams.get("aanloopfase");
+    const initialAflos = urlParams.get("aflosfase");
 
     setAanloopfase(initialAanloop);
+    setAflosFase(initialAflos);
   }, []);
 
   useEffect(() => {
@@ -80,7 +82,7 @@ const Step2 = () => {
           <header>{displayedText}</header>
           <section className="antwoord">
             <div>
-              <label>Aflosfase: {aflosFase} jaar</label>
+              <label>Aflosfase: {aflosFase == null ? 0 : aflosFase} jaar</label>
               <input
                 type="range"
                 min="0"
@@ -98,7 +100,11 @@ const Step2 = () => {
             </Link>
           </section>
           <section className="prevenext">
-            <Link href={`/step1`}>Vorige</Link>
+            <Link
+              href={`/step1?aanloopfase=${aanloopfase}&aflosfase=${aflosFase}`}
+            >
+              Vorige
+            </Link>
           </section>
           <>
             <svg

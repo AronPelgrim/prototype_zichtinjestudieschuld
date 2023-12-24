@@ -9,7 +9,16 @@ const Step1 = () => {
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
 
+  const [aflosFase, setAflosFase] = useState(0);
   const progressWidth = "12.5%";
+
+  useEffect(() => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const initialAflos = urlParams.get("aflosfase");
+
+    setAflosFase(initialAflos);
+  }, []);
 
   useEffect(() => {
     const headerText = `De eerste 2 jaar na je studie heb je een zogenaamde
@@ -66,10 +75,18 @@ const Step1 = () => {
           ></section>
           <header>{displayedText}</header>
           <section className="antwoord">
-            <Link href={`/step2?&aanloopfase=ja`}>
+            <Link
+              href={`/step2?&aanloopfase=ja&aflosfase=${
+                aflosFase == null ? 0 : aflosFase
+              }`}
+            >
               Ja zeker! zo lang mogelijk uitstellen die handel.
             </Link>
-            <Link href={`/step2?&aanloopfase=nee`}>
+            <Link
+              href={`/step2?&aanloopfase=nee&aflosfase=${
+                aflosFase == null ? 0 : aflosFase
+              }`}
+            >
               Nee joh, ik betaal de schuld zo snel mogelijk af!
             </Link>
           </section>
