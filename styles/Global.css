@@ -298,7 +298,7 @@ input[type="text"] {
   border-radius: 0.5em;
   font-size: 1em;
   text-align: left;
-  border: none;
+  border: 2px solid black;
   padding: 0.2em 0.2em;
   font-family: "lores-12", sans-serif;
   font-weight: 700;

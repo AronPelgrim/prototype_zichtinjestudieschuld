@@ -5,7 +5,7 @@ import "../../styles/Global.css";
 import Slider from "../components/slider";
 import Link from "next/link";
 
-const Step6 = () => {
+const Step7 = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
 
@@ -15,7 +15,7 @@ const Step6 = () => {
   const [sliderValue4, setSliderValue4] = useState(0);
   const [studieSchuld, setStudieSchuld] = useState(0);
   const [hypotheek, setHypotheek] = useState(0);
-  const progressWidth = "75%";
+  const progressWidth = "87.5%";
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -41,7 +41,8 @@ const Step6 = () => {
       setSliderValue4(Number(initialRentepercentage));
     }
 
-    const headerText = `Een studieschuld heeft ook effect op de hoogte van je hypotheek. Om de hoogte van een hypotheek te kunnen bepalen wil de hypotheekverstrekker inzicht in je geldleningen. `;
+    const headerText = `Om een hogere hypotheek te krijgen kiezen toch veel mensen met een 
+    studieschuld ervoor om die niet op te geven. Als je dat doet, dan verlies je hiermee het recht op de Nationale Hypotheek Garantie (NHG).`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -73,6 +74,14 @@ const Step6 = () => {
   }, [sliderValue1, sliderValue2, sliderValue4]);
 
   useEffect(() => {
+    const hypotheekResult = (164000 - (studieSchuld / 10000) * 12500).toFixed(
+      2
+    );
+    const hypotheek = hypotheekResult < 0 ? 0 : hypotheekResult;
+    setHypotheek(hypotheek);
+  }, [studieSchuld]);
+
+  useEffect(() => {
     const handleOrientationChange = () => {
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
@@ -92,14 +101,6 @@ const Step6 = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const hypotheekResult = (164000 - (studieSchuld / 10000) * 12500).toFixed(
-      2
-    );
-    const hypotheek = hypotheekResult < 0 ? 0 : hypotheekResult;
-    setHypotheek(hypotheek);
-  }, [studieSchuld]);
-
   const handleSliderChange1 = (value) => {
     setSliderValue1(value);
   };
@@ -118,13 +119,14 @@ const Step6 = () => {
 
   return (
     <>
+      {" "}
       {orientation === "Landscape" ? (
         <>
           <section
             className="completeness-meter"
             style={{ "--progress-width": progressWidth }}
           >
-            <p>Stap 6 van 8</p>
+            <p>Stap 7 van 8</p>
           </section>
           <header>{displayedText}</header>
           <Slider
@@ -138,14 +140,23 @@ const Step6 = () => {
             <p>Studieschuld: €{studieSchuld}</p>
             <p>Hypotheek: €{hypotheek}</p>
           </section>
+          <div className="moreInfo">
+            <Link
+              href={`https://www.nhg.nl/`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Meer info over de NHG
+            </Link>
+          </div>
           <section className="prevenext">
             <Link
-              href={`/step5?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
+              href={`/step6?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
             >
               Vorige
             </Link>{" "}
             <Link
-              href={`/step7?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
+              href={`/step8?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
             >
               Volgende
             </Link>{" "}
@@ -435,6 +446,136 @@ const Step6 = () => {
                       style={{ fill: "#e58a5e", strokeWidth: 0 }}
                     />
                     <path
+                      id="Path_2542"
+                      data-name="Path 2542"
+                      d="m736.086,221.482c-4.853-.498,2.271,10.785,3.105,16.103,2.873,18.336.436,38.78,4.137,57.147,4.769,23.647,32.999,73.81,26.907,129.364-7.139-.868-14.552-1.217-21.732-2.079,12.291-56.744.983-71.041-20.177-120.526-24.688,42.906-36.427,62.854-27.419,114.294-3.779-.414-7.542-.625-11.385-1.039-20.98-18.044-37.472-29.087-39.836-59.231-13.102,14.354-18.233,33.32-21.212,51.951-1.568-.149-11.305.598-18.107,0-.402-.035-.727-1.831-3.625-2.075q-6.984-15.062-13.963-30.132l-11.901,28.055c-5.209-.251-10.378.449-15.522-1.039,7.981-17.35,18.438-33.45,31.044-47.797,4.52,2.162,1.635,23.473,9.831,35.33,2.18.536,2.883-1.161,3.621-1.039.226.869.784,1.615,1.553,2.079l3.621-1.561c12.956-37.39,44.623-63.481,66.739-95.07,1.859.779-5.814,16.25-6.723,18.7-6.428-.632-15.262,28.28-15.518,32.73-.623,10.491,7.913,36.716,14.486,32.733,6.868,8.979,2.714-.856,6.207-15.068,9.386-38.24,48.591-87.678,51.736-116.371,2.725-24.919-7.869-44.927,4.141-25.457"
+                      style={{
+                        fill: "#ac1924",
+                        strokeWidth: 0,
+                        animation: "jello-horizontal 0.3s linear infinite both",
+                      }}
+                    />
+                    <path
+                      id="Path_2543"
+                      data-name="Path 2543"
+                      d="m736.086,221.483c16.99,27.546,7.602,45.65,12.417,72.211,2.998,16.534,31.503,62.949,31.044,121.048,0,.529-1.365,7.845-2.069,10.389-2.458-.302-4.804-.739-7.242-1.039,6.092-55.548-22.137-105.713-26.907-129.364-3.701-18.367-1.272-38.813-4.137-57.147-.834-5.318-7.958-16.601-3.105-16.103"
+                      style={{
+                        fill: "#d5413f",
+                        strokeWidth: 0,
+                        animation:
+                          "jello-horizontal 0.4s linear 0.1s infinite both",
+                      }}
+                    />
+                    <path
+                      id="Path_2544"
+                      data-name="Path 2544"
+                      d="m675.034,312.917c-8.092,21.641-17.308,44.185-1.036,65.458-6.574,3.983-15.106-22.243-14.486-32.73.263-4.453,9.085-33.362,15.522-32.73"
+                      style={{
+                        fill: "#c62e31",
+                        strokeWidth: 0,
+                        animation:
+                          "jello-horizontal 0.5s linear 0.1s infinite both",
+                      }}
+                    />
+                    <path
+                      id="Path_2545"
+                      data-name="Path 2545"
+                      d="m609.845,388.766c-.738-.122-1.454,1.575-3.621,1.039-8.191-11.853-5.311-33.168-9.831-35.33,16.114-18.351-1.067,1.188,13.445,34.29"
+                      style={{
+                        fill: "#c62e31",
+                        strokeWidth: 0,
+                        animation:
+                          "jello-horizontal 0.5s linear 0.2s infinite both",
+                      }}
+                    />
+                    <path
+                      id="Path_2546"
+                      data-name="Path 2546"
+                      d="m837.491,387.728c4.203,33.389,7.615,24.21,18.627.518q4.137,32.472,8.276,64.94-9.055-10.389-18.107-20.778h-3.621l-17.079-32.212-28.458,27.014c-6.501-.819-13.109-1.272-19.663-2.079.71-2.544,2.066-9.86,2.069-10.389,32.715-32.016-.084-72.876,29.492-23.898,7.511-11.67,14.251-23.819,20.177-36.369,5.801,3.897.182,33.842,8.276,33.249"
+                      style={{
+                        fill: "#ac1924",
+                        strokeWidth: 0,
+                        animation:
+                          "jello-horizontal 0.3s linear 0.2s infinite both",
+                      }}
+                    />
+                    <path
+                      id="Path_2547"
+                      data-name="Path 2547"
+                      d="m837.489,387.728c-8.092.59-2.475-29.354-8.276-33.249,2.544-5.211,4.766-15.807,6.207-7.793,1.067,5.923.545,28.912,2.069,41.044"
+                      style={{
+                        fill: "#c62e31",
+                        strokeWidth: 0,
+                        animation: "jello-horizontal 0.3s linear infinite both",
+                      }}
+                    />
+                    <path
+                      id="Path_2548"
+                      data-name="Path 2548"
+                      d="m842.666,432.408c-15.262-.932-30.371-3.281-45.53-5.196l28.458-27.016,17.072,32.212Z"
+                      style={{
+                        fill: "#faca68",
+                        strokeWidth: 0,
+                        animation:
+                          "jello-horizontal 0.3s linear 0.3s infinite both",
+                      }}
+                    />
+                    <path
+                      id="Path_2549"
+                      data-name="Path 2549"
+                      d="m606.74,405.394c-8.443-.709-17.468-1.679-25.869-2.079l11.901-28.055q6.982,15.068,13.968,30.133"
+                      style={{
+                        fill: "#faca68",
+                        strokeWidth: 0,
+                        animation:
+                          "jello-horizontal 0.3s linear 0.4s infinite both",
+                      }}
+                    />
+                    <path
+                      id="Path_2550"
+                      data-name="Path 2550"
+                      d="m748.503,422.013c-15.833-1.895-31.77-4.508-47.603-6.236-9.003-51.44,2.734-71.384,27.423-114.283,21.16,49.494,32.47,63.773,20.177,120.526"
+                      style={{
+                        fill: "#faca68",
+                        strokeWidth: 0,
+                        animation:
+                          "jello-horizontal 0.3s linear 0.7s infinite both",
+                      }}
+                    />
+                    <path
+                      id="Path_2551"
+                      data-name="Path 2551"
+                      d="m717.975,360.713c1.762-.765,3.676,1.377,4.657,2.596,12.691,15.807-2.582,82.279,19.663,13.507,5.781-5.18-4.724,39.654-11.901,41.044l-23.282-3.634c6.359-5.77,8.298-52.396,10.865-53.512"
+                      style={{
+                        fill: "#fcb656",
+                        strokeWidth: 0,
+                        animation:
+                          "jello-horizontal 0.2s linear 0.6s infinite both",
+                      }}
+                    />
+                    <path
+                      id="Path_2552"
+                      data-name="Path 2552"
+                      d="m689.52,414.744c-20.32-2.18-40.773-5.322-61.048-7.268,2.983-18.634,8.111-37.592,21.212-51.954,2.362,30.139,18.859,41.182,39.839,59.231"
+                      style={{
+                        fill: "#faca68",
+                        strokeWidth: 0,
+                        animation:
+                          "jello-horizontal 0.3s linear 0.1s infinite both",
+                      }}
+                    />
+                    <path
+                      id="Path_2553"
+                      data-name="Path 2553"
+                      d="m647.613,381.493c2.34,6.837,22.179,26.014,18.627,28.055-15.74,2.04-14.771-4.8-18.111-23.378-.153-.856-3.178.939-.516-4.675"
+                      style={{
+                        fill: "#fcb656",
+                        strokeWidth: 0,
+                        animation:
+                          "jello-horizontal 0.2s linear 0.6s infinite both",
+                      }}
+                    />
+                    <path
                       id="Path_2554"
                       data-name="Path 2554"
                       d="m565.351,402.276c5.14,1.492,10.313.792,15.522,1.039,8.401.4,17.426,1.366,25.869,2.079,2.891.243,3.223,2.044,3.621,2.079,6.803.594,16.534-.153,18.107,0,20.278,1.95,40.733,5.087,61.048,7.268,3.839.414,7.606.629,11.381,1.039,15.827,1.724,31.767,4.339,47.603,6.236,7.175.859,14.593,1.206,21.728,2.075,2.44.3,4.784.738,7.242,1.039,6.554.81,13.162,1.259,19.663,2.079,15.155,1.911,30.264,4.264,45.53,5.196h3.621q9.055,10.389,18.107,20.778c6.792,22.228,74.511,114.972,75.54,122.096,1.672,11.585-11.526,21.561-19.663,15.064l-82.257-135.076c-51.633,33.922-63.866,61.886-96.752,110.659.194,4.282,62.427,25.208,70.879,27.533h107.088c.646,3.426.993,6.903,1.036,10.389h-107.092c-26.345-6.43-51.349-17.179-76.57-27.016-5.798.16-14.354,20.369-18.627,24.937h-55.359q-46.822-88.838-93.647-177.675c-1.999-.282-5.867,9.931-6.723,11.95-21.403,50.412-35.806,104.109-57.947,154.295-10.413,1.87-17.737-4.699-16.554-15.064.451-3.959,25.962-62.959,30.004-73.766,5.087-13.605,29.759-85.213,32.079-89.355,2.967-5.291,9.335-11.234,15.522-9.871"
@@ -564,7 +705,7 @@ const Step6 = () => {
             data-name="Laag 1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 506.78 775.059"
-            className="character1 slide-in"
+            className="character1 wobble"
           >
             <path
               d="m385.539,492.19s.054-9.322-9.268-10.169c-9.322-.847-27.119-3.742-27.119-3.742h-175.696l-27.694,9.674s-7.627-3.39-7.627,8.475v171.186s-3.39,11.017,6.78,12.712c10.169,1.695,49.26,0,49.26,0v67.797h43.827c.829-4.887,1.662-9.774,2.553-14.65,1.655-9.056,3.683-17.942,4.695-27.104.93-8.417,2.123-16.499,5.517-24.329.517-1.192,1.283-1.925,2.153-2.301.404-.56.935-1.029,1.591-1.359.562-1.781,2.215-2.705,4.008-2.807,1.645-.88,3.648-.759,5.185,1.218,10.714,13.787,11.378,32.338,16.507,48.457,2.445,7.685,5.08,15.305,7.851,22.875h41.841v-63.559l43.893-.847s11.602,0,11.699-10.169,0-79.661,0-79.661l.043-101.695Z"
@@ -771,4 +912,4 @@ const Step6 = () => {
   );
 };
 
-export default Step6;
+export default Step7;
