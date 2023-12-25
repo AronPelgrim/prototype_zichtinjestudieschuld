@@ -8,19 +8,25 @@ const Step2 = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
+  const progressWidth = "25%";
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
-  const progressWidth = "25%";
+  const [rentepercentage, setRentepercentage] = useState(0);
+  const [inkomen, setInkomen] = useState(0);
 
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const initialAanloop = urlParams.get("aanloopfase");
     const initialAflos = urlParams.get("aflosfase");
+    const initialRente = urlParams.get("rentepercentage");
+    const initialInkomen = urlParams.get("inkomen");
 
     setAanloopfase(initialAanloop);
     setAflosFase(initialAflos);
+    setRentepercentage(initialRente);
+    setInkomen(initialInkomen);
   }, []);
 
   useEffect(() => {
