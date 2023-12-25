@@ -14,6 +14,8 @@ const Step3 = () => {
   const [aanloopfase, setAanloopfase] = useState("");
   const [rentepercentage, setRentepercentage] = useState(0);
   const [inkomen, setInkomen] = useState(0);
+  const [leningpm, setLeningpm] = useState(0);
+  const [leenduur, setLeenduur] = useState(0);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -22,11 +24,15 @@ const Step3 = () => {
     const initialAflos = urlParams.get("aflosfase");
     const initialRente = urlParams.get("rentepercentage");
     const initialInkomen = urlParams.get("inkomen");
+    const initialLeningpm = urlParams.get("leningpm");
+    const initialLeenduur = urlParams.get("leenduur");
 
-    setAanloopfase(initialAanloop);
-    setAflosFase(initialAflos);
-    setRentepercentage(initialRente);
-    setInkomen(initialInkomen);
+    setAanloopfase(initialAanloop ? initialAanloop : "");
+    setAflosFase(initialAflos ? initialAflos : 0);
+    setRentepercentage(initialRente ? initialRente : 0);
+    setInkomen(initialInkomen ? initialInkomen : 0);
+    setLeningpm(initialLeningpm ? initialLeningpm : 0);
+    setLeenduur(initialLeenduur ? initialLeenduur : 0);
   }, []);
 
   useEffect(() => {
@@ -85,22 +91,22 @@ const Step3 = () => {
           <header>{displayedText}</header>
           <section className="antwoord">
             <Link
-              href={`/step2?&aanloopfase=ja&aflosfase=${
-                aflosFase == null ? 0 : aflosFase
-              }`}
+              href={`/step4?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=ja&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
               Ja zeker! zo lang mogelijk uitstellen die handel.
             </Link>
             <Link
-              href={`/step2?&aanloopfase=nee&aflosfase=${
-                aflosFase == null ? 0 : aflosFase
-              }`}
+              href={`/step4?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=nee&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
               Nee joh, ik betaal de schuld zo snel mogelijk af!
             </Link>
           </section>
           <section className="prevenext">
-            <Link href={`/`}>Vorige</Link>
+            <Link
+              href={`/step2?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+            >
+              Vorige
+            </Link>
           </section>
           <svg
             id="Laag_1"
