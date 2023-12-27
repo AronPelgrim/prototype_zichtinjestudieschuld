@@ -319,8 +319,9 @@ input[type="range"] {
   width: 14vw;
   position: fixed;
   bottom: 2vh;
-  left: 5em;
+  left: 7em;
   cursor: pointer;
+  overflow: visible;
 }
 
 .character2 {
@@ -332,7 +333,7 @@ input[type="range"] {
 }
 
 .sliding-right {
-  animation: slide-right 0.8s linear both;
+  animation: slide-right 1.2s linear both;
 }
 
 .slide-out {
@@ -345,6 +346,10 @@ input[type="range"] {
 
 .path-animation {
   animation: jello 0.9s both;
+}
+
+.rotate {
+  animation: rotate 0.65s linear both;
 }
 
 .wobble {
@@ -407,19 +412,34 @@ a:hover {
 
 @keyframes slide-right {
   0% {
-    transform: translateX(-250px) rotate(-3deg);
+    transform: translateX(-300px) rotate(-5deg);
+  }
+  10% {
+    transform: translateX(-265px) rotate(5deg);
   }
   20% {
-    transform: translateX(-200px) rotate(3deg);
+    transform: translateX(-230px) rotate(-5deg);
+  }
+  30% {
+    transform: translateX(-195px) rotate(5deg);
   }
   40% {
-    transform: translateX(-150px) rotate(-3deg);
+    transform: translateX(-160px) rotate(-5deg);
+  }
+  50% {
+    transform: translateX(-125px) rotate(5deg);
   }
   60% {
-    transform: translateX(-100px) rotate(3deg);
+    transform: translateX(-90px) rotate(-5deg);
+  }
+  70% {
+    transform: translateX(-55px) rotate(5deg);
   }
   80% {
-    transform: translateX(-50px) rotate(-3deg);
+    transform: translateX(-20px) rotate(-5deg);
+  }
+  90% {
+    transform: translateX(15px) rotate(5deg);
   }
   100% {
     transform: translateX(0) rotate(0deg);
@@ -624,6 +644,18 @@ a:hover {
   }
 }
 
+@keyframes rotate {
+  0% {
+    transform: scale(1) rotateZ(0);
+  }
+  50% {
+    transform: scale(2) rotateZ(180deg);
+  }
+  100% {
+    transform: scale(1) rotateZ(360deg);
+  }
+}
+
 @media only screen and (max-width: 1000px) {
   .slider {
     display: flex;
@@ -662,13 +694,11 @@ a:hover {
     border-radius: 0.5em;
     font-size: 1em;
     text-align: left;
-    border: none;
     padding: 0.2em 0.2em;
     font-family: "lores-12", sans-serif;
     font-weight: 700;
     text-align: center;
     font-size: clamp(0.5em, 1.4vw, 1.2em);
-    width: 50%;
   }
 
   input[type="range"] {
