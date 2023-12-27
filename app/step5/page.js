@@ -36,7 +36,7 @@ const Step5 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Tijdens de aflosfase kun je maximaal 60 maanden aflosvrije periodes aanvragen, bijvoorbeeld bij financiële tegenvallers of werkloosheid. De niet-afgeloste maanden worden aan het einde van je aflosfase (15 of 35 jaar) toegevoegd.`;
+    const headerText = `Tijdens de aflosfase kun je maximaal 60 maanden aflosvrije periodes aanvragen, bijvoorbeeld bij financiële tegenvallers werkloosheid, of ziekte. De niet-afgeloste maanden worden aan het einde van je aflosfase (15 of 35 jaar) toegevoegd.`;
 
     let index = 0;
     const interval = setInterval(() => {
