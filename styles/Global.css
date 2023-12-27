@@ -263,7 +263,7 @@ section:has(.hypotheekCalculator.stap8) > .studieschuldCalculator {
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #46f7bf;
+  background-color: #f1c2e6;
   width: var(--progress-width);
   animation: increaseProgress 0.5s ease-in both;
   transform-origin: left;
