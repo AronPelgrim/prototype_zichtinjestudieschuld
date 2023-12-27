@@ -9,7 +9,7 @@ const Onboarding2 = () => {
   const [orientation, setOrientation] = useState("");
 
   useEffect(() => {
-    const headerText = `Ik ga je inzicht geven in de impact van je studieschuld.`;
+    const headerText = `Ik ga je inzicht geven in de impact van je studieschuld, omdat ik wil dat je een weloverwogen keuze moet kunnen maken met de bedragen die je leent.`;
 
     let index = 0;
     const interval = setInterval(() => {

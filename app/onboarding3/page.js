@@ -9,7 +9,7 @@ const Onboarding2 = () => {
   const [orientation, setOrientation] = useState("");
 
   useEffect(() => {
-    const headerText = `Om dat te doen, ga ik je meenemen door een reis in de tijd na je studie.`;
+    const headerText = `Om dat te doen, ga ik je meenemen door een reis in de tijd, tijdens en na je studie.`;
 
     let index = 0;
     const interval = setInterval(() => {
