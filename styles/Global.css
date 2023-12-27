@@ -371,7 +371,6 @@ input[type="range"] {
   opacity: 0.6;
   z-index: -200;
   bottom: 0;
-  animation: kenburns-top 5s ease-out infinite;
 }
 
 a,

@@ -1329,7 +1329,7 @@ const Step4 = () => {
               </g>
             </svg>
           </>
-          {aflosFase < 15 ? (
+          {aflosFase < 16 ? (
             <svg
               ref={svgRef}
               id="Laag_1"
