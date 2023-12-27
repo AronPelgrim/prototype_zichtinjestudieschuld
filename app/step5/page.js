@@ -14,6 +14,8 @@ const Step5 = () => {
   const [aanloopfase, setAanloopfase] = useState("");
   const [rentepercentage, setRentepercentage] = useState(0);
   const [inkomen, setInkomen] = useState(0);
+  const [leningpm, setLeningpm] = useState(0);
+  const [leenduur, setLeenduur] = useState(0);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -22,11 +24,15 @@ const Step5 = () => {
     const initialAflos = urlParams.get("aflosfase");
     const initialRente = urlParams.get("rentepercentage");
     const initialInkomen = urlParams.get("inkomen");
+    const initialLeningpm = urlParams.get("leningpm");
+    const initialLeenduur = urlParams.get("leenduur");
 
-    setAanloopfase(initialAanloop);
-    setAflosFase(initialAflos);
-    setRentepercentage(initialRente);
-    setInkomen(initialInkomen);
+    setAanloopfase(initialAanloop ? initialAanloop : "");
+    setAflosFase(initialAflos ? initialAflos : 0);
+    setRentepercentage(initialRente ? initialRente : 0);
+    setInkomen(initialInkomen ? initialInkomen : 0);
+    setLeningpm(initialLeningpm ? initialLeningpm : 0);
+    setLeenduur(initialLeenduur ? initialLeenduur : 0);
   }, []);
 
   useEffect(() => {
@@ -83,23 +89,19 @@ const Step5 = () => {
           <header>{displayedText}</header>
           <section className="antwoord">
             <Link
-              href={`/step4?&aanloopfase=${aanloopfase}&aflosfase=${
-                aflosFase == null ? 0 : aflosFase
-              }`}
+              href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
               Hier zou ik hoe dan ook gebruik van maken!{" "}
             </Link>
             <Link
-              href={`/step4?&aanloopfase=${aanloopfase}&aflosfase=${
-                aflosFase == null ? 0 : aflosFase
-              }`}
+              href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
               Wel handig als het nodig is, maar liever niet!
             </Link>
           </section>
           <section className="prevenext">
             <Link
-              href={`/step2?aanloopfase=${aanloopfase}&aflosfase=${aflosFase}`}
+              href={`/step4?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
               Vorige
             </Link>{" "}

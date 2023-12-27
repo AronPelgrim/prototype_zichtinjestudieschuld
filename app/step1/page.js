@@ -101,7 +101,7 @@ const Step1 = () => {
                 max="1000"
                 value={leningpm}
                 onChange={handleLeningpm}
-                step="1"
+                step="10"
               />
             </div>
             <Link

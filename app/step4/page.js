@@ -14,6 +14,8 @@ const Step4 = () => {
   const [aanloopfase, setAanloopfase] = useState("");
   const [rentepercentage, setRentepercentage] = useState(0);
   const [inkomen, setInkomen] = useState(0);
+  const [leningpm, setLeningpm] = useState(0);
+  const [leenduur, setLeenduur] = useState(0);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -22,11 +24,15 @@ const Step4 = () => {
     const initialAflos = urlParams.get("aflosfase");
     const initialRente = urlParams.get("rentepercentage");
     const initialInkomen = urlParams.get("inkomen");
+    const initialLeningpm = urlParams.get("leningpm");
+    const initialLeenduur = urlParams.get("leenduur");
 
-    setAanloopfase(initialAanloop);
-    setAflosFase(initialAflos);
-    setRentepercentage(initialRente);
-    setInkomen(initialInkomen);
+    setAanloopfase(initialAanloop ? initialAanloop : "");
+    setAflosFase(initialAflos ? initialAflos : 0);
+    setRentepercentage(initialRente ? initialRente : 0);
+    setInkomen(initialInkomen ? initialInkomen : 0);
+    setLeningpm(initialLeningpm ? initialLeningpm : 0);
+    setLeenduur(initialLeenduur ? initialLeenduur : 0);
   }, []);
 
   useEffect(() => {
@@ -99,7 +105,7 @@ const Step4 = () => {
               />
             </div>
             <Link
-              href={`/step3?aanloopfase=${aanloopfase}&aflosfase=${aflosFase}`}
+              href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
               className="opslaan"
             >
               Opslaan
@@ -107,7 +113,7 @@ const Step4 = () => {
           </section>
           <section className="prevenext">
             <Link
-              href={`/step1?aanloopfase=${aanloopfase}&aflosfase=${aflosFase}`}
+              href={`/step3?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
               Vorige
             </Link>

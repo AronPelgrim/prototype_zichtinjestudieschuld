@@ -7,13 +7,15 @@ import Link from "next/link";
 const Step8 = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
-
   const svgRef = useRef(null);
   const progressWidth = "75%";
+
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
   const [rentepercentage, setRentepercentage] = useState(0);
   const [inkomen, setInkomen] = useState(0);
+  const [leningpm, setLeningpm] = useState(0);
+  const [leenduur, setLeenduur] = useState(0);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -22,11 +24,15 @@ const Step8 = () => {
     const initialAflos = urlParams.get("aflosfase");
     const initialRente = urlParams.get("rentepercentage");
     const initialInkomen = urlParams.get("inkomen");
+    const initialLeningpm = urlParams.get("leningpm");
+    const initialLeenduur = urlParams.get("leenduur");
 
-    setAanloopfase(initialAanloop);
-    setAflosFase(initialAflos);
-    setRentepercentage(initialRente);
-    setInkomen(initialInkomen);
+    setAanloopfase(initialAanloop ? initialAanloop : "");
+    setAflosFase(initialAflos ? initialAflos : 0);
+    setRentepercentage(initialRente ? initialRente : 0);
+    setInkomen(initialInkomen ? initialInkomen : 0);
+    setLeningpm(initialLeningpm ? initialLeningpm : 0);
+    setLeenduur(initialLeenduur ? initialLeenduur : 0);
   }, []);
 
   useEffect(() => {
@@ -88,17 +94,17 @@ const Step8 = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Meer info over de NHG.
+              Meer informatie over de NHG.
             </Link>
             <Link
-              href={`/step7?aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+              href={`/step9?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
               Het is mij nu wel duidelijk, ga maar naar de volgende!{" "}
             </Link>
           </section>
           <section className="prevenext">
             <Link
-              href={`/step5?aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+              href={`/step7?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
               Vorige
             </Link>{" "}
