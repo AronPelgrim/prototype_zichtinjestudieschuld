@@ -94,6 +94,7 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4 }) => {
 
   return (
     <section className="slider">
+      <h1>Jouw gegevens</h1>
       <div>
         <input
           type="range"
@@ -115,6 +116,17 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4 }) => {
           step="1"
         />
         <label>Leenduur: {leenduur} jaar</label>
+      </div>
+      <div>
+        <input
+          type="range"
+          min="0"
+          max="35"
+          value={aflosFase}
+          onChange={handleAflosFase}
+          step="1"
+        />
+        <label>Aflosfase: {aflosFase} jaar</label>
       </div>
       <div>
         <input

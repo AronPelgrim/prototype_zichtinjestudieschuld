@@ -8,7 +8,7 @@ const Step9 = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
-  const progressWidth = "75%";
+  const progressWidth = "100%";
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -99,7 +99,7 @@ const Step9 = () => {
             <Link
               href={`/result?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
-              Het is mij nu wel duidelijk, ga maar naar de volgende!{" "}
+              Het is mij nu wel duidelijk, ga maar naar het resultaat!{" "}
             </Link>
           </section>
           <section className="prevenext">

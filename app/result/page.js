@@ -8,69 +8,48 @@ import Link from "next/link";
 const Result = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
-
-  const [sliderValue1, setSliderValue1] = useState(0);
-  const [sliderValue2, setSliderValue2] = useState(0);
-  const [sliderValue3, setSliderValue3] = useState(0);
-  const [sliderValue4, setSliderValue4] = useState(0);
   const [studieSchuld, setStudieSchuld] = useState(0);
   const [hypotheek, setHypotheek] = useState(0);
   const progressWidth = "100%";
 
+  const [aflosFase, setAflosFase] = useState(0);
+  const [aanloopfase, setAanloopfase] = useState("");
+  const [rentepercentage, setRentepercentage] = useState(0);
+  const [inkomen, setInkomen] = useState(0);
+  const [leningpm, setLeningpm] = useState(0);
+  const [leenduur, setLeenduur] = useState(0);
+
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
+    const initialAanloop = urlParams.get("aanloopfase");
+    const initialAflos = urlParams.get("aflosfase");
+    const initialRente = urlParams.get("rentepercentage");
+    const initialInkomen = urlParams.get("inkomen");
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
-    const initialAflosFase = urlParams.get("aflosfase");
-    const initialRentepercentage = urlParams.get("rentepercentage");
 
-    if (initialLeningpm !== null) {
-      setSliderValue1(Number(initialLeningpm));
-    }
-
-    if (initialLeenduur !== null) {
-      setSliderValue2(Number(initialLeenduur));
-    }
-
-    if (initialAflosFase !== null) {
-      setSliderValue3(Number(initialAflosFase));
-    }
-
-    if (initialRentepercentage !== null) {
-      setSliderValue4(Number(initialRentepercentage));
-    }
-
-    const headerText = `Hieronder kan je met de sliders berekenen hoeveel hypotheek je kan aanvragen met jouw uiteindelijke studieschuld. Let op: dit is een schatting, ook gaan we uit van een salaris van €3000 per maand. Dat salaris verschilt natuurlijk per persoon en kan gaan groeien. Het gaat er vooral om dat de vergelijking duidelijk wordt.`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(headerText.substring(0, index));
-      index++;
-      if (index > headerText.length) {
-        clearInterval(interval);
-      }
-    }, 10);
-
-    return () => clearInterval(interval);
+    setAanloopfase(initialAanloop ? initialAanloop : "");
+    setAflosFase(initialAflos ? initialAflos : 0);
+    setRentepercentage(initialRente ? initialRente : 0);
+    setInkomen(initialInkomen ? initialInkomen : 0);
+    setLeningpm(initialLeningpm ? initialLeningpm : 0);
+    setLeenduur(initialLeenduur ? initialLeenduur : 0);
   }, []);
 
   useEffect(() => {
-    const rentepercentage = sliderValue4 / 100;
+    const rente = rentepercentage / 100;
     let berekenSchuld = 0;
 
-    if (rentepercentage !== 0) {
+    if (rente !== 0) {
       berekenSchuld =
-        (sliderValue1 *
-          12 *
-          (Math.pow(1 + rentepercentage, sliderValue2) - 1)) /
-        rentepercentage;
+        (leningpm * 12 * (Math.pow(1 + rente, leenduur) - 1)) / rente;
     } else {
-      berekenSchuld = sliderValue1 * 12 * sliderValue2;
+      berekenSchuld = leningpm * 12 * leenduur;
     }
 
     setStudieSchuld(berekenSchuld.toFixed(2));
-  }, [sliderValue1, sliderValue2, sliderValue4]);
+  }, [leningpm, leenduur, rentepercentage]);
 
   useEffect(() => {
     const hypotheekResult = (164000 - (studieSchuld / 10000) * 12500).toFixed(
@@ -101,19 +80,19 @@ const Result = () => {
   }, []);
 
   const handleSliderChange1 = (value) => {
-    setSliderValue1(value);
+    setLeningpm(value);
   };
 
   const handleSliderChange2 = (value) => {
-    setSliderValue2(value);
+    setLeenduur(value);
   };
 
   const handleSliderChange3 = (value) => {
-    setSliderValue3(value);
+    setAflosFase(value);
   };
 
   const handleSliderChange4 = (value) => {
-    setSliderValue4(value);
+    setRentepercentage(value);
   };
 
   return (
@@ -121,13 +100,6 @@ const Result = () => {
       {" "}
       {orientation === "Landscape" ? (
         <>
-          <section
-            className="completeness-meter"
-            style={{ "--progress-width": progressWidth }}
-          >
-            <p>Stap 8 van 8</p>
-          </section>
-          <header>{displayedText}</header>
           <Slider
             onChange1={handleSliderChange1}
             onChange2={handleSliderChange2}
@@ -140,21 +112,7 @@ const Result = () => {
             <p>Hypotheek: €{hypotheek}</p>
           </section>
           <section className="prevenext">
-            <Link
-              href={`/step7?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
-            >
-              Vorige
-            </Link>{" "}
-            <Link
-              href={`/result?leningpm=${sliderValue1}&leenduur=${sliderValue2}&aflosfase=${sliderValue3}&rentepercentage=${sliderValue4}`}
-              style={{
-                background:
-                  "linear-gradient(to right, #FFD26F, #3677FF, #FF6F6F)",
-                color: "white",
-              }}
-            >
-              Voltooien
-            </Link>{" "}
+            <Link href={`/step1`}>Terug naar stap 1</Link>{" "}
           </section>
           <>
             <svg
@@ -232,7 +190,7 @@ const Result = () => {
                 id="Group_221"
                 data-name="Group 221"
                 style={{
-                  opacity: sliderValue1 < 250 ? "1" : "0",
+                  opacity: leningpm < 250 ? "1" : "0",
                   transition: "opacity 0.3s ease-in-out",
                 }}
               >
@@ -443,7 +401,7 @@ const Result = () => {
                 id="Group_221-2"
                 data-name="Group 221"
                 style={{
-                  opacity: sliderValue1 < 250 ? "1" : "0",
+                  opacity: leningpm < 250 ? "1" : "0",
                   transition: "opacity 0.3s ease-in-out",
                 }}
               >
@@ -654,7 +612,7 @@ const Result = () => {
                 id="Group_221-3"
                 data-name="Group 221"
                 style={{
-                  opacity: sliderValue1 < 500 ? "1" : "0",
+                  opacity: leningpm < 500 ? "1" : "0",
                   transition: "opacity 0.3s ease-in-out",
                 }}
               >
@@ -865,7 +823,7 @@ const Result = () => {
                 id="Group_221-4"
                 data-name="Group 221"
                 style={{
-                  opacity: sliderValue1 < 500 ? "1" : "0",
+                  opacity: leningpm < 500 ? "1" : "0",
                   transition: "opacity 0.3s ease-in-out",
                 }}
               >
@@ -1111,7 +1069,7 @@ const Result = () => {
               <g
                 id="Group_221-5"
                 data-name="Group 221"
-                className={`${sliderValue1 > 750 ? "poor" : ""}`}
+                className={`${leningpm > 750 ? "poor" : ""}`}
               >
                 <g style={{ clipPath: "url(#clippath-4)" }}>
                   <g id="Group_220-5" data-name="Group 220">
@@ -1132,7 +1090,7 @@ const Result = () => {
                       data-name="Path 2596"
                       d="m847.689,314.483l-2.541,25.391c-45.454-32.44-91.313-64.823-139.676-92.692.509-10.291,1.162-20.13,1.271-30.474.029-2.75-.597-5.23,1.265-5.081,39.806,29.011,79.517,57.074,120.002,85.078,10.395,7.194,18.538,17.099,19.681,17.777"
                       style={{
-                        opacity: sliderValue1 < 750 ? "1" : "0",
+                        opacity: leningpm < 750 ? "1" : "0",
                         transition: "opacity 0.3s ease-in-out",
                         fill: "#ad8a72",
                         strokeWidth: 0,
@@ -1143,7 +1101,7 @@ const Result = () => {
                       data-name="Path 2597"
                       d="m624.2,216.702c.017,8.042,0,16.077,0,24.128-46.591,26.194-91.881,54.553-135.872,85.078-3.794-8.149,3.208-16.987-7.616-20.313,36.393-31.51,100.356-69.952,142.217-100.321,1.985-.159,1.259,5.39,1.271,11.428"
                       style={{
-                        opacity: sliderValue1 < 750 ? "1" : "0",
+                        opacity: leningpm < 750 ? "1" : "0",
                         transition: "opacity 0.3s ease-in-out",
                         fill: "#ad8a72",
                         strokeWidth: 0,
@@ -1172,7 +1130,7 @@ const Result = () => {
                       data-name="Path 2601"
                       d="m577.216,614.157c-1.265.046-2.541-.041-3.81,0-9.408.327-7.229,1.265-7.616,1.271-1.089.023-2.712.017-3.81,0-3.787-.064-8.552-1.135-12.697-1.271-3.277-.11-2.4,1.276-2.541,1.271-6.562-.316-13.64-1.867-20.318-1.902l.637-104.765q35.872.322,71.744.637l2.541,104.125c-.937,1.311-20.547.498-24.128.631"
                       style={{
-                        opacity: sliderValue1 < 750 ? "1" : "0",
+                        opacity: leningpm < 750 ? "1" : "0",
                         transition: "opacity 0.3s ease-in-out",
                         fill: "#062e38",
                         strokeWidth: 0,
@@ -1201,7 +1159,7 @@ const Result = () => {
                       data-name="Path 2605"
                       d="m643.246,301.785c6.773,0,13.546,0,20.318,0,2.535,0,5.081-.058,7.616,0,7.265.17,16.115-.662,22.856,0,6.187.608,8.646-2.2,9.524,6.351,1.089-.081.515-3.951.631-6.351,4.085,3.969-1.621,22.759-5.714,24.128-15.108-1.271-64.819,1.703-71.11,0-11.197-3.045-3.202-22.794-3.173-24.128h19.052Z"
                       style={{
-                        opacity: sliderValue1 < 750 ? "1" : "0",
+                        opacity: leningpm < 750 ? "1" : "0",
                         transition: "opacity 0.3s ease-in-out",
                         fill: "#062e38",
                         strokeWidth: 0,
@@ -1314,7 +1272,7 @@ const Result = () => {
                       data-name="Path 2623"
                       d="m587.374,436.386l1.271-76.824-22.22-1.902q-.316,39.36-.637,78.726c-2.518.081-5.098.07-7.616,0-1.162-11,1.528-72.1,0-75.554-1.213-2.727-14.002-2.324-14.604-1.902-3.12,2.229-1.522,73.084-.631,76.824.223.943,1.679.643,2.541.631-6.421-.368-10.982,2.617-12.702-6.351,1.78-12.203-4.104-78.434,0-82.538q31.744.322,63.491.637c-3.94,13.059,1.803,85.043-3.173,88.25-1.873.165-3.864-.24-5.714,0"
                       style={{
-                        opacity: sliderValue1 < 750 ? "1" : "0",
+                        opacity: leningpm < 750 ? "1" : "0",
                         transition: "opacity 0.3s ease-in-out",
                         fill: "#062e38",
                         strokeWidth: 0,
@@ -1337,7 +1295,7 @@ const Result = () => {
                       data-name="Path 2626"
                       d="m715.627,659.869c-2.377,3.998-8.067,2.4-15.238,2.541-3.911-31.475,8.751-127.576-5.081-149.205-17.736-27.735-60.88-16.379-66.03,17.777-2.669,17.696,1.997,100.631,0,131.428-16.239.105-15.641-1.276-16.508-1.271,2.411-37.048-6.615-141.008,10.163-168.247,13.353-21.694,44.05-26.447,65.393-14.604,9.863,5.472,22.217,21.599,24.762,32.382,4.776,20.237.229,140.495,2.541,149.2"
                       style={{
-                        opacity: sliderValue1 < 750 ? "1" : "0",
+                        opacity: leningpm < 750 ? "1" : "0",
                         transition: "opacity 0.3s ease-in-out",
                         fill: "#062e38",
                         strokeWidth: 0,
@@ -1376,7 +1334,7 @@ const Result = () => {
             <path
               d="m385.539,492.19s.054-9.322-9.268-10.169c-9.322-.847-27.119-3.742-27.119-3.742h-175.696l-27.694,9.674s-7.627-3.39-7.627,8.475v171.186s-3.39,11.017,6.78,12.712c10.169,1.695,49.26,0,49.26,0v67.797h43.827c.829-4.887,1.662-9.774,2.553-14.65,1.655-9.056,3.683-17.942,4.695-27.104.93-8.417,2.123-16.499,5.517-24.329.517-1.192,1.283-1.925,2.153-2.301.404-.56.935-1.029,1.591-1.359.562-1.781,2.215-2.705,4.008-2.807,1.645-.88,3.648-.759,5.185,1.218,10.714,13.787,11.378,32.338,16.507,48.457,2.445,7.685,5.08,15.305,7.851,22.875h41.841v-63.559l43.893-.847s11.602,0,11.699-10.169,0-79.661,0-79.661l.043-101.695Z"
               style={{ fill: "#201f32", strokeWidth: 0 }}
-              className={`${sliderValue1 > 800 ? "path-animation" : ""}`}
+              className={`${leningpm > 800 ? "path-animation" : ""}`}
             />
             <path
               d="m224.176,660.834h71.587v-148.91s-25.378,25.463-71.587,4.559v144.35Z"
@@ -1390,7 +1348,7 @@ const Result = () => {
                 strokeMiterlimit: 10,
                 strokeWidth: 10,
                 transition: "fill .5s ease-in-out",
-                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
               }}
             />
             <path
@@ -1424,7 +1382,7 @@ const Result = () => {
               ry="60.96"
               transform="translate(-61.059 20.872) rotate(-11.15)"
               style={{
-                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
                 transition: "fill 1s ease-in-out",
                 stroke: "#201f32",
                 strokeMiterlimit: 10,
@@ -1438,7 +1396,7 @@ const Result = () => {
               ry="26.422"
               transform="translate(28.908 689.882) rotate(-78.85)"
               style={{
-                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
                 transition: "fill 1s ease-in-out",
                 stroke: "#201f32",
                 strokeMiterlimit: 10,
@@ -1486,7 +1444,7 @@ const Result = () => {
               rx="17.797"
               ry="11.017"
               style={{
-                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
                 transition: "fill 1.5s ease-in-out",
                 strokeWidth: 0,
               }}
@@ -1497,7 +1455,7 @@ const Result = () => {
               rx="17.797"
               ry="11.017"
               style={{
-                fill: sliderValue1 > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
                 transition: "fill 1.5s ease-in-out",
                 strokeWidth: 0,
               }}
@@ -1505,7 +1463,7 @@ const Result = () => {
             <polygon
               points="241.525 538.801 257.841 551.512 240.429 649.818 259.969 674.394 279.661 649.818 263.203 552.36 274.681 538.801 260.045 524.715 241.525 538.801"
               style={{ fill: "#3f6dff", strokeWidth: 0 }}
-              className={`${sliderValue1 > 800 ? "path-animation" : ""}`}
+              className={`${leningpm > 800 ? "path-animation" : ""}`}
             />
             <ellipse
               cx="204.208"
@@ -1533,9 +1491,9 @@ const Result = () => {
             <path
               d="m173.456,401.512s62.999,155.288,180.025-4.983l-180.025,4.983Z"
               style={{
-                fill: sliderValue1 > 500 ? "#F7D100" : "#fff",
+                fill: leningpm > 500 ? "#F7D100" : "#fff",
                 transition: "fill 0.5s ease-in-out",
-                strokeWidth: sliderValue1 > 50 ? 2 : 0,
+                strokeWidth: leningpm > 50 ? 2 : 0,
                 strokeMiterlimit: 10,
               }}
             />

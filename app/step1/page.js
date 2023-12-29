@@ -8,7 +8,7 @@ const Step1 = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
-  const progressWidth = "12.5%";
+  const progressWidth = "11.11%";
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -32,7 +32,7 @@ const Step1 = () => {
     setRentepercentage(initialRente ? initialRente : 0.46);
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
-    setLeenduur(initialLeenduur ? initialLeenduur : 0);
+    setLeenduur(initialLeenduur ? initialLeenduur : 1);
   }, []);
 
   useEffect(() => {
