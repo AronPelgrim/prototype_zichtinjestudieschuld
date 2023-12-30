@@ -9,6 +9,7 @@ const Step8 = () => {
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
   const progressWidth = "88.88%";
+  const [antwoord, setAntwoord] = useState(false);
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -45,6 +46,7 @@ const Step8 = () => {
       index++;
       if (index > headerText.length) {
         clearInterval(interval);
+        setAntwoord(true);
       }
     }, 10);
 
@@ -88,20 +90,22 @@ const Step8 = () => {
             style={{ "--progress-width": progressWidth }}
           ></section>
           <header>{displayedText}</header>
-          <section className="antwoord">
-            <Link
-              href={`https://www.nhg.nl/`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Meer informatie over de NHG.
-            </Link>
-            <Link
-              href={`/step9?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
-            >
-              Het is mij nu wel duidelijk, ga maar naar de volgende!{" "}
-            </Link>
-          </section>
+          {antwoord && (
+            <section className="antwoord">
+              <Link
+                href={`https://www.nhg.nl/`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Meer informatie over de NHG.
+              </Link>
+              <Link
+                href={`/step9?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+              >
+                Het is mij nu wel duidelijk, ga maar naar de volgende!{" "}
+              </Link>
+            </section>
+          )}
           <section className="prevenext">
             <Link
               href={`/step7?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}

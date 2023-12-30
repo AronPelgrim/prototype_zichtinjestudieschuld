@@ -9,6 +9,7 @@ const Step5 = () => {
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
   const progressWidth = "55.55%";
+  const [antwoord, setAntwoord] = useState(false);
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -44,6 +45,7 @@ const Step5 = () => {
       index++;
       if (index > headerText.length) {
         clearInterval(interval);
+        setAntwoord(true);
       }
     }, 10);
 
@@ -87,18 +89,20 @@ const Step5 = () => {
             style={{ "--progress-width": progressWidth }}
           ></section>
           <header>{displayedText}</header>
-          <section className="antwoord">
-            <Link
-              href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
-            >
-              Hier zou ik hoe dan ook gebruik van maken!{" "}
-            </Link>
-            <Link
-              href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
-            >
-              Wel handig als het nodig is, maar liever niet!
-            </Link>
-          </section>
+          {antwoord && (
+            <section className="antwoord">
+              <Link
+                href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+              >
+                Hier zou ik hoe dan ook gebruik van maken!{" "}
+              </Link>
+              <Link
+                href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+              >
+                Wel handig als het nodig is, maar liever niet!
+              </Link>
+            </section>
+          )}
           <section className="prevenext">
             <Link
               href={`/step4?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}

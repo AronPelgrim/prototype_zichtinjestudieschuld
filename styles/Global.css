@@ -1,22 +1,49 @@
 * {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
-  width: 1em;
-  cursor: pointer;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #0075ff;
-  border-radius: 0.5em;
+  width: 0.8em;
 }
 
 ::-webkit-scrollbar-track {
-  background: #d88dc7;
-  border-radius: 0.5em;
+  background: #beedf7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(46, 44, 44);
+}
+
+body {
+  height: 100vh;
+  letter-spacing: 1px;
+  font-family: "lores-12", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  background: linear-gradient(#beedf7, #fff);
+  overflow: hidden;
+}
+
+body:has(.scroll) {
+  height: auto;
+  overflow: visible;
+  background: #beedf7;
+}
+
+.scroll {
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+  height: 100vh;
+}
+
+.scroll > * {
+  scroll-snap-align: center;
 }
 
 .logo {
@@ -32,7 +59,7 @@
 
 header {
   color: white;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgb(0, 0, 0);
   padding: 1em;
   margin: 0.5em;
   font-size: clamp(0.5em, 1.9vw, 1.7em);
@@ -44,15 +71,6 @@ header.onboarding {
   top: 5%;
   left: 50%;
   transform: translate(-50%);
-}
-
-body {
-  height: 100vh;
-  letter-spacing: 1px;
-  font-family: "lores-12", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-  background: linear-gradient(#beedf7, #fff);
 }
 
 .antwoord {
@@ -71,6 +89,7 @@ body {
   transform: translate(-50%, 0);
   font-size: clamp(0.5em, 1.9vw, 1.7em);
   gap: 0.5em;
+  animation: appear1 0.3s ease-in both;
 }
 
 .antwoord > a:not(.opslaan) {
@@ -94,75 +113,28 @@ body {
 
 .studieschuldCalculator,
 .hypotheekCalculator {
-  position: fixed;
+  position: relative;
   display: flex;
   flex-direction: column;
-  bottom: 2vh;
-  left: 50%;
-  transform: translate(-50%);
   font-size: 1em;
   text-align: center;
   width: max-content;
-  border-radius: 0.5em;
   gap: 0.3em;
-  padding: 1.5em;
-  background: rgba(255, 96, 96);
-}
-
-.hypotheekCalculator {
-  background: rgb(250, 215, 66);
+  width: 100vw;
+  height: 60vh;
+  padding-top: 40vh;
 }
 
 .studieschuldCalculator > h1,
 .hypotheekCalculator > h1 {
-  text-decoration: underline;
   padding-bottom: 0.2em;
-  font-size: clamp(0.5em, 1.8vw, 1.7em);
+  text-decoration: underline;
+  font-size: clamp(0.5em, 4vw, 5em);
 }
 
 .studieschuldCalculator > p,
 .hypotheekCalculator > p {
-  font-size: clamp(0.5em, 1.5vw, 1.2em);
-}
-
-.studieschuldCalculator.stap5 {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.4em;
-  text-align: center;
-  height: fit-content;
-  border-radius: 0.5em;
-  gap: 0.5em;
-  padding: 1.2em;
-  background: rgba(255, 96, 96);
-}
-
-.hypotheekCalculator.stap8 {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.4em;
-  text-align: center;
-  height: fit-content;
-  border-radius: 0.5em;
-  gap: 0.5em;
-  padding: 1.5em;
-  background: rgb(250, 215, 66);
-}
-
-section:has(.hypotheekCalculator.stap8) > .hypotheekCalculator {
-  left: 80%;
-}
-
-section:has(.hypotheekCalculator.stap8) > .studieschuldCalculator {
-  left: 20%;
+  font-size: clamp(0.5em, 3vw, 5em);
 }
 
 .moreInfo {
@@ -195,8 +167,8 @@ section:has(.hypotheekCalculator.stap8) > .studieschuldCalculator {
   justify-content: space-between;
   margin: 0 2vw;
   align-items: center;
-  position: absolute;
-  z-index: 0;
+  position: fixed;
+  z-index: 2000;
 }
 
 .prevenext > a:nth-of-type(1) {
@@ -274,17 +246,17 @@ section:has(.hypotheekCalculator.stap8) > .studieschuldCalculator {
   overflow: auto;
   flex-direction: column;
   white-space: nowrap;
-  position: absolute;
+  position: fixed;
   gap: 2em;
   bottom: 2vh;
   right: 2vw;
   background-color: #f1c2e6;
   padding: 1.5em;
   border-radius: 0.5em;
-  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   align-items: center;
   width: fit-content;
+  z-index: 2000;
 }
 
 .slider div {
@@ -367,10 +339,18 @@ input[type="range"] {
 
 .background {
   width: 100vw;
-  position: fixed;
-  opacity: 0.6;
+  position: absolute;
+  opacity: 0.8;
   z-index: -200;
   bottom: 0;
+}
+
+.scroll .background {
+  min-width: 100vw;
+  opacity: 0.5;
+  position: relative;
+  max-height: 100vh;
+  margin-top: -100vh;
 }
 
 a,
@@ -484,7 +464,7 @@ a:hover {
   }
 }
 
-@keyframes appear {
+@keyframes appear1 {
   0% {
     clip-path: polygon(0 0, -50% 0, 0 100%, 0 100%);
   }
@@ -661,17 +641,21 @@ a:hover {
     overflow: auto;
     flex-direction: column;
     white-space: nowrap;
-    position: absolute;
+    position: fixed;
     bottom: 2vh;
     right: 2vw;
     gap: 0;
-    background-color: rgb(241, 194, 230, 0.7);
     border-radius: 0.5em;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
-    align-items: flex-end;
+    align-items: center;
     width: fit-content;
     padding: 0.8em;
+    z-index: 3000;
+  }
+
+  .slider h1 {
+    margin-bottom: 1em;
   }
 
   .slider div {
@@ -702,26 +686,5 @@ a:hover {
 
   input[type="range"] {
     cursor: pointer;
-  }
-
-  .studieschuldCalculator,
-  .hypotheekCalculator {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    bottom: 2vh;
-    left: 50%;
-    transform: translate(-50%);
-    font-size: 1em;
-    text-align: center;
-    width: max-content;
-    border-radius: 0.5em;
-    gap: 0.3em;
-    padding: 1.5em;
-    background: rgba(255, 96, 96, 0.8);
-  }
-
-  .hypotheekCalculator {
-    background: rgb(250, 215, 66, 0.8);
   }
 }

@@ -9,6 +9,7 @@ const Step9 = () => {
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
   const progressWidth = "100%";
+  const [antwoord, setAntwoord] = useState(false);
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -45,6 +46,7 @@ const Step9 = () => {
       index++;
       if (index > headerText.length) {
         clearInterval(interval);
+        setAntwoord(true);
       }
     }, 10);
 
@@ -88,20 +90,22 @@ const Step9 = () => {
             style={{ "--progress-width": progressWidth }}
           ></section>
           <header>{displayedText}</header>
-          <section className="antwoord">
-            <Link
-              href={`https://iso.nl/2019/01/onderzoek-groot-aandeel-lenende-studenten-ervaart-prestatiedruk-en-psychische-klachten-door-leenstelsel/`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Klik voor het complete onderzoek over lenen en studentenwelzijn.
-            </Link>
-            <Link
-              href={`/result?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
-            >
-              Het is mij nu wel duidelijk, ga maar naar het resultaat!{" "}
-            </Link>
-          </section>
+          {antwoord && (
+            <section className="antwoord">
+              <Link
+                href={`https://iso.nl/2019/01/onderzoek-groot-aandeel-lenende-studenten-ervaart-prestatiedruk-en-psychische-klachten-door-leenstelsel/`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Klik voor het complete onderzoek over lenen en studentenwelzijn.
+              </Link>
+              <Link
+                href={`/result?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+              >
+                Het is mij nu wel duidelijk, ga maar naar het resultaat!{" "}
+              </Link>
+            </section>
+          )}
           <section className="prevenext">
             <Link
               href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}

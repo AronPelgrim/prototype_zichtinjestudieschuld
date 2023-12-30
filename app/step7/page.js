@@ -9,6 +9,7 @@ const Step7 = () => {
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
   const progressWidth = "77.77%";
+  const [antwoord, setAntwoord] = useState(false);
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -44,6 +45,7 @@ const Step7 = () => {
       index++;
       if (index > headerText.length) {
         clearInterval(interval);
+        setAntwoord(true);
       }
     }, 10);
 
@@ -95,30 +97,32 @@ const Step7 = () => {
             style={{ "--progress-width": progressWidth }}
           ></section>
           <header>{displayedText}</header>
-          <section className="antwoord">
-            <div>
-              <label>
-                Inkomen:{" "}
-                {inkomen !== null && !isNaN(parseFloat(inkomen))
-                  ? "€" + inkomen + " p/m"
-                  : "€0.00"}
-              </label>
-              <input
-                type="range"
-                min="1500"
-                max="10000"
-                value={inkomen}
-                onChange={handleInkomen}
-                step="50"
-              />
-            </div>
-            <Link
-              href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
-              className="opslaan"
-            >
-              Opslaan
-            </Link>
-          </section>
+          {antwoord && (
+            <section className="antwoord">
+              <div>
+                <label>
+                  Inkomen:{" "}
+                  {inkomen !== null && !isNaN(parseFloat(inkomen))
+                    ? "€" + inkomen + " p/m"
+                    : "€0.00"}
+                </label>
+                <input
+                  type="range"
+                  min="1500"
+                  max="10000"
+                  value={inkomen}
+                  onChange={handleInkomen}
+                  step="50"
+                />
+              </div>
+              <Link
+                href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+                className="opslaan"
+              >
+                Opslaan
+              </Link>
+            </section>
+          )}
           <section className="prevenext">
             <Link
               href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}

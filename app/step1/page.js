@@ -9,6 +9,7 @@ const Step1 = () => {
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
   const progressWidth = "11.11%";
+  const [antwoord, setAntwoord] = useState(false);
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -44,6 +45,7 @@ const Step1 = () => {
       index++;
       if (index > headerText.length) {
         clearInterval(interval);
+        setAntwoord(true);
       }
     }, 10);
 
@@ -91,26 +93,28 @@ const Step1 = () => {
             style={{ "--progress-width": progressWidth }}
           ></section>
           <header>{displayedText}</header>
-          <section className="antwoord">
-            <div>
-              <label>Lening per maand: €{leningpm}</label>
+          {antwoord && (
+            <section className="antwoord">
+              <div>
+                <label>Lening per maand: €{leningpm}</label>
 
-              <input
-                type="range"
-                min="0"
-                max="1000"
-                value={leningpm}
-                onChange={handleLeningpm}
-                step="10"
-              />
-            </div>
-            <Link
-              href={`/step2?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
-              className="opslaan"
-            >
-              Opslaan
-            </Link>
-          </section>
+                <input
+                  type="range"
+                  min="0"
+                  max="1000"
+                  value={leningpm}
+                  onChange={handleLeningpm}
+                  step="10"
+                />
+              </div>
+              <Link
+                href={`/step2?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+                className="opslaan"
+              >
+                Opslaan
+              </Link>
+            </section>
+          )}
           <section className="prevenext">
             <Link href={`/`}>Vorige</Link>
           </section>

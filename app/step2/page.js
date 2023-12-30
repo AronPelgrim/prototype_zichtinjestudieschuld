@@ -9,6 +9,7 @@ const Step2 = () => {
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
   const progressWidth = "22.11%";
+  const [antwoord, setAntwoord] = useState(false);
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -44,6 +45,7 @@ const Step2 = () => {
       index++;
       if (index > headerText.length) {
         clearInterval(interval);
+        setAntwoord(true);
       }
     }, 10);
 
@@ -91,33 +93,35 @@ const Step2 = () => {
             style={{ "--progress-width": progressWidth }}
           ></section>
           <header>{displayedText}</header>
-          <section className="antwoord">
-            {" "}
-            <div>
-              <label>Leenduur: {leenduur} jaar</label>
-              <input
-                type="range"
-                min="1"
-                max="10"
-                value={leenduur}
-                onChange={handleLeenduur}
-                step="1"
-              />
-            </div>
-            <Link
-              href={`/step3?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
-              className="opslaan"
-            >
-              Opslaan
-            </Link>
-            <Link
-              href={`https://duo.nl/particulier/studiefinanciering/hoelang-recht.jsp`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Hoelang mag ik lenen?{" "}
-            </Link>
-          </section>
+          {antwoord && (
+            <section className="antwoord">
+              {" "}
+              <div>
+                <label>Leenduur: {leenduur} jaar</label>
+                <input
+                  type="range"
+                  min="1"
+                  max="10"
+                  value={leenduur}
+                  onChange={handleLeenduur}
+                  step="1"
+                />
+              </div>
+              <Link
+                href={`/step3?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+                className="opslaan"
+              >
+                Opslaan
+              </Link>
+              <Link
+                href={`https://duo.nl/particulier/studiefinanciering/hoelang-recht.jsp`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Hoelang mag ik lenen?{" "}
+              </Link>
+            </section>
+          )}
           <section className="prevenext">
             <Link
               href={`/step1?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
