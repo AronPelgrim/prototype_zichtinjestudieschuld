@@ -5,7 +5,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 0.8em;
+  width: 0.6em;
 }
 
 ::-webkit-scrollbar-track {
@@ -33,17 +33,11 @@ body {
 body:has(.scroll) {
   height: auto;
   overflow: visible;
-  background: #beedf7;
 }
 
 .scroll {
   overflow-y: auto;
-  scroll-snap-type: y proximity;
   height: 100vh;
-}
-
-.scroll > * {
-  scroll-snap-align: center;
 }
 
 .logo {
@@ -108,7 +102,6 @@ header.onboarding {
   gap: 1em;
   width: fit-content;
   flex-shrink: 0;
-  scroll-snap-align: center;
 }
 
 .studieschuldCalculator,
@@ -121,15 +114,17 @@ header.onboarding {
   width: max-content;
   gap: 0.3em;
   width: 100vw;
-  height: 60vh;
-  padding-top: 40vh;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 .studieschuldCalculator > h1,
 .hypotheekCalculator > h1 {
   padding-bottom: 0.2em;
-  text-decoration: underline;
   font-size: clamp(0.5em, 4vw, 5em);
+  margin-top: -20vh;
 }
 
 .studieschuldCalculator > p,
@@ -253,7 +248,6 @@ header.onboarding {
   background-color: #f1c2e6;
   padding: 1.5em;
   border-radius: 0.5em;
-  scroll-behavior: smooth;
   align-items: center;
   width: fit-content;
   z-index: 2000;
@@ -265,7 +259,6 @@ header.onboarding {
   gap: 1em;
   width: fit-content;
   flex-shrink: 0;
-  scroll-snap-align: center;
 }
 
 .slider div label {
@@ -347,9 +340,9 @@ input[type="range"] {
 
 .scroll .background {
   min-width: 100vw;
-  opacity: 0.5;
+  opacity: 1;
   position: relative;
-  max-height: 100vh;
+  max-height: 40vh;
   margin-top: -100vh;
 }
 
@@ -646,8 +639,6 @@ a:hover {
     right: 2vw;
     gap: 0;
     border-radius: 0.5em;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
     align-items: center;
     width: fit-content;
     padding: 0.8em;
@@ -656,16 +647,6 @@ a:hover {
 
   .slider h1 {
     margin-bottom: 1em;
-  }
-
-  .slider div {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    flex-shrink: 0;
-    gap: 0.5em;
-    scroll-snap-align: center;
-    align-items: flex-end;
   }
 
   .slider div label {
