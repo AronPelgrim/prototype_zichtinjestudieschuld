@@ -17,6 +17,13 @@ const Result = () => {
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
 
+  const formatToLocaleString = (value) => {
+    return parseFloat(value).toLocaleString("nl-NL", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
+
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -124,7 +131,7 @@ const Result = () => {
             </section>
             <section className="hypotheekCalculator">
               <h1>Jouw studieschuld</h1>
-              <p>€{studieSchuld}</p>
+              <p>€{formatToLocaleString(studieSchuld)}</p>
             </section>
             <>
               <svg
@@ -4265,7 +4272,7 @@ const Result = () => {
             </>
             <section className="hypotheekCalculator">
               <h1>Jouw hypotheekbedrag</h1>
-              <p>€{hypotheek}</p>
+              <p>€{formatToLocaleString(hypotheek)}</p>
             </section>
             <>
               <svg
@@ -5185,11 +5192,7 @@ const Result = () => {
                     </g>
                   </g>
                 </g>
-                <g
-                  id="Group_221-5"
-                  data-name="Group 221"
-                  className={`${leningpm > 750 ? "poor" : ""}`}
-                >
+                <g id="Group_221-5" data-name="Group 221">
                   <g style={{ clipPath: "url(#clippath-4)" }}>
                     <g id="Group_220-5" data-name="Group 220">
                       <path

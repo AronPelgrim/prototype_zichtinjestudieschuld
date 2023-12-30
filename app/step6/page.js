@@ -105,14 +105,18 @@ const Step6 = () => {
                   Rentepercentage:{" "}
                   {rentepercentage !== null &&
                   !isNaN(parseFloat(rentepercentage))
-                    ? parseFloat(rentepercentage).toFixed(2) + "%"
-                    : "0.00%"}
+                    ? parseFloat(rentepercentage).toLocaleString("nl-NL", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      }) + "%"
+                    : "0,00%"}
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   value={rentepercentage}
                   onChange={handleRentepercentage}
-                  placeholder="0.00"
+                  placeholder="0,00"
+                  step={0.01}
                 />
               </div>
               <Link

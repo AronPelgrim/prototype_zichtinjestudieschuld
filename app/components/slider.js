@@ -9,6 +9,13 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4, onChange5 }) => {
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
 
+  const formatToLocaleString = (value) => {
+    return parseFloat(value).toLocaleString("nl-NL", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
+
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -56,13 +63,8 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4, onChange5 }) => {
   };
 
   const handleRentepercentage = (e) => {
-    const inputValue = e.target.value;
-
-    const regex = /^\d*\.?\d{0,2}$/;
-    if (regex.test(inputValue) || inputValue === "") {
-      setRentepercentage(inputValue);
-      onChange5(inputValue);
-    }
+    setRentepercentage(e.target.value);
+    onChange5(e.target.value);
   };
 
   return (
@@ -77,7 +79,7 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4, onChange5 }) => {
           onChange={handleLeningpm}
           step="10"
         />
-        <label>Lening per maand: €{leningpm}</label>
+        <label>Lening per maand: €{formatToLocaleString(leningpm)}</label>
       </div>
       <div>
         <input
@@ -110,25 +112,24 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4, onChange5 }) => {
           onChange={handleInkomen}
           step="50"
         />
-        <label>
-          Inkomen:{" "}
-          {inkomen !== null && !isNaN(parseFloat(inkomen))
-            ? "€" + inkomen + " p/m"
-            : "€0.00"}
-        </label>
+        <label>Inkomen: € {formatToLocaleString(inkomen)}</label>
       </div>
       <div>
         <input
-          type="text"
+          type="number"
           value={rentepercentage}
           onChange={handleRentepercentage}
-          placeholder="0.00"
+          placeholder="0,00"
+          step={0.01}
         />
         <label>
           Rentepercentage:{" "}
           {rentepercentage !== null && !isNaN(parseFloat(rentepercentage))
-            ? parseFloat(rentepercentage).toFixed(2) + "%"
-            : "0.00%"}
+            ? parseFloat(rentepercentage).toLocaleString("nl-NL", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }) + "%"
+            : "0,00%"}
         </label>
       </div>
     </section>

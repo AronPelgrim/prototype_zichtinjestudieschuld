@@ -18,6 +18,13 @@ const Step7 = () => {
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
 
+  const formatToLocaleString = (value) => {
+    return parseFloat(value).toLocaleString("nl-NL", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
+
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -100,12 +107,7 @@ const Step7 = () => {
           {antwoord && (
             <section className="antwoord">
               <div>
-                <label>
-                  Inkomen:{" "}
-                  {inkomen !== null && !isNaN(parseFloat(inkomen))
-                    ? "€" + inkomen + " p/m"
-                    : "€0.00"}
-                </label>
+                <label>Inkomen: € {formatToLocaleString(inkomen)}</label>
                 <input
                   type="range"
                   min="1500"

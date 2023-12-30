@@ -265,7 +265,7 @@ header.onboarding {
   font-size: 1em;
 }
 
-input[type="text"] {
+input[type="number"] {
   border-radius: 0.5em;
   font-size: 1em;
   text-align: left;
@@ -654,7 +654,7 @@ a:hover {
     padding-bottom: clamp(0.6em, 1.3vw, 1.2em);
   }
 
-  input[type="text"] {
+  input[type="number"] {
     border-radius: 0.5em;
     font-size: 1em;
     text-align: left;
