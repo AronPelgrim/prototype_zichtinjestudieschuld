@@ -39,9 +39,18 @@ const Result = () => {
     const rente = rentepercentage / 100;
     let berekenSchuld = 0;
 
-    if (rente !== 0) {
+    if (rente !== 0 && aanloopfase == "nee") {
       berekenSchuld =
         (leningpm * 12 * (Math.pow(1 + rente, leenduur) - 1)) / rente;
+    } else if (rente !== 0 && aanloopfase == "ja") {
+      let schuldMetRente =
+        (leningpm * 12 * (Math.pow(1 + rente, leenduur) - 1)) / rente;
+
+      for (let i = 0; i < 2; i++) {
+        schuldMetRente *= 1 + rente;
+      }
+
+      berekenSchuld = schuldMetRente;
     } else {
       berekenSchuld = leningpm * 12 * leenduur;
     }
@@ -90,6 +99,10 @@ const Result = () => {
   };
 
   const handleSliderChange4 = (value) => {
+    setInkomen(value);
+  };
+
+  const handleSliderChange5 = (value) => {
     setRentepercentage(value);
   };
 
@@ -104,6 +117,7 @@ const Result = () => {
               onChange2={handleSliderChange2}
               onChange3={handleSliderChange3}
               onChange4={handleSliderChange4}
+              onChange5={handleSliderChange5}
             />{" "}
             <section className="prevenext">
               <Link href={`/step1`}>Terug naar stap 1</Link>{" "}
