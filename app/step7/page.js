@@ -107,7 +107,9 @@ const Step7 = () => {
           {antwoord && (
             <section className="antwoord">
               <div>
-                <label>Inkomen: € {formatToLocaleString(inkomen)}</label>
+                <label>
+                  Toekomstige inkomen: € {formatToLocaleString(inkomen)}
+                </label>
                 <input
                   type="range"
                   min="1500"

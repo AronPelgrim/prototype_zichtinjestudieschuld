@@ -63,7 +63,7 @@ const Result = () => {
     }
 
     setStudieSchuld(berekenSchuld.toFixed(2));
-  }, [leningpm, leenduur, rentepercentage]);
+  }, [leningpm, leenduur, aanloopfase, rentepercentage]);
 
   useEffect(() => {
     const hypotheekResult = (164000 - (studieSchuld / 10000) * 12500).toFixed(
@@ -106,10 +106,14 @@ const Result = () => {
   };
 
   const handleSliderChange4 = (value) => {
-    setInkomen(value);
+    setAanloopfase(value);
   };
 
   const handleSliderChange5 = (value) => {
+    setInkomen(value);
+  };
+
+  const handleSliderChange6 = (value) => {
     setRentepercentage(value);
   };
 
@@ -125,6 +129,7 @@ const Result = () => {
               onChange3={handleSliderChange3}
               onChange4={handleSliderChange4}
               onChange5={handleSliderChange5}
+              onChange6={handleSliderChange6}
             />{" "}
             <section className="prevenext">
               <Link href={`/step1`}>Terug naar stap 1</Link>{" "}

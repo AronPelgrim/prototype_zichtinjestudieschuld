@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/Global.css";
 
-const Slider = ({ onChange1, onChange2, onChange3, onChange4, onChange5 }) => {
+const Slider = ({
+  onChange1,
+  onChange2,
+  onChange3,
+  onChange4,
+  onChange5,
+  onChange6,
+}) => {
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
   const [rentepercentage, setRentepercentage] = useState(0);
   const [inkomen, setInkomen] = useState(0);
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
+  const [toggleChecked, setToggleChecked] = useState(false);
 
   const formatToLocaleString = (value) => {
     return parseFloat(value).toLocaleString("nl-NL", {
@@ -32,6 +40,10 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4, onChange5 }) => {
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 0);
+
+    if (initialAanloop == "ja") {
+      setToggleChecked(true);
+    }
   }, []);
 
   const handleLeningpm = (e) => {
@@ -52,24 +64,34 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4, onChange5 }) => {
     onChange3(updatedValue);
   };
 
+  const handleAanloopfase = (event) => {
+    setToggleChecked(event.target.checked);
+    if (toggleChecked == false) {
+      setAanloopfase("ja");
+      onChange4("ja");
+    } else if (toggleChecked == true) {
+      setAanloopfase("nee");
+      onChange4("nee");
+    }
+  };
+
   const handleInkomen = (e) => {
     const inputValue = e.target.value;
 
     const regex = /^\d*\.?\d{0,2}$/;
     if (regex.test(inputValue) || inputValue === "") {
       setInkomen(inputValue);
-      onChange4(inputValue);
+      onChange5(inputValue);
     }
   };
 
   const handleRentepercentage = (e) => {
     setRentepercentage(e.target.value);
-    onChange5(e.target.value);
+    onChange6(e.target.value);
   };
 
   return (
     <section className="slider">
-      <h1>Jouw gegevens</h1>
       <div>
         <input
           type="range"
@@ -102,6 +124,18 @@ const Slider = ({ onChange1, onChange2, onChange3, onChange4, onChange5 }) => {
           step="1"
         />
         <label>Aflosfase: {aflosFase} jaar</label>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          id="switch"
+          checked={toggleChecked}
+          onChange={handleAanloopfase}
+        />
+        <label className="label-toggle" for="switch">
+          Toggle
+        </label>
+        <label>Aanloopfase: {aanloopfase}</label>
       </div>
       <div>
         <input

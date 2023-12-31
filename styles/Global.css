@@ -242,7 +242,7 @@ header.onboarding {
   flex-direction: column;
   white-space: nowrap;
   position: fixed;
-  gap: 2em;
+  gap: 1.5em;
   bottom: 2vh;
   right: 2vw;
   background-color: #f1c2e6;
@@ -250,19 +250,21 @@ header.onboarding {
   border-radius: 0.5em;
   align-items: center;
   width: fit-content;
-  z-index: 2000;
+  z-index: 3000;
 }
 
 .slider div {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.5em;
   width: fit-content;
   flex-shrink: 0;
+  align-items: center;
 }
 
-.slider div label {
+.slider div label:not(.label-toggle) {
   font-size: 1em;
+  padding-bottom: 0.5em;
 }
 
 input[type="number"] {
@@ -278,6 +280,51 @@ input[type="number"] {
 
 input[type="range"] {
   cursor: pointer;
+  width: 190px;
+}
+
+input[type="checkbox"] {
+  height: 0px;
+  width: 0px;
+  visibility: hidden;
+  margin-top: -5px;
+}
+
+.label-toggle {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 40px;
+  height: 20px;
+  background: grey;
+  display: block;
+  border-radius: 10px;
+  position: relative;
+}
+
+.label-toggle:after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  left: 2px;
+  border-radius: 8px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+input:checked + .label-toggle {
+  background: #0075ff;
+}
+
+input:checked + .label-toggle:after {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+}
+
+.label-toggle:active:after {
+  width: 100px;
 }
 
 .character1 {
@@ -649,7 +696,7 @@ a:hover {
     margin-bottom: 1em;
   }
 
-  .slider div label {
+  .slider div label:not(.label-toggle) {
     font-size: clamp(0.5em, 1.5vw, 1.2em);
     padding-bottom: clamp(0.6em, 1.3vw, 1.2em);
   }
