@@ -280,6 +280,9 @@ input[type="number"] {
 
 input[type="range"] {
   cursor: pointer;
+}
+
+.slider > div > input[type="range"] {
   width: 190px;
 }
 
