@@ -102,7 +102,7 @@ const Step4 = () => {
                 </label>
                 <input
                   type="range"
-                  min="0"
+                  min="1"
                   max="35"
                   value={aflosFase}
                   onChange={handleAflosFase}
