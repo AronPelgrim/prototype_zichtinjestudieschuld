@@ -132,7 +132,7 @@ const Slider = ({
           checked={toggleChecked}
           onChange={handleAanloopfase}
         />
-        <label className="label-toggle" for="switch">
+        <label className="label-toggle" htmlFor="switch">
           Toggle
         </label>
         <label>Aanloopfase: {aanloopfase}</label>
