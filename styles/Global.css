@@ -57,8 +57,7 @@ body:has(.scroll) {
   width: 25vw;
   margin: 0 0 0 37.5vw;
   padding: 1vw 1vw 1vw 0;
-  opacity: 1;
-  z-index: 3000;
+  z-index: -3000;
 }
 
 header {
