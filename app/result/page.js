@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import "../../styles/Global.css";
 import Slider from "../components/slider";
 import Link from "next/link";
-import { useInView } from "react-intersection-observer";
+import { InView } from "react-intersection-observer";
 
 const Result = () => {
   const [orientation, setOrientation] = useState("");
@@ -18,6 +18,9 @@ const Result = () => {
   const [inkomen, setInkomen] = useState(0);
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
+  const [isVisible1, setIsVisible1] = useState(false);
+  const [isVisible2, setIsVisible2] = useState(false);
+  const [isVisible3, setIsVisible3] = useState(false);
 
   const formatToLocaleString = (value) => {
     return parseFloat(value).toLocaleString("nl-NL", {
@@ -25,19 +28,6 @@ const Result = () => {
       maximumFractionDigits: 2,
     });
   };
-
-  const [isVisible, setIsVisible] = useState(false);
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  }, [inView]);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -258,10 +248,23 @@ const Result = () => {
             <section className="prevenext">
               <Link href={`/step1`}>Terug naar stap 1</Link>{" "}
             </section>
-            <section className="hypotheekCalculator">
-              <h1>Jouw studieschuld</h1>
-              <p>€{formatToLocaleString(studieSchuld)}</p>
-            </section>
+            <InView
+              onChange={(inView, entry) => setIsVisible1(inView)}
+              rootMargin="-50%"
+              threshold={0}
+            >
+              {" "}
+              <section
+                className="calculator"
+                style={{
+                  opacity: isVisible1 ? 1 : 0,
+                  transition: "opacity 1s ease-in-out",
+                }}
+              >
+                <h1>Jouw studieschuld</h1>
+                <p>€{formatToLocaleString(studieSchuld)}</p>
+              </section>
+            </InView>
             <>
               <svg
                 id="Laag_1"
@@ -4399,17 +4402,23 @@ const Result = () => {
                 </g>
               </svg>
             </>
-            <section
-              className="hypotheekCalculator"
-              ref={ref}
-              style={{
-                opacity: isVisible ? 1 : 0,
-                transition: "opacity 0.5s ease-in-out",
-              }}
+            <InView
+              onChange={(inView, entry) => setIsVisible2(inView)}
+              rootMargin="-50%"
+              threshold={0}
             >
-              <h1>Jouw hypotheekbedrag</h1>
-              <p>€{formatToLocaleString(hypotheek)}</p>
-            </section>
+              <section
+                className="calculator"
+                style={{
+                  opacity: isVisible2 ? 1 : 0,
+                  transition: "opacity 1s ease-in-out",
+                }}
+              >
+                {" "}
+                <h1>Jouw hypotheekbedrag</h1>
+                <p>€{formatToLocaleString(hypotheek)}</p>
+              </section>
+            </InView>
             <>
               <svg
                 id="Laag_1"
@@ -5582,10 +5591,22 @@ const Result = () => {
                 </g>
               </svg>
             </>
-            <section className="hypotheekCalculator">
-              <h1>Maandelijkse afloskosten</h1>
-              <p>€{formatToLocaleString(afloskosten)}</p>
-            </section>
+            <InView
+              onChange={(inView, entry) => setIsVisible3(inView)}
+              rootMargin="-50%"
+              threshold={0}
+            >
+              <section
+                className="calculator"
+                style={{
+                  opacity: isVisible3 ? 1 : 0,
+                  transition: "opacity 1s ease-in-out",
+                }}
+              >
+                <h1>Maandelijkse afloskosten</h1>
+                <p>€{formatToLocaleString(afloskosten)}</p>
+              </section>
+            </InView>
             <>
               <svg
                 id="Laag_1"

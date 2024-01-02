@@ -116,8 +116,7 @@ header.onboarding {
   flex-shrink: 0;
 }
 
-.studieschuldCalculator,
-.hypotheekCalculator {
+.calculator {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -130,17 +129,16 @@ header.onboarding {
   display: flex;
   justify-content: center;
   font-family: "Montserrat", sans-serif;
+  opacity: 0;
 }
 
-.studieschuldCalculator > h1,
-.hypotheekCalculator > h1 {
+.calculator > h1 {
   padding-bottom: 0.2em;
   font-size: clamp(0.5em, 4vw, 5em);
   margin-top: -20vh;
 }
 
-.studieschuldCalculator > p,
-.hypotheekCalculator > p {
+.calculator > p {
   font-size: clamp(0.5em, 3vw, 5em);
 }
 
@@ -357,6 +355,10 @@ input:checked + .label-toggle:after {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.appearing {
+  animation: appear1 0.5s ease-in both;
 }
 
 .sliding-right {
