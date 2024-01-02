@@ -133,13 +133,15 @@ header.onboarding {
 }
 
 .calculator > h1 {
-  padding-bottom: 0.2em;
   font-size: clamp(0.5em, 4vw, 5em);
-  margin-top: -20vh;
 }
 
 .calculator > p {
-  font-size: clamp(0.5em, 3vw, 5em);
+  padding-bottom: 0.4em;
+  margin-top: -20vh;
+  font-size: clamp(0.5em, 2vw, 5em);
+  max-width: 50vw;
+  margin-left: 25vw;
 }
 
 .moreInfo {
