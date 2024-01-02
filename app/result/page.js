@@ -164,14 +164,6 @@ const Result = () => {
       {orientation === "Landscape" ? (
         <>
           <section className="scroll">
-            <section
-              className="intro"
-              style={{
-                opacity: 1,
-              }}
-            >
-              <p>{displayedText}</p>
-            </section>
             <svg
               id="Laag_1"
               data-name="Laag 1"

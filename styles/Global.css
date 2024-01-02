@@ -143,6 +143,7 @@ header.onboarding {
   max-width: 30vw;
   margin-left: 35vw;
   line-height: 1.4;
+  font-style: italic;
 }
 
 .moreInfo {
