@@ -53,11 +53,14 @@ body:has(.scroll) {
 
 .scroll .logo {
   top: 0;
+  left: 0;
   transform: translate(0, 0);
   width: 25vw;
-  margin: 0 0 0 37.5vw;
-  padding: 1vw 1vw 1vw 0;
-  z-index: -3000;
+  margin: 0;
+  padding: 1vw 36vw 1vw 37.5vw;
+  z-index: 3000;
+  background-color: #beedf7;
+  opacity: 1;
 }
 
 header {
