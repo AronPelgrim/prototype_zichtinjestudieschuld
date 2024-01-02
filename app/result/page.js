@@ -8,7 +8,6 @@ import { InView } from "react-intersection-observer";
 
 const Result = () => {
   const [orientation, setOrientation] = useState("");
-  const [displayedText, setDisplayedText] = useState("");
   const [studieSchuld, setStudieSchuld] = useState(0);
   const [hypotheek, setHypotheek] = useState(0);
   const [afloskosten, setAfloskosten] = useState(0);
@@ -48,21 +47,6 @@ const Result = () => {
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 0);
-  }, []);
-
-  useEffect(() => {
-    const text = `Je studie duurt waarschijnlijk een aantal jaar. Hoelang je mag lenen heeft te maken met de duur van je studie, zoek dit dus eerst uit. Hoelang zou je dan willen lenen?`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(text.substring(0, index));
-      index++;
-      if (index > text.length) {
-        clearInterval(interval);
-      }
-    }, 10);
-
-    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
