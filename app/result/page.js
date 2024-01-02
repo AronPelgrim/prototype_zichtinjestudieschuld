@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import "../../styles/Global.css";
 import Slider from "../components/slider";
 import Link from "next/link";
+import { useInView } from "react-intersection-observer";
 
 const Result = () => {
   const [orientation, setOrientation] = useState("");
@@ -24,6 +25,19 @@ const Result = () => {
       maximumFractionDigits: 2,
     });
   };
+
+  const [isVisible, setIsVisible] = useState(false);
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }, [inView]);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -4385,7 +4399,14 @@ const Result = () => {
                 </g>
               </svg>
             </>
-            <section className="hypotheekCalculator">
+            <section
+              className="hypotheekCalculator"
+              ref={ref}
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transition: "opacity 0.5s ease-in-out",
+              }}
+            >
               <h1>Jouw hypotheekbedrag</h1>
               <p>€{formatToLocaleString(hypotheek)}</p>
             </section>
