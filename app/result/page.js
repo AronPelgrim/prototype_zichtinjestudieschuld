@@ -11,6 +11,7 @@ const Result = () => {
   const [studieSchuld, setStudieSchuld] = useState(0);
   const [hypotheek, setHypotheek] = useState(0);
   const [afloskosten, setAfloskosten] = useState(0);
+  const [rentebetaald, setRentebetaald] = useState(0);
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -79,9 +80,22 @@ const Result = () => {
   }, [studieSchuld]);
 
   useEffect(() => {
-    let berekenAfloskosten = studieSchuld / aflosFase / 12;
-    setAfloskosten(berekenAfloskosten);
-  }, [studieSchuld, aflosFase]);
+    const maandelijkseRente = rentepercentage / 12 / 100;
+    const totaleBetalingen = aflosFase * 12;
+
+    const maandelijkseBetaling =
+      (maandelijkseRente * studieSchuld) /
+      (1 - Math.pow(1 + maandelijkseRente, -totaleBetalingen));
+
+    setAfloskosten(maandelijkseBetaling.toFixed(2));
+  }, [studieSchuld, aflosFase, rentepercentage]);
+
+  useEffect(() => {
+    const totaleBetalingen = afloskosten * aflosFase * 12;
+    const totaalBetaaldeRente = totaleBetalingen - studieSchuld;
+
+    setRentebetaald(totaalBetaaldeRente.toFixed(2));
+  }, [afloskosten, aflosFase, studieSchuld]);
 
   useEffect(() => {
     const handleOrientationChange = () => {
@@ -7016,6 +7030,15 @@ const Result = () => {
                 </g>
               </svg>
             </>
+            <section
+              className="calculator"
+              style={{
+                opacity: 1,
+              }}
+            >
+              <h1>Bedrag betaald aan rente na {aflosFase} jaar</h1>
+              <p>€{formatToLocaleString(rentebetaald)}</p>
+            </section>
           </section>
         </>
       ) : (
