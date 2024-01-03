@@ -71,14 +71,6 @@ header {
   font-size: clamp(0.5em, 1.9vw, 1.7em);
 }
 
-header.onboarding {
-  width: fit-content;
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translate(-50%);
-}
-
 .antwoord {
   display: flex;
   flex-direction: column;
