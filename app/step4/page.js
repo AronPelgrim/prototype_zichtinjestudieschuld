@@ -1500,25 +1500,21 @@ const Step4 = () => {
                   strokeWidth: 2,
                 }}
               />
-              <path
-                d="m173.456,401.512s62.999,155.288,180.025-4.983l-180.025,4.983Z"
-                style={{
-                  fill: "#fff",
-                  transition: "fill 0.5s ease-in-out",
-                  strokeMiterlimit: 10,
-                  animation: antwoord
-                    ? ""
-                    : "wobble 1s ease-in infinite alternate",
-                }}
-              />
               <g
                 style={{
                   animation: antwoord
                     ? ""
-                    : "appear 1s ease-in infinite alternate",
+                    : "wobble .5s ease-in infinite alternate",
                 }}
               >
-                {" "}
+                <path
+                  d="m173.456,401.512s62.999,155.288,180.025-4.983l-180.025,4.983Z"
+                  style={{
+                    fill: "#fff",
+                    transition: "fill 0.5s ease-in-out",
+                    strokeMiterlimit: 10,
+                  }}
+                />
                 <path
                   d="m353.482,396.529l-180.025,4.983s74.016-14.203,180.025-4.983Z"
                   style={{ fill: "#201e32", strokeWidth: 0 }}
