@@ -658,7 +658,7 @@ const Step8 = () => {
             data-name="Laag 1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 506.78 775.059"
-            className="character1 wobble"
+            className="character1 sliding-right"
             onClick={characterAnimation}
           >
             <path
