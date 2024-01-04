@@ -37,7 +37,7 @@ const Step1 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Dus, je bent aan het studeren, hartstikke leuk, maar niet goedkoop! Denk aan studieboeken, een laptop, de huur en boodschappen. Hoeveel wil jij per maand lenen?`;
+    const headerText = `Dus, je bent aan het studeren, hartstikke leuk, maar niet goedkoop! Denk aan studieboeken, een laptop, de huur en boodschappen. Hoeveel wil jij per maand lenen? Let op; dit gaat dus puur om je lening en niet de eventuele basisbeurs!`;
 
     let index = 0;
     const interval = setInterval(() => {
