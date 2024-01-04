@@ -71,6 +71,7 @@ header {
   font-size: clamp(0.5em, 1.9vw, 1.7em);
   position: relative;
   overflow: visible;
+  line-height: 1.4;
 }
 
 header::before {
