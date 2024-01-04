@@ -1504,7 +1504,7 @@ const Step4 = () => {
                 style={{
                   animation: antwoord
                     ? ""
-                    : "wobble .5s ease-in infinite alternate",
+                    : "appear .5s ease-in infinite alternate",
                 }}
               >
                 <path

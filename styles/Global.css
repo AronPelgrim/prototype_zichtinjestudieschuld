@@ -672,21 +672,18 @@ a:hover {
 @keyframes appear {
   0% {
     clip-path: circle(10% at 0% 0%);
-    filter: grayscale(5);
   }
   25% {
     clip-path: circle(25% at 50% 50%);
   }
   50% {
     clip-path: circle(30% at 12% 84%);
-    filter: grayscale(5);
   }
   75% {
     clip-path: circle(25% at 75% 51%);
   }
   100% {
     clip-path: circle(100% at 50% 50%);
-    filter: grayscale(0);
     opacity: 1;
   }
 }
