@@ -246,17 +246,8 @@ header.onboarding::before {
   height: 10px;
   background-color: white;
   position: relative;
-  overflow: hidden;
-  margin: 1em;
-}
-
-.completeness-meter > p {
-  position: fixed;
-  font-size: clamp(0.5em, 1.8vw, 1.2em);
-  padding: 0.2em;
-  margin-top: -1.7em;
-  text-align: center;
-  width: 100%;
+  overflow: visible;
+  margin: 1.2em;
 }
 
 .completeness-meter::before {
@@ -265,10 +256,64 @@ header.onboarding::before {
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #f1c2e6;
+  background-color: #039da8;
   width: var(--progress-width);
   animation: increaseProgress 0.5s ease-in both;
   transform-origin: left;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: calc(11.11% - 30px);
+  position: absolute;
+  width: 100%;
+  top: 0;
+  transform: translateY(-34%);
+  overflow: visible;
+}
+
+.circle {
+  background: #fff;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s ease;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 5px;
+}
+
+.circle:hover {
+  background: #dedbcb;
+}
+
+.circle.active {
+  background-color: #039da8;
+  color: white;
+}
+
+.circle.done {
+  position: relative;
+}
+
+.circle.done::before {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  display: block;
+  background-color: #fff;
+  transition: 0.4s ease;
+}
+.circle.done:hover::before {
+  background: #dedbcb;
 }
 
 .slider {
@@ -278,8 +323,6 @@ header.onboarding::before {
   white-space: nowrap;
   position: fixed;
   gap: 1.5em;
-  bottom: 2vh;
-  right: 2vw;
   background-color: #f1c2e6;
   padding: 1.5em;
   border-radius: 0.5em;

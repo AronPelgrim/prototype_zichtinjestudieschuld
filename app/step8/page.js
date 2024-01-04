@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import "../../styles/Global.css";
+import Progressbar from "../components/progressbar";
 import Link from "next/link";
 
 const Step8 = () => {
@@ -9,6 +10,7 @@ const Step8 = () => {
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
   const progressWidth = "88.88%";
+  const currentPage = 7;
   const [antwoord, setAntwoord] = useState(false);
 
   const [aflosFase, setAflosFase] = useState(0);
@@ -85,10 +87,10 @@ const Step8 = () => {
       {" "}
       {orientation === "Landscape" ? (
         <>
-          <section
-            className="completeness-meter"
-            style={{ "--progress-width": progressWidth }}
-          ></section>
+          <Progressbar
+            progressWidth={progressWidth}
+            currentPage={currentPage}
+          ></Progressbar>
           <header>{displayedText}</header>
           {antwoord && (
             <section className="antwoord">
