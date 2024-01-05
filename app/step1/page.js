@@ -132,14 +132,14 @@ const Step1 = () => {
             onClick={characterAnimation}
             ref={svgRef}
           >
-            <g className={`${leningpm == 1000 ? "path-animation" : ""}`}>
+            <g className={`${leningpm > 500 ? "path-animation" : ""}`}>
               <ellipse
                 cx="144.414"
                 cy="584.04"
                 rx="19.933"
                 ry="65.195"
                 style={{
-                  fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
+                  fill: "#f1d1b5",
                   transition: "fill .2s ease-in-out",
                   stroke: "#201f32",
                   strokeMiterlimit: 10,
@@ -152,7 +152,7 @@ const Step1 = () => {
                 rx="19.933"
                 ry="60.162"
                 style={{
-                  fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
+                  fill: "#f1d1b5",
                   transition: "fill .2s ease-in-out",
                   stroke: "#201f32",
                   strokeMiterlimit: 10,
@@ -165,7 +165,7 @@ const Step1 = () => {
                 rx="19.933"
                 ry="10.196"
                 style={{
-                  fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
+                  fill: "#f1d1b5",
                   transition: "fill .2s ease-in-out",
                   stroke: "#201f32",
                   strokeMiterlimit: 10,
@@ -178,7 +178,7 @@ const Step1 = () => {
                 rx="19.933"
                 ry="10.196"
                 style={{
-                  fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
+                  fill: "#f1d1b5",
                   transition: "fill .2s ease-in-out",
                   stroke: "#201f32",
                   strokeMiterlimit: 10,
@@ -220,7 +220,7 @@ const Step1 = () => {
             <path
               d="M118.644,426.089s6.78,23.729,41.373,43.373c0,0,23.034,16.797,73.034,41.373,0,0,28.814,12.712,51.695,0,22.881-12.712,94.068-58.475,94.068-58.475,0,0,16.949-23.729,18.644-37.288s8.475-173.729,8.475-173.729l4.237-115.254s6.78-26.271-37.288-44.068l-9.62-6.871-14.109-10.078s-15.254-25.424-41.525-29.661c-26.271-4.237-183.051,33.051-183.051,33.051,0,0-30.508,19.492-16.102,48.305l7.627,20.339s-18.644,13.559-17.797,51.695-.028,86.979-.028,86.979l6.808,82.512s2.164,47.37,13.559,67.797Z"
               style={{
-                fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: "#f1d1b5",
                 transition: "fill .2s ease-in-out",
                 stroke: "#201f32",
                 strokeMiterlimit: 10,
@@ -258,7 +258,7 @@ const Step1 = () => {
               ry="60.96"
               transform="translate(-61.059 20.872) rotate(-11.15)"
               style={{
-                fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: "#f1d1b5",
                 transition: "fill .2s ease-in-out",
                 stroke: "#201f32",
                 strokeMiterlimit: 10,
@@ -272,7 +272,7 @@ const Step1 = () => {
               ry="26.422"
               transform="translate(28.908 689.882) rotate(-78.85)"
               style={{
-                fill: leningpm > 500 ? "#6F8E66" : "#f1d1b5",
+                fill: "#f1d1b5",
                 transition: "fill .2s ease-in-out",
                 stroke: "#201f32",
                 strokeMiterlimit: 10,
@@ -363,7 +363,7 @@ const Step1 = () => {
                 style={{ fill: "#201e32", strokeWidth: 0 }}
               />
             </g>
-            <g className={`${leningpm == 1000 ? "path-animation" : ""}`}>
+            <g className={`${leningpm > 500 ? "path-animation" : ""}`}>
               <path
                 d="M168.728,45.472c-9.847,18.718-4.352,57.651-3.195,78.751-2.937.449-5.861.035-8.786-.16-.255-.017-.127.641-.16.639-2.339-.176-2.205-1.496-2.556-3.355-1.259-6.666-2.092-26.606-1.917-34.024.134-5.692.734-11.277,1.278-16.932,3-9.352,6.842-19.219,15.335-24.919Z"
                 style={{ fill: "#5072a2", strokeWidth: 0 }}

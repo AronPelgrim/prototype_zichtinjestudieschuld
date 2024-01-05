@@ -88,6 +88,7 @@ body:has(.scroll) {
   transform: translate(-50%, -50%);
   gap: 1em;
   overflow: visible;
+  animation: appear1 0.5s ease-in both;
 }
 
 .result-grid > section {
@@ -172,7 +173,7 @@ header.onboarding::before {
   border-top: 25px solid black;
   position: absolute;
   left: calc(50% - 25px);
-  bottom: -25px;
+  bottom: -23px;
   animation: none;
 }
 
@@ -369,7 +370,7 @@ header.onboarding::before {
   white-space: nowrap;
   position: fixed;
   gap: 3em;
-  bottom: 1em;
+  bottom: 0;
   left: 50%;
   transform: translate(-50%);
   background-color: #f1c2e6;
@@ -377,7 +378,6 @@ header.onboarding::before {
   align-items: center;
   width: fit-content;
   z-index: 3000;
-  border-radius: 0.5em;
 }
 
 .slider div {
