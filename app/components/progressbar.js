@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import "../../styles/Global.css";
-import RenteBetaaldSVG from "../components/rentebetaaldsvg";
 
 const Progressbar = ({ progressWidth, currentPage }) => {
   const [aflosFase, setAflosFase] = useState(0);
@@ -64,8 +63,7 @@ const Progressbar = ({ progressWidth, currentPage }) => {
     `}
             onClick={() => handleCircleClick(index)}
           >
-            {/* {index + 1} */}
-            <RenteBetaaldSVG></RenteBetaaldSVG>
+            {index + 1}
           </section>
         ))}
       </section>
