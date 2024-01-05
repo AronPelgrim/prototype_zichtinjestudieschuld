@@ -320,7 +320,7 @@ header.onboarding::before {
 }
 
 .circle {
-  background: #fff;
+  background: transparent;
   border-radius: 50%;
   height: 30px;
   width: 30px;
@@ -329,37 +329,21 @@ header.onboarding::before {
   justify-content: center;
   transition: 0.4s ease;
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 5px;
+  overflow: hidden;
 }
 
 .circle:hover {
-  background: #dedbcb;
+  background: #fec157;
 }
 
 .circle.active {
-  background-color: #039da8;
+  background-color: #fec157;
   color: white;
 }
 
-.circle.done {
-  position: relative;
-}
-
-.circle.done::before {
-  content: "✓";
+.circle svg {
+  width: 10vh;
   position: absolute;
-  top: 50%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-size: cover;
-  display: block;
-  background-color: #fff;
-  transition: 0.4s ease;
-}
-.circle.done:hover::before {
-  background: #dedbcb;
 }
 
 .slider {
