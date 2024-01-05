@@ -164,7 +164,6 @@ header.onboarding::before {
   max-width: 30vw;
   margin-left: 35vw;
   line-height: 1.4;
-  font-style: italic;
 }
 
 .moreInfo {
@@ -323,6 +322,8 @@ header.onboarding::before {
   white-space: nowrap;
   position: fixed;
   gap: 1.5em;
+  bottom: 2vh;
+  right: 2vw;
   background-color: #f1c2e6;
   padding: 1.5em;
   border-radius: 0.5em;
