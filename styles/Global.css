@@ -247,7 +247,7 @@ header.onboarding::before {
   background-color: white;
   position: relative;
   overflow: visible;
-  margin: 1.2em;
+  margin: 1.3em;
 }
 
 .completeness-meter::before {
@@ -269,7 +269,7 @@ header.onboarding::before {
   position: absolute;
   width: 100%;
   top: 0;
-  transform: translateY(-34%);
+  transform: translateY(-36%);
   overflow: visible;
 }
 

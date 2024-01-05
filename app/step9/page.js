@@ -39,8 +39,8 @@ const Step9 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `
-    Uit onderzoek blijkt dat lenende studenten vaker worstelen met extreme vermoeidheid, emotionele uitputting en zorgen over een mogelijke burn-out. Dit is natuurlijk bij lang niet iedereen zo, maar hou hier bewust rekening mee bij het aanvragen van de lening.`;
+    const headerText = `Onderzoek wijst uit dat studenten die lenen vaak te maken hebben met vermoeidheid, emotionele uitputting en zorgen over een burn-out. 
+    Wees hiervan bewust wanneer je de lening aanvraagt!`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -99,12 +99,12 @@ const Step9 = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Klik voor het complete onderzoek over lenen en studentenwelzijn.
+                Het complete onderzoek over lenen en studentenwelzijn.
               </Link>
               <Link
                 href={`/result?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
               >
-                Het is mij nu wel duidelijk, ga maar naar het resultaat!{" "}
+                Helder verhaal, door naar het resultaat!
               </Link>
             </section>
           )}

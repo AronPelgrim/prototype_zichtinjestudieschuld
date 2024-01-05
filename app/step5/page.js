@@ -39,7 +39,7 @@ const Step5 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Tijdens de aflosfase kun je maximaal 60 maanden aflosvrije periodes aanvragen, bijvoorbeeld bij financiële tegenvallers werkloosheid, of ziekte. De niet-afgeloste maanden worden aan het einde van je aflosfase (15 of 35 jaar) toegevoegd.`;
+    const headerText = `Tijdens de aflosfase kun je tot wel 60 maanden aanvragen waarin je niet hoeft af te lossen (aflosvrije periodes). Dit kan handig zijn in geval van bijvoorbeeld ziekte, maar kan je altijd aanvragen. De maanden waarin je niet hebt afgelost, worden aan het einde van de aflosfase (na 15 of 35 jaar) toegevoegd.`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -94,14 +94,16 @@ const Step5 = () => {
           {antwoord && (
             <section className="antwoord">
               <Link
-                href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+                href={`https://duo.nl/particulier/minder-of-niets-aflossen/aflosvrije-periode.jsp`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Hier zou ik hoe dan ook gebruik van maken!{" "}
+                Meer info over de aflosvrije periode
               </Link>
               <Link
                 href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
               >
-                Wel handig als het nodig is, maar liever niet!
+                Helder verhaal, door naar de volgende!
               </Link>
             </section>
           )}

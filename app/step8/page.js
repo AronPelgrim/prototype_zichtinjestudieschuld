@@ -39,8 +39,8 @@ const Step8 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Om een hogere hypotheek te krijgen kiezen toch veel mensen met een 
-    studieschuld ervoor om die niet op te geven. Als je dat doet, dan verlies je hiermee het recht op de Nationale Hypotheek Garantie (NHG).`;
+    const headerText = `Om een hogere hypotheek te kunnen krijgen, kiezen veel mensen met een studieschuld ervoor om deze niet te vermelden. 
+    Het nadeel hiervan is dat je dan geen aanspraak meer kunt maken op de Nationale Hypotheek Garantie (NHG).`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -104,7 +104,7 @@ const Step8 = () => {
               <Link
                 href={`/step9?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
               >
-                Het is mij nu wel duidelijk, ga maar naar de volgende!{" "}
+                Helder verhaal, door naar de volgende!
               </Link>
             </section>
           )}

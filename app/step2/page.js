@@ -39,7 +39,7 @@ const Step2 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Je studie duurt waarschijnlijk een aantal jaar. Hoelang je mag lenen heeft te maken met de duur van je studie, zoek dit dus eerst uit. Hoelang zou je dan willen lenen?`;
+    const headerText = `Je studie zal waarschijnlijk een paar jaar duren. De duur van je lening hangt af van de duur van je studie, dus controleer dit eerst. Hoelang zou je graag willen lenen?`;
 
     let index = 0;
     const interval = setInterval(() => {

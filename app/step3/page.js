@@ -39,10 +39,7 @@ const Step3 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `De eerste 2 jaar na je studie heb je een zogenaamde
-      'aanloopfase'. Hierin hoef je nog niks af te lossen, maar als
-      je dat wil dan kan dat wel. Na twee jaar volgt de zogenaamde
-      'aflosfase'. Je moet vanaf dan maandelijks gaan afbetalen. Zou jij hier gebruik van maken?`;
+    const headerText = `In de eerste 2 jaar na je studie heb je een 'aanloopfase'. Je hoeft dan nog niets af te lossen, maar je kunt er wel voor kiezen om dat te doen. Na twee jaar begint de 'aflosfase'. Vanaf dat moment moet je maandelijks gaan afbetalen. Zou jij gebruik willen maken van de aanloopfase?`;
 
     let index = 0;
     const interval = setInterval(() => {

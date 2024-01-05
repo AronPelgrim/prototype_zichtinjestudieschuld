@@ -10,7 +10,7 @@ const Onboarding1 = () => {
 
   useEffect(() => {
     const headerText = `Goeiedag, ik ben 
-    frederik, expert in studieschulden.`;
+    Frans Ferdinand de derde, expert in studieschulden.`;
 
     let index = 0;
     const interval = setInterval(() => {
