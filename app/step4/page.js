@@ -117,6 +117,13 @@ const Step4 = () => {
               >
                 Opslaan
               </Link>
+              <Link
+                href={`https://duo.nl/particulier/studieschuld-terugbetalen/`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Meer info over de aflosfase{" "}
+              </Link>
             </section>
           )}
           <section className="prevenext">
