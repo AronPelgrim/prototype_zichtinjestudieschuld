@@ -39,17 +39,6 @@ body:has(.scroll) {
   height: 100vh;
 }
 
-.logo.onboarding {
-  opacity: 0.6;
-  width: 94vw;
-  height: fit-content;
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  z-index: -100;
-  margin: 2vw;
-}
-
 .logo {
   position: fixed;
   width: 50vh;
@@ -61,11 +50,23 @@ body:has(.scroll) {
   padding: 1.15rem 0;
   transition-duration: 0.4s;
   opacity: 0.6;
+  opacity: 1;
 }
 
 .logo:hover {
-  opacity: 1;
+  opacity: 0.6;
   cursor: pointer;
+}
+
+.logo.onboarding {
+  opacity: 0.6;
+  width: 94vw;
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: -100;
+  margin: 2vw;
 }
 
 .result-grid {
@@ -801,6 +802,10 @@ a:hover {
     border-right: 20px solid transparent;
     border-top: 20px solid black;
     bottom: -18px;
+  }
+
+  .logo {
+    top: 70%;
   }
 
   .slider {

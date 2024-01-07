@@ -36,7 +36,7 @@ const Step1 = () => {
 
     setAanloopfase(initialAanloop ? initialAanloop : "");
     setMax35(initialmax35 ? initialmax35 : null);
-    setAflosFase(initialAflos ? initialAflos : 0);
+    setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);

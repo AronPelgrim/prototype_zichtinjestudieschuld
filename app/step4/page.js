@@ -83,7 +83,7 @@ const Step4 = () => {
 
   const handleOptionChange = (event) => {
     setMax35(event.target.value === "true");
-    setAflosFase(0);
+    setAflosFase(1);
   };
 
   const handleAflosFase = (e) => {
@@ -189,7 +189,7 @@ const Step4 = () => {
             </Link>
           </section>
           <Backg4></Backg4>
-          {aflosFase < 16 ? (
+          {aflosFase == 1 ? (
             <svg
               ref={svgRef}
               id="Laag_1"
