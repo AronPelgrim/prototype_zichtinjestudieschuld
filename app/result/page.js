@@ -160,7 +160,7 @@ const Result = () => {
               currentPage={currentPage}
             ></Progressbar>
             <Link href={`/`}>
-              <Logo></Logo>
+              <Logo />
             </Link>
             <section className="result-grid">
               <section>

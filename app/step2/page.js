@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import "../../styles/Global.css";
 import Backg2 from "../components/backg2";
+import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step2 = () => {
@@ -94,6 +95,9 @@ const Step2 = () => {
     <>
       {orientation === "Landscape" ? (
         <>
+          <Link href={`/`}>
+            <Logo />
+          </Link>
           <Progressbar
             progressWidth={progressWidth}
             currentPage={currentPage}

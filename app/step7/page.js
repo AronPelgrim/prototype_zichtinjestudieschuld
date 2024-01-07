@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import "../../styles/Global.css";
-import Progressbar from "../components/progressbar";
-import Backg7 from "../components/backg7";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import "../../styles/Global.css";
+import Backg7 from "../components/backg7";
+import Logo from "../components/logo";
+import Progressbar from "../components/progressbar";
 
 const Step7 = () => {
   const [displayedText, setDisplayedText] = useState("");
@@ -105,6 +106,10 @@ const Step7 = () => {
     <>
       {orientation === "Landscape" ? (
         <>
+          {" "}
+          <Link href={`/`}>
+            <Logo />
+          </Link>
           <Progressbar
             progressWidth={progressWidth}
             currentPage={currentPage}

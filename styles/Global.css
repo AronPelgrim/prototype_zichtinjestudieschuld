@@ -39,15 +39,7 @@ body:has(.scroll) {
   height: 100vh;
 }
 
-.scroll a {
-  all: unset;
-}
-
-.scroll a:hover {
-  all: unset;
-}
-
-.logo {
+.logo.onboarding {
   opacity: 0.6;
   width: 94vw;
   height: fit-content;
@@ -58,21 +50,21 @@ body:has(.scroll) {
   margin: 2vw;
 }
 
-.scroll .logo {
-  all: unset;
+.logo {
   position: fixed;
   width: 50vh;
   z-index: 10;
-  transform: rotate(-90deg) translateX(-50%);
-  transform-origin: left top;
+  transform: rotate(-270deg) translateX(50%);
+  transform-origin: right top;
   top: 50%;
-  left: 0;
+  right: 0;
   padding: 1.15rem 0;
   transition-duration: 0.4s;
+  opacity: 0.6;
 }
 
-.scroll .logo:hover {
-  opacity: 0.6;
+.logo:hover {
+  opacity: 1;
   cursor: pointer;
 }
 
@@ -515,9 +507,10 @@ input:checked + .label-toggle:after {
   margin-top: -100vh;
 }
 
-a,
+.prevenext a,
 button,
-.opslaan {
+.opslaan,
+.antwoord a {
   background-color: #46f7bf;
   border: none;
   color: black;
@@ -527,7 +520,7 @@ button,
   display: inline-block;
   font-size: clamp(0.5em, 1.5vw, 1.2em);
   margin: 4px 2px;
-  transition-duration: 0.01s;
+  transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 0.5em;
   font-family: "lores-12", sans-serif;
