@@ -18,6 +18,7 @@ const Result = () => {
   const [hypotheek, setHypotheek] = useState(0);
   const [afloskosten, setAfloskosten] = useState(0);
   const [rentebetaald, setRentebetaald] = useState(0);
+  const [koopkracht, setKoopkracht] = useState(0);
   const progressWidth = "100%";
   const currentPage = 9;
 
@@ -100,6 +101,11 @@ const Result = () => {
 
     setRentebetaald(totaalBetaaldeRente.toFixed(2));
   }, [afloskosten, aflosFase, studieSchuld]);
+
+  useEffect(() => {
+    const koopkrachtBerekenen = inkomen - afloskosten;
+    setKoopkracht(koopkrachtBerekenen);
+  }, [inkomen, afloskosten]);
 
   useEffect(() => {
     const handleOrientationChange = () => {
@@ -189,7 +195,12 @@ const Result = () => {
                 <h1>€{formatToLocaleString(hypotheek)}</h1>
                 <HypotheekSVG leningpm={leningpm}></HypotheekSVG>
               </section>
-              <section></section>
+              <section>
+                {" "}
+                <p>Je koopkracht na je maandelijkse aflossing</p>
+                <h1>€{formatToLocaleString(koopkracht)}</h1>
+                <HypotheekSVG leningpm={leningpm}></HypotheekSVG>
+              </section>
             </section>
             <Slider
               onChange1={handleSliderChange1}

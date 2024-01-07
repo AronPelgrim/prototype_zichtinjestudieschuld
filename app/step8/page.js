@@ -44,8 +44,7 @@ const Step8 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Om een hogere hypotheek te kunnen krijgen, kiezen veel mensen met een studieschuld ervoor om deze niet te vermelden. 
-    Het nadeel hiervan is dat je dan geen aanspraak meer kunt maken op de Nationale Hypotheek Garantie (NHG).`;
+    const headerText = `Om een hogere hypotheek te kunnen krijgen, verzwijgen veel mensen hun studieschuld. Hierdoor kunnen ze geen aanspraak maken op de Nationale Hypotheek Garantie (NHG). De NHG is mogelijk bij een koopsom of getaxeerde waarde van de woning lager dan € 435.000.`;
 
     let index = 0;
     const interval = setInterval(() => {
