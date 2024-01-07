@@ -18,8 +18,8 @@ const Result = () => {
   const [hypotheek, setHypotheek] = useState(0);
   const [afloskosten, setAfloskosten] = useState(0);
   const [rentebetaald, setRentebetaald] = useState(0);
-  const progressWidth = "0";
-  const currentPage = -1;
+  const progressWidth = "100%";
+  const currentPage = 9;
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");

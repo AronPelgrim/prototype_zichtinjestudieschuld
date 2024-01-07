@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import ResultFlag from "./resultflag";
 import "../../styles/Global.css";
 
 const Progressbar = ({ progressWidth, currentPage }) => {
@@ -22,6 +23,7 @@ const Progressbar = ({ progressWidth, currentPage }) => {
     "step7",
     "step8",
     "step9",
+    "result",
   ];
 
   const handleCircleClick = (index) => {
@@ -65,7 +67,7 @@ const Progressbar = ({ progressWidth, currentPage }) => {
     `}
             onClick={() => handleCircleClick(index)}
           >
-            {index + 1}
+            {index === pages.length - 1 ? <ResultFlag /> : index + 1}
           </section>
         ))}
       </section>
