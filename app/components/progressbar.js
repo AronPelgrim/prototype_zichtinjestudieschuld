@@ -45,11 +45,11 @@ const Progressbar = ({ progressWidth, currentPage }) => {
 
     setAanloopfase(initialAanloop ? initialAanloop : "");
     setMax35(initialmax35 ? initialmax35 : null);
-    setAflosFase(initialAflos ? initialAflos : 0);
+    setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
-    setLeenduur(initialLeenduur ? initialLeenduur : 0);
+    setLeenduur(initialLeenduur ? initialLeenduur : 1);
   }, []);
 
   return (

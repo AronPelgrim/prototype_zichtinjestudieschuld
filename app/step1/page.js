@@ -40,11 +40,11 @@ const Step1 = () => {
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
-    setLeenduur(initialLeenduur ? initialLeenduur : 0);
+    setLeenduur(initialLeenduur ? initialLeenduur : 1);
   }, []);
 
   useEffect(() => {
-    const headerText = `Je studeert of gaat studeren, wat leuk is, maar ook duur! Denk aan studieboeken, een laptop, huur en boodschappen. 
+    const headerText = `Je studeert of gaat studeren, wat leuk is, maar het kost ook geld! Denk aan studieboeken, een laptop, huur en boodschappen. 
     Hoeveel wil je per maand lenen? Let op, dit gaat alleen om je lening en niet om de eventuele basisbeurs!`;
 
     let index = 0;

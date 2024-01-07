@@ -73,12 +73,15 @@ const Result = () => {
   }, [leningpm, leenduur, aanloopfase, rentepercentage]);
 
   useEffect(() => {
-    const hypotheekResult = (164000 - (studieSchuld / 10000) * 12500).toFixed(
-      2
-    );
-    const hypotheek = hypotheekResult < 0 ? 0 : hypotheekResult;
-    setHypotheek(hypotheek);
-  }, [studieSchuld]);
+    const monthlyRate = 4.5 / 100 / 12;
+    const loanTermMonths = 30 * 12;
+
+    const maxLoanAmount =
+      (afloskosten / monthlyRate) *
+      (1 - Math.pow(1 + monthlyRate, -loanTermMonths));
+
+    setHypotheek(maxLoanAmount.toFixed(2));
+  }, [afloskosten]);
 
   useEffect(() => {
     const maandelijkseRente = rentepercentage / 12 / 100;
@@ -182,7 +185,7 @@ const Result = () => {
                 <RenteBetaaldSVG leningpm={leningpm}></RenteBetaaldSVG>
               </section>
               <section>
-                <p>Jouw hypotheekbedrag</p>
+                <p>Vermindering maximale hypotheekbedrag</p>
                 <h1>€{formatToLocaleString(hypotheek)}</h1>
                 <HypotheekSVG leningpm={leningpm}></HypotheekSVG>
               </section>
