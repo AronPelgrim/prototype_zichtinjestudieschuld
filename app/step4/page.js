@@ -20,6 +20,7 @@ const Step4 = () => {
   const [inkomen, setInkomen] = useState(0);
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
+  const [max35, setMax35] = useState(null);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -40,7 +41,7 @@ const Step4 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Er zijn verschillende aflosregelingen. Val je onder de regelingen van vóór 2018 dan duurt je aflosfase maximaal 15 jaar. Val je onder de regels vanaf 2018 dan duurt je aflosfase maximaal 35 jaar. In hoeveel tijd zou jij je studieschuld willen afbetalen?`;
+    const headerText = `Er zijn verschillende aflosregelingen. Ben je je studie begonnen voor 1 september 2015: dan duurt je aflosfase maximaal 15 jaar (SF15). Ben je gestart op of na 1 september 2015: dan duurt je aflosfase maximaal 35 jaar (SF35). In hoeveel tijd zou jij je studieschuld willen afbetalen?`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -75,6 +76,11 @@ const Step4 = () => {
     };
   }, []);
 
+  const handleOptionChange = (event) => {
+    setMax35(event.target.value === "true");
+    console.log(max35);
+  };
+
   const handleAflosFase = (e) => {
     const updatedValue = parseInt(e.target.value);
     setAflosFase(updatedValue);
@@ -99,19 +105,59 @@ const Step4 = () => {
           <header>{displayedText}</header>
           {antwoord && (
             <section className="antwoord">
-              <div>
+              <div style={{ marginBottom: ".5em" }}>
                 <label>
-                  Aflosfase: {aflosFase == null ? 0 : aflosFase} jaar
+                  <input
+                    type="radio"
+                    value="true"
+                    checked={max35 === true}
+                    onChange={handleOptionChange}
+                    style={{ marginRight: "1em" }}
+                  />
+                  SF35
                 </label>
-                <input
-                  type="range"
-                  min="1"
-                  max="35"
-                  value={aflosFase}
-                  onChange={handleAflosFase}
-                  step="1"
-                />
+
+                <label>
+                  <input
+                    type="radio"
+                    value="false"
+                    checked={max35 === false}
+                    onChange={handleOptionChange}
+                    style={{ marginRight: "1em" }}
+                  />
+                  SF15
+                </label>
               </div>
+              {max35 ? (
+                <div>
+                  <label>
+                    Aflosfase SF35: {aflosFase == null ? 0 : aflosFase} jaar
+                  </label>
+                  <input
+                    type="range"
+                    min="1"
+                    max="35"
+                    value={aflosFase}
+                    onChange={handleAflosFase}
+                    step="1"
+                  />
+                </div>
+              ) : max35 === false ? (
+                <div>
+                  <label>
+                    Aflosfase SF15: {aflosFase == null ? 0 : aflosFase} jaar
+                  </label>
+                  <input
+                    type="range"
+                    min="1"
+                    max="15"
+                    value={aflosFase}
+                    onChange={handleAflosFase}
+                    step="1"
+                  />
+                </div>
+              ) : null}
+
               <Link
                 href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
                 className="opslaan"

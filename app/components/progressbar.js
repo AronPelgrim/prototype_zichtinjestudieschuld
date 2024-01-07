@@ -45,7 +45,6 @@ const Progressbar = ({ progressWidth, currentPage }) => {
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 0);
-    console.log(currentPage);
   }, []);
 
   return (
