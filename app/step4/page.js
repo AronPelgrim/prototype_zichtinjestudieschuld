@@ -78,7 +78,7 @@ const Step4 = () => {
 
   const handleOptionChange = (event) => {
     setMax35(event.target.value === "true");
-    console.log(max35);
+    setAflosFase(0);
   };
 
   const handleAflosFase = (e) => {
