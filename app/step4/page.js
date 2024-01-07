@@ -31,8 +31,12 @@ const Step4 = () => {
     const initialInkomen = urlParams.get("inkomen");
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
+    const initialmax35 = urlParams.get("max35");
 
     setAanloopfase(initialAanloop ? initialAanloop : "");
+    setMax35(
+      initialmax35 === "true" ? true : initialmax35 === "false" ? false : null
+    );
     setAflosFase(initialAflos ? initialAflos : 0);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
@@ -128,7 +132,7 @@ const Step4 = () => {
                   SF15
                 </label>
               </div>
-              {max35 ? (
+              {max35 === true ? (
                 <div>
                   <label>
                     Aflosfase SF35: {aflosFase == null ? 0 : aflosFase} jaar
@@ -159,7 +163,7 @@ const Step4 = () => {
               ) : null}
 
               <Link
-                href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+                href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
                 className="opslaan"
               >
                 Opslaan
@@ -175,7 +179,7 @@ const Step4 = () => {
           )}
           <section className="prevenext">
             <Link
-              href={`/step3?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+              href={`/step3?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
               Vorige
             </Link>

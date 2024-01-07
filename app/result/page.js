@@ -27,13 +27,7 @@ const Result = () => {
   const [inkomen, setInkomen] = useState(0);
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
-
-  const formatToLocaleString = (value) => {
-    return parseFloat(value).toLocaleString("nl-NL", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-  };
+  const [max35, setMax35] = useState(null);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -44,8 +38,10 @@ const Result = () => {
     const initialInkomen = urlParams.get("inkomen");
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
+    const initialmax35 = urlParams.get("max35");
 
     setAanloopfase(initialAanloop ? initialAanloop : "");
+    setMax35(initialmax35 ? initialmax35 : null);
     setAflosFase(initialAflos ? initialAflos : 0);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
@@ -121,6 +117,13 @@ const Result = () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
   }, []);
+
+  const formatToLocaleString = (value) => {
+    return parseFloat(value).toLocaleString("nl-NL", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
 
   const handleSliderChange1 = (value) => {
     setLeningpm(value);

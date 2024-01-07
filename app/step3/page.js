@@ -20,6 +20,7 @@ const Step3 = () => {
   const [inkomen, setInkomen] = useState(0);
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
+  const [max35, setMax35] = useState(null);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -30,8 +31,10 @@ const Step3 = () => {
     const initialInkomen = urlParams.get("inkomen");
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
+    const initialmax35 = urlParams.get("max35");
 
     setAanloopfase(initialAanloop ? initialAanloop : "");
+    setMax35(initialmax35 ? initialmax35 : null);
     setAflosFase(initialAflos ? initialAflos : 0);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
@@ -94,12 +97,12 @@ const Step3 = () => {
           {antwoord && (
             <section className="antwoord">
               <Link
-                href={`/step4?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=ja&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+                href={`/step4?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
               >
                 Ja zeker! zo lang mogelijk uitstellen die handel.
               </Link>
               <Link
-                href={`/step4?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=nee&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+                href={`/step4?step2?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
               >
                 Nee joh, ik betaal de schuld zo snel mogelijk af!
               </Link>
@@ -107,7 +110,7 @@ const Step3 = () => {
           )}
           <section className="prevenext">
             <Link
-              href={`/step2?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+              href={`/step2?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
               Vorige
             </Link>

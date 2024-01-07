@@ -20,13 +20,7 @@ const Step7 = () => {
   const [inkomen, setInkomen] = useState(0);
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
-
-  const formatToLocaleString = (value) => {
-    return parseFloat(value).toLocaleString("nl-NL", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-  };
+  const [max35, setMax35] = useState(null);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -37,8 +31,10 @@ const Step7 = () => {
     const initialInkomen = urlParams.get("inkomen");
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
+    const initialmax35 = urlParams.get("max35");
 
     setAanloopfase(initialAanloop ? initialAanloop : "");
+    setMax35(initialmax35 ? initialmax35 : null);
     setAflosFase(initialAflos ? initialAflos : 0);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
@@ -82,6 +78,13 @@ const Step7 = () => {
     };
   }, []);
 
+  const formatToLocaleString = (value) => {
+    return parseFloat(value).toLocaleString("nl-NL", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
+
   const handleInkomen = (e) => {
     const inputValue = e.target.value;
 
@@ -123,7 +126,7 @@ const Step7 = () => {
                 />
               </div>
               <Link
-                href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+                href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
                 className="opslaan"
               >
                 Opslaan
@@ -132,7 +135,7 @@ const Step7 = () => {
           )}
           <section className="prevenext">
             <Link
-              href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+              href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
             >
               Vorige
             </Link>{" "}

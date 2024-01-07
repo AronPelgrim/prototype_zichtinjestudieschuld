@@ -20,6 +20,7 @@ const Step1 = () => {
   const [inkomen, setInkomen] = useState(0);
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
+  const [max35, setMax35] = useState(null);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -30,13 +31,15 @@ const Step1 = () => {
     const initialInkomen = urlParams.get("inkomen");
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
+    const initialmax35 = urlParams.get("max35");
 
     setAanloopfase(initialAanloop ? initialAanloop : "");
-    setAflosFase(initialAflos ? initialAflos : 1);
-    setRentepercentage(initialRente ? initialRente : 0.46);
+    setMax35(initialmax35 ? initialmax35 : null);
+    setAflosFase(initialAflos ? initialAflos : 0);
+    setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
-    setLeenduur(initialLeenduur ? initialLeenduur : 1);
+    setLeenduur(initialLeenduur ? initialLeenduur : 0);
   }, []);
 
   useEffect(() => {
@@ -112,7 +115,7 @@ const Step1 = () => {
                 />
               </div>
               <Link
-                href={`/step2?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+                href={`/step2?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
                 className="opslaan"
               >
                 Opslaan
