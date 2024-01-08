@@ -380,12 +380,16 @@ header.onboarding::before {
 input[type="number"] {
   border-radius: 0.5em;
   font-size: 1em;
-  text-align: left;
+  text-align: center;
   border: 2px solid black;
-  padding: 0.2em 0.2em;
+  padding: 0.1em;
   font-family: "lores-12", sans-serif;
   font-weight: 700;
   text-align: center;
+  font-size: clamp(0.5em, 1.3vw, 1.2em);
+  width: 6ch;
+  margin-left: 50%;
+  transform: translate(-50%);
 }
 
 input[type="range"] {
@@ -536,7 +540,7 @@ button,
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: clamp(0.5em, 1.5vw, 1.2em);
+  font-size: clamp(0.5em, 1.3vw, 1.2em);
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
@@ -858,6 +862,5 @@ a:hover {
     font-family: "lores-12", sans-serif;
     font-weight: 700;
     text-align: center;
-    font-size: clamp(0.5em, 1.4vw, 1.2em);
   }
 }

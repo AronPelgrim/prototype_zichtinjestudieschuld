@@ -20,7 +20,7 @@ const Result = () => {
   const [rentebetaald, setRentebetaald] = useState(0);
   const [koopkracht, setKoopkracht] = useState(0);
   const progressWidth = "100%";
-  const currentPage = 9;
+  const currentPage = 10;
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -29,6 +29,7 @@ const Result = () => {
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
   const [max35, setMax35] = useState(null);
+  const [hypotheekRente, setHypotheekRente] = useState(0);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -40,14 +41,16 @@ const Result = () => {
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
     const initialmax35 = urlParams.get("max35");
+    const initialHypoRente = urlParams.get("hypotheekRente");
 
-    setAanloopfase(initialAanloop ? initialAanloop : "");
+    setAanloopfase(initialAanloop ? initialAanloop : "nee");
     setMax35(initialmax35 ? initialmax35 : null);
-    setAflosFase(initialAflos ? initialAflos : 0);
+    setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
-    setLeenduur(initialLeenduur ? initialLeenduur : 0);
+    setLeenduur(initialLeenduur ? initialLeenduur : 1);
+    setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
   }, []);
 
   useEffect(() => {
@@ -74,7 +77,7 @@ const Result = () => {
   }, [leningpm, leenduur, aanloopfase, rentepercentage]);
 
   useEffect(() => {
-    const monthlyRate = 4.5 / 100 / 12;
+    const monthlyRate = hypotheekRente / 100 / 12;
     const loanTermMonths = 30 * 12;
 
     const maxLoanAmount =

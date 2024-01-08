@@ -22,6 +22,7 @@ const Step7 = () => {
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
   const [max35, setMax35] = useState(null);
+  const [hypotheekRente, setHypotheekRente] = useState(0);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -33,18 +34,20 @@ const Step7 = () => {
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
     const initialmax35 = urlParams.get("max35");
+    const initialHypoRente = urlParams.get("hypotheekRente");
 
-    setAanloopfase(initialAanloop ? initialAanloop : "");
+    setAanloopfase(initialAanloop ? initialAanloop : "nee");
     setMax35(initialmax35 ? initialmax35 : null);
-    setAflosFase(initialAflos ? initialAflos : 0);
+    setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
-    setLeenduur(initialLeenduur ? initialLeenduur : 0);
+    setLeenduur(initialLeenduur ? initialLeenduur : 1);
+    setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
   }, []);
 
   useEffect(() => {
-    const headerText = `Een studieschuld heeft ook effect op de hoogte van je hypotheek. De vermindering van het maximale hypotheekbedrag per maand door je studieschuld, kan worden berekend aan de hand van je bruto maandelijks inkomen. Wat wordt jouw verwachte bruto-inkomen per maand?`;
+    const headerText = `Een studieschuld beïnvloedt je maximale hypotheekbedrag. Hoeveel minder hypotheek je kan krijgen wordt berekend op basis van je studieschuld, specifiek met je maandelijkse afloskosten, de hypotheekrente en nog een aantal factoren. De gemiddelde hypotheekrente is nu 4,5%, maar kan maandelijks veranderen, dus je kunt deze aanpassen als je een nog specifieker bedrag wil!`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -79,19 +82,12 @@ const Step7 = () => {
     };
   }, []);
 
-  const formatToLocaleString = (value) => {
-    return parseFloat(value).toLocaleString("nl-NL", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-  };
-
-  const handleInkomen = (e) => {
+  const handleHypotheekrente = (e) => {
     const inputValue = e.target.value;
 
     const regex = /^\d*\.?\d{0,2}$/;
     if (regex.test(inputValue) || inputValue === "") {
-      setInkomen(inputValue);
+      setHypotheekRente(inputValue);
     }
   };
 
@@ -119,35 +115,40 @@ const Step7 = () => {
             <section className="antwoord">
               <div>
                 <label>
-                  Verwachte inkomen: € {formatToLocaleString(inkomen)}
+                  Hypotheekrente:{" "}
+                  {hypotheekRente !== null && !isNaN(parseFloat(hypotheekRente))
+                    ? parseFloat(hypotheekRente).toLocaleString("nl-NL", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      }) + "%"
+                    : "0,00%"}
                 </label>
                 <input
-                  type="range"
-                  min="1500"
-                  max="10000"
-                  value={inkomen}
-                  onChange={handleInkomen}
-                  step="50"
+                  type="number"
+                  value={hypotheekRente}
+                  onChange={handleHypotheekrente}
+                  placeholder="0,00"
+                  step={0.01}
                 />
               </div>
               <Link
-                href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+                href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
                 className="opslaan"
               >
                 Opslaan
               </Link>
               <Link
-                href={`https://loonwijzer.nl/salaris/salarischeck#/`}
+                href={`https://hypotheco.nl/blog/hypotheekadvies/hypotheek-en-studieschuld/`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Wat wordt mijn inkomen?
+                Meer info over de hypotheek
               </Link>
             </section>
           )}
           <section className="prevenext">
             <Link
-              href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`}
+              href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
             >
               Vorige
             </Link>{" "}
@@ -165,7 +166,7 @@ const Step7 = () => {
             <path
               d="m385.539,492.19s.054-9.322-9.268-10.169c-9.322-.847-27.119-3.742-27.119-3.742h-175.696l-27.694,9.674s-7.627-3.39-7.627,8.475v171.186s-3.39,11.017,6.78,12.712c10.169,1.695,49.26,0,49.26,0v67.797h43.827c.829-4.887,1.662-9.774,2.553-14.65,1.655-9.056,3.683-17.942,4.695-27.104.93-8.417,2.123-16.499,5.517-24.329.517-1.192,1.283-1.925,2.153-2.301.404-.56.935-1.029,1.591-1.359.562-1.781,2.215-2.705,4.008-2.807,1.645-.88,3.648-.759,5.185,1.218,10.714,13.787,11.378,32.338,16.507,48.457,2.445,7.685,5.08,15.305,7.851,22.875h41.841v-63.559l43.893-.847s11.602,0,11.699-10.169,0-79.661,0-79.661l.043-101.695Z"
               style={{
-                fill: inkomen > 1500 ? "#C1972B" : "#201f32",
+                fill: "#201f32",
                 transition: "fill .2s ease-in-out",
                 strokeWidth: 0,
               }}
@@ -331,7 +332,7 @@ const Step7 = () => {
               <path
                 d="m173.456,401.512s62.999,155.288,180.025-4.983l-180.025,4.983Z"
                 style={{
-                  fill: inkomen > 1500 ? "#C1972B" : "#fff",
+                  fill: "#fff",
                   transition: "fill .2s ease-in-out",
                   strokeMiterlimit: 10,
                 }}

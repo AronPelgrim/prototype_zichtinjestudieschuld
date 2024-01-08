@@ -3,16 +3,16 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import "../../styles/Global.css";
-import Backg9 from "../components/backg9";
+import Backg10 from "../components/backg10";
 import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
-const Step9 = () => {
+const Step10 = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
-  const progressWidth = "90%";
-  const currentPage = 8;
+  const progressWidth = "100%";
+  const currentPage = 9;
   const [antwoord, setAntwoord] = useState(false);
 
   const [aflosFase, setAflosFase] = useState(0);
@@ -47,8 +47,7 @@ const Step9 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Onderzoek wijst uit dat studenten die lenen vaak te maken hebben met vermoeidheid, emotionele uitputting en zorgen over een burn-out. 
-    Wees hiervan bewust wanneer je de lening aanvraagt!`;
+    const headerText = `Het is belangrijk om rekening te houden met het verwachte inkomen na je studie, omdat je studieschuld invloed heeft op je maandelijkse kosten. Op deze manier kun je beoordelen of het bedrag dat je leent een goede investering is in vergelijking met je verwachte inkomsten. Wat wordt jouw verwachte bruto-inkomen per maand?`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -83,6 +82,22 @@ const Step9 = () => {
     };
   }, []);
 
+  const formatToLocaleString = (value) => {
+    return parseFloat(value).toLocaleString("nl-NL", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
+
+  const handleInkomen = (e) => {
+    const inputValue = e.target.value;
+
+    const regex = /^\d*\.?\d{0,2}$/;
+    if (regex.test(inputValue) || inputValue === "") {
+      setInkomen(inputValue);
+    }
+  };
+
   const characterAnimation = () => {
     const svgElement = svgRef.current;
     if (svgElement) {
@@ -92,9 +107,9 @@ const Step9 = () => {
 
   return (
     <>
-      {" "}
       {orientation === "Landscape" ? (
         <>
+          {" "}
           <Link href={`/`}>
             <Logo />
           </Link>
@@ -105,28 +120,42 @@ const Step9 = () => {
           <header>{displayedText}</header>
           {antwoord && (
             <section className="antwoord">
+              <div>
+                <label>
+                  Verwachte inkomen: € {formatToLocaleString(inkomen)}
+                </label>
+                <input
+                  type="range"
+                  min="1500"
+                  max="10000"
+                  value={inkomen}
+                  onChange={handleInkomen}
+                  step="50"
+                />
+              </div>
               <Link
-                href={`https://iso.nl/2019/01/onderzoek-groot-aandeel-lenende-studenten-ervaart-prestatiedruk-en-psychische-klachten-door-leenstelsel/`}
+                href={`/result?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
+                className="opslaan"
+              >
+                Opslaan
+              </Link>
+              <Link
+                href={`https://loonwijzer.nl/salaris/salarischeck#/`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Het complete onderzoek over lenen en studentenwelzijn.
-              </Link>
-              <Link
-                href={`/step10?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
-              >
-                Helder verhaal, door naar de volgende!
+                Wat wordt mijn inkomen?
               </Link>
             </section>
           )}
           <section className="prevenext">
             <Link
-              href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
+              href={`/step9?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
             >
               Vorige
             </Link>{" "}
           </section>
-          <Backg9></Backg9>
+          <Backg10 />
           <svg
             ref={svgRef}
             id="Laag_1"
@@ -138,7 +167,11 @@ const Step9 = () => {
           >
             <path
               d="m385.539,492.19s.054-9.322-9.268-10.169c-9.322-.847-27.119-3.742-27.119-3.742h-175.696l-27.694,9.674s-7.627-3.39-7.627,8.475v171.186s-3.39,11.017,6.78,12.712c10.169,1.695,49.26,0,49.26,0v67.797h43.827c.829-4.887,1.662-9.774,2.553-14.65,1.655-9.056,3.683-17.942,4.695-27.104.93-8.417,2.123-16.499,5.517-24.329.517-1.192,1.283-1.925,2.153-2.301.404-.56.935-1.029,1.591-1.359.562-1.781,2.215-2.705,4.008-2.807,1.645-.88,3.648-.759,5.185,1.218,10.714,13.787,11.378,32.338,16.507,48.457,2.445,7.685,5.08,15.305,7.851,22.875h41.841v-63.559l43.893-.847s11.602,0,11.699-10.169,0-79.661,0-79.661l.043-101.695Z"
-              style={{ fill: "#201f32", strokeWidth: 0 }}
+              style={{
+                fill: inkomen > 1500 ? "#C1972B" : "#201f32",
+                transition: "fill .2s ease-in-out",
+                strokeWidth: 0,
+              }}
             />
             <path
               d="m224.176,660.834h71.587v-148.91s-25.378,25.463-71.587,4.559v144.35Z"
@@ -301,8 +334,8 @@ const Step9 = () => {
               <path
                 d="m173.456,401.512s62.999,155.288,180.025-4.983l-180.025,4.983Z"
                 style={{
-                  fill: "#fff",
-                  transition: "fill 0.5s ease-in-out",
+                  fill: inkomen > 1500 ? "#C1972B" : "#fff",
+                  transition: "fill .2s ease-in-out",
                   strokeMiterlimit: 10,
                 }}
               />
@@ -346,4 +379,4 @@ const Step9 = () => {
   );
 };
 
-export default Step9;
+export default Step10;

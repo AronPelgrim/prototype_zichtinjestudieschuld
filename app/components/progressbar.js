@@ -12,6 +12,7 @@ const Progressbar = ({ progressWidth, currentPage }) => {
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
   const [max35, setMax35] = useState(null);
+  const [hypotheekRente, setHypotheekRente] = useState(0);
 
   const pages = [
     "step1",
@@ -23,11 +24,12 @@ const Progressbar = ({ progressWidth, currentPage }) => {
     "step7",
     "step8",
     "step9",
+    "step10",
     "result",
   ];
 
   const handleCircleClick = (index) => {
-    const queryParams = `?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&inkomen=${inkomen}`;
+    const queryParams = `?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`;
 
     window.location.href = `/${pages[index]}${queryParams}`;
   };
@@ -42,14 +44,16 @@ const Progressbar = ({ progressWidth, currentPage }) => {
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
     const initialmax35 = urlParams.get("max35");
+    const initialHypoRente = urlParams.get("hypotheekRente");
 
-    setAanloopfase(initialAanloop ? initialAanloop : "");
+    setAanloopfase(initialAanloop ? initialAanloop : "nee");
     setMax35(initialmax35 ? initialmax35 : null);
     setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
-    setInkomen(initialInkomen ? initialInkomen : 1500);
+    setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
+    setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
   }, []);
 
   return (

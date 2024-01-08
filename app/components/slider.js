@@ -15,6 +15,8 @@ const Slider = ({
   const [inkomen, setInkomen] = useState(0);
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
+  const [max35, setMax35] = useState(null);
+  const [hypotheekRente, setHypotheekRente] = useState(0);
   const [toggleChecked, setToggleChecked] = useState(false);
 
   const formatToLocaleString = (value) => {
@@ -33,13 +35,17 @@ const Slider = ({
     const initialInkomen = urlParams.get("inkomen");
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
+    const initialmax35 = urlParams.get("max35");
+    const initialHypoRente = urlParams.get("hypotheekRente");
 
-    setAanloopfase(initialAanloop ? initialAanloop : "");
-    setAflosFase(initialAflos ? initialAflos : 0);
+    setAanloopfase(initialAanloop ? initialAanloop : "nee");
+    setMax35(initialmax35 ? initialmax35 : null);
+    setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
-    setLeenduur(initialLeenduur ? initialLeenduur : 0);
+    setLeenduur(initialLeenduur ? initialLeenduur : 1);
+    setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
 
     if (initialAanloop == "ja") {
       setToggleChecked(true);
