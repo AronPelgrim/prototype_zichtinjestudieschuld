@@ -30,6 +30,7 @@ const Result = () => {
   const [leenduur, setLeenduur] = useState(0);
   const [max35, setMax35] = useState(null);
   const [hypotheekRente, setHypotheekRente] = useState(0);
+  const [geleendPre2024, setGeleendPre2024] = useState(4);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -54,12 +55,26 @@ const Result = () => {
   }, []);
 
   useEffect(() => {
+    const rentePre2024 = [0.46, 0.46, 0.46, 0.46, 3.2, 2.0, 3.0, 2.5, 2.8, 3.2];
     const rente = rentepercentage / 100;
     const months = leenduur * 12;
     let totalAmount = 0;
+    const rentePersoonlijk = [];
 
     for (let i = 0; i < months; i++) {
-      totalAmount += leningpm * Math.pow(1 + rente / 12, i + 1);
+      if (i < geleendPre2024 * 12) {
+        rentePersoonlijk.push(
+          rentePre2024[Math.floor((geleendPre2024 * 12 - i - 1) / 12)] /
+            100 /
+            12
+        );
+      } else {
+        rentePersoonlijk.push(rente / 12);
+      }
+    }
+
+    for (let i = 0; i < months; i++) {
+      totalAmount += leningpm * Math.pow(1 + rentePersoonlijk[i], i + 1);
     }
 
     if (aanloopfase === "ja") {
@@ -69,7 +84,7 @@ const Result = () => {
     }
 
     setStudieSchuld(totalAmount);
-  }, [leningpm, leenduur, rentepercentage, aanloopfase]);
+  }, [leningpm, leenduur, rentepercentage, aanloopfase, geleendPre2024]);
 
   useEffect(() => {
     const monthlyRate = hypotheekRente / 100 / 12;
