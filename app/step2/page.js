@@ -11,7 +11,7 @@ const Step2 = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
-  const progressWidth = "20%";
+  const progressWidth = "18.18%";
   const currentPage = 1;
   const [antwoord, setAntwoord] = useState(false);
 

@@ -290,7 +290,7 @@ header.onboarding::before {
 .progress-container {
   display: flex;
   justify-content: flex-end;
-  gap: calc(10% - 30px);
+  gap: calc(9.09% - 30px);
   position: absolute;
   width: 100%;
   top: 0;
