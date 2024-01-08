@@ -41,7 +41,10 @@ const Step4 = () => {
       initialmax35 === "true" ? true : initialmax35 === "false" ? false : null
     );
     setAflosFase(initialAflos ? initialAflos : 1);
-    setRentepercentage(initialRente ? initialRente : 0);
+    setRentepercentage(
+      initialmax35 === "true" ? 2.56 : initialmax35 === "false" ? 2.95 : null
+    );
+
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
@@ -84,15 +87,6 @@ const Step4 = () => {
     };
   }, []);
 
-  const handleRentepercentage = (e) => {
-    const inputValue = e.target.value;
-
-    const regex = /^\d*\.?\d{0,2}$/;
-    if (regex.test(inputValue) || inputValue === "") {
-      setRentepercentage(inputValue);
-    }
-  };
-
   const characterAnimation = () => {
     const svgElement = svgRef.current;
     if (svgElement) {
@@ -118,7 +112,7 @@ const Step4 = () => {
             <section className="antwoord">
               <div>
                 <label>
-                  Rentepercentage:{" "}
+                  Huidige rente:{" "}
                   {rentepercentage !== null &&
                   !isNaN(parseFloat(rentepercentage))
                     ? parseFloat(rentepercentage).toLocaleString("nl-NL", {
@@ -127,13 +121,6 @@ const Step4 = () => {
                       }) + "%"
                     : "0,00%"}
                 </label>
-                <input
-                  type="number"
-                  value={rentepercentage}
-                  onChange={handleRentepercentage}
-                  placeholder="0,00"
-                  step={0.01}
-                />
               </div>
               <Link
                 href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
