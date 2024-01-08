@@ -171,6 +171,7 @@ header.onboarding::before {
   font-size: clamp(0.5em, 1.9vw, 1.7em);
   gap: 0.5em;
   animation: appear1 0.3s ease-in both;
+  z-index: 10000;
 }
 
 .antwoord > a:not(.opslaan) {
@@ -400,6 +401,21 @@ input[type="checkbox"] {
   width: 0px;
   visibility: hidden;
   margin-top: -5px;
+}
+
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #9b9b9b;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked {
+  background-color: #0075ff;
 }
 
 .label-toggle {
@@ -843,9 +859,5 @@ a:hover {
     font-weight: 700;
     text-align: center;
     font-size: clamp(0.5em, 1.4vw, 1.2em);
-  }
-
-  input[type="range"] {
-    cursor: pointer;
   }
 }
