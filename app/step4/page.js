@@ -37,7 +37,9 @@ const Step4 = () => {
     const initialHypoRente = urlParams.get("hypotheekRente");
 
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(initialmax35 ? initialmax35 : null);
+    setMax35(
+      initialmax35 === "true" ? true : initialmax35 === "false" ? false : null
+    );
     setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
@@ -47,7 +49,7 @@ const Step4 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Tijdens je studie, wordt elk jaar opnieuw bepaald wat het rentepercentage is. Als je klaar bent met studeren, kan je dit percentage steeds voor 5 jaar vastzetten. Het rentepercentage is momenteel 0,46%, maar je kan ook het toekomstige percentage van 2,56% uitproberen.`;
+    const headerText = `Tijdens je studie wordt elk jaar opnieuw bepaald wat het rentepercentage is. Als je klaar bent met studeren, kun je dit percentage steeds voor 5 jaar vastzetten (rentevaste periode). Sinds januari 2024 zijn de rentepercentages verhoogd. Namelijk SF15: 2,95% en SF35: 2,56%. Als je voor januari 2024 al hebt geleend, dat je de studieschuld tot deze tijd met een ander rentepercentage hebt opgebouwd:`;
 
     let index = 0;
     const interval = setInterval(() => {

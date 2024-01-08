@@ -37,7 +37,9 @@ const Step3 = () => {
     const initialHypoRente = urlParams.get("hypotheekRente");
 
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(initialmax35 ? initialmax35 : null);
+    setMax35(
+      initialmax35 === "true" ? true : initialmax35 === "false" ? false : null
+    );
     setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 0);
@@ -47,7 +49,7 @@ const Step3 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Er zijn verschillende aflosregelingen. Ben je je studie begonnen voor 1 september 2015: dan duurt je aflosfase maximaal 15 jaar (SF15). Ben je gestart op of na 1 september 2015: dan duurt je aflosfase maximaal 35 jaar (SF35). In hoeveel tijd zou jij je studieschuld willen afbetalen?`;
+    const headerText = `Er zijn verschillende aflosregelingen. Ben je je studie begonnen voor 1 september 2015: dan duurt je aflosfase maximaal 15 jaar (SF15). Ben je gestart op of na 1 september 2015: dan duurt je aflosfase maximaal 35 jaar (SF35). Selecteer de juiste regeling en vervolgens in hoeveel tijd jij je studieschuld zou willen afbetalen.`;
 
     let index = 0;
     const interval = setInterval(() => {
