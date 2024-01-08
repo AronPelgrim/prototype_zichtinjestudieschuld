@@ -23,6 +23,7 @@ const Step4 = () => {
   const [leenduur, setLeenduur] = useState(0);
   const [max35, setMax35] = useState(null);
   const [hypotheekRente, setHypotheekRente] = useState(0);
+  const [geleendPre2024, setGeleendPre2024] = useState(0);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -87,6 +88,11 @@ const Step4 = () => {
     };
   }, []);
 
+  const handleLeenduur = (e) => {
+    const updatedValue = parseFloat(e.target.value) / 2; // Delen door 2 om de waarde terug te krijgen
+    setGeleendPre2024(updatedValue);
+  };
+
   const characterAnimation = () => {
     const svgElement = svgRef.current;
     if (svgElement) {
@@ -112,15 +118,36 @@ const Step4 = () => {
             <section className="antwoord">
               <div>
                 <label>
-                  Huidige rente:{" "}
-                  {rentepercentage !== null &&
-                  !isNaN(parseFloat(rentepercentage))
-                    ? parseFloat(rentepercentage).toLocaleString("nl-NL", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      }) + "%"
-                    : "0,00%"}
+                  Jouw rente vanaf 2024 is{" "}
+                  <span style={{ color: "#FD317D" }}>
+                    {rentepercentage !== null &&
+                    !isNaN(parseFloat(rentepercentage))
+                      ? parseFloat(rentepercentage).toLocaleString("nl-NL", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        }) + "%"
+                      : "0,00%"}
+                  </span>
                 </label>
+              </div>
+              <div>
+                <label>
+                  Mijn totale leenduur is{" "}
+                  <span style={{ color: "#FD317D" }}>{leenduur} jaar</span>,
+                  daarvan heb ik tot januari 2024 al{" "}
+                  <span style={{ color: "#FD317D" }}>
+                    {geleendPre2024} jaar
+                  </span>{" "}
+                  geleend.
+                </label>
+                <input
+                  type="range"
+                  min="0"
+                  max={parseInt(leenduur * 2)}
+                  value={geleendPre2024 * 2}
+                  onChange={handleLeenduur}
+                  step="1"
+                />
               </div>
               <Link
                 href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}

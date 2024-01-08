@@ -55,26 +55,21 @@ const Result = () => {
 
   useEffect(() => {
     const rente = rentepercentage / 100;
-    let berekenSchuld = 0;
+    const months = leenduur * 12;
 
-    if (rente !== 0 && aanloopfase == "nee") {
-      berekenSchuld =
-        (leningpm * 12 * (Math.pow(1 + rente, leenduur) - 1)) / rente;
-    } else if (rente !== 0 && aanloopfase == "ja") {
-      let schuldMetRente =
-        (leningpm * 12 * (Math.pow(1 + rente, leenduur) - 1)) / rente;
+    let totalAmount = 0;
 
-      for (let i = 0; i < 2; i++) {
-        schuldMetRente *= 1 + rente;
+    for (let i = 0; i < months; i++) {
+      totalAmount = (totalAmount + 1000) * (1 + rente / 12);
+    }
+    if (aanloopfase == "ja") {
+      for (let i = 0; i < 24; i++) {
+        totalAmount = totalAmount * (1 + rente / 12);
       }
-
-      berekenSchuld = schuldMetRente;
-    } else {
-      berekenSchuld = leningpm * 12 * leenduur;
     }
 
-    setStudieSchuld(berekenSchuld.toFixed(2));
-  }, [leningpm, leenduur, aanloopfase, rentepercentage]);
+    setStudieSchuld(totalAmount);
+  }, [leenduur, leningpm, rentepercentage, aanloopfase]);
 
   useEffect(() => {
     const monthlyRate = hypotheekRente / 100 / 12;
@@ -85,7 +80,7 @@ const Result = () => {
       (1 - Math.pow(1 + monthlyRate, -loanTermMonths));
 
     setHypotheek(maxLoanAmount.toFixed(2));
-  }, [afloskosten]);
+  }, [afloskosten, hypotheekRente]);
 
   useEffect(() => {
     const maandelijkseRente = rentepercentage / 12 / 100;
