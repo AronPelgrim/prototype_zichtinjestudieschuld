@@ -56,20 +56,20 @@ const Result = () => {
   useEffect(() => {
     const rente = rentepercentage / 100;
     const months = leenduur * 12;
-
     let totalAmount = 0;
 
     for (let i = 0; i < months; i++) {
-      totalAmount = (totalAmount + 1000) * (1 + rente / 12);
+      totalAmount += leningpm * Math.pow(1 + rente / 12, i + 1);
     }
-    if (aanloopfase == "ja") {
+
+    if (aanloopfase === "ja") {
       for (let i = 0; i < 24; i++) {
         totalAmount = totalAmount * (1 + rente / 12);
       }
     }
 
     setStudieSchuld(totalAmount);
-  }, [leenduur, leningpm, rentepercentage, aanloopfase]);
+  }, [leningpm, leenduur, rentepercentage, aanloopfase]);
 
   useEffect(() => {
     const monthlyRate = hypotheekRente / 100 / 12;
