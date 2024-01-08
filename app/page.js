@@ -370,11 +370,11 @@ const Onboarding1 = () => {
             </g>
           </svg>{" "}
         </>
-      ) : (
+      ) : orientation === "Portrait" ? (
         <section className="portretMode">
           <h1>Draai je scherm op Landscape mode!</h1>
         </section>
-      )}
+      ) : null}
     </>
   );
 };
