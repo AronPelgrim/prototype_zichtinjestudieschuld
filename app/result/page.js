@@ -178,6 +178,14 @@ const Result = () => {
     setGeleendPre2024(value);
   };
 
+  const handleSliderChange8 = (value) => {
+    if (value === "true") {
+      setRentepercentage(2.56);
+    } else if (value === "false") {
+      setRentepercentage(2.95);
+    }
+  };
+
   return (
     <>
       {" "}
@@ -231,6 +239,7 @@ const Result = () => {
               onChange5={handleSliderChange5}
               onChange6={handleSliderChange6}
               onChange7={handleSliderChange7}
+              onChange8={handleSliderChange8}
             />{" "}
           </section>
         </>

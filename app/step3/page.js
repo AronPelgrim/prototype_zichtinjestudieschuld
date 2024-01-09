@@ -87,8 +87,8 @@ const Step3 = () => {
     };
   }, []);
 
-  const handleOptionChange = (event) => {
-    setMax35(event.target.value === "true");
+  const handleRegeling = (e) => {
+    setMax35(e.target.value === "true");
     setAflosFase(1);
   };
 
@@ -125,7 +125,7 @@ const Step3 = () => {
                     type="radio"
                     value="true"
                     checked={max35 === true}
-                    onChange={handleOptionChange}
+                    onChange={handleRegeling}
                     style={{ marginRight: "1em" }}
                   />
                   SF35
@@ -136,7 +136,7 @@ const Step3 = () => {
                     type="radio"
                     value="false"
                     checked={max35 === false}
-                    onChange={handleOptionChange}
+                    onChange={handleRegeling}
                     style={{ marginRight: "1em" }}
                   />
                   SF15

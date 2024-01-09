@@ -9,6 +9,7 @@ const Slider = ({
   onChange5,
   onChange6,
   onChange7,
+  onChange8,
 }) => {
   const sliderRef = useRef(null);
   const [sliderHeight, setSliderHeight] = useState(0);
@@ -96,8 +97,8 @@ const Slider = ({
     onChange3(updatedValue);
   };
 
-  const handleAanloopfase = (event) => {
-    setToggleChecked(event.target.checked);
+  const handleAanloopfase = (e) => {
+    setToggleChecked(e.target.checked);
     if (toggleChecked == false) {
       setAanloopfase("ja");
       onChange4("ja");
@@ -131,6 +132,12 @@ const Slider = ({
     const updatedValue = parseFloat(e.target.value);
     setGeleendPre2024(updatedValue);
     onChange7(updatedValue);
+  };
+
+  const handleRegeling = (e) => {
+    const value = e.target.value;
+    setMax35(value === "true");
+    onChange8(value);
   };
 
   return (
@@ -188,6 +195,29 @@ const Slider = ({
             onChange={handlePre2024}
             step="1"
           />
+        </div>
+        <div style={{ marginBottom: ".5em" }}>
+          <label>
+            <input
+              type="radio"
+              value="true"
+              checked={max35 === true}
+              onChange={handleRegeling}
+              style={{ marginRight: "1em" }}
+            />
+            SF35
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              value="false"
+              checked={max35 === false}
+              onChange={handleRegeling}
+              style={{ marginRight: "1em" }}
+            />
+            SF15
+          </label>
         </div>
         {max35 === true ? (
           <div>
