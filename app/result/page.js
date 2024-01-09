@@ -37,7 +37,6 @@ const Result = () => {
     const urlParams = new URLSearchParams(queryString);
     const initialAanloop = urlParams.get("aanloopfase");
     const initialAflos = urlParams.get("aflosfase");
-    const initialRente = urlParams.get("rentepercentage");
     const initialInkomen = urlParams.get("inkomen");
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
@@ -48,7 +47,9 @@ const Result = () => {
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
     setMax35(initialmax35 ? initialmax35 : null);
     setAflosFase(initialAflos ? initialAflos : 1);
-    setRentepercentage(initialRente ? initialRente : 0);
+    setRentepercentage(
+      initialmax35 === "true" ? 2.56 : initialmax35 === "false" ? 2.95 : null
+    );
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
@@ -170,7 +171,11 @@ const Result = () => {
   };
 
   const handleSliderChange6 = (value) => {
-    setRentepercentage(value);
+    setHypotheekRente(value);
+  };
+
+  const handleSliderChange7 = (value) => {
+    setGeleendPre2024(value);
   };
 
   return (
@@ -190,7 +195,8 @@ const Result = () => {
               <section>
                 <p>
                   Je studieschuld na de studie,{" "}
-                  {aanloopfase == "ja" ? "met" : "zonder"} aanloopfase
+                  {aanloopfase == "ja" ? "met" : "zonder"} aanloopfase.
+                  Opgebouwd met {rentepercentage}% rente
                 </p>
                 <h1>€{formatToLocaleString(studieSchuld)}</h1>
                 <StudieschuldSVG leningpm={leningpm}></StudieschuldSVG>
@@ -224,6 +230,7 @@ const Result = () => {
               onChange4={handleSliderChange4}
               onChange5={handleSliderChange5}
               onChange6={handleSliderChange6}
+              onChange7={handleSliderChange7}
             />{" "}
           </section>
         </>

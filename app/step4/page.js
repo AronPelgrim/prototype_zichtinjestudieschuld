@@ -92,7 +92,6 @@ const Step4 = () => {
 
   useEffect(() => {
     const generateRentePerJaar = (startJaar) => {
-      // Rentepercentages per jaar
       const rentepercentages = [
         { jaar: 2023, rente: 0.46 },
         { jaar: 2022, rente: 0.0 },
@@ -115,10 +114,8 @@ const Step4 = () => {
       return jarenMetRente;
     };
 
-    // Genereer rentepercentages per jaar
     const renteVoorJaren = generateRentePerJaar(geleendPre2024);
     setJarenPre2024(renteVoorJaren);
-    console.log(jarenPre2024);
   }, [geleendPre2024]);
 
   const handlePre2024 = (e) => {

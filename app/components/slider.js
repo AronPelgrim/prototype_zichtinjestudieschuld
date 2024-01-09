@@ -8,6 +8,7 @@ const Slider = ({
   onChange4,
   onChange5,
   onChange6,
+  onChange7,
 }) => {
   const sliderRef = useRef(null);
   const [sliderHeight, setSliderHeight] = useState(0);
@@ -20,8 +21,8 @@ const Slider = ({
   const [leenduur, setLeenduur] = useState(0);
   const [max35, setMax35] = useState(null);
   const [hypotheekRente, setHypotheekRente] = useState(0);
-  const [toggleChecked, setToggleChecked] = useState(false);
   const [geleendPre2024, setGeleendPre2024] = useState(0);
+  const [toggleChecked, setToggleChecked] = useState(false);
 
   const formatToLocaleString = (value) => {
     return parseFloat(value).toLocaleString("nl-NL", {
@@ -35,7 +36,6 @@ const Slider = ({
     const urlParams = new URLSearchParams(queryString);
     const initialAanloop = urlParams.get("aanloopfase");
     const initialAflos = urlParams.get("aflosfase");
-    const initialRente = urlParams.get("rentepercentage");
     const initialInkomen = urlParams.get("inkomen");
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
@@ -44,9 +44,13 @@ const Slider = ({
     const initialPre2024 = urlParams.get("geleendPre2024");
 
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(initialmax35 ? initialmax35 : null);
+    setMax35(
+      initialmax35 === "true" ? true : initialmax35 === "false" ? false : null
+    );
     setAflosFase(initialAflos ? initialAflos : 1);
-    setRentepercentage(initialRente ? initialRente : 0);
+    setRentepercentage(
+      initialmax35 === "true" ? 2.56 : initialmax35 === "false" ? 2.95 : null
+    );
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
@@ -73,6 +77,13 @@ const Slider = ({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    if (geleendPre2024 > leenduur) {
+      setGeleendPre2024(leenduur);
+      onChange7(geleendPre2024);
+    }
+  }, [leenduur]);
 
   const handleLeningpm = (e) => {
     const updatedValue = parseInt(e.target.value);
@@ -113,14 +124,10 @@ const Slider = ({
     }
   };
 
-  const handleRegeling = (event) => {
-    setMax35(event.target.value === "true");
-    setAflosFase(1);
-  };
-
   const handlePre2024 = (e) => {
     const updatedValue = parseFloat(e.target.value);
     setGeleendPre2024(updatedValue);
+    onChange7(geleendPre2024);
   };
 
   const handleHypotheekrente = (e) => {
@@ -130,6 +137,7 @@ const Slider = ({
     if (regex.test(inputValue) || inputValue === "") {
       setHypotheekRente(inputValue);
     }
+    onChange6(hypotheekRente);
   };
 
   return (
@@ -187,29 +195,6 @@ const Slider = ({
             onChange={handlePre2024}
             step="1"
           />
-        </div>
-        <div style={{ marginBottom: ".5em" }}>
-          <label>
-            <input
-              type="radio"
-              value="true"
-              checked={max35 === true}
-              onChange={handleRegeling}
-              style={{ marginRight: "1em" }}
-            />
-            Regeling SF35
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              value="false"
-              checked={max35 === false}
-              onChange={handleRegeling}
-              style={{ marginRight: "1em" }}
-            />
-            Regeling SF15
-          </label>
         </div>
         {max35 === true ? (
           <div>

@@ -322,28 +322,6 @@ header.onboarding::before {
   color: #fff;
 }
 
-.circle.done {
-  position: relative;
-}
-
-.circle.done::before {
-  content: "✓";
-  position: absolute;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 30px;
-  height: 30px;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  transition: 0.4s ease;
-  text-align: center;
-}
-
 .circle.done:hover::before {
   background: #dedbcb;
 }
@@ -385,8 +363,8 @@ header.onboarding::before {
   width: fit-content;
   flex-shrink: 0;
   align-items: center;
-  padding: 2em;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 5px;
+  padding: 1em;
+  gap: 1em;
   border-radius: 0.5em;
 }
 
@@ -883,6 +861,10 @@ button:hover {
     width: 100vw;
   }
 
+  .slider div {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 5px;
+  }
+
   .antwoord {
     bottom: 0.3em;
   }
@@ -898,12 +880,6 @@ button:hover {
   .circle {
     height: 20px;
     width: 20px;
-    padding: 2px;
-  }
-
-  .circle.done::before {
-    width: 20px;
-    height: 20px;
     padding: 2px;
   }
 }
