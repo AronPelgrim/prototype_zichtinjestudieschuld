@@ -5,11 +5,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 0.6em;
-}
-
-::-webkit-scrollbar-track {
-  background: #beedf7;
+  width: 0.4em;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -54,7 +50,7 @@ body:has(.scroll) {
 }
 
 .logo:hover {
-  opacity: 0.6;
+  transform: rotate(-270deg) translateX(50%) translateY(10px);
   cursor: pointer;
 }
 
@@ -160,6 +156,7 @@ header.onboarding::before {
   font-size: 1em;
   text-align: center;
   max-width: 50%;
+  max-height: 40%;
   padding: 1em;
   background: white;
   border: 0.4em solid black;
@@ -181,8 +178,20 @@ header.onboarding::before {
   flex-shrink: 0;
 }
 
-.antwoord label {
+.antwoord ul {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 5px;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.antwoord label,
+.antwoord li {
   font-family: "Montserrat", sans-serif;
+}
+
+.antwoord li {
+  padding: 0.2em;
+  font-size: clamp(0.5em, 1.2vw, 1.7em);
 }
 
 .moreInfo {
@@ -539,6 +548,7 @@ button {
   border-radius: 0.5em;
   font-family: "lores-12", sans-serif;
   font-weight: 700;
+  overflow: visible;
 }
 
 a:hover {

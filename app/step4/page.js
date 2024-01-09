@@ -14,6 +14,8 @@ const Step4 = () => {
   const progressWidth = "36.36%";
   const currentPage = 3;
   const [antwoord, setAntwoord] = useState(false);
+  const [jarenPre2024, setJarenPre2024] = useState({});
+  const [showRenteInfo, setShowRenteInfo] = useState(false);
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -24,7 +26,6 @@ const Step4 = () => {
   const [max35, setMax35] = useState(null);
   const [hypotheekRente, setHypotheekRente] = useState(0);
   const [geleendPre2024, setGeleendPre2024] = useState(0);
-  const [showRenteInfo, setShowRenteInfo] = useState(false);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -89,13 +90,48 @@ const Step4 = () => {
     };
   }, []);
 
-  const handleLeenduur = (e) => {
+  useEffect(() => {
+    const generateRentePerJaar = (startJaar) => {
+      // Rentepercentages per jaar
+      const rentepercentages = [
+        { jaar: 2023, rente: 0.46 },
+        { jaar: 2022, rente: 0.0 },
+        { jaar: 2021, rente: 0.0 },
+        { jaar: 2020, rente: 0.0 },
+        { jaar: 2019, rente: 0.01 },
+        { jaar: 2018, rente: 0.01 },
+        { jaar: 2017, rente: 0.01 },
+        { jaar: 2016, rente: 0.0 },
+        { jaar: 2015, rente: 0.12 },
+        { jaar: 2014, rente: 0.81 },
+      ];
+
+      const jarenMetRente = {};
+
+      for (let i = startJaar; i >= 1; i--) {
+        jarenMetRente[2024 - i] = rentepercentages[i - 1]?.rente || 0;
+      }
+
+      return jarenMetRente;
+    };
+
+    // Genereer rentepercentages per jaar
+    const renteVoorJaren = generateRentePerJaar(geleendPre2024);
+    setJarenPre2024(renteVoorJaren);
+    console.log(jarenPre2024);
+  }, [geleendPre2024]);
+
+  const handlePre2024 = (e) => {
     const updatedValue = parseFloat(e.target.value);
     setGeleendPre2024(updatedValue);
   };
 
   const handleRenteInfo = () => {
-    setShowRenteInfo(true);
+    if (showRenteInfo == false) {
+      setShowRenteInfo(true);
+    } else if (showRenteInfo == true) {
+      setShowRenteInfo(false);
+    }
   };
 
   const characterAnimation = () => {
@@ -156,20 +192,59 @@ const Step4 = () => {
                       min="0"
                       max={parseInt(leenduur)}
                       value={geleendPre2024}
-                      onChange={handleLeenduur}
+                      onChange={handlePre2024}
                       step="1"
                     />
                   </div>
                   <button onClick={handleRenteInfo}>Vertel meer</button>
                 </>
               )}
-              {showRenteInfo && <p>test</p>}
-              {/* <Link
-                href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
-                className="opslaan"
-              >
-                Opslaan
-              </Link> */}
+              {showRenteInfo && (
+                <>
+                  <ul
+                    style={{
+                      animation: "appear1 .2s ease-in",
+                    }}
+                  >
+                    <li>
+                      {" "}
+                      Dit zijn de rentepercentages die tijdens de opbouw van je
+                      studieschuld in rekening worden gebracht:
+                    </li>
+                    {Object.entries(jarenPre2024).map(([jaar, rente]) => (
+                      <li key={jaar}>
+                        {jaar}:{" "}
+                        <span style={{ color: "#FD317D" }}>
+                          {parseFloat(rente).toLocaleString("nl-NL", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          }) + "% "}
+                        </span>
+                        rente
+                      </li>
+                    ))}
+                    <li>
+                      Vanaf 2024:{" "}
+                      <span style={{ color: "#FD317D" }}>
+                        {parseFloat(rentepercentage).toLocaleString("nl-NL", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        }) + "%"}
+                      </span>{" "}
+                      rente
+                    </li>
+                  </ul>
+                  <button onClick={handleRenteInfo}>
+                    Geleend pre 2024 aanpassen
+                  </button>
+                  <Link
+                    href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
+                    className="opslaan"
+                  >
+                    Opslaan
+                  </Link>
+                </>
+              )}
             </section>
           )}
           <section className="prevenext">
