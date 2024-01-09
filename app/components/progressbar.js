@@ -30,7 +30,7 @@ const Progressbar = ({ progressWidth, currentPage }) => {
   ];
 
   const handleCircleClick = (index) => {
-    const queryParams = `?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`;
+    const queryParams = `?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`;
 
     window.location.href = `/${pages[index]}${queryParams}`;
   };

@@ -107,12 +107,12 @@ const Step5 = () => {
           {antwoord && (
             <section className="antwoord">
               <Link
-                href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=ja&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
+                href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=ja&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
               >
                 Ja zeker! zo lang mogelijk uitstellen die handel.
               </Link>
               <Link
-                href={`/step6?step7?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=nee&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
+                href={`/step6?step7?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=nee&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
               >
                 Nee joh, ik betaal de schuld zo snel mogelijk af!
               </Link>
@@ -120,7 +120,7 @@ const Step5 = () => {
           )}
           <section className="prevenext">
             <Link
-              href={`/step4?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
+              href={`/step4?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
             >
               Vorige
             </Link>
