@@ -221,16 +221,21 @@ const Step4 = () => {
                           rente
                         </li>
                       ))}
-                      <li>
-                        Vanaf 2024:{" "}
-                        <span style={{ color: "#FD317D" }}>
-                          {parseFloat(rentepercentage).toLocaleString("nl-NL", {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
-                          }) + "%"}
-                        </span>{" "}
-                        rente
-                      </li>
+                      {leenduur != geleendPre2024 ? (
+                        <li>
+                          Vanaf 2024:{" "}
+                          <span style={{ color: "#FD317D" }}>
+                            {parseFloat(rentepercentage).toLocaleString(
+                              "nl-NL",
+                              {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              }
+                            ) + "%"}
+                          </span>{" "}
+                          rente
+                        </li>
+                      ) : null}
                     </ul>
                   </div>
                   <button onClick={handleRenteInfo}>
