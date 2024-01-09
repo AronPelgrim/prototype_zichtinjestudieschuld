@@ -24,6 +24,7 @@ const Step4 = () => {
   const [max35, setMax35] = useState(null);
   const [hypotheekRente, setHypotheekRente] = useState(0);
   const [geleendPre2024, setGeleendPre2024] = useState(0);
+  const [showRenteInfo, setShowRenteInfo] = useState(false);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -93,6 +94,10 @@ const Step4 = () => {
     setGeleendPre2024(updatedValue);
   };
 
+  const handleRenteInfo = () => {
+    setShowRenteInfo(true);
+  };
+
   const characterAnimation = () => {
     const svgElement = svgRef.current;
     if (svgElement) {
@@ -116,45 +121,55 @@ const Step4 = () => {
           <header>{displayedText}</header>
           {antwoord && (
             <section className="antwoord">
-              <div>
-                <label>
-                  Jouw rente vanaf 2024 is{" "}
-                  <span style={{ color: "#FD317D" }}>
-                    {rentepercentage !== null &&
-                    !isNaN(parseFloat(rentepercentage))
-                      ? parseFloat(rentepercentage).toLocaleString("nl-NL", {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                        }) + "%"
-                      : "0,00%"}
-                  </span>
-                </label>
-              </div>
-              <div>
-                <label>
-                  Mijn totale leenduur is{" "}
-                  <span style={{ color: "#FD317D" }}>{leenduur} jaar</span>,
-                  daarvan heb ik tot januari 2024 al{" "}
-                  <span style={{ color: "#FD317D" }}>
-                    {geleendPre2024} jaar
-                  </span>{" "}
-                  geleend.
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max={parseInt(leenduur)}
-                  value={geleendPre2024}
-                  onChange={handleLeenduur}
-                  step="1"
-                />
-              </div>
-              <Link
+              {!showRenteInfo && (
+                <>
+                  {" "}
+                  <div>
+                    <label>
+                      Jouw rente vanaf 2024 is{" "}
+                      <span style={{ color: "#FD317D" }}>
+                        {rentepercentage !== null &&
+                        !isNaN(parseFloat(rentepercentage))
+                          ? parseFloat(rentepercentage).toLocaleString(
+                              "nl-NL",
+                              {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              }
+                            ) + "%"
+                          : "0,00%"}
+                      </span>
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      Mijn totale leenduur is{" "}
+                      <span style={{ color: "#FD317D" }}>{leenduur} jaar</span>,
+                      daarvan heb ik tot januari 2024 al{" "}
+                      <span style={{ color: "#FD317D" }}>
+                        {geleendPre2024} jaar
+                      </span>{" "}
+                      geleend.
+                    </label>
+                    <input
+                      type="range"
+                      min="0"
+                      max={parseInt(leenduur)}
+                      value={geleendPre2024}
+                      onChange={handleLeenduur}
+                      step="1"
+                    />
+                  </div>
+                  <button onClick={handleRenteInfo}>Vertel meer</button>
+                </>
+              )}
+              {showRenteInfo && <p>test</p>}
+              {/* <Link
                 href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
                 className="opslaan"
               >
                 Opslaan
-              </Link>
+              </Link> */}
             </section>
           )}
           <section className="prevenext">

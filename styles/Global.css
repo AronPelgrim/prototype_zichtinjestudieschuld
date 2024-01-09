@@ -174,16 +174,6 @@ header.onboarding::before {
   z-index: 10000;
 }
 
-.antwoord > a:not(.opslaan) {
-  background-color: #fff7ea;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-}
-
-.antwoord > a:not(.opslaan):hover {
-  background-color: #dedbcb;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px, rgb(51, 51, 51) 0px 0px 0px 3px;
-}
-
 .antwoord div {
   display: flex;
   flex-direction: column;
@@ -532,9 +522,9 @@ input:checked + .label-toggle:after {
 }
 
 .prevenext a,
-button,
 .opslaan,
-.antwoord a {
+.antwoord a,
+button {
   background-color: #46f7bf;
   border: none;
   color: black;
@@ -553,6 +543,18 @@ button,
 
 a:hover {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+.antwoord > a:not(.opslaan),
+button {
+  background-color: #fff7ea;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+.antwoord > a:not(.opslaan):hover,
+button:hover {
+  background-color: #dedbcb;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px, rgb(51, 51, 51) 0px 0px 0px 3px;
 }
 
 .portretMode {
