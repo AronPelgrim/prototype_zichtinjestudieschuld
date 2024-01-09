@@ -182,6 +182,7 @@ header.onboarding::before {
 .antwoord label,
 .antwoord li {
   font-family: "Montserrat", sans-serif;
+  line-height: 1.3;
 }
 
 .antwoord li {
@@ -361,7 +362,7 @@ header.onboarding::before {
   background-color: #f1c2e6;
   padding: 1em;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   width: 90vw;
   overflow: visible;
   border-top-left-radius: 0.5em;
@@ -376,6 +377,7 @@ header.onboarding::before {
   z-index: -100;
   border-radius: 0.5em;
   overflow: visible;
+  justify-self: center;
 }
 
 .slider div {
@@ -404,6 +406,7 @@ input[type="number"] {
   width: 6ch;
   margin-left: 50%;
   transform: translate(-50%);
+  border-radius: 0.5em;
 }
 
 input[type="range"] {
@@ -872,6 +875,10 @@ button:hover {
     border-right: 20px solid transparent;
     border-top: 20px solid black;
     bottom: -18px;
+  }
+
+  .slider {
+    gap: 2em 3em;
   }
 
   .antwoord {
