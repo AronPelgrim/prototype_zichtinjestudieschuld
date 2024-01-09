@@ -78,13 +78,6 @@ const Slider = ({
     };
   }, []);
 
-  useEffect(() => {
-    if (geleendPre2024 > leenduur) {
-      setGeleendPre2024(leenduur);
-      onChange7(geleendPre2024);
-    }
-  }, [leenduur]);
-
   const handleLeningpm = (e) => {
     const updatedValue = parseInt(e.target.value);
     setLeningpm(updatedValue);
@@ -124,20 +117,20 @@ const Slider = ({
     }
   };
 
-  const handlePre2024 = (e) => {
-    const updatedValue = parseFloat(e.target.value);
-    setGeleendPre2024(updatedValue);
-    onChange7(geleendPre2024);
-  };
-
   const handleHypotheekrente = (e) => {
     const inputValue = e.target.value;
 
     const regex = /^\d*\.?\d{0,2}$/;
     if (regex.test(inputValue) || inputValue === "") {
       setHypotheekRente(inputValue);
+      onChange6(inputValue);
     }
-    onChange6(hypotheekRente);
+  };
+
+  const handlePre2024 = (e) => {
+    const updatedValue = parseFloat(e.target.value);
+    setGeleendPre2024(updatedValue);
+    onChange7(updatedValue);
   };
 
   return (

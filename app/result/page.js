@@ -58,7 +58,7 @@ const Result = () => {
   }, []);
 
   useEffect(() => {
-    const rentePre2024 = [0.46, 0.46, 0.46, 0.46, 3.2, 2.0, 3.0, 2.5, 2.8, 3.2];
+    const rentePre2024 = [0.46, 0.0, 0.0, 0.0, 0.1, 0.1, 0.1, 0.0, 0.12, 0.81];
     const rente = rentepercentage / 100;
     const months = leenduur * 12;
     let totalAmount = 0;
