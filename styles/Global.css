@@ -355,7 +355,6 @@ header.onboarding::before {
   white-space: nowrap;
   position: fixed;
   flex-wrap: wrap;
-  gap: 3em;
   bottom: 0;
   left: 50%;
   transform: translate(-50%);
@@ -383,10 +382,12 @@ header.onboarding::before {
 .slider div {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
   width: fit-content;
   flex-shrink: 0;
   align-items: center;
+  padding: 2em;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 5px;
+  border-radius: 0.5em;
 }
 
 .slider div label:not(.label-toggle) {
@@ -557,7 +558,7 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: clamp(0.5em, 1.3vw, 1.2em);
+  font-size: clamp(0.5em, 1.5vw, 1.2em);
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
@@ -878,11 +879,12 @@ button:hover {
   }
 
   .slider {
-    gap: 2em 3em;
+    gap: 0.5em 0;
+    width: 100vw;
   }
 
   .antwoord {
-    bottom: 0;
+    bottom: 0.3em;
   }
 
   .prevenext {
@@ -890,7 +892,7 @@ button:hover {
   }
 
   .progress-container {
-    gap: calc(9.09% - 24px);
+    gap: calc(9.09% - 25px);
   }
 
   .circle {

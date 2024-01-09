@@ -50,7 +50,7 @@ const Step5 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `In de eerste 2 jaar na je studie heb je een 'aanloopfase'. Je hoeft dan nog niets af te lossen, maar je kunt er voor kiezen om dat wel te doen. Na die 2 jaar begint de 'aflosfase'. Vanaf dat moment moet je maandelijks gaan afbetalen. Zou jij gebruik willen maken van de aanloopfase?`;
+    const headerText = `In de eerste 2 jaar na je studie bevind je je in een 'aanloopfase'. Gedurende deze periode hoef je nog niets af te lossen, maar je kunt ervoor kiezen om dat wel te doen. Na deze 2 jaar moet je maandelijks beginnen met aflossen. Houd er rekening mee dat er tijdens de 2-jarige aanloopfase rente wordt toegevoegd, en de rentevaste periode van 5 jaar gaat ook in. Wil je gebruik maken van de aanloopfase?`;
 
     let index = 0;
     const interval = setInterval(() => {
@@ -109,12 +109,14 @@ const Step5 = () => {
               <Link
                 href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=ja&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
               >
-                Ja zeker! zo lang mogelijk uitstellen die handel.
+                <span style={{ color: "#FD317D" }}>Ja!</span> Handig om het
+                afbetalen nog even te kunnen uitstellen.
               </Link>
               <Link
                 href={`/step6?step7?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=nee&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
               >
-                Nee joh, ik betaal de schuld zo snel mogelijk af!
+                <span style={{ color: "#FD317D" }}>Nee!</span> Ik betaal de
+                schuld zo snel mogelijk af!
               </Link>
             </section>
           )}
