@@ -391,7 +391,7 @@ input[type="range"] {
 }
 
 .slider > div > input[type="range"] {
-  width: 190px;
+  width: 200px;
 }
 
 input[type="range"]:active ~ .slider {
