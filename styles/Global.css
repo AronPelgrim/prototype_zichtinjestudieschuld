@@ -191,6 +191,10 @@ header.onboarding::before {
   flex-shrink: 0;
 }
 
+.antwoord label {
+  font-family: "Montserrat", sans-serif;
+}
+
 .moreInfo {
   position: fixed;
   display: flex;

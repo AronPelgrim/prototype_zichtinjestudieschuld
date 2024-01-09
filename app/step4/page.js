@@ -89,7 +89,7 @@ const Step4 = () => {
   }, []);
 
   const handleLeenduur = (e) => {
-    const updatedValue = parseFloat(e.target.value) / 2; // Delen door 2 om de waarde terug te krijgen
+    const updatedValue = parseFloat(e.target.value);
     setGeleendPre2024(updatedValue);
   };
 
@@ -143,8 +143,8 @@ const Step4 = () => {
                 <input
                   type="range"
                   min="0"
-                  max={parseInt(leenduur * 2)}
-                  value={geleendPre2024 * 2}
+                  max={parseInt(leenduur)}
+                  value={geleendPre2024}
                   onChange={handleLeenduur}
                   step="1"
                 />
