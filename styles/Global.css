@@ -394,6 +394,15 @@ input[type="range"] {
   width: 190px;
 }
 
+input[type="range"]:active ~ .slider {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+input[type="range"]:active ~ .slider {
+  pointer-events: auto;
+}
+
 input[type="checkbox"] {
   height: 0px;
   width: 0px;

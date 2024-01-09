@@ -93,6 +93,11 @@ const Slider = ({
     const updatedValue = parseInt(e.target.value);
     setLeenduur(updatedValue);
     onChange2(updatedValue);
+
+    setGeleendPre2024(
+      geleendPre2024 > updatedValue ? updatedValue : geleendPre2024
+    );
+    onChange7(geleendPre2024 > updatedValue ? updatedValue : geleendPre2024);
   };
 
   const handleAflosFase = (e) => {
