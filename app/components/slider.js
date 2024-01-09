@@ -25,13 +25,6 @@ const Slider = ({
   const [geleendPre2024, setGeleendPre2024] = useState(0);
   const [toggleChecked, setToggleChecked] = useState(false);
 
-  const formatToLocaleString = (value) => {
-    return parseFloat(value).toLocaleString("nl-NL", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-  };
-
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -64,20 +57,31 @@ const Slider = ({
   }, []);
 
   useEffect(() => {
-    function handleResize() {
-      if (sliderRef.current) {
-        setSliderHeight(sliderRef.current.clientHeight);
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        if (entry.target === sliderRef.current) {
+          setSliderHeight(entry.contentRect.height);
+        }
       }
+    });
+
+    if (sliderRef.current) {
+      resizeObserver.observe(sliderRef.current);
     }
 
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
     return () => {
-      window.removeEventListener("resize", handleResize);
+      if (sliderRef.current) {
+        resizeObserver.unobserve(sliderRef.current);
+      }
     };
   }, []);
+
+  const formatToLocaleString = (value) => {
+    return parseFloat(value).toLocaleString("nl-NL", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
 
   const handleLeningpm = (e) => {
     const updatedValue = parseInt(e.target.value);
