@@ -32,12 +32,12 @@ const Step4 = () => {
     const urlParams = new URLSearchParams(queryString);
     const initialAanloop = urlParams.get("aanloopfase");
     const initialAflos = urlParams.get("aflosfase");
-    const initialRente = urlParams.get("rentepercentage");
     const initialInkomen = urlParams.get("inkomen");
     const initialLeningpm = urlParams.get("leningpm");
     const initialLeenduur = urlParams.get("leenduur");
     const initialmax35 = urlParams.get("max35");
     const initialHypoRente = urlParams.get("hypotheekRente");
+    const initialPre2024 = urlParams.get("geleendPre2024");
 
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
     setMax35(
@@ -47,11 +47,11 @@ const Step4 = () => {
     setRentepercentage(
       initialmax35 === "true" ? 2.56 : initialmax35 === "false" ? 2.95 : null
     );
-
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
     setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
+    setGeleendPre2024(initialPre2024 ? initialPre2024 : 0);
   }, []);
 
   useEffect(() => {
@@ -238,7 +238,7 @@ const Step4 = () => {
                     Geleend pre 2024 aanpassen
                   </button>
                   <Link
-                    href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
+                    href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
                     className="opslaan"
                   >
                     Opslaan
@@ -249,7 +249,7 @@ const Step4 = () => {
           )}
           <section className="prevenext">
             <Link
-              href={`/step3?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}`}
+              href={`/step3?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
             >
               Vorige
             </Link>{" "}
