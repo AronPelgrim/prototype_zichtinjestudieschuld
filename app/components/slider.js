@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../../styles/Global.css";
 
 const Slider = ({
@@ -9,6 +9,9 @@ const Slider = ({
   onChange5,
   onChange6,
 }) => {
+  const sliderRef = useRef(null);
+  const [sliderHeight, setSliderHeight] = useState(0);
+  const [hidePanel, setHidePanel] = useState(true);
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
   const [rentepercentage, setRentepercentage] = useState(0);
@@ -55,6 +58,22 @@ const Slider = ({
     }
   }, []);
 
+  useEffect(() => {
+    function handleResize() {
+      if (sliderRef.current) {
+        setSliderHeight(sliderRef.current.clientHeight);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const handleLeningpm = (e) => {
     const updatedValue = parseInt(e.target.value);
     setLeningpm(updatedValue);
@@ -94,88 +113,178 @@ const Slider = ({
     }
   };
 
-  const handleRentepercentage = (e) => {
-    setRentepercentage(e.target.value);
-    onChange6(e.target.value);
+  const handleRegeling = (event) => {
+    setMax35(event.target.value === "true");
+    setAflosFase(1);
+  };
+
+  const handlePre2024 = (e) => {
+    const updatedValue = parseFloat(e.target.value);
+    setGeleendPre2024(updatedValue);
+  };
+
+  const handleHypotheekrente = (e) => {
+    const inputValue = e.target.value;
+
+    const regex = /^\d*\.?\d{0,2}$/;
+    if (regex.test(inputValue) || inputValue === "") {
+      setHypotheekRente(inputValue);
+    }
   };
 
   return (
-    <section className="slider">
-      <div>
-        <input
-          type="range"
-          min="0"
-          max="1000"
-          value={leningpm}
-          onChange={handleLeningpm}
-          step="10"
-        />
-        <label>Lening per maand: €{formatToLocaleString(leningpm)}</label>
-      </div>
-      <div>
-        <input
-          type="range"
-          min="1"
-          max="10"
-          value={leenduur}
-          onChange={handleLeenduur}
-          step="1"
-        />
-        <label>Leenduur: {leenduur} jaar</label>
-      </div>
-      <div>
-        <input
-          type="range"
-          min="1"
-          max="35"
-          value={aflosFase}
-          onChange={handleAflosFase}
-          step="1"
-        />
-        <label>Aflosfase: {aflosFase} jaar</label>
-      </div>
-      <div>
-        <input
-          type="checkbox"
-          id="switch"
-          checked={toggleChecked}
-          onChange={handleAanloopfase}
-        />
-        <label className="label-toggle" htmlFor="switch">
-          Toggle
-        </label>
-        <label>Aanloopfase: {aanloopfase}</label>
-      </div>
-      <div>
-        <input
-          type="range"
-          min="1500"
-          max="10000"
-          value={inkomen}
-          onChange={handleInkomen}
-          step="50"
-        />
-        <label>Inkomen: € {formatToLocaleString(inkomen)}</label>
-      </div>
-      <div>
-        <input
-          type="number"
-          value={rentepercentage}
-          onChange={handleRentepercentage}
-          placeholder="0,00"
-          step={0.01}
-        />
-        <label>
-          Rentepercentage:{" "}
-          {rentepercentage !== null && !isNaN(parseFloat(rentepercentage))
-            ? parseFloat(rentepercentage).toLocaleString("nl-NL", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              }) + "%"
-            : "0,00%"}
-        </label>
-      </div>
-    </section>
+    <>
+      <section
+        ref={sliderRef}
+        className="slider"
+        style={{
+          bottom: hidePanel ? `-${sliderHeight}px` : "0",
+          transition: "bottom 0.4s ease, height 0.4s ease",
+        }}
+      >
+        {" "}
+        <button
+          onClick={() => setHidePanel(hidePanel == false ? true : false)}
+          style={{
+            animation: hidePanel
+              ? "heartbeat 1.5s ease-in-out infinite both"
+              : "none",
+          }}
+        >
+          Klik voor het {hidePanel == false ? "verbergen" : "bewerken"} van je
+          verzamelde gegevens
+        </button>
+        <div>
+          <label>Lening per maand: €{formatToLocaleString(leningpm)}</label>
+          <input
+            type="range"
+            min="0"
+            max="1000"
+            value={leningpm}
+            onChange={handleLeningpm}
+            step="10"
+          />
+        </div>
+        <div>
+          {" "}
+          <label>Totale leenduur: {leenduur} jaar</label>
+          <input
+            type="range"
+            min="1"
+            max="10"
+            value={leenduur}
+            onChange={handleLeenduur}
+            step="1"
+          />
+        </div>
+        <div>
+          <label>Geleend voor 2024: {geleendPre2024} jaar</label>
+          <input
+            type="range"
+            min="0"
+            max={parseInt(leenduur)}
+            value={geleendPre2024}
+            onChange={handlePre2024}
+            step="1"
+          />
+        </div>
+        <div style={{ marginBottom: ".5em" }}>
+          <label>
+            <input
+              type="radio"
+              value="true"
+              checked={max35 === true}
+              onChange={handleRegeling}
+              style={{ marginRight: "1em" }}
+            />
+            Regeling SF35
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              value="false"
+              checked={max35 === false}
+              onChange={handleRegeling}
+              style={{ marginRight: "1em" }}
+            />
+            Regeling SF15
+          </label>
+        </div>
+        {max35 === true ? (
+          <div>
+            <label>
+              Aflosfase SF35: {aflosFase == null ? 0 : aflosFase} jaar
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="35"
+              value={aflosFase}
+              onChange={handleAflosFase}
+              step="1"
+            />
+          </div>
+        ) : max35 === false ? (
+          <div>
+            <label>
+              Aflosfase SF15: {aflosFase == null ? 0 : aflosFase} jaar
+            </label>
+            <input
+              type="range"
+              min="1"
+              max="15"
+              value={aflosFase}
+              onChange={handleAflosFase}
+              step="1"
+            />
+          </div>
+        ) : null}
+        <div>
+          {" "}
+          <label>Aanloopfase: {aanloopfase}</label>
+          <input
+            type="checkbox"
+            id="switch"
+            checked={toggleChecked}
+            onChange={handleAanloopfase}
+          />
+          <label className="label-toggle" htmlFor="switch">
+            Toggle
+          </label>
+        </div>{" "}
+        <div>
+          <label>
+            Hypotheekrente:{" "}
+            {hypotheekRente !== null && !isNaN(parseFloat(hypotheekRente))
+              ? parseFloat(hypotheekRente).toLocaleString("nl-NL", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                }) + "%"
+              : "0,00%"}
+          </label>
+          <input
+            type="number"
+            value={hypotheekRente}
+            onChange={handleHypotheekrente}
+            placeholder="0,00"
+            step={0.01}
+          />
+        </div>
+        <div>
+          {" "}
+          <label>Inkomen: € {formatToLocaleString(inkomen)}</label>
+          <input
+            type="range"
+            min="1500"
+            max="10000"
+            value={inkomen}
+            onChange={handleInkomen}
+            step="50"
+          />
+        </div>
+      </section>
+    </>
   );
 };
 

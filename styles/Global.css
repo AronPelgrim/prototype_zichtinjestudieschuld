@@ -9,11 +9,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: black;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(46, 44, 44);
+  background: #5d7172;
+  border-radius: 0.5em;
 }
 
 body {
@@ -38,7 +35,6 @@ body:has(.scroll) {
 .logo {
   position: fixed;
   width: 50vh;
-  z-index: 10;
   transform: rotate(-270deg) translateX(50%);
   transform-origin: right top;
   top: 50%;
@@ -72,7 +68,7 @@ body:has(.scroll) {
   height: 75vh;
   width: 90vw;
   position: fixed;
-  top: 46%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   gap: 1em;
@@ -179,7 +175,6 @@ header.onboarding::before {
 }
 
 .antwoord ul {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 5px;
   padding: 0.5em;
   margin-bottom: 0.5em;
 }
@@ -191,7 +186,6 @@ header.onboarding::before {
 
 .antwoord li {
   padding: 0.2em;
-  font-size: clamp(0.5em, 1.2vw, 1.7em);
 }
 
 .moreInfo {
@@ -230,7 +224,7 @@ header.onboarding::before {
 
 .prevenext > a:nth-of-type(1) {
   transition-duration: 0.4s;
-  background: linear-gradient(#beedf7, #fff);
+  background: white;
   box-shadow: inset 0 0 0 3px #46f7bf;
 }
 
@@ -334,16 +328,21 @@ header.onboarding::before {
 .circle.done::before {
   content: "✓";
   position: absolute;
+  border-radius: 50%;
   top: 50%;
-  left: 60%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   background-size: cover;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #fff;
   transition: 0.4s ease;
+  text-align: center;
 }
+
 .circle.done:hover::before {
   background: #dedbcb;
 }
@@ -354,6 +353,7 @@ header.onboarding::before {
   flex-direction: row;
   white-space: nowrap;
   position: fixed;
+  flex-wrap: wrap;
   gap: 3em;
   bottom: 0;
   left: 50%;
@@ -361,8 +361,21 @@ header.onboarding::before {
   background-color: #f1c2e6;
   padding: 1em;
   align-items: center;
-  width: fit-content;
-  z-index: 3000;
+  justify-content: center;
+  width: 90vw;
+  overflow: visible;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.slider button {
+  position: absolute;
+  top: -3.5em;
+  margin: auto;
+  padding: 1em 1em 1em 1em;
+  z-index: -100;
+  border-radius: 0.5em;
+  overflow: visible;
 }
 
 .slider div {
@@ -383,7 +396,7 @@ input[type="number"] {
   font-size: 1em;
   text-align: center;
   border: 2px solid black;
-  padding: 0.1em;
+  padding: 5px;
   font-family: "lores-12", sans-serif;
   font-weight: 700;
   text-align: center;
@@ -414,7 +427,7 @@ input[type="radio"] {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 2px solid #9b9b9b;
+  border: 2px solid #000;
   outline: none;
   cursor: pointer;
 }
@@ -822,7 +835,29 @@ button:hover {
     transform: scale(1) rotateZ(360deg);
   }
 }
-
+@keyframes heartbeat {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scale(0.95);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: scale(0.93);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+}
 @media only screen and (max-width: 1000px) {
   header::before {
     left: calc(7.5em + 7vh - 20px);
@@ -839,42 +874,27 @@ button:hover {
     bottom: -18px;
   }
 
-  .logo {
-    top: 70%;
+  .antwoord {
+    bottom: 0;
   }
 
-  .slider {
-    display: flex;
-    overflow: auto;
-    flex-direction: column;
-    white-space: nowrap;
-    position: fixed;
-    bottom: 2vh;
-    right: 2vw;
-    gap: 0;
-    border-radius: 0.5em;
-    align-items: center;
-    width: fit-content;
-    padding: 0.8em;
-    z-index: 3000;
+  .prevenext {
+    top: 50%;
   }
 
-  .slider h1 {
-    margin-bottom: 1em;
+  .progress-container {
+    gap: calc(9.09% - 24px);
   }
 
-  .slider div label:not(.label-toggle) {
-    font-size: clamp(0.5em, 1.5vw, 1.2em);
-    padding-bottom: clamp(0.6em, 1.3vw, 1.2em);
+  .circle {
+    height: 20px;
+    width: 20px;
+    padding: 2px;
   }
 
-  input[type="number"] {
-    border-radius: 0.5em;
-    font-size: 1em;
-    text-align: left;
-    padding: 0.2em 0.2em;
-    font-family: "lores-12", sans-serif;
-    font-weight: 700;
-    text-align: center;
+  .circle.done::before {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
   }
 }
