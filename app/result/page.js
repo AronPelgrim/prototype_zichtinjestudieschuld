@@ -15,7 +15,11 @@ import Link from "next/link";
 
 const Result = () => {
   const [orientation, setOrientation] = useState("");
-  const [extraInfo, setExtraInfo] = useState(false);
+  const [extraInfoSchuld, setExtraInfoSchuld] = useState(false);
+  const [extraInfoAflos, setExtraInfoAflos] = useState(false);
+  const [extraInfoRente, setExtraInfoRente] = useState(false);
+  const [extraInfoHypo, setExtraInfoHypo] = useState(false);
+  const [extraInfoKoopkracht, setExtraInfoKoopkracht] = useState(false);
   const [studieSchuld, setStudieSchuld] = useState(0);
   const [hypotheek, setHypotheek] = useState(0);
   const [afloskosten, setAfloskosten] = useState(0);
@@ -234,12 +238,12 @@ const Result = () => {
             <Link href={`/`}>
               <Logo />
             </Link>
-            {extraInfo && (
+            {extraInfoSchuld && (
               <section className="open">
                 <span
                   class="info-icon"
                   onClick={() =>
-                    setExtraInfo(extraInfo == false ? true : false)
+                    setExtraInfoSchuld(extraInfoSchuld == false ? true : false)
                   }
                 >
                   X
@@ -291,12 +295,84 @@ const Result = () => {
                 <Character />
               </section>
             )}
+            {extraInfoAflos && (
+              <section className="open">
+                <span
+                  class="info-icon"
+                  onClick={() =>
+                    setExtraInfoAflos(extraInfoAflos == false ? true : false)
+                  }
+                >
+                  X
+                </span>
+                <p>
+                  Dit zijn de kosten die je maandelijks moet aflossen na je
+                  studie. Let op; DUO berekent op basis van je inkomen hoeveel
+                  je per maand kunt terugbetalen. Dit wordt elk kalenderjaar
+                  opnieuw berekend. Als je draagkracht lager is dan het
+                  wettelijke termijnbedrag, betaal je dit lagere bedrag.
+                </p>
+                <h1>€{formatToLocaleString(afloskosten)}</h1>
+                <AflosSVG leningpm={leningpm}></AflosSVG>
+                <Character />
+              </section>
+            )}{" "}
+            {extraInfoRente && (
+              <section className="open">
+                <span
+                  class="info-icon"
+                  onClick={() =>
+                    setExtraInfoRente(extraInfoRente == false ? true : false)
+                  }
+                >
+                  X
+                </span>
+                <p>Bedrag betaald aan rente na {aflosFase} jaar</p>
+                <h1>€{formatToLocaleString(rentebetaald)}</h1>
+                <RenteBetaaldSVG leningpm={leningpm}></RenteBetaaldSVG>
+                <Character />
+              </section>
+            )}
+            {extraInfoHypo && (
+              <section className="open">
+                <span
+                  class="info-icon"
+                  onClick={() =>
+                    setExtraInfoHypo(extraInfoHypo == false ? true : false)
+                  }
+                >
+                  X
+                </span>
+                <p>Vermindering maximale hypotheekbedrag</p>
+                <h1>€{formatToLocaleString(hypotheek)}</h1>
+                <HypotheekSVG leningpm={leningpm}></HypotheekSVG>
+                <Character />
+              </section>
+            )}
+            {extraInfoKoopkracht && (
+              <section className="open">
+                <span
+                  class="info-icon"
+                  onClick={() =>
+                    setExtraInfoKoopkracht(
+                      extraInfoKoopkracht == false ? true : false
+                    )
+                  }
+                >
+                  X
+                </span>
+                <p>Je koopkracht na je maandelijkse aflossing</p>
+                <h1>€{formatToLocaleString(koopkracht)}</h1>
+                <HypotheekSVG leningpm={leningpm}></HypotheekSVG>
+                <Character />
+              </section>
+            )}
             <section className="result-grid">
               <section>
                 <span
                   class="info-icon"
                   onClick={() =>
-                    setExtraInfo(extraInfo == false ? true : false)
+                    setExtraInfoSchuld(extraInfoSchuld == false ? true : false)
                   }
                 >
                   i
@@ -310,26 +386,56 @@ const Result = () => {
                 <StudieschuldSVG leningpm={leningpm}></StudieschuldSVG>
               </section>
               <section>
-                <span class="info-icon">i</span>
+                <span
+                  class="info-icon"
+                  onClick={() =>
+                    setExtraInfoAflos(extraInfoAflos == false ? true : false)
+                  }
+                >
+                  i
+                </span>
                 <p>Maandelijkse afloskosten</p>
                 <h1>€{formatToLocaleString(afloskosten)}</h1>
                 <AflosSVG leningpm={leningpm}></AflosSVG>
               </section>
               <section>
-                <span class="info-icon">i</span>
+                <span
+                  class="info-icon"
+                  onClick={() =>
+                    setExtraInfoRente(extraInfoRente == false ? true : false)
+                  }
+                >
+                  i
+                </span>
                 <p>Bedrag betaald aan rente na {aflosFase} jaar</p>
                 <h1>€{formatToLocaleString(rentebetaald)}</h1>
                 <RenteBetaaldSVG leningpm={leningpm}></RenteBetaaldSVG>
               </section>
               <section>
                 {" "}
-                <span class="info-icon">i</span>
+                <span
+                  class="info-icon"
+                  onClick={() =>
+                    setExtraInfoHypo(extraInfoHypo == false ? true : false)
+                  }
+                >
+                  i
+                </span>
                 <p>Vermindering maximale hypotheekbedrag</p>
                 <h1>€{formatToLocaleString(hypotheek)}</h1>
                 <HypotheekSVG leningpm={leningpm}></HypotheekSVG>
               </section>
               <section>
-                <span class="info-icon">i</span>
+                <span
+                  class="info-icon"
+                  onClick={() =>
+                    setExtraInfoKoopkracht(
+                      extraInfoKoopkracht == false ? true : false
+                    )
+                  }
+                >
+                  i
+                </span>
                 <p>Je koopkracht na je maandelijkse aflossing</p>
                 <h1>€{formatToLocaleString(koopkracht)}</h1>
                 <HypotheekSVG leningpm={leningpm}></HypotheekSVG>

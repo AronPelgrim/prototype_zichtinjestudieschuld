@@ -38,7 +38,7 @@ body:has(.scroll) {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 3em;
+  gap: 2em;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -57,12 +57,12 @@ body:has(.scroll) {
   max-width: 40vw;
 }
 
-.scroll .open svg {
-  max-width: 20%;
+.scroll .open svg:not(.character1) {
+  max-width: 25%;
 }
 
 .scroll .open ul {
-  margin-top: -3em;
+  margin-top: -2em;
   display: flex;
   flex-wrap: wrap;
   gap: 0 1em;
