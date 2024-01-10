@@ -2,7 +2,7 @@
 
 import "../../styles/Global.css";
 
-const RenteBetaaldSVG = ({ leningpm }) => {
+const RenteBetaaldSVG = ({ aflosFase }) => {
   return (
     <>
       <svg
@@ -11,7 +11,7 @@ const RenteBetaaldSVG = ({ leningpm }) => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1344 767.469"
         style={{
-          animation: leningpm == 1000 ? "explosion 0.5s both" : "",
+          animation: aflosFase == 35 ? "explosion 0.5s both" : "",
         }}
       >
         <g>
@@ -100,7 +100,7 @@ const RenteBetaaldSVG = ({ leningpm }) => {
         </g>
         <g
           style={{
-            opacity: leningpm > 500 ? "1" : "0",
+            opacity: aflosFase > 17.5 ? "1" : "0",
             transition: "opacity 0.3s ease-in-out",
           }}
         >
@@ -201,7 +201,7 @@ const RenteBetaaldSVG = ({ leningpm }) => {
         </g>
         <g
           style={{
-            opacity: leningpm > 750 ? "1" : "0",
+            opacity: aflosFase > 26.25 ? "1" : "0",
             transition: "opacity 0.3s ease-in-out",
           }}
         >
@@ -302,7 +302,7 @@ const RenteBetaaldSVG = ({ leningpm }) => {
         </g>
         <g
           style={{
-            opacity: leningpm > 250 ? "1" : "0",
+            opacity: aflosFase > 8.75 ? "1" : "0",
             transition: "opacity 0.3s ease-in-out",
           }}
         >
@@ -403,7 +403,7 @@ const RenteBetaaldSVG = ({ leningpm }) => {
         </g>
         <g
           style={{
-            opacity: leningpm == 1000 ? "1" : "0",
+            opacity: aflosFase == 35 ? "1" : "0",
             transition: "opacity 0.3s ease-in-out",
           }}
         >

@@ -2,7 +2,7 @@
 
 import "../../styles/Global.css";
 
-const AflosSVG = ({ leningpm }) => {
+const AflosSVG = ({ aflosFase }) => {
   return (
     <>
       <svg
@@ -12,7 +12,7 @@ const AflosSVG = ({ leningpm }) => {
         xmlnsXlink="http://www.w3.org/1999/xlink"
         viewBox="0 0 1344 767.469"
         style={{
-          animation: leningpm == 1000 ? "explosion 0.5s both" : "",
+          animation: aflosFase == 35 ? "explosion 0.5s both" : "",
         }}
       >
         <defs>
@@ -246,7 +246,7 @@ const AflosSVG = ({ leningpm }) => {
         <g>
           <g
             style={{
-              opacity: leningpm > 750 ? "1" : "0",
+              opacity: aflosFase < 26.35 ? "1" : "0",
               transition: "opacity 0.3s ease-in-out",
             }}
           >
@@ -408,7 +408,7 @@ const AflosSVG = ({ leningpm }) => {
           <g>
             <g
               style={{
-                opacity: leningpm > 250 ? "1" : "0",
+                opacity: aflosFase < 8.75 ? "1" : "0",
                 transition: "opacity 0.3s ease-in-out",
               }}
             >
@@ -549,7 +549,7 @@ const AflosSVG = ({ leningpm }) => {
             </g>
             <g
               style={{
-                opacity: leningpm > 500 ? "1" : "0",
+                opacity: aflosFase < 17.5 ? "1" : "0",
                 transition: "opacity 0.3s ease-in-out",
               }}
             >
@@ -635,7 +635,7 @@ const AflosSVG = ({ leningpm }) => {
         <g>
           <g
             style={{
-              opacity: leningpm > 750 ? "1" : "0",
+              opacity: aflosFase < 26.25 ? "1" : "0",
               transition: "opacity 0.3s ease-in-out",
             }}
           >
@@ -797,7 +797,7 @@ const AflosSVG = ({ leningpm }) => {
           <g>
             <g
               style={{
-                opacity: leningpm > 250 ? "1" : "0",
+                opacity: aflosFase < 8.75 ? "1" : "0",
                 transition: "opacity 0.3s ease-in-out",
               }}
             >
@@ -938,7 +938,7 @@ const AflosSVG = ({ leningpm }) => {
             </g>
             <g
               style={{
-                opacity: leningpm > 500 ? "1" : "0",
+                opacity: aflosFase < 17.5 ? "1" : "0",
                 transition: "opacity 0.3s ease-in-out",
               }}
             >
@@ -1024,7 +1024,7 @@ const AflosSVG = ({ leningpm }) => {
         <g>
           <g
             style={{
-              opacity: leningpm > 750 ? "1" : "0",
+              opacity: aflosFase < 26.25 ? "1" : "0",
               transition: "opacity 0.3s ease-in-out",
             }}
           >
@@ -1186,7 +1186,7 @@ const AflosSVG = ({ leningpm }) => {
           <g>
             <g
               style={{
-                opacity: leningpm > 250 ? "1" : "0",
+                opacity: aflosFase < 8.75 ? "1" : "0",
                 transition: "opacity 0.3s ease-in-out",
               }}
             >
@@ -1327,7 +1327,7 @@ const AflosSVG = ({ leningpm }) => {
             </g>
             <g
               style={{
-                opacity: leningpm > 500 ? "1" : "0",
+                opacity: aflosFase < 17.5 ? "1" : "0",
                 transition: "opacity 0.3s ease-in-out",
               }}
             >

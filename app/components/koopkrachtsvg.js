@@ -2,7 +2,7 @@
 
 import "../../styles/Global.css";
 
-const KoopkrachtSVG = ({ leningpm }) => {
+const KoopkrachtSVG = ({ inkomen }) => {
   return (
     <>
       <svg
@@ -11,7 +11,7 @@ const KoopkrachtSVG = ({ leningpm }) => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1344 767.469"
         style={{
-          animation: leningpm == 1000 ? "explosion 0.5s both" : "",
+          animation: inkomen == 10000 ? "explosion 0.5s both" : "",
         }}
       >
         <g>
@@ -358,7 +358,7 @@ const KoopkrachtSVG = ({ leningpm }) => {
         </g>
         <g
           style={{
-            opacity: leningpm < 800 ? "1" : "0",
+            opacity: inkomen > 8300 ? "1" : "0",
             transition: "opacity 0.3s ease-in-out",
           }}
         >
@@ -513,7 +513,7 @@ const KoopkrachtSVG = ({ leningpm }) => {
         </g>
         <g
           style={{
-            opacity: leningpm < 999 ? "1" : "0",
+            opacity: inkomen > 9999 ? "1" : "0",
             transition: "opacity 0.3s ease-in-out",
           }}
         >
@@ -668,7 +668,7 @@ const KoopkrachtSVG = ({ leningpm }) => {
         </g>
         <g
           style={{
-            opacity: leningpm < 600 ? "1" : "0",
+            opacity: inkomen > 6600 ? "1" : "0",
             transition: "opacity 0.3s ease-in-out",
           }}
         >
@@ -823,7 +823,7 @@ const KoopkrachtSVG = ({ leningpm }) => {
         </g>
         <g
           style={{
-            opacity: leningpm < 200 ? "1" : "0",
+            opacity: inkomen > 3200 ? "1" : "0",
             transition: "opacity 0.3s ease-in-out",
           }}
         >
@@ -978,7 +978,7 @@ const KoopkrachtSVG = ({ leningpm }) => {
         </g>
         <g
           style={{
-            opacity: leningpm < 400 ? "1" : "0",
+            opacity: inkomen > 4900 ? "1" : "0",
             transition: "opacity 0.3s ease-in-out",
           }}
         >

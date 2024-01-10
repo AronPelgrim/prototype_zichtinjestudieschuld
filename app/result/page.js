@@ -311,7 +311,7 @@ const Result = () => {
                   wettelijke termijnbedrag, betaal je dit lagere bedrag.
                 </p>
                 <h1>€{formatToLocaleString(afloskosten)}</h1>
-                <AflosSVG leningpm={leningpm}></AflosSVG>
+                <AflosSVG aflosFase={aflosFase}></AflosSVG>
                 <Character />
               </section>
             )}{" "}
@@ -336,7 +336,7 @@ const Result = () => {
                   inzetten.
                 </p>
                 <h1>€{formatToLocaleString(rentebetaald)}</h1>
-                <RenteBetaaldSVG leningpm={leningpm}></RenteBetaaldSVG>
+                <RenteBetaaldSVG aflosFase={aflosFase}></RenteBetaaldSVG>
                 <Character />
               </section>
             )}
@@ -383,7 +383,7 @@ const Result = () => {
                   zal je inkomen waarschijnlijk snel stijgen.
                 </p>
                 <h1>€{formatToLocaleString(koopkracht)}</h1>
-                <KoopkrachtSVG leningpm={leningpm}></KoopkrachtSVG>
+                <KoopkrachtSVG inkomen={inkomen}></KoopkrachtSVG>
                 <Character />
               </section>
             )}
@@ -416,7 +416,7 @@ const Result = () => {
                 </span>
                 <p>Maandelijkse afloskosten</p>
                 <h1>€{formatToLocaleString(afloskosten)}</h1>
-                <AflosSVG leningpm={leningpm}></AflosSVG>
+                <AflosSVG aflosFase={aflosFase}></AflosSVG>
               </section>
               <section>
                 <span
@@ -429,7 +429,7 @@ const Result = () => {
                 </span>
                 <p>Bedrag betaald aan rente na {aflosFase} jaar aflossen</p>
                 <h1>€{formatToLocaleString(rentebetaald)}</h1>
-                <RenteBetaaldSVG leningpm={leningpm}></RenteBetaaldSVG>
+                <RenteBetaaldSVG aflosFase={aflosFase}></RenteBetaaldSVG>
               </section>
               <section>
                 {" "}
@@ -458,7 +458,7 @@ const Result = () => {
                 </span>
                 <p>Je koopkracht na je maandelijkse aflossing</p>
                 <h1>€{formatToLocaleString(koopkracht)}</h1>
-                <KoopkrachtSVG leningpm={leningpm}></KoopkrachtSVG>
+                <KoopkrachtSVG inkomen={inkomen}></KoopkrachtSVG>
               </section>
             </section>
             {introOpen && (
