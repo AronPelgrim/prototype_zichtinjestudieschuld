@@ -15,7 +15,6 @@ import Character from "../components/character";
 import Link from "next/link";
 
 const Result = () => {
-  const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const [extraInfoSchuld, setExtraInfoSchuld] = useState(false);
   const [extraInfoAflos, setExtraInfoAflos] = useState(false);
@@ -306,7 +305,7 @@ const Result = () => {
                 </span>
                 <p>
                   Dit zijn de kosten die je maandelijks moet aflossen na je
-                  studie. Let op; DUO berekent op basis van je inkomen hoeveel
+                  studie. Let op: DUO berekent op basis van je inkomen hoeveel
                   je per maand kunt terugbetalen. Dit wordt elk kalenderjaar
                   opnieuw berekend. Als je draagkracht lager is dan het
                   wettelijke termijnbedrag, betaal je dit lagere bedrag.
@@ -328,11 +327,13 @@ const Result = () => {
                 </span>
                 <p>
                   Dit is het bedrag dat je gaat betalen aan rente, met een
-                  rentepercentage van {rentepercentage}% als je {aflosFase} jaar
-                  doet over het aflossen van je studieschuld. Vergeet niet dat
-                  dit het percentage van 2024 is en dat het rentepercentage
-                  jaarlijks kan veranderen. Je hebt natuurlijk wel
-                  rentevasteperiodes van 5 jaar die je kan inzetten.
+                  rentepercentage van{" "}
+                  <span style={{ color: "#FD317D" }}>{rentepercentage}% </span>
+                  als je {aflosFase} jaar doet over het aflossen van je
+                  studieschuld. Vergeet niet dat dit het percentage van 2024 is
+                  en dat het rentepercentage jaarlijks kan veranderen. Je hebt
+                  natuurlijk wel rentevasteperiodes van 5 jaar die je kan
+                  inzetten.
                 </p>
                 <h1>€{formatToLocaleString(rentebetaald)}</h1>
                 <RenteBetaaldSVG leningpm={leningpm}></RenteBetaaldSVG>
