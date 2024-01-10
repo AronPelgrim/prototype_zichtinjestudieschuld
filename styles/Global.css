@@ -450,7 +450,7 @@ header.onboarding::before {
 }
 
 .slider:has(input:active) {
-  background-color: rgba(241, 194, 230, 0.5);
+  background-color: rgba(241, 194, 230, 0.4);
 }
 
 .slider:has(input:active) button {

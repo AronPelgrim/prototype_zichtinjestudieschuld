@@ -9,6 +9,7 @@ import Progressbar from "../components/progressbar";
 import RenteBetaaldSVG from "../components/rentebetaaldsvg";
 import Slider from "../components/slider";
 import StudieschuldSVG from "../components/studieschuld";
+import KoopkrachtSVG from "../components/koopkrachtsvg";
 import Character from "../components/character";
 
 import Link from "next/link";
@@ -363,7 +364,7 @@ const Result = () => {
                 </span>
                 <p>Je koopkracht na je maandelijkse aflossing</p>
                 <h1>€{formatToLocaleString(koopkracht)}</h1>
-                <HypotheekSVG leningpm={leningpm}></HypotheekSVG>
+                <KoopkrachtSVG leningpm={leningpm}></KoopkrachtSVG>
                 <Character />
               </section>
             )}
@@ -438,7 +439,7 @@ const Result = () => {
                 </span>
                 <p>Je koopkracht na je maandelijkse aflossing</p>
                 <h1>€{formatToLocaleString(koopkracht)}</h1>
-                <HypotheekSVG leningpm={leningpm}></HypotheekSVG>
+                <KoopkrachtSVG leningpm={leningpm}></KoopkrachtSVG>
               </section>
             </section>
             <Slider
