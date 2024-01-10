@@ -9,11 +9,13 @@ import Progressbar from "../components/progressbar";
 import RenteBetaaldSVG from "../components/rentebetaaldsvg";
 import Slider from "../components/slider";
 import StudieschuldSVG from "../components/studieschuld";
+import Character from "../components/character";
 
 import Link from "next/link";
 
 const Result = () => {
   const [orientation, setOrientation] = useState("");
+  const [extraInfo, setExtraInfo] = useState(false);
   const [studieSchuld, setStudieSchuld] = useState(0);
   const [hypotheek, setHypotheek] = useState(0);
   const [afloskosten, setAfloskosten] = useState(0);
@@ -199,8 +201,37 @@ const Result = () => {
             <Link href={`/`}>
               <Logo />
             </Link>
+            {extraInfo && (
+              <section className="open">
+                <span
+                  class="info-icon"
+                  onClick={() =>
+                    setExtraInfo(extraInfo == false ? true : false)
+                  }
+                >
+                  X
+                </span>
+                <p>
+                  Dit is dus de studieschuld die je na {leenduur} jaar lenen
+                  hebt opgebouwd, {aanloopfase == "ja" ? "met" : "zonder"} de
+                  rente van de aanloopfase meegerekend. Deze schuld is opgebouwd
+                  met de volgende rentepercentages: {rentepercentage}% rente.
+                </p>
+                <h1>€{formatToLocaleString(studieSchuld)}</h1>
+                <StudieschuldSVG leningpm={leningpm}></StudieschuldSVG>
+                <Character />
+              </section>
+            )}
             <section className="result-grid">
               <section>
+                <span
+                  class="info-icon"
+                  onClick={() =>
+                    setExtraInfo(extraInfo == false ? true : false)
+                  }
+                >
+                  i
+                </span>
                 <p>
                   Je studieschuld na de studie,{" "}
                   {aanloopfase == "ja" ? "met" : "zonder"} aanloopfase.
@@ -210,22 +241,26 @@ const Result = () => {
                 <StudieschuldSVG leningpm={leningpm}></StudieschuldSVG>
               </section>
               <section>
+                <span class="info-icon">i</span>
                 <p>Maandelijkse afloskosten</p>
                 <h1>€{formatToLocaleString(afloskosten)}</h1>
                 <AflosSVG leningpm={leningpm}></AflosSVG>
               </section>
               <section>
+                <span class="info-icon">i</span>
                 <p>Bedrag betaald aan rente na {aflosFase} jaar</p>
                 <h1>€{formatToLocaleString(rentebetaald)}</h1>
                 <RenteBetaaldSVG leningpm={leningpm}></RenteBetaaldSVG>
               </section>
               <section>
+                {" "}
+                <span class="info-icon">i</span>
                 <p>Vermindering maximale hypotheekbedrag</p>
                 <h1>€{formatToLocaleString(hypotheek)}</h1>
                 <HypotheekSVG leningpm={leningpm}></HypotheekSVG>
               </section>
               <section>
-                {" "}
+                <span class="info-icon">i</span>
                 <p>Je koopkracht na je maandelijkse aflossing</p>
                 <h1>€{formatToLocaleString(koopkracht)}</h1>
                 <HypotheekSVG leningpm={leningpm}></HypotheekSVG>

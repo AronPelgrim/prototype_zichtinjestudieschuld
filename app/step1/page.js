@@ -114,7 +114,6 @@ const Step1 = () => {
             <section className="antwoord">
               <div>
                 <label>Lening per maand: €{leningpm}</label>
-
                 <input
                   type="range"
                   min="0"
