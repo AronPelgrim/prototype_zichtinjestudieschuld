@@ -11,7 +11,7 @@ const Onboarding2 = () => {
 
   useEffect(() => {
     const headerText = `Om dat te doen, neem ik je mee op een reis door de tijd, tijdens 
-    en na je studie. Deze reis bestaat uit 9 stappen en geeft je een duidelijk beeld van de impact van je studieschuld!`;
+    en na je studie. Deze reis bestaat uit 10 stappen en geeft je een duidelijk beeld van de impact van je studieschuld!`;
 
     let index = 0;
     const interval = setInterval(() => {

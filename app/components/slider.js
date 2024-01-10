@@ -149,6 +149,24 @@ const Slider = ({
     onChange8(value);
   };
 
+  useEffect(() => {
+    const handleTouchStart = (event) => {
+      sliderRef.current.style.backgroundColor = "rgba(241, 194, 230, 0.5)";
+    };
+
+    const handleTouchEnd = (event) => {
+      sliderRef.current.style.backgroundColor = "rgba(241, 194, 230, 1)";
+    };
+
+    sliderRef.current.addEventListener("touchstart", handleTouchStart);
+    sliderRef.current.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      sliderRef.current.removeEventListener("touchstart", handleTouchStart);
+      sliderRef.current.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, []);
+
   return (
     <>
       <section
@@ -172,7 +190,6 @@ const Slider = ({
           verzamelde gegevens
         </button>
         <div>
-          <span class="info-icon">i</span>
           <label>Lening per maand: €{formatToLocaleString(leningpm)}</label>
           <input
             type="range"
@@ -184,7 +201,6 @@ const Slider = ({
           />
         </div>
         <div>
-          <span class="info-icon">i</span>
           <label>Totale leenduur: {leenduur} jaar</label>
           <input
             type="range"
@@ -196,7 +212,6 @@ const Slider = ({
           />
         </div>
         <div>
-          <span class="info-icon">i</span>
           <label>Geleend voor 2024: {geleendPre2024} jaar</label>
           <input
             type="range"
@@ -208,7 +223,6 @@ const Slider = ({
           />
         </div>
         <div style={{ marginBottom: ".5em" }}>
-          <span class="info-icon">i</span>
           <label>
             <input
               type="radio"
@@ -233,7 +247,6 @@ const Slider = ({
         </div>
         {max35 === true ? (
           <div>
-            <span class="info-icon">i</span>
             <label>
               Aflosfase SF35: {aflosFase == null ? 0 : aflosFase} jaar
             </label>
@@ -249,7 +262,6 @@ const Slider = ({
         ) : max35 === false ? (
           <div>
             {" "}
-            <span class="info-icon">i</span>
             <label>
               Aflosfase SF15: {aflosFase == null ? 0 : aflosFase} jaar
             </label>
@@ -264,7 +276,6 @@ const Slider = ({
           </div>
         ) : null}
         <div>
-          <span class="info-icon">i</span>
           <label>Aanloopfase: {aanloopfase}</label>
           <input
             type="checkbox"
@@ -278,7 +289,6 @@ const Slider = ({
         </div>{" "}
         <div>
           {" "}
-          <span class="info-icon">i</span>
           <label>
             Hypotheekrente:{" "}
             {hypotheekRente !== null && !isNaN(parseFloat(hypotheekRente))
@@ -297,7 +307,6 @@ const Slider = ({
           />
         </div>
         <div>
-          <span class="info-icon">i</span>
           <label>Inkomen: € {formatToLocaleString(inkomen)}</label>
           <input
             type="range"
