@@ -70,22 +70,6 @@ const Result = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Je studeert of gaat studeren, wat leuk is, maar het kost ook geld! Denk aan studieboeken, een laptop, huur en boodschappen. 
-    Hoeveel wil je per maand lenen? Let op, dit gaat alleen om je lening en niet om de eventuele basisbeurs!`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(headerText.substring(0, index));
-      index++;
-      if (index > headerText.length) {
-        clearInterval(interval);
-      }
-    }, 1);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     const rentePre2024 = [0.46, 0.0, 0.0, 0.0, 0.1, 0.1, 0.1, 0.0, 0.12, 0.81];
     const rente = rentepercentage / 100;
     const months = leenduur * 12;
@@ -273,11 +257,7 @@ const Result = () => {
                   rente van de aanloopfase meegerekend. Deze schuld is opgebouwd
                   met de volgende rentepercentages:
                 </p>
-                <ul
-                  style={{
-                    animation: "appear1 .2s ease-in",
-                  }}
-                >
+                <ul>
                   {Object.entries(jarenPre2024).map(([jaar, rente]) => (
                     <li key={jaar}>
                       Jaar {jaar}:{" "}
@@ -463,7 +443,16 @@ const Result = () => {
             {introOpen && (
               <>
                 {" "}
-                <header>{displayedText}</header>
+                <header
+                  style={{
+                    animation: "appear1 .5s ease-in",
+                  }}
+                >
+                  Je studeert of gaat studeren, wat leuk is, maar het kost ook
+                  geld! Denk aan studieboeken, een laptop, huur en boodschappen.
+                  Hoeveel wil je per maand lenen? Let op, dit gaat alleen om je
+                  lening en niet om de eventuele basisbeurs!
+                </header>
                 <section className="resultIntro">
                   <button
                     onClick={() =>
