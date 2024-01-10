@@ -152,7 +152,7 @@ body:has(.scroll) {
 .open p,
 .open li {
   font-size: clamp(0.5em, 1.1vw, 5em);
-  max-width: 80%;
+  max-width: 70%;
   line-height: 1.5;
   overflow: visible;
 }
@@ -407,12 +407,13 @@ header.onboarding::before {
   z-index: 10000;
 }
 
-.info-icon {
+.result-grid .info-icon,
+.open .info-icon {
   position: absolute;
   top: 0;
   left: 0;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   background-color: #f8d434;
   border-radius: 50%;
   display: flex;
@@ -421,19 +422,12 @@ header.onboarding::before {
   font-weight: bold;
   cursor: pointer;
   transition: 0.4s ease;
-  margin: 5px 0 0 -8px;
+  font-family: "Montserrat", sans-serif;
+  margin: 15px 0 0 15px;
 }
 
 .info-icon:hover {
   background-color: #ffed9f;
-}
-
-.result-grid .info-icon,
-.open .info-icon {
-  margin: 15px 0 0 15px;
-  width: 30px;
-  height: 30px;
-  font-family: "Montserrat", sans-serif;
 }
 
 .slider button {
@@ -1000,5 +994,12 @@ button:hover {
 
   .scroll .open ul {
     margin-top: -1em;
+  }
+
+  .result-grid .info-icon,
+  .open .info-icon {
+    margin: 5px 0 0 5px;
+    width: 25px;
+    height: 25px;
   }
 }
