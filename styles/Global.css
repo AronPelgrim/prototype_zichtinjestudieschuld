@@ -371,6 +371,14 @@ header.onboarding::before {
   padding-bottom: 0.5em;
 }
 
+.slider:has(input:active) {
+  background-color: rgba(241, 194, 230, 0.5);
+}
+
+.slider:has(input:active) button {
+  opacity: 0;
+}
+
 input[type="number"] {
   font-size: 1em;
   text-align: center;
@@ -871,7 +879,13 @@ button:hover {
   .antwoord {
     bottom: 0.3em;
   }
+  .slider:has(input:active) {
+    background-color: rgb(241, 194, 230);
+  }
 
+  .slider:has(input:active) button {
+    opacity: 1;
+  }
   .prevenext {
     top: 50%;
   }
