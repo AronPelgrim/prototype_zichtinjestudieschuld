@@ -326,7 +326,14 @@ const Result = () => {
                 >
                   X
                 </span>
-                <p>Bedrag betaald aan rente na {aflosFase} jaar</p>
+                <p>
+                  Dit is het bedrag dat je gaat betalen aan rente, met een
+                  rentepercentage van {rentepercentage}% als je {aflosFase} jaar
+                  doet over het aflossen van je studieschuld. Vergeet niet dat
+                  dit het percentage van 2024 is en dat het rentepercentage
+                  jaarlijks kan veranderen. Je hebt natuurlijk wel
+                  rentevasteperiodes van 5 jaar die je kan inzetten.
+                </p>
                 <h1>€{formatToLocaleString(rentebetaald)}</h1>
                 <RenteBetaaldSVG leningpm={leningpm}></RenteBetaaldSVG>
                 <Character />
@@ -342,7 +349,14 @@ const Result = () => {
                 >
                   X
                 </span>
-                <p>Vermindering maximale hypotheekbedrag</p>
+                <p>
+                  Dit bedrag geeft aan hoeveel minder je kunt lenen op basis van
+                  je maandelijkse afloskosten, zo wordt er namelijk sinds 2024
+                  niet meer gerekend met je oorspronkelijke studieschuld. Het is
+                  zo dat verschillende factoren de definitieve hypotheek
+                  beïnvloeden. Het is daarom aan te raden om dit met een
+                  hypotheekadviseur te bespreken.
+                </p>
                 <h1>€{formatToLocaleString(hypotheek)}</h1>
                 <HypotheekSVG leningpm={leningpm}></HypotheekSVG>
                 <Character />
@@ -360,7 +374,13 @@ const Result = () => {
                 >
                   X
                 </span>
-                <p>Je koopkracht na je maandelijkse aflossing</p>
+                <p>
+                  Dit bedrag vertegenwoordigt je koopkracht na je maandelijkse
+                  aflossing. Zo kun je bepalen hoeveel je wilt aflossen,
+                  gebaseerd op je inkomen. Let op: dit is een bruto-inkomen, dus
+                  je daadwerkelijke koopkracht zal iets lager zijn. Na je studie
+                  zal je inkomen waarschijnlijk snel stijgen.
+                </p>
                 <h1>€{formatToLocaleString(koopkracht)}</h1>
                 <KoopkrachtSVG leningpm={leningpm}></KoopkrachtSVG>
                 <Character />
@@ -406,7 +426,7 @@ const Result = () => {
                 >
                   i
                 </span>
-                <p>Bedrag betaald aan rente na {aflosFase} jaar</p>
+                <p>Bedrag betaald aan rente na {aflosFase} jaar aflossen</p>
                 <h1>€{formatToLocaleString(rentebetaald)}</h1>
                 <RenteBetaaldSVG leningpm={leningpm}></RenteBetaaldSVG>
               </section>
@@ -448,10 +468,13 @@ const Result = () => {
                     animation: "appear1 .5s ease-in",
                   }}
                 >
-                  Je studeert of gaat studeren, wat leuk is, maar het kost ook
-                  geld! Denk aan studieboeken, een laptop, huur en boodschappen.
-                  Hoeveel wil je per maand lenen? Let op, dit gaat alleen om je
-                  lening en niet om de eventuele basisbeurs!
+                  Fantastisch! Je hebt alle 10 stappen voltooid. Gedurende deze
+                  stappen, heb ik alle nodige informatie verzameld om je een
+                  duidelijk beeld te geven van de gevolgen van je studielening.
+                  De onderstaande resultaten zijn op basis van deze informatie.
+                  Als je nog gegevens wilt aanpassen, is dat mogelijk. Klik op
+                  de onderstaande knop om het controlepaneel te openen en je
+                  gegevens te bewerken.
                 </header>
                 <section className="resultIntro">
                   <button
