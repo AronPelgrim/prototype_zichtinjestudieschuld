@@ -4,12 +4,22 @@
   overflow-x: hidden;
 }
 
+:root {
+  --orange: #ec9463;
+  --yellow: #ebcd3a;
+  --green: #94c28a;
+  --mint: #60a6a2;
+  --blue: #1f699e;
+  --red: #f28675;
+  --pink: #f1c2e6;
+}
+
 ::-webkit-scrollbar {
   width: 0.4em;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #5d7172;
+  background: var(--red);
   border-radius: 0.5em;
 }
 
@@ -278,12 +288,11 @@ header.onboarding::before {
 .prevenext > a:nth-of-type(1) {
   transition-duration: 0.4s;
   background: white;
-  box-shadow: inset 0 0 0 3px #46f7bf;
+  box-shadow: inset 0 0 0 3px var(--green);
 }
 
 .prevenext > a:hover {
   box-shadow: none;
-  box-shadow: inset 0 0 0 3px #000;
 }
 
 .prevenext.onboarding {
@@ -311,13 +320,13 @@ header.onboarding::before {
 
 .prevenext.onboarding > a:nth-of-type(1) {
   transition-duration: 0.4s;
-  background: #46f7bf;
+  background: var(--green);
 }
 
 .prevenext.onboarding > a:nth-of-type(2) {
   transition: 0.4s ease;
   background-color: transparent;
-  box-shadow: inset 0 0 0 3px #46f7bf;
+  box-shadow: inset 0 0 0 3px var(--green);
 }
 
 .prevenext.onboarding > a:nth-of-type(2):hover {
@@ -339,7 +348,7 @@ header.onboarding::before {
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #fd317d;
+  background-color: var(--orange);
   width: var(--progress-width);
   animation: increaseProgress 0.5s ease-in both;
   transform-origin: left;
@@ -379,7 +388,7 @@ header.onboarding::before {
 }
 
 .circle.active {
-  background-color: #fd317d;
+  background-color: var(--orange);
   color: #fff;
 }
 
@@ -397,7 +406,7 @@ header.onboarding::before {
   bottom: 0;
   left: 50%;
   transform: translate(-50%);
-  background-color: #f1c2e6;
+  background-color: var(--pink);
   align-items: center;
   justify-content: space-around;
   width: 90vw;
@@ -414,7 +423,7 @@ header.onboarding::before {
   left: 0;
   width: 30px;
   height: 30px;
-  background-color: #f8d434;
+  background-color: var(--yellow);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -427,7 +436,8 @@ header.onboarding::before {
 }
 
 .info-icon:hover {
-  background-color: #ffed9f;
+  background-color: var(--yellow);
+  opacity: 0.7;
 }
 
 .slider button {
@@ -460,7 +470,7 @@ header.onboarding::before {
 }
 
 .slider:has(input:active) {
-  background-color: rgba(241, 194, 230, 0.5);
+  background-color: rgba(241, 194, 230, 0.6);
 }
 
 .slider:has(input:active) button {
@@ -518,7 +528,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked {
-  background-color: #0075ff;
+  background-color: var(--blue);
 }
 
 .label-toggle {
@@ -546,7 +556,7 @@ input[type="radio"]:checked {
 }
 
 input:checked + .label-toggle {
-  background: #0075ff;
+  background: var(--blue);
 }
 
 input:checked + .label-toggle:after {
@@ -632,7 +642,7 @@ input:checked + .label-toggle:after {
 .opslaan,
 .antwoord a,
 button {
-  background-color: #46f7bf;
+  background-color: var(--green);
   border: none;
   color: black;
   padding: 12px 30px;
@@ -647,22 +657,24 @@ button {
   font-family: "lores-12", sans-serif;
   font-weight: 700;
   overflow: visible;
+  box-shadow: 0 0.2em #000;
 }
 
-a:hover {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+a:hover,
+button:hover {
+  transform: translateY(-2px);
 }
 
 .antwoord > a:not(.opslaan),
 button {
-  background-color: #fff7ea;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+  background-color: var(--yellow);
 }
 
-.antwoord > a:not(.opslaan):hover,
-button:hover {
-  background-color: #dedbcb;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 8px, rgb(51, 51, 51) 0px 0px 0px 3px;
+.prevenext a:active,
+.opslaan:active,
+.antwoord a:active,
+button {
+  box-shadow: none;
 }
 
 .portretMode {
@@ -1002,4 +1014,50 @@ button:hover {
     width: 25px;
     height: 25px;
   }
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  cursor: grab;
+  outline: none;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+input[type="range"]:active {
+  cursor: grabbing;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 15px;
+  background: #e7e3e3;
+  border-radius: 16px;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 15px;
+  background: #e7e3e3;
+  border-radius: 16px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2px solid var(--blue);
+  box-shadow: -407px 0 0 400px var(--blue);
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid var(--blue);
+  box-shadow: -407px 0 0 400px var(--blue);
 }

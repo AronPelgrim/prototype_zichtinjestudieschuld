@@ -260,7 +260,7 @@ const Result = () => {
                   {Object.entries(jarenPre2024).map(([jaar, rente]) => (
                     <li key={jaar}>
                       Jaar {jaar}:{" "}
-                      <span style={{ color: "#FD317D" }}>
+                      <span style={{ color: "var(--mint)" }}>
                         {parseFloat(rente).toLocaleString("nl-NL", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
@@ -272,7 +272,7 @@ const Result = () => {
                   {leenduur != geleendPre2024 ? (
                     <li>
                       Vanaf jaar 2024:{" "}
-                      <span style={{ color: "#FD317D" }}>
+                      <span style={{ color: "var(--mint)" }}>
                         {parseFloat(rentepercentage).toLocaleString("nl-NL", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
@@ -328,7 +328,9 @@ const Result = () => {
                 <p>
                   Dit is het bedrag dat je gaat betalen aan rente, met een
                   rentepercentage van{" "}
-                  <span style={{ color: "#FD317D" }}>{rentepercentage}% </span>
+                  <span style={{ color: "var(--mint)" }}>
+                    {rentepercentage}%{" "}
+                  </span>
                   als je {aflosFase} jaar doet over het aflossen van je
                   studieschuld. Vergeet niet dat dit het percentage van 2024 is
                   en dat het rentepercentage jaarlijks kan veranderen. Je hebt
@@ -400,7 +402,6 @@ const Result = () => {
                 <p>
                   Je studieschuld na de studie,{" "}
                   {aanloopfase == "ja" ? "met" : "zonder"} aanloopfase.
-                  Opgebouwd met {rentepercentage}% rente
                 </p>
                 <h1>€{formatToLocaleString(studieSchuld)}</h1>
                 <StudieschuldSVG leningpm={leningpm}></StudieschuldSVG>

@@ -151,7 +151,7 @@ const Slider = ({
 
   useEffect(() => {
     const handleTouchStart = (event) => {
-      sliderRef.current.style.backgroundColor = "rgba(241, 194, 230, 0.5)";
+      sliderRef.current.style.backgroundColor = "rgba(241, 194, 230, 0.6)";
     };
 
     const handleTouchEnd = (event) => {
