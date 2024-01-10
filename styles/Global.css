@@ -61,6 +61,17 @@ body:has(.scroll) {
   max-width: 20%;
 }
 
+.scroll .open ul {
+  margin-top: -3em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1em;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  list-style-type: none;
+}
+
 .logo {
   position: fixed;
   width: 50vh;
@@ -127,13 +138,16 @@ body:has(.scroll) {
 .result-grid section h1,
 .open h1 {
   font-size: clamp(0.5em, 3vw, 5em);
+  overflow: visible;
 }
 
 .result-grid section p,
-.open p {
+.open p,
+.open li {
   font-size: clamp(0.5em, 1.1vw, 5em);
   max-width: 80%;
   line-height: 1.5;
+  overflow: visible;
 }
 
 .result-grid section:nth-of-type(1) {
@@ -962,5 +976,13 @@ button:hover {
     height: 20px;
     width: 20px;
     padding: 2px;
+  }
+
+  .scroll .open {
+    gap: 1em;
+  }
+
+  .scroll .open ul {
+    margin-top: -1em;
   }
 }

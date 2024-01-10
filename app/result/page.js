@@ -21,6 +21,7 @@ const Result = () => {
   const [afloskosten, setAfloskosten] = useState(0);
   const [rentebetaald, setRentebetaald] = useState(0);
   const [koopkracht, setKoopkracht] = useState(0);
+  const [jarenPre2024, setJarenPre2024] = useState({});
   const progressWidth = "100%";
   const currentPage = 10;
 
@@ -47,7 +48,9 @@ const Result = () => {
     const initialPre2024 = urlParams.get("geleendPre2024");
 
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(initialmax35 ? initialmax35 : null);
+    setMax35(
+      initialmax35 === "true" ? true : initialmax35 === "false" ? true : null
+    );
     setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(
       initialmax35 === "true" ? 2.56 : initialmax35 === "false" ? 2.95 : null
@@ -126,6 +129,34 @@ const Result = () => {
   }, [inkomen, afloskosten]);
 
   useEffect(() => {
+    const generateRentePerJaar = (startJaar) => {
+      const rentepercentages = [
+        { jaar: 2023, rente: 0.46 },
+        { jaar: 2022, rente: 0.0 },
+        { jaar: 2021, rente: 0.0 },
+        { jaar: 2020, rente: 0.0 },
+        { jaar: 2019, rente: 0.01 },
+        { jaar: 2018, rente: 0.01 },
+        { jaar: 2017, rente: 0.01 },
+        { jaar: 2016, rente: 0.0 },
+        { jaar: 2015, rente: 0.12 },
+        { jaar: 2014, rente: 0.81 },
+      ];
+
+      const jarenMetRente = {};
+
+      for (let i = startJaar; i >= 1; i--) {
+        jarenMetRente[2024 - i] = rentepercentages[i - 1]?.rente || 0;
+      }
+
+      return jarenMetRente;
+    };
+
+    const renteVoorJaren = generateRentePerJaar(geleendPre2024);
+    setJarenPre2024(renteVoorJaren);
+  }, [geleendPre2024]);
+
+  useEffect(() => {
     const handleOrientationChange = () => {
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
@@ -183,8 +214,10 @@ const Result = () => {
   const handleSliderChange8 = (value) => {
     if (value === "true") {
       setRentepercentage(2.56);
+      setMax35(true);
     } else if (value === "false") {
       setRentepercentage(2.95);
+      setMax35(false);
     }
   };
 
@@ -215,8 +248,44 @@ const Result = () => {
                   Dit is dus de studieschuld die je na {leenduur} jaar lenen
                   hebt opgebouwd, {aanloopfase == "ja" ? "met" : "zonder"} de
                   rente van de aanloopfase meegerekend. Deze schuld is opgebouwd
-                  met de volgende rentepercentages: {rentepercentage}% rente.
+                  met de volgende rentepercentages:
                 </p>
+                <ul
+                  style={{
+                    animation: "appear1 .2s ease-in",
+                  }}
+                >
+                  {Object.entries(jarenPre2024).map(([jaar, rente]) => (
+                    <li key={jaar}>
+                      Jaar {jaar}:{" "}
+                      <span style={{ color: "#FD317D" }}>
+                        {parseFloat(rente).toLocaleString("nl-NL", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        }) + "% "}
+                      </span>
+                      rente{"."}
+                    </li>
+                  ))}
+                  {leenduur != geleendPre2024 ? (
+                    <li>
+                      Vanaf jaar 2024:{" "}
+                      <span style={{ color: "#FD317D" }}>
+                        {parseFloat(rentepercentage).toLocaleString("nl-NL", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        }) + "%"}
+                      </span>{" "}
+                      rente{" "}
+                      {max35 === true
+                        ? "(regeling SF35)"
+                        : max35 === false
+                        ? "(regeling SF15)"
+                        : null}
+                      {"."}
+                    </li>
+                  ) : null}
+                </ul>
                 <h1>€{formatToLocaleString(studieSchuld)}</h1>
                 <StudieschuldSVG leningpm={leningpm}></StudieschuldSVG>
                 <Character />
