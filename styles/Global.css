@@ -32,6 +32,13 @@ body:has(.scroll) {
   height: 100vh;
 }
 
+.scroll:has(header) .slider,
+.scroll:has(header) .result-grid section {
+  opacity: 0.08;
+  pointer-events: none;
+  touch-action: none;
+}
+
 .scroll .open {
   position: fixed;
   display: flex;
@@ -286,11 +293,20 @@ header.onboarding::before {
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  z-index: 0;
+  z-index: 15000;
   position: fixed;
   bottom: 1vh;
   left: 50%;
   transform: translate(-50%, -0%);
+}
+
+.resultIntro button {
+  position: absolute;
+  z-index: 15000;
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .prevenext.onboarding > a:nth-of-type(1) {
@@ -450,7 +466,7 @@ header.onboarding::before {
 }
 
 .slider:has(input:active) {
-  background-color: rgba(241, 194, 230, 0.4);
+  background-color: rgba(241, 194, 230, 0.5);
 }
 
 .slider:has(input:active) button {

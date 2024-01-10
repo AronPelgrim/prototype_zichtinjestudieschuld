@@ -15,12 +15,14 @@ import Character from "../components/character";
 import Link from "next/link";
 
 const Result = () => {
+  const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const [extraInfoSchuld, setExtraInfoSchuld] = useState(false);
   const [extraInfoAflos, setExtraInfoAflos] = useState(false);
   const [extraInfoRente, setExtraInfoRente] = useState(false);
   const [extraInfoHypo, setExtraInfoHypo] = useState(false);
   const [extraInfoKoopkracht, setExtraInfoKoopkracht] = useState(false);
+  const [introOpen, setIntroOpen] = useState(true);
   const [studieSchuld, setStudieSchuld] = useState(0);
   const [hypotheek, setHypotheek] = useState(0);
   const [afloskosten, setAfloskosten] = useState(0);
@@ -65,6 +67,22 @@ const Result = () => {
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
     setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
     setGeleendPre2024(initialPre2024 ? initialPre2024 : 0);
+  }, []);
+
+  useEffect(() => {
+    const headerText = `Je studeert of gaat studeren, wat leuk is, maar het kost ook geld! Denk aan studieboeken, een laptop, huur en boodschappen. 
+    Hoeveel wil je per maand lenen? Let op, dit gaat alleen om je lening en niet om de eventuele basisbeurs!`;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(headerText.substring(0, index));
+      index++;
+      if (index > headerText.length) {
+        clearInterval(interval);
+      }
+    }, 1);
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -442,6 +460,22 @@ const Result = () => {
                 <KoopkrachtSVG leningpm={leningpm}></KoopkrachtSVG>
               </section>
             </section>
+            {introOpen && (
+              <>
+                {" "}
+                <header>{displayedText}</header>
+                <section className="resultIntro">
+                  <button
+                    onClick={() =>
+                      setIntroOpen(introOpen == false ? true : false)
+                    }
+                  >
+                    Bekijk mijn resultaten!
+                  </button>
+                  <Character />
+                </section>
+              </>
+            )}
             <Slider
               onChange1={handleSliderChange1}
               onChange2={handleSliderChange2}
