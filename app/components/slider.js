@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../../styles/Global.css";
 
 const Slider = ({
@@ -14,16 +14,16 @@ const Slider = ({
   const sliderRef = useRef(null);
   const [sliderHeight, setSliderHeight] = useState(0);
   const [hidePanel, setHidePanel] = useState(true);
+  const [toggleChecked, setToggleChecked] = useState(false);
+
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
-  const [rentepercentage, setRentepercentage] = useState(0);
   const [inkomen, setInkomen] = useState(0);
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
   const [max35, setMax35] = useState(null);
   const [hypotheekRente, setHypotheekRente] = useState(0);
   const [geleendPre2024, setGeleendPre2024] = useState(0);
-  const [toggleChecked, setToggleChecked] = useState(false);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -42,9 +42,6 @@ const Slider = ({
       initialmax35 === "true" ? true : initialmax35 === "false" ? false : null
     );
     setAflosFase(initialAflos ? initialAflos : 1);
-    setRentepercentage(
-      initialmax35 === "true" ? 2.56 : initialmax35 === "false" ? 2.95 : null
-    );
     setInkomen(initialInkomen ? initialInkomen : 0);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
@@ -73,6 +70,24 @@ const Slider = ({
       if (sliderRef.current) {
         resizeObserver.unobserve(sliderRef.current);
       }
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleTouchStart = (event) => {
+      sliderRef.current.style.backgroundColor = "rgba(241, 194, 230, 0.6)";
+    };
+
+    const handleTouchEnd = (event) => {
+      sliderRef.current.style.backgroundColor = "rgba(241, 194, 230, 1)";
+    };
+
+    sliderRef.current.addEventListener("touchstart", handleTouchStart);
+    sliderRef.current.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      sliderRef.current.removeEventListener("touchstart", handleTouchStart);
+      sliderRef.current.removeEventListener("touchend", handleTouchEnd);
     };
   }, []);
 
@@ -148,24 +163,6 @@ const Slider = ({
     setMax35(value === "true");
     onChange8(value);
   };
-
-  useEffect(() => {
-    const handleTouchStart = (event) => {
-      sliderRef.current.style.backgroundColor = "rgba(241, 194, 230, 0.6)";
-    };
-
-    const handleTouchEnd = (event) => {
-      sliderRef.current.style.backgroundColor = "rgba(241, 194, 230, 1)";
-    };
-
-    sliderRef.current.addEventListener("touchstart", handleTouchStart);
-    sliderRef.current.addEventListener("touchend", handleTouchEnd);
-
-    return () => {
-      sliderRef.current.removeEventListener("touchstart", handleTouchStart);
-      sliderRef.current.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, []);
 
   return (
     <>
