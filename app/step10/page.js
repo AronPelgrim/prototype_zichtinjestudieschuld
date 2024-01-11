@@ -8,14 +8,15 @@ import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step10 = () => {
+  // State hooks voor het bijhouden van schermoriëntatie, getoonde tekst, antwoordstatus en verschillende parameters
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
-
   const [displayedText, setDisplayedText] = useState("");
   const progressWidth = "90.9%";
   const currentPage = 9;
   const [antwoord, setAntwoord] = useState(false);
 
+  // State hooks voor parameters gerelateerd aan studieschuld en hypotheek
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
   const [rentepercentage, setRentepercentage] = useState(0);
@@ -26,68 +27,66 @@ const Step10 = () => {
   const [hypotheekRente, setHypotheekRente] = useState(0);
   const [geleendPre2024, setGeleendPre2024] = useState(0);
 
+  // Effect om initiële waarden in te stellen op basis van query parameters in de URL
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const initialAanloop = urlParams.get("aanloopfase");
-    const initialAflos = urlParams.get("aflosfase");
-    const initialRente = urlParams.get("rentepercentage");
-    const initialInkomen = urlParams.get("inkomen");
-    const initialLeningpm = urlParams.get("leningpm");
-    const initialLeenduur = urlParams.get("leenduur");
-    const initialmax35 = urlParams.get("max35");
-    const initialHypoRente = urlParams.get("hypotheekRente");
-    const initialPre2024 = urlParams.get("geleendPre2024");
 
-    setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(
-      initialmax35 === "true" ? true : initialmax35 === "false" ? false : true
-    );
-    setAflosFase(initialAflos ? initialAflos : 1);
-    setRentepercentage(initialRente ? initialRente : 0);
-    setInkomen(initialInkomen ? initialInkomen : 1500);
-    setLeningpm(initialLeningpm ? initialLeningpm : 0);
-    setLeenduur(initialLeenduur ? initialLeenduur : 1);
-    setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
-    setGeleendPre2024(initialPre2024 ? initialPre2024 : 0);
+    // Haal query parameters op en zet deze als initiële waarden voor de states
+    setAanloopfase(urlParams.get("aanloopfase") || "nee");
+    setMax35(urlParams.get("max35") === "true" || false);
+    setAflosFase(urlParams.get("aflosfase") || 1);
+    setRentepercentage(urlParams.get("rentepercentage") || 0);
+    setInkomen(urlParams.get("inkomen") || 1500);
+    setLeningpm(urlParams.get("leningpm") || 0);
+    setLeenduur(urlParams.get("leenduur") || 1);
+    setHypotheekRente(urlParams.get("hypotheekRente") || 4.5);
+    setGeleendPre2024(urlParams.get("geleendPre2024") || 0);
   }, []);
 
+  // Effect om schermoriëntatie te controleren en bij te werken
   useEffect(() => {
     const handleOrientationChange = () => {
+      // Controleer of de huidige oriëntatie staand (portrait) of liggend (landscape) is
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
-      if (isPortrait) {
-        setOrientation("Portrait");
-      } else {
-        setOrientation("Landscape");
-      }
+      // Zet de oriëntatie state op basis van de schermoriëntatie
+      setOrientation(isPortrait ? "Portrait" : "Landscape");
     };
 
+    // Roep de oriëntatiefunctie aan bij het laden en luister naar wijzigingen
     handleOrientationChange();
-
     window.addEventListener("resize", handleOrientationChange);
 
+    // Voorkom geheugenlekken door luisteraar te verwijderen bij het opruimen
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
   }, []);
 
+  // Effect voor het geleidelijk weergeven van een introductietekst
   useEffect(() => {
+    // Introductietekst instellen
     const headerText = `Het is belangrijk om rekening te houden met het verwachte inkomen na je studie, omdat je studieschuld invloed heeft op je maandelijkse kosten. Op deze manier kun je beoordelen of het bedrag dat je leent een goede investering is in vergelijking met je verwachte inkomsten. Wat wordt jouw verwachte bruto-inkomen per maand?`;
 
+    // Variabele en interval voor het geleidelijk updaten van de getoonde tekst
     let index = 0;
     const interval = setInterval(() => {
       setDisplayedText(headerText.substring(0, index));
       index++;
+
+      // Stop het interval en geef antwoordstatus als de tekst compleet is
       if (index > headerText.length) {
         clearInterval(interval);
         setAntwoord(true);
       }
     }, 10);
 
+    // Voorkom geheugenlekken door interval te wissen bij het opruimen
     return () => clearInterval(interval);
   }, []);
 
+  // Functie om een getal naar een opgemaakte locale string te converteren
   const formatToLocaleString = (value) => {
     return parseFloat(value).toLocaleString("nl-NL", {
       minimumFractionDigits: 2,
@@ -95,6 +94,7 @@ const Step10 = () => {
     });
   };
 
+  // Event handler voor het verwerken van het inkomen met regex-validatie
   const handleInkomen = (e) => {
     const inputValue = e.target.value;
 
@@ -104,8 +104,12 @@ const Step10 = () => {
     }
   };
 
+  // Animatiefunctie voor karakter
   const characterAnimation = () => {
+    // Haal het SVG-element op met behulp van de ref
     const svgElement = svgRef.current;
+
+    // Voeg een klasse toe voor animatie als het SVG-element bestaat
     if (svgElement) {
       svgElement.classList.add("explode");
     }
@@ -124,12 +128,15 @@ const Step10 = () => {
             currentPage={currentPage}
           ></Progressbar>
           <header>{displayedText}</header>
+          {/* Weergave van antwoordsectie wanneer de antwoordstatus waar is */}
           {antwoord && (
             <section className="antwoord">
               <div>
+                {/* Label voor het verwachte inkomen met opgemaakte locale string */}
                 <label>
                   Verwachte inkomen: € {formatToLocaleString(inkomen)}
                 </label>
+                {/* Input range voor het instellen van het verwachte inkomen */}
                 <input
                   type="range"
                   min="1500"
@@ -139,12 +146,14 @@ const Step10 = () => {
                   step="50"
                 />
               </div>
+              {/* Opslaan-link die doorverwijst naar de resultatenpagina met huidige parameters */}
               <Link
                 href={`/result?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
                 className="opslaan"
               >
                 Opslaan
               </Link>
+              {/* Externe link die doorverwijst naar een website voor het controleren van het verwachte inkomen */}
               <Link
                 href={`https://loonwijzer.nl/salaris/salarischeck#/`}
                 target="_blank"

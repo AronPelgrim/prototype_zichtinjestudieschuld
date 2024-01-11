@@ -34,7 +34,7 @@ const Step2 = () => {
 
     // Haal query parameters op en zet deze als initiële waarden voor de states
     setAanloopfase(urlParams.get("aanloopfase") || "nee");
-    setMax35(urlParams.get("max35") === "true" || false);
+    setMax35(urlParams.get("max35") === "false" ? false : true);
     setAflosFase(urlParams.get("aflosfase") || 1);
     setRentepercentage(urlParams.get("rentepercentage") || 0);
     setInkomen(urlParams.get("inkomen") || 1500);

@@ -8,14 +8,15 @@ import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step7 = () => {
+  // State hooks voor het bijhouden van schermoriëntatie, getoonde tekst, antwoordstatus en verschillende parameters
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
-
   const [displayedText, setDisplayedText] = useState("");
   const progressWidth = "63.63%";
   const currentPage = 6;
   const [antwoord, setAntwoord] = useState(false);
 
+  // State hooks voor parameters gerelateerd aan studieschuld en hypotheek
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
   const [rentepercentage, setRentepercentage] = useState(0);
@@ -23,82 +24,87 @@ const Step7 = () => {
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
   const [max35, setMax35] = useState(null);
-  const [hypotheekRente, setHypotheekRente] = useState(0);
+  const [hypotheekRente, setHypotheekRente] = useState(4.5); // Standaardwaarde voor hypotheekrente
   const [geleendPre2024, setGeleendPre2024] = useState(0);
 
+  // Effect om initiële waarden in te stellen op basis van query parameters in de URL
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const initialAanloop = urlParams.get("aanloopfase");
-    const initialAflos = urlParams.get("aflosfase");
-    const initialRente = urlParams.get("rentepercentage");
-    const initialInkomen = urlParams.get("inkomen");
-    const initialLeningpm = urlParams.get("leningpm");
-    const initialLeenduur = urlParams.get("leenduur");
-    const initialmax35 = urlParams.get("max35");
-    const initialHypoRente = urlParams.get("hypotheekRente");
-    const initialPre2024 = urlParams.get("geleendPre2024");
 
-    setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(
-      initialmax35 === "true" ? true : initialmax35 === "false" ? false : true
-    );
-    setAflosFase(initialAflos ? initialAflos : 1);
-    setRentepercentage(initialRente ? initialRente : 0);
-    setInkomen(initialInkomen ? initialInkomen : 1500);
-    setLeningpm(initialLeningpm ? initialLeningpm : 0);
-    setLeenduur(initialLeenduur ? initialLeenduur : 1);
-    setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
-    setGeleendPre2024(initialPre2024 ? initialPre2024 : 0);
+    // Haal query parameters op en zet deze als initiële waarden voor de states
+    setAanloopfase(urlParams.get("aanloopfase") || "nee");
+    setMax35(urlParams.get("max35") === "false" ? false : true);
+    setAflosFase(urlParams.get("aflosfase") || 1);
+    setRentepercentage(urlParams.get("rentepercentage") || 0);
+    setInkomen(urlParams.get("inkomen") || 1500);
+    setLeningpm(urlParams.get("leningpm") || 0);
+    setLeenduur(urlParams.get("leenduur") || 1);
+    setHypotheekRente(urlParams.get("hypotheekRente") || 4.5);
+    setGeleendPre2024(urlParams.get("geleendPre2024") || 0);
   }, []);
 
+  // Effect om schermoriëntatie te controleren en bij te werken
   useEffect(() => {
     const handleOrientationChange = () => {
+      // Controleer of de huidige oriëntatie staand (portrait) of liggend (landscape) is
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
-      if (isPortrait) {
-        setOrientation("Portrait");
-      } else {
-        setOrientation("Landscape");
-      }
+      // Zet de oriëntatie state op basis van de schermoriëntatie
+      setOrientation(isPortrait ? "Portrait" : "Landscape");
     };
 
+    // Roep de oriëntatiefunctie aan bij het laden en luister naar wijzigingen
     handleOrientationChange();
-
     window.addEventListener("resize", handleOrientationChange);
 
+    // Voorkom geheugenlekken door luisteraar te verwijderen bij het opruimen
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
   }, []);
 
+  // Effect voor het geleidelijk weergeven van een introductietekst
   useEffect(() => {
+    // Introductietekst instellen
     const headerText = `Een studieschuld beïnvloedt je maximale hypotheekbedrag. Hoeveel minder hypotheek je kan krijgen wordt berekend op basis van je studieschuld, specifiek met je maandelijkse afloskosten, de hypotheekrente en nog een aantal factoren. De gemiddelde hypotheekrente is nu 4,5%, maar kan maandelijks veranderen, dus je kunt deze aanpassen als je een nog specifieker bedrag wil!`;
 
+    // Variabele en interval voor het geleidelijk updaten van de getoonde tekst
     let index = 0;
     const interval = setInterval(() => {
       setDisplayedText(headerText.substring(0, index));
       index++;
+
+      // Stop het interval en geef antwoordstatus als de tekst compleet is
       if (index > headerText.length) {
         clearInterval(interval);
         setAntwoord(true);
       }
     }, 10);
 
+    // Voorkom geheugenlekken door interval te wissen bij het opruimen
     return () => clearInterval(interval);
   }, []);
 
+  // Functie om hypotheekrente bij te werken op basis van invoer met regex-validatie
   const handleHypotheekrente = (e) => {
     const inputValue = e.target.value;
 
+    // Regex-patroon voor geldige invoer van hypotheekrente
     const regex = /^\d*\.?\d{0,2}$/;
+
+    // Valideer invoer en update staat alleen als de invoer geldig is
     if (regex.test(inputValue) || inputValue === "") {
       setHypotheekRente(inputValue);
     }
   };
 
+  // Animatiefunctie voor karakter
   const characterAnimation = () => {
+    // Haal het SVG-element op met behulp van de ref
     const svgElement = svgRef.current;
+
+    // Voeg een klasse toe voor animatie als het SVG-element bestaat
     if (svgElement) {
       svgElement.classList.add("explode");
     }
@@ -117,11 +123,14 @@ const Step7 = () => {
             currentPage={currentPage}
           ></Progressbar>
           <header>{displayedText}</header>
+          {/* Voorwaardelijke weergave van antwoordsectie */}
           {antwoord && (
             <section className="antwoord">
               <div>
+                {/* Label voor Hypotheekrente */}
                 <label>
                   Hypotheekrente:{" "}
+                  {/* Condities voor het tonen van hypotheekrente met juiste opmaak */}
                   {hypotheekRente !== null && !isNaN(parseFloat(hypotheekRente))
                     ? parseFloat(hypotheekRente).toLocaleString("nl-NL", {
                         minimumFractionDigits: 2,
@@ -129,6 +138,7 @@ const Step7 = () => {
                       }) + "%"
                     : "0,00%"}
                 </label>
+                {/* Inputveld voor het invoeren van hypotheekrente */}
                 <input
                   type="number"
                   value={hypotheekRente}
@@ -137,12 +147,14 @@ const Step7 = () => {
                   step={0.01}
                 />
               </div>
+              {/* Opslaan-link met doorverwijzing naar de volgende stap */}
               <Link
                 href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
                 className="opslaan"
               >
                 Opslaan
               </Link>
+              {/* Link naar externe bron voor meer informatie over hypotheek */}
               <Link
                 href={`https://hypotheco.nl/blog/hypotheekadvies/hypotheek-en-studieschuld/`}
                 target="_blank"
@@ -159,7 +171,9 @@ const Step7 = () => {
               Vorige
             </Link>{" "}
           </section>
+          {/* Component voor de achtergrondillustratie */}
           <Backg7></Backg7>
+          {/* SVG voor het poppetje */}{" "}
           <svg
             ref={svgRef}
             id="Laag_1"

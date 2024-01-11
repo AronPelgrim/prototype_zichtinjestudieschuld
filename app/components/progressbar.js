@@ -5,6 +5,7 @@ import ResultFlag from "./resultflag";
 import "../../styles/Global.css";
 
 const Progressbar = ({ progressWidth, currentPage }) => {
+  // State hooks voor verschillende parameters gerelateerd aan studieschuld en hypotheek
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
   const [rentepercentage, setRentepercentage] = useState(0);
@@ -15,6 +16,7 @@ const Progressbar = ({ progressWidth, currentPage }) => {
   const [hypotheekRente, setHypotheekRente] = useState(0);
   const [geleendPre2024, setGeleendPre2024] = useState(0);
 
+  // Array met paginanamen voor navigatie
   const pages = [
     "step1",
     "step2",
@@ -29,9 +31,12 @@ const Progressbar = ({ progressWidth, currentPage }) => {
     "result",
   ];
 
+  // Functie om naar de geselecteerde pagina te navigeren met huidige parameters in de URL
   const handleCircleClick = (index) => {
+    // Bouw query parameters op basis van huidige state
     const queryParams = `?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`;
 
+    // Navigeer naar de geselecteerde pagina met de opgebouwde query parameters
     window.location.href = `/${pages[index]}${queryParams}`;
   };
 
@@ -60,20 +65,24 @@ const Progressbar = ({ progressWidth, currentPage }) => {
   }, []);
 
   return (
+    //Sectie voor voortgangsmeter met dynamische breedte
     <section
       className={"completeness-meter"}
       style={{ "--progress-width": progressWidth }}
     >
+      {/* Container voor cirkels met paginanummers */}
       <section className="completeness-container">
+        {/* Map over de paginanamen om cirkels weer te geven */}
         {pages.map((page, index) => (
           <section
             key={index}
             className={`circle 
-      ${currentPage === index ? "active" : ""}
-      ${currentPage > index ? "done" : ""}
-    `}
+          ${currentPage === index ? "active" : ""}
+          ${currentPage > index ? "done" : ""}
+        `}
             onClick={() => handleCircleClick(index)}
           >
+            {/* Toon paginanummer of resultaatvlag voor de laatste pagina */}
             {index === pages.length - 1 ? <ResultFlag /> : index + 1}
           </section>
         ))}
