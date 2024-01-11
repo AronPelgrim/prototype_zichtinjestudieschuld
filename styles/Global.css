@@ -215,7 +215,7 @@ header.onboarding::before {
   padding: 0.2em;
 }
 
-.character {
+.character-svg {
   position: fixed;
   left: 7em;
   bottom: 2vh;
@@ -224,7 +224,7 @@ header.onboarding::before {
   overflow: visible;
 }
 
-.character.onboarding {
+.character-svg.onboarding {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -294,7 +294,7 @@ header.onboarding::before {
   max-width: 40vw;
 }
 
-.result .open svg:not(.character1) {
+.result .open svg:not(.character-svg) {
   max-width: 25%;
 }
 
@@ -493,6 +493,51 @@ header.onboarding::before {
   background-color: var(--neutral);
 }
 
+.vorige-volgende a,
+.opslaan,
+.antwoord a,
+button {
+  display: inline-block;
+  margin: 4px 2px;
+  padding: 12px 30px;
+  border: none;
+  border: 2px solid var(--grey);
+  border-radius: 0.5em;
+  background-color: var(--green);
+  font-family: "lores-12", sans-serif;
+  font-size: clamp(0.7em, 1.3vw, 1.2em);
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  transition-duration: 0.1s;
+  cursor: pointer;
+  overflow: visible;
+  box-shadow: 0 0.2em var(--grey);
+}
+
+a:hover,
+button:hover {
+  transform: scale(1.03);
+}
+
+.vorige-volgende a:active,
+.opslaan:active,
+.antwoord a:active,
+.antwoord button:active,
+.slider button:active,
+.circle:active,
+.result-grid .info-icon:active,
+.open .info-icon:active {
+  transform: translateY(0.2em);
+  box-shadow: none;
+}
+
+.antwoord > a:not(.opslaan),
+button {
+  background-color: var(--neutral);
+}
+
 input[type="number"] {
   width: 6ch;
   margin-left: 50%;
@@ -614,51 +659,6 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 50%;
   background-color: #fff;
   box-shadow: -407px 0 0 400px var(--blue);
-}
-
-.vorige-volgende a,
-.opslaan,
-.antwoord a,
-button {
-  display: inline-block;
-  margin: 4px 2px;
-  padding: 12px 30px;
-  border: none;
-  border: 2px solid var(--grey);
-  border-radius: 0.5em;
-  background-color: var(--green);
-  font-family: "lores-12", sans-serif;
-  font-size: clamp(0.7em, 1.3vw, 1.2em);
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none;
-  color: black;
-  transition-duration: 0.1s;
-  cursor: pointer;
-  overflow: visible;
-  box-shadow: 0 0.2em var(--grey);
-}
-
-.antwoord > a:not(.opslaan),
-button {
-  background-color: var(--neutral);
-}
-
-a:hover,
-button:hover {
-  transform: scale(1.03);
-}
-
-.vorige-volgende a:active,
-.opslaan:active,
-.antwoord a:active,
-.antwoord button:active,
-.slider button:active,
-.circle:active,
-.result-grid .info-icon:active,
-.open .info-icon:active {
-  transform: translateY(0.2em);
-  box-shadow: none;
 }
 
 .walking {
@@ -858,22 +858,22 @@ button:hover {
 @media only screen and (max-width: 1000px) {
   header::before {
     left: calc(7.5em + 7vh - 20px);
+    bottom: -18px;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
     border-top: 20px solid black;
-    bottom: -18px;
   }
 
   header.onboarding::before {
+    bottom: -18px;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
     border-top: 20px solid black;
-    bottom: -18px;
   }
 
   .slider {
-    gap: 0.5em 0;
     width: 100vw;
+    gap: 0.5em 0;
   }
 
   .antwoord {
@@ -895,15 +895,15 @@ button:hover {
   }
 
   .circle {
-    height: 20px;
     width: 20px;
+    height: 20px;
     padding: 2px;
   }
 
   .result-grid .info-icon,
   .open .info-icon {
-    margin: 5px 0 0 5px;
     width: 25px;
     height: 25px;
+    margin: 5px 0 0 5px;
   }
 }
