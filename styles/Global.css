@@ -5,11 +5,11 @@
 }
 
 :root {
-  --orange: #ce9f4b;
-  --yellow: #f8ca1d;
-  --green: #50ca81;
+  --orange: #ee9335;
+  --yellow: #facd01;
+  --green: #00bc71;
   --mint: #71b9a5;
-  --blue: #1f6e8d;
+  --blue: #1a25ab;
   --red: #f24f50;
   --pink: #f1c2e6;
   --grey: #dfddde;
@@ -670,7 +670,8 @@ button {
 .prevenext a:active,
 .opslaan:active,
 .antwoord a:active,
-.antwoord button:active {
+.antwoord button:active,
+.slider button:active {
   box-shadow: none;
   transform: translateY(0.2em);
 }
