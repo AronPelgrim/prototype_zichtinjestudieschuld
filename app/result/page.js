@@ -10,7 +10,7 @@ import KoopkrachtSVG from "../components/koopkrachtsvg";
 import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 import RenteBetaaldSVG from "../components/rentebetaaldsvg";
-import Slider from "../components/slider";
+import SliderPanel from "../components/slider";
 import StudieschuldSVG from "../components/studieschuld";
 
 const Result = () => {
@@ -492,7 +492,7 @@ const Result = () => {
                 </section>
               </>
             )}
-            <Slider
+            <SliderPanel
               onChange1={handleSliderChange1}
               onChange2={handleSliderChange2}
               onChange3={handleSliderChange3}

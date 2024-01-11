@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../../styles/Global.css";
 
-const Slider = ({
+const SliderPanel = ({
   onChange1,
   onChange2,
   onChange3,
@@ -168,7 +168,7 @@ const Slider = ({
     <>
       <section
         ref={sliderRef}
-        className="slider"
+        className="slider-panel"
         style={{
           bottom: hidePanel ? `-${sliderHeight}px` : "0",
           transition: "bottom 0.4s ease, height 0.4s ease",
@@ -280,7 +280,7 @@ const Slider = ({
             checked={toggleChecked}
             onChange={handleAanloopfase}
           />
-          <label className="label-toggle" htmlFor="switch">
+          <label className="label-aanloopfase" htmlFor="switch">
             Toggle
           </label>
         </section>{" "}
@@ -319,4 +319,4 @@ const Slider = ({
   );
 };
 
-export default Slider;
+export default SliderPanel;
