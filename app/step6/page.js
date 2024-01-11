@@ -8,9 +8,10 @@ import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step6 = () => {
-  const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
+
+  const [displayedText, setDisplayedText] = useState("");
   const progressWidth = "54.54%";
   const currentPage = 5;
   const [antwoord, setAntwoord] = useState(false);
@@ -39,30 +40,16 @@ const Step6 = () => {
     const initialPre2024 = urlParams.get("geleendPre2024");
 
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(initialmax35 ? initialmax35 : null);
+    setMax35(
+      initialmax35 === "true" ? true : initialmax35 === "false" ? false : true
+    );
     setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
-    setInkomen(initialInkomen ? initialInkomen : 0);
+    setInkomen(initialInkomen ? initialInkomen : 1500);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
     setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
     setGeleendPre2024(initialPre2024 ? initialPre2024 : 0);
-  }, []);
-
-  useEffect(() => {
-    const headerText = `Tijdens de aflosfase kun je tot wel 60 maanden aanvragen waarin je niet hoeft af te lossen (aflosvrije periodes). Dit kan handig zijn in geval van bijvoorbeeld ziekte, maar kan je altijd aanvragen. De maanden waarin je niet hebt afgelost, worden aan het einde van de aflosfase (na 15 of 35 jaar) toegevoegd.`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(headerText.substring(0, index));
-      index++;
-      if (index > headerText.length) {
-        clearInterval(interval);
-        setAntwoord(true);
-      }
-    }, 10);
-
-    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -83,6 +70,22 @@ const Step6 = () => {
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
+  }, []);
+
+  useEffect(() => {
+    const headerText = `Tijdens de aflosfase kun je tot wel 60 maanden aanvragen waarin je niet hoeft af te lossen (aflosvrije periodes). Dit kan handig zijn in geval van bijvoorbeeld ziekte, maar kan je altijd aanvragen. De maanden waarin je niet hebt afgelost, worden aan het einde van de aflosfase (na 15 of 35 jaar) toegevoegd.`;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(headerText.substring(0, index));
+      index++;
+      if (index > headerText.length) {
+        clearInterval(interval);
+        setAntwoord(true);
+      }
+    }, 10);
+
+    return () => clearInterval(interval);
   }, []);
 
   const characterAnimation = () => {
