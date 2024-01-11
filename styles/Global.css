@@ -315,6 +315,48 @@ header.onboarding::before {
   margin: -1.5em 0;
 }
 
+.slider {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 10000;
+  width: 90vw;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  background-color: var(--pink);
+  transform: translate(-50%);
+  overflow: auto;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.slider div {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+  padding: 1em;
+  border-radius: 0.5em;
+  gap: 1em;
+  overflow: visible;
+}
+
+.slider div label:not(.label-toggle) {
+  padding-bottom: 0.5em;
+  font-size: 1em;
+}
+
+.slider:has(input:active) {
+  background-color: rgba(241, 194, 230, 0.6);
+}
+
 .prevenext {
   top: 42%;
   width: 96vw;
@@ -373,26 +415,6 @@ header.onboarding::before {
   background-color: var(--neutral);
 }
 
-.slider {
-  display: flex;
-  overflow: auto;
-  flex-direction: row;
-  white-space: nowrap;
-  position: fixed;
-  flex-wrap: wrap;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%);
-  background-color: var(--pink);
-  align-items: center;
-  justify-content: space-around;
-  width: 90vw;
-  overflow: visible;
-  border-top-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
-  z-index: 10000;
-}
-
 .result-grid .info-icon,
 .open .info-icon {
   position: absolute;
@@ -427,28 +449,6 @@ header.onboarding::before {
   border-radius: 0.5em;
   overflow: visible;
   justify-self: center;
-}
-
-.slider div {
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-  flex-shrink: 0;
-  align-items: center;
-  padding: 1em;
-  gap: 1em;
-  border-radius: 0.5em;
-  position: relative;
-  overflow: visible;
-}
-
-.slider div label:not(.label-toggle) {
-  font-size: 1em;
-  padding-bottom: 0.5em;
-}
-
-.slider:has(input:active) {
-  background-color: rgba(241, 194, 230, 0.6);
 }
 
 .slider:has(input:active) button {
