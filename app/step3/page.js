@@ -8,9 +8,10 @@ import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step3 = () => {
-  const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
+
+  const [displayedText, setDisplayedText] = useState("");
   const progressWidth = "27.27%";
   const currentPage = 2;
   const [antwoord, setAntwoord] = useState(false);
@@ -40,31 +41,15 @@ const Step3 = () => {
 
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
     setMax35(
-      initialmax35 === "true" ? true : initialmax35 === "false" ? false : null
+      initialmax35 === "true" ? true : initialmax35 === "false" ? false : true
     );
     setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
-    setInkomen(initialInkomen ? initialInkomen : 0);
+    setInkomen(initialInkomen ? initialInkomen : 1500);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
     setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
     setGeleendPre2024(initialPre2024 ? initialPre2024 : 0);
-  }, []);
-
-  useEffect(() => {
-    const headerText = `Er zijn verschillende aflosregelingen. Ben je je studie begonnen voor 1 september 2015: dan duurt je aflosfase maximaal 15 jaar (SF15). Ben je gestart op of na 1 september 2015: dan duurt je aflosfase maximaal 35 jaar (SF35). Selecteer de juiste regeling en vervolgens in hoeveel tijd jij je studieschuld zou willen afbetalen.`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(headerText.substring(0, index));
-      index++;
-      if (index > headerText.length) {
-        clearInterval(interval);
-        setAntwoord(true);
-      }
-    }, 10);
-
-    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -85,6 +70,22 @@ const Step3 = () => {
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
+  }, []);
+
+  useEffect(() => {
+    const headerText = `Er zijn verschillende aflosregelingen. Ben je je studie begonnen voor 1 september 2015: dan duurt je aflosfase maximaal 15 jaar (SF15). Ben je gestart op of na 1 september 2015: dan duurt je aflosfase maximaal 35 jaar (SF35). Selecteer de juiste regeling en vervolgens in hoeveel tijd jij je studieschuld zou willen afbetalen.`;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(headerText.substring(0, index));
+      index++;
+      if (index > headerText.length) {
+        clearInterval(interval);
+        setAntwoord(true);
+      }
+    }, 10);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleRegeling = (e) => {

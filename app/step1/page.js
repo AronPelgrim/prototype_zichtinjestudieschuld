@@ -40,7 +40,9 @@ const Step1 = () => {
     const initialPre2024 = urlParams.get("geleendPre2024");
 
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(initialmax35 ? initialmax35 : true);
+    setMax35(
+      initialmax35 === "true" ? true : initialmax35 === "false" ? false : true
+    );
     setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
     setInkomen(initialInkomen ? initialInkomen : 1500);

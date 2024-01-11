@@ -47,7 +47,7 @@ const Step4 = () => {
     setRentepercentage(
       initialmax35 === "true" ? 2.56 : initialmax35 === "false" ? 2.95 : null
     );
-    setInkomen(initialInkomen ? initialInkomen : 0);
+    setInkomen(initialInkomen ? initialInkomen : 1500);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
     setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
