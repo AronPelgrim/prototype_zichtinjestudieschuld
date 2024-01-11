@@ -147,7 +147,9 @@ const Step1 = () => {
           <section className="vorige-volgende">
             <Link href={`/`}>Vorige</Link>
           </section>
+          {/* Component voor de achtergrondillustratie */}
           <Backg1></Backg1>
+          {/* SVG voor het poppetje */}
           <svg
             id="Laag_1"
             data-name="Laag 1"

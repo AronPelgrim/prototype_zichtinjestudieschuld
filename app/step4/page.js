@@ -282,7 +282,9 @@ const Step4 = () => {
               Vorige
             </Link>{" "}
           </section>
+          {/* Component voor de achtergrondillustratie */}
           <Backg6></Backg6>
+          {/* SVG voor het poppetje */}{" "}
           <svg
             ref={svgRef}
             id="Laag_1"

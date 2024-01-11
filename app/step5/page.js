@@ -127,7 +127,6 @@ const Step5 = () => {
               </Link>
             </section>
           )}
-
           <section className="vorige-volgende">
             <Link
               href={`/step4?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
@@ -135,7 +134,9 @@ const Step5 = () => {
               Vorige
             </Link>
           </section>
+          {/* Component voor de achtergrondillustratie */}
           <Backg3></Backg3>
+          {/* SVG voor het poppetje */}{" "}
           <>
             <svg
               ref={svgRef}

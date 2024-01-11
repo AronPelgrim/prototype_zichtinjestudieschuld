@@ -208,7 +208,9 @@ const Step3 = () => {
               Vorige
             </Link>
           </section>
+          {/* Component voor de achtergrondillustratie */}
           <Backg4></Backg4>
+          {/* voorwaardelijk de SVG voor het jonge en oude poppetje, aan de hand van de aflosfase */}
           {aflosFase == 1 ? (
             <svg
               ref={svgRef}
