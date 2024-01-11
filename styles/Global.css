@@ -973,6 +973,10 @@ input[type="range"]::-moz-range-thumb {
     top: 50%;
   }
 
+  .result .open * {
+    max-width: 80vw;
+  }
+
   .result-grid .info-icon,
   .open .info-icon {
     width: 25px;
