@@ -1,30 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import "../styles/Global.css";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import "../styles/Global.css";
 
 const Onboarding1 = () => {
-  const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
+  const [displayedText, setDisplayedText] = useState("");
   const [antwoord, setAntwoord] = useState(false);
-
-  useEffect(() => {
-    const headerText = `Goeiedag, ik ben 
-    Frans Ferdinand de derde, expert in studieschulden.`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(headerText.substring(0, index));
-      index++;
-      if (index > headerText.length) {
-        clearInterval(interval);
-        setAntwoord(true);
-      }
-    }, 10);
-
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const handleOrientationChange = () => {
@@ -44,6 +27,23 @@ const Onboarding1 = () => {
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
+  }, []);
+
+  useEffect(() => {
+    const headerText = `Goeiedag, ik ben 
+    Frans Ferdinand de derde, expert in studieschulden.`;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(headerText.substring(0, index));
+      index++;
+      if (index > headerText.length) {
+        clearInterval(interval);
+        setAntwoord(true);
+      }
+    }, 10);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
