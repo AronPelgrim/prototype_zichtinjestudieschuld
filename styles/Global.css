@@ -352,33 +352,6 @@ header.onboarding::before {
 }
 
 /*
-  Stijlen voor het "i" knopje op de resultatenpagina.
-*/
-.result-grid .info-icon,
-.open .info-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 30px;
-  height: 30px;
-  margin: 15px 0 0 15px;
-  border: 1px solid var(--grey);
-  border-radius: 50%;
-  background-color: var(--yellow);
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  transition: 0.2s ease;
-  cursor: pointer;
-  box-shadow: 0 0.1em var(--grey);
-}
-.info-icon:hover {
-  transform: scale(1.1);
-}
-
-/*
   Stijlen voor de grid met de cijfer resultaten op de resultatenpagina.
 */
 .result-grid {
@@ -414,20 +387,47 @@ header.onboarding::before {
 }
 .result-grid section h1,
 .open h1 {
-  font-size: clamp(0.5em, 3vw, 5em);
+  font-size: clamp(1.2em, 3vw, 5em);
   overflow: visible;
 }
 .result-grid section p,
 .open p,
 .open li {
   max-width: 70%;
-  font-size: clamp(0.5em, 1.1vw, 5em);
+  font-size: clamp(0.7em, 1.1vw, 5em);
   line-height: 1.5;
   overflow: visible;
 }
 .result-grid section svg {
   max-width: 55%;
   margin: -1.5em 0;
+}
+
+/*
+  Stijlen voor het "i" knopje op de resultatenpagina.
+*/
+.result-grid .info-icon,
+.open .info-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  margin: 15px 0 0 15px;
+  border: 1px solid var(--grey);
+  border-radius: 50%;
+  background-color: var(--yellow);
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  transition: 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 0.1em var(--grey);
+}
+.info-icon:hover {
+  transform: scale(1.1);
 }
 
 /*
@@ -951,7 +951,7 @@ input[type="range"]::-moz-range-thumb {
   .completeness-container {
     gap: calc(9.09% - 26px);
   }
-  .circle {
+  .completeness-container > .circle.circle {
     width: 20px;
     height: 20px;
     padding: 2px;
@@ -965,11 +965,8 @@ input[type="range"]::-moz-range-thumb {
     width: 100vw;
     gap: 0.5em 0;
   }
-  .slider-panel:has(input:active) {
-    background-color: rgb(241, 194, 230);
-  }
-  .slider-panel:has(input:active) button {
-    opacity: 1;
+  .slider-panel > section {
+    padding: 0.8em;
   }
 
   .vorige-volgende {
