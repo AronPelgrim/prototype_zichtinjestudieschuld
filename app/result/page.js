@@ -306,7 +306,7 @@ const Result = () => {
                     </li>
                   ))}
                   {/* Toon rentepercentage vanaf jaar 2024 als de leenduur niet gelijk is aan geleendPre2024 */}
-                  {leenduur !== geleendPre2024 ? (
+                  {leenduur > geleendPre2024 ? (
                     <li>
                       Vanaf jaar 2024:{" "}
                       <span style={{ color: "var(--red)" }}>

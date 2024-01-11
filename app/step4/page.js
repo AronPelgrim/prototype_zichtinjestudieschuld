@@ -38,10 +38,7 @@ const Step4 = () => {
     setAanloopfase(urlParams.get("aanloopfase") || "nee");
     setMax35(urlParams.get("max35") === "true" || false);
     setAflosFase(urlParams.get("aflosfase") || 1);
-    setRentepercentage(
-      urlParams.get("rentepercentage") ||
-        (urlParams.get("max35") === "true" ? 2.56 : 2.95)
-    );
+    setRentepercentage(urlParams.get("max35") === "true" ? 2.56 : 2.95);
     setInkomen(urlParams.get("inkomen") || 1500);
     setLeningpm(urlParams.get("leningpm") || 0);
     setLeenduur(urlParams.get("leenduur") || 1);
@@ -241,8 +238,8 @@ const Step4 = () => {
                           rente
                         </li>
                       ))}
-                      {/* Toon rentepercentage vanaf 2024 als leenduur niet gelijk is aan geleendPre2024 */}
-                      {leenduur !== geleendPre2024 ? (
+                      {/* Toon rentepercentage vanaf 2024 als leenduur groter is dan geleendPre2024 */}
+                      {leenduur > geleendPre2024 ? (
                         <li>
                           Vanaf 2024:{" "}
                           {/* Weergave van rentepercentage met kleurcodering en opmaak */}
