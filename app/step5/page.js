@@ -8,9 +8,10 @@ import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step5 = () => {
-  const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
+
+  const [displayedText, setDisplayedText] = useState("");
   const progressWidth = "45.45%";
   const currentPage = 4;
   const [antwoord, setAntwoord] = useState(false);
@@ -39,30 +40,16 @@ const Step5 = () => {
     const initialPre2024 = urlParams.get("geleendPre2024");
 
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(initialmax35 ? initialmax35 : null);
+    setMax35(
+      initialmax35 === "true" ? true : initialmax35 === "false" ? false : true
+    );
     setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
-    setInkomen(initialInkomen ? initialInkomen : 0);
+    setInkomen(initialInkomen ? initialInkomen : 1500);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
     setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
     setGeleendPre2024(initialPre2024 ? initialPre2024 : 0);
-  }, []);
-
-  useEffect(() => {
-    const headerText = `In de eerste 2 jaar na je studie bevind je je in een 'aanloopfase'. Gedurende deze periode hoef je nog niets af te lossen, maar je kunt ervoor kiezen om dat wel te doen. Na deze 2 jaar moet je maandelijks beginnen met aflossen. Houd er rekening mee dat er tijdens de 2-jarige aanloopfase rente wordt toegevoegd, en de rentevaste periode van 5 jaar gaat ook in. Wil je gebruik maken van de aanloopfase?`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(headerText.substring(0, index));
-      index++;
-      if (index > headerText.length) {
-        clearInterval(interval);
-        setAntwoord(true);
-      }
-    }, 10);
-
-    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -83,6 +70,22 @@ const Step5 = () => {
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
+  }, []);
+
+  useEffect(() => {
+    const headerText = `In de eerste 2 jaar na je studie bevind je je in een 'aanloopfase'. Gedurende deze periode hoef je nog niets af te lossen, maar je kunt ervoor kiezen om dat wel te doen. Na deze 2 jaar moet je maandelijks beginnen met aflossen. Houd er rekening mee dat er tijdens de 2-jarige aanloopfase rente wordt toegevoegd, en de rentevaste periode van 5 jaar gaat ook in. Wil je gebruik maken van de aanloopfase?`;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(headerText.substring(0, index));
+      index++;
+      if (index > headerText.length) {
+        clearInterval(interval);
+        setAntwoord(true);
+      }
+    }, 10);
+
+    return () => clearInterval(interval);
   }, []);
 
   const characterAnimation = () => {
