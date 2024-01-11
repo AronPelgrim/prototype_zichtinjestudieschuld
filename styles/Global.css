@@ -467,6 +467,7 @@ header.onboarding::before {
 }
 
 .vorige-volgende.onboarding {
+  all: unset;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -478,7 +479,6 @@ header.onboarding::before {
   z-index: 15000;
   transform: translate(-50%, -0%);
   transition-duration: 0.2s;
-  all: unset;
 }
 
 .vorige-volgende > a:nth-of-type(1) {
