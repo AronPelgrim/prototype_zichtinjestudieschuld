@@ -335,7 +335,7 @@ header.onboarding::before {
   overflow: visible;
 }
 
-.slider div {
+.slider section {
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
@@ -348,7 +348,7 @@ header.onboarding::before {
   overflow: visible;
 }
 
-.slider div label:not(.label-toggle) {
+.slider section label:not(.label-toggle) {
   padding-bottom: 0.5em;
   font-size: 1em;
 }

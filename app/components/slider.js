@@ -189,7 +189,7 @@ const Slider = ({
           Klik voor het {hidePanel == false ? "verbergen" : "bewerken"} van je
           verzamelde gegevens
         </button>
-        <div>
+        <section>
           <label>Lening per maand: €{formatToLocaleString(leningpm)}</label>
           <input
             type="range"
@@ -199,8 +199,8 @@ const Slider = ({
             onChange={handleLeningpm}
             step="10"
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label>Totale leenduur: {leenduur} jaar</label>
           <input
             type="range"
@@ -210,8 +210,8 @@ const Slider = ({
             onChange={handleLeenduur}
             step="1"
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label>Geleend voor 2024: {geleendPre2024} jaar</label>
           <input
             type="range"
@@ -221,8 +221,8 @@ const Slider = ({
             onChange={handlePre2024}
             step="1"
           />
-        </div>
-        <div style={{ marginBottom: ".5em" }}>
+        </section>
+        <section style={{ marginBottom: ".5em" }}>
           <label>
             <input
               type="radio"
@@ -244,9 +244,9 @@ const Slider = ({
             />
             SF15
           </label>
-        </div>
+        </section>
         {max35 === true ? (
-          <div>
+          <section>
             <label>
               Aflosfase SF35: {aflosFase == null ? 0 : aflosFase} jaar
             </label>
@@ -258,9 +258,9 @@ const Slider = ({
               onChange={handleAflosFase}
               step="1"
             />
-          </div>
+          </section>
         ) : max35 === false ? (
-          <div>
+          <section>
             {" "}
             <label>
               Aflosfase SF15: {aflosFase == null ? 0 : aflosFase} jaar
@@ -273,9 +273,9 @@ const Slider = ({
               onChange={handleAflosFase}
               step="1"
             />
-          </div>
+          </section>
         ) : null}
-        <div>
+        <section>
           <label>Aanloopfase: {aanloopfase}</label>
           <input
             type="checkbox"
@@ -286,8 +286,8 @@ const Slider = ({
           <label className="label-toggle" htmlFor="switch">
             Toggle
           </label>
-        </div>{" "}
-        <div>
+        </section>{" "}
+        <section>
           {" "}
           <label>
             Hypotheekrente:{" "}
@@ -305,8 +305,8 @@ const Slider = ({
             placeholder="0,00"
             step={0.01}
           />
-        </div>
-        <div>
+        </section>
+        <section>
           <label>Inkomen: € {formatToLocaleString(inkomen)}</label>
           <input
             type="range"
@@ -316,7 +316,7 @@ const Slider = ({
             onChange={handleInkomen}
             step="50"
           />
-        </div>
+        </section>
       </section>
     </>
   );
