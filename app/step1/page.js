@@ -8,9 +8,10 @@ import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step1 = () => {
-  const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
+
+  const [displayedText, setDisplayedText] = useState("");
   const progressWidth = "9.09%";
   const currentPage = 0;
   const [antwoord, setAntwoord] = useState(false);
@@ -50,23 +51,6 @@ const Step1 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Je studeert of gaat studeren, wat leuk is, maar het kost ook geld! Denk aan studieboeken, een laptop, huur en boodschappen. 
-    Hoeveel wil je per maand lenen? Let op, dit gaat alleen om je lening en niet om de eventuele basisbeurs!`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(headerText.substring(0, index));
-      index++;
-      if (index > headerText.length) {
-        clearInterval(interval);
-        setAntwoord(true);
-      }
-    }, 10);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     const handleOrientationChange = () => {
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
@@ -84,6 +68,23 @@ const Step1 = () => {
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
+  }, []);
+
+  useEffect(() => {
+    const headerText = `Je studeert of gaat studeren, wat leuk is, maar het kost ook geld! Denk aan studieboeken, een laptop, huur en boodschappen. 
+    Hoeveel wil je per maand lenen? Let op, dit gaat alleen om je lening en niet om de eventuele basisbeurs!`;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(headerText.substring(0, index));
+      index++;
+      if (index > headerText.length) {
+        clearInterval(interval);
+        setAntwoord(true);
+      }
+    }, 10);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleLeningpm = (e) => {
