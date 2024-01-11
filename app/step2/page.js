@@ -8,14 +8,15 @@ import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step2 = () => {
+  // State hooks voor het bijhouden van schermoriëntatie, getoonde tekst, antwoordstatus en verschillende parameters
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
-
   const [displayedText, setDisplayedText] = useState("");
   const progressWidth = "18.18%";
   const currentPage = 1;
   const [antwoord, setAntwoord] = useState(false);
 
+  // State hooks voor parameters gerelateerd aan studieschuld en hypotheek
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
   const [rentepercentage, setRentepercentage] = useState(0);
@@ -26,75 +27,78 @@ const Step2 = () => {
   const [hypotheekRente, setHypotheekRente] = useState(0);
   const [geleendPre2024, setGeleendPre2024] = useState(0);
 
+  // Effect om initiële waarden in te stellen op basis van query parameters in de URL
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const initialAanloop = urlParams.get("aanloopfase");
-    const initialAflos = urlParams.get("aflosfase");
-    const initialRente = urlParams.get("rentepercentage");
-    const initialInkomen = urlParams.get("inkomen");
-    const initialLeningpm = urlParams.get("leningpm");
-    const initialLeenduur = urlParams.get("leenduur");
-    const initialmax35 = urlParams.get("max35");
-    const initialHypoRente = urlParams.get("hypotheekRente");
-    const initialPre2024 = urlParams.get("geleendPre2024");
 
-    setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(
-      initialmax35 === "true" ? true : initialmax35 === "false" ? false : true
-    );
-    setAflosFase(initialAflos ? initialAflos : 1);
-    setRentepercentage(initialRente ? initialRente : 0);
-    setInkomen(initialInkomen ? initialInkomen : 1500);
-    setLeningpm(initialLeningpm ? initialLeningpm : 0);
-    setLeenduur(initialLeenduur ? initialLeenduur : 1);
-    setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
-    setGeleendPre2024(initialPre2024 ? initialPre2024 : 0);
+    // Haal query parameters op en zet deze als initiële waarden voor de states
+    setAanloopfase(urlParams.get("aanloopfase") || "nee");
+    setMax35(urlParams.get("max35") === "true" || false);
+    setAflosFase(urlParams.get("aflosfase") || 1);
+    setRentepercentage(urlParams.get("rentepercentage") || 0);
+    setInkomen(urlParams.get("inkomen") || 1500);
+    setLeningpm(urlParams.get("leningpm") || 0);
+    setLeenduur(urlParams.get("leenduur") || 1);
+    setHypotheekRente(urlParams.get("hypotheekRente") || 4.5);
+    setGeleendPre2024(urlParams.get("geleendPre2024") || 0);
   }, []);
 
+  // Effect om schermoriëntatie te controleren en bij te werken
   useEffect(() => {
     const handleOrientationChange = () => {
+      // Controleer of de huidige oriëntatie staand (portrait) of liggend (landscape) is
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
-      if (isPortrait) {
-        setOrientation("Portrait");
-      } else {
-        setOrientation("Landscape");
-      }
+      // Zet de oriëntatie state op basis van de schermoriëntatie
+      setOrientation(isPortrait ? "Portrait" : "Landscape");
     };
 
+    // Roep de oriëntatiefunctie aan bij het laden en luister naar wijzigingen
     handleOrientationChange();
-
     window.addEventListener("resize", handleOrientationChange);
 
+    // Voorkom geheugenlekken door luisteraar te verwijderen bij het opruimen
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
   }, []);
 
+  // Effect voor het geleidelijk weergeven van een introductietekst
   useEffect(() => {
+    // Introductietekst instellen
     const headerText = `Je studie zal waarschijnlijk een paar jaar duren. De duur van je lening hangt af van de duur van je studie, dus controleer dit eerst. Hoelang zou je graag willen lenen?`;
 
+    // Variabele en interval voor het geleidelijk updaten van de getoonde tekst
     let index = 0;
     const interval = setInterval(() => {
       setDisplayedText(headerText.substring(0, index));
       index++;
+
+      // Stop het interval en geef antwoordstatus als de tekst compleet is
       if (index > headerText.length) {
         clearInterval(interval);
         setAntwoord(true);
       }
     }, 10);
 
+    // Voorkom geheugenlekken door interval te wissen bij het opruimen
     return () => clearInterval(interval);
   }, []);
 
+  // Functie om leenduur bij te werken op basis van invoer
   const handleLeenduur = (e) => {
+    // Zet de bijgewerkte waarde als een geheel getal in de state
     const updatedValue = parseInt(e.target.value);
     setLeenduur(updatedValue);
   };
 
+  // Animatiefunctie voor karakter
   const characterAnimation = () => {
+    // Haal het SVG-element op met behulp van de ref
     const svgElement = svgRef.current;
+
+    // Voeg een klasse toe voor animatie als het SVG-element bestaat
     if (svgElement) {
       svgElement.classList.add("explode");
     }
@@ -102,20 +106,25 @@ const Step2 = () => {
 
   return (
     <>
+      {/* Voorwaardelijke weergave op basis van schermoriëntatie */}
       {orientation === "Landscape" ? (
         <>
           <Link href={`/`}>
             <Logo />
           </Link>
+          {/* Voortgangsbalk met dynamische breedte en huidige pagina */}
           <Progressbar
             progressWidth={progressWidth}
             currentPage={currentPage}
           ></Progressbar>
+          {/* Header met dynamische tekst */}
           <header>{displayedText}</header>
           {antwoord && (
+            // Weergeef sectie met antwoordinvoer en opslaan-knop
             <section className="antwoord">
               {" "}
               <div>
+                {/* Toon de leenduur en voeg een invoerschuifregelaar toe voor bijwerken */}
                 <label>Leenduur: {leenduur} jaar</label>
                 <input
                   type="range"
@@ -126,6 +135,7 @@ const Step2 = () => {
                   step="1"
                 />
               </div>
+              {/* Navigatielink naar volgende stap met parameters in URL */}
               <Link
                 href={`/step3?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
                 className="opslaan"
@@ -137,7 +147,7 @@ const Step2 = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Hoelang mag ik lenen?{" "}
+                Hoelang mag ik lenen?
               </Link>
             </section>
           )}

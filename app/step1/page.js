@@ -106,11 +106,14 @@ const Step1 = () => {
 
   return (
     <>
+      {" "}
+      {/* Voorwaardelijke weergave op basis van schermoriëntatie */}
       {orientation === "Landscape" ? (
         <>
           <Link href={`/`}>
             <Logo />
           </Link>
+          {/* Voortgangsbalk met dynamische breedte en huidige pagina */}
           <Progressbar
             progressWidth={progressWidth}
             currentPage={currentPage}
@@ -131,7 +134,6 @@ const Step1 = () => {
                   step="10"
                 />
               </div>
-
               {/* Navigatielink naar volgende stap met parameters in URL */}
               <Link
                 href={`/step2?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
