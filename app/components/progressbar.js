@@ -56,7 +56,9 @@ const Progressbar = ({ progressWidth, currentPage }) => {
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
     setMax35(initialmax35 ? initialmax35 : true);
     setAflosFase(initialAflos ? initialAflos : 1);
-    setRentepercentage(initialRente ? initialRente : 0);
+    setRentepercentage(
+      initialRente ? initialRente : initialmax35 === "true" ? 2.95 : 2.56
+    );
     setInkomen(initialInkomen ? initialInkomen : 1500);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
