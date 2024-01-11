@@ -98,8 +98,11 @@ const SliderPanel = ({
 
     // Cleanup-functie om event listeners te verwijderen bij het opruimen van het component
     return () => {
-      sliderRef.current.removeEventListener("touchstart", handleTouchStart);
-      sliderRef.current.removeEventListener("touchend", handleTouchEnd);
+      // Controleer of sliderRef.current bestaat voordat je removeEventListener aanroept
+      if (sliderRef.current) {
+        sliderRef.current.removeEventListener("touchstart", handleTouchStart);
+        sliderRef.current.removeEventListener("touchend", handleTouchEnd);
+      }
     };
   }, []);
 
