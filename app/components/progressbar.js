@@ -64,7 +64,7 @@ const Progressbar = ({ progressWidth, currentPage }) => {
       className={"completeness-meter"}
       style={{ "--progress-width": progressWidth }}
     >
-      <section className="progress-container">
+      <section className="completeness-container">
         {pages.map((page, index) => (
           <section
             key={index}
