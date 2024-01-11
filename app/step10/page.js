@@ -8,9 +8,10 @@ import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step10 = () => {
-  const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
+
+  const [displayedText, setDisplayedText] = useState("");
   const progressWidth = "90.9%";
   const currentPage = 9;
   const [antwoord, setAntwoord] = useState(false);
@@ -39,30 +40,16 @@ const Step10 = () => {
     const initialPre2024 = urlParams.get("geleendPre2024");
 
     setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(initialmax35 ? initialmax35 : null);
+    setMax35(
+      initialmax35 === "true" ? true : initialmax35 === "false" ? false : true
+    );
     setAflosFase(initialAflos ? initialAflos : 1);
     setRentepercentage(initialRente ? initialRente : 0);
-    setInkomen(initialInkomen ? initialInkomen : 0);
+    setInkomen(initialInkomen ? initialInkomen : 1500);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
     setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
     setGeleendPre2024(initialPre2024 ? initialPre2024 : 0);
-  }, []);
-
-  useEffect(() => {
-    const headerText = `Het is belangrijk om rekening te houden met het verwachte inkomen na je studie, omdat je studieschuld invloed heeft op je maandelijkse kosten. Op deze manier kun je beoordelen of het bedrag dat je leent een goede investering is in vergelijking met je verwachte inkomsten. Wat wordt jouw verwachte bruto-inkomen per maand?`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(headerText.substring(0, index));
-      index++;
-      if (index > headerText.length) {
-        clearInterval(interval);
-        setAntwoord(true);
-      }
-    }, 10);
-
-    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -83,6 +70,22 @@ const Step10 = () => {
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
+  }, []);
+
+  useEffect(() => {
+    const headerText = `Het is belangrijk om rekening te houden met het verwachte inkomen na je studie, omdat je studieschuld invloed heeft op je maandelijkse kosten. Op deze manier kun je beoordelen of het bedrag dat je leent een goede investering is in vergelijking met je verwachte inkomsten. Wat wordt jouw verwachte bruto-inkomen per maand?`;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(headerText.substring(0, index));
+      index++;
+      if (index > headerText.length) {
+        clearInterval(interval);
+        setAntwoord(true);
+      }
+    }, 10);
+
+    return () => clearInterval(interval);
   }, []);
 
   const formatToLocaleString = (value) => {
