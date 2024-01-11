@@ -5,15 +5,14 @@
 }
 
 :root {
-  --orange: #f6a22b;
-  --yellow: #facd01;
-  --green: #00bc71;
-  --mint: #1ccdd5;
-  --blue: #1a25ab;
+  --orange: #fa8803;
+  --yellow: #fade3e;
+  --green: #58d880;
+  --blue: #087892;
   --red: #f24f50;
   --pink: #f1c2e6;
   --grey: #dfddde;
-  --neutral: #ece6c2;
+  --neutral: #f7f0d6;
 }
 
 ::-webkit-scrollbar {
@@ -290,7 +289,7 @@ header.onboarding::before {
 }
 
 .prevenext > a:nth-of-type(1) {
-  background: var(--mint);
+  background: var(--neutral);
 }
 
 .prevenext.onboarding {
@@ -331,7 +330,7 @@ header.onboarding::before {
 }
 
 .prevenext.onboarding > a:nth-of-type(2) {
-  background-color: var(--mint);
+  background-color: var(--neutral);
 }
 
 .completeness-meter {
@@ -655,7 +654,7 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: clamp(0.5em, 1.5vw, 1.2em);
+  font-size: clamp(0.7em, 1.4vw, 1.2em);
   margin: 4px 2px;
   transition-duration: 0.1s;
   cursor: pointer;
@@ -674,7 +673,7 @@ button:hover {
 
 .antwoord > a:not(.opslaan),
 button {
-  background-color: var(--mint);
+  background-color: var(--neutral);
 }
 
 .prevenext a:active,
