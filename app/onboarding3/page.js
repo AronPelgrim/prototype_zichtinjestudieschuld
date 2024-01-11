@@ -5,45 +5,51 @@ import { useEffect, useState } from "react";
 import "../../styles/Global.css";
 import Logo from "../components/logo";
 
-const Onboarding2 = () => {
-  const [displayedText, setDisplayedText] = useState("");
+const Onboarding3 = () => {
+  // State hooks voor het bijhouden van schermoriëntatie, getoonde tekst en antwoordstatus
   const [orientation, setOrientation] = useState("");
+  const [displayedText, setDisplayedText] = useState("");
   const [antwoord, setAntwoord] = useState(false);
 
+  // Effect om schermoriëntatie te controleren en bij te werken
   useEffect(() => {
     const handleOrientationChange = () => {
+      // Controleer of de huidige oriëntatie staand (portrait) of liggend (landscape) is
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
-      if (isPortrait) {
-        setOrientation("Portrait");
-      } else {
-        setOrientation("Landscape");
-      }
+      // Zet de oriëntatie state op basis van de schermoriëntatie
+      setOrientation(isPortrait ? "Portrait" : "Landscape");
     };
 
+    // Roep de oriëntatiefunctie aan bij het laden en luister naar wijzigingen
     handleOrientationChange();
-
     window.addEventListener("resize", handleOrientationChange);
 
+    // Voorkom geheugenlekken door luisteraar te verwijderen bij het opruimen
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
   }, []);
 
+  // Effect voor het geleidelijk weergeven van een introductietekst
   useEffect(() => {
-    const headerText = `Om dat te doen, neem ik je mee op een reis door de tijd, tijdens 
-    en na je studie. Deze reis bestaat uit 10 stappen en geeft je een duidelijk beeld van de impact van je studieschuld!`;
+    // Introductietekst instellen
+    const headerText = `Om dat te doen, neem ik je mee op een reis door de tijd, tijdens en na je studie. Deze reis bestaat uit 10 stappen en geeft je een duidelijk beeld van de impact van je studieschuld!`;
 
+    // Variabele en interval voor het geleidelijk updaten van de getoonde tekst
     let index = 0;
     const interval = setInterval(() => {
       setDisplayedText(headerText.substring(0, index));
       index++;
+
+      // Stop het interval en geef antwoordstatus als de tekst compleet is
       if (index > headerText.length) {
         clearInterval(interval);
         setAntwoord(true);
       }
     }, 10);
 
+    // Voorkom geheugenlekken door interval te wissen bij het opruimen
     return () => clearInterval(interval);
   }, []);
 
@@ -275,4 +281,4 @@ const Onboarding2 = () => {
   );
 };
 
-export default Onboarding2;
+export default Onboarding3;
