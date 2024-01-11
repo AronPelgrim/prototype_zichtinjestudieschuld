@@ -265,34 +265,34 @@ header.onboarding::before {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  height: 75vh;
-  width: 90vw;
   position: fixed;
-  top: 50%;
   left: 50%;
+  top: 50%;
+  width: 90vw;
+  height: 75vh;
+  font-family: "Montserrat", sans-serif;
   transform: translate(-50%, -50%);
+  animation: appear1 0.5s ease-in both;
   gap: 1em;
   overflow: visible;
-  animation: appear1 0.5s ease-in both;
-  font-family: "Montserrat", sans-serif;
 }
 
 .result-grid > section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 1em;
+  justify-content: center;
+  position: relative;
+  border: 4px solid black;
   border-radius: 0.5em;
   text-align: center;
-  border: 4px solid black;
+  gap: 1em;
   overflow: hidden;
-  position: relative;
 }
 
-.result-grid section svg {
-  max-width: 55%;
-  margin: -1.5em 0;
+.result-grid section:nth-of-type(1) {
+  grid-area: 1 / 1 / 3 / 1;
+  gap: 3.5em;
 }
 
 .result-grid section h1,
@@ -304,15 +304,15 @@ header.onboarding::before {
 .result-grid section p,
 .open p,
 .open li {
-  font-size: clamp(0.5em, 1.1vw, 5em);
   max-width: 70%;
+  font-size: clamp(0.5em, 1.1vw, 5em);
   line-height: 1.5;
   overflow: visible;
 }
 
-.result-grid section:nth-of-type(1) {
-  grid-area: 1 / 1 / 3 / 1;
-  gap: 3.5em;
+.result-grid section svg {
+  max-width: 55%;
+  margin: -1.5em 0;
 }
 
 .prevenext {
