@@ -123,7 +123,7 @@ header.onboarding::before {
   position: relative;
   height: 10px;
   margin: 1.3em 1em;
-  background-color: white;
+  background-color: #fff;
   overflow: visible;
 }
 
@@ -185,8 +185,8 @@ header.onboarding::before {
   max-width: 50%;
   max-height: 40%;
   padding: 1em;
-  border: 0.4em solid black;
-  background: white;
+  border: 0.4em solid #000;
+  background: #fff;
   font-size: clamp(0.5em, 1.9vw, 1.7em);
   text-align: center;
   transform: translate(-50%, 0);
@@ -427,6 +427,14 @@ header.onboarding::before {
   background: var(--neutral);
 }
 
+.vorige-volgende.onboarding > a:nth-of-type(1) {
+  background: var(--green);
+}
+
+.vorige-volgende.onboarding > a:nth-of-type(2) {
+  background-color: var(--neutral);
+}
+
 .resultIntro button {
   position: absolute;
   z-index: 15000;
@@ -443,14 +451,6 @@ header.onboarding::before {
 .resultIntro button:active {
   transform: translate(-50%, -50%) translateY(0.2em);
   box-shadow: none;
-}
-
-.vorige-volgende.onboarding > a:nth-of-type(1) {
-  background: var(--green);
-}
-
-.vorige-volgende.onboarding > a:nth-of-type(2) {
-  background-color: var(--neutral);
 }
 
 .result-grid .info-icon,
@@ -496,7 +496,7 @@ header.onboarding::before {
 input[type="number"] {
   font-size: 1em;
   text-align: center;
-  border: 2px solid black;
+  border: 2px solid #000;
   padding: 5px;
   font-family: "lores-12", sans-serif;
   font-weight: 700;
@@ -553,7 +553,7 @@ input[type="radio"]:hover {
   text-indent: -9999px;
   width: 40px;
   height: 20px;
-  background: grey;
+  background: var(--grey);
   display: block;
   border-radius: 10px;
   position: relative;
