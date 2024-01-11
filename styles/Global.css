@@ -5,14 +5,14 @@
 }
 
 :root {
-  --orange: #f79c5b;
-  --yellow: #fade3e;
-  --green: #58d880;
-  --blue: #1f699e;
-  --red: #f33660;
+  --orange: #f6936c;
+  --yellow: #ffd726;
+  --green: #00bc71;
+  --blue: #1a25ab;
+  --red: #f24f50;
   --pink: #f1c2e6;
-  --grey: #d0d0d0;
-  --neutral: #f7f0d6;
+  --grey: #dfddde;
+  --neutral: #f1ecd1;
 }
 
 ::-webkit-scrollbar {
