@@ -8,9 +8,9 @@ import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step4 = () => {
+  // State hooks voor het bijhouden van schermoriëntatie, getoonde tekst, antwoordstatus en verschillende parameters
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
-
   const [displayedText, setDisplayedText] = useState("");
   const progressWidth = "36.36%";
   const currentPage = 3;
@@ -18,6 +18,7 @@ const Step4 = () => {
   const [jarenPre2024, setJarenPre2024] = useState({});
   const [showRenteInfo, setShowRenteInfo] = useState(false);
 
+  // State hooks voor parameters gerelateerd aan studieschuld en hypotheek
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
   const [rentepercentage, setRentepercentage] = useState(0);
@@ -28,69 +29,69 @@ const Step4 = () => {
   const [hypotheekRente, setHypotheekRente] = useState(0);
   const [geleendPre2024, setGeleendPre2024] = useState(0);
 
+  // Effect om initiële waarden in te stellen op basis van query parameters in de URL
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const initialAanloop = urlParams.get("aanloopfase");
-    const initialAflos = urlParams.get("aflosfase");
-    const initialInkomen = urlParams.get("inkomen");
-    const initialLeningpm = urlParams.get("leningpm");
-    const initialLeenduur = urlParams.get("leenduur");
-    const initialmax35 = urlParams.get("max35");
-    const initialHypoRente = urlParams.get("hypotheekRente");
-    const initialPre2024 = urlParams.get("geleendPre2024");
 
-    setAanloopfase(initialAanloop ? initialAanloop : "nee");
-    setMax35(
-      initialmax35 === "true" ? true : initialmax35 === "false" ? false : null
-    );
-    setAflosFase(initialAflos ? initialAflos : 1);
+    // Haal query parameters op en zet deze als initiële waarden voor de states
+    setAanloopfase(urlParams.get("aanloopfase") || "nee");
+    setMax35(urlParams.get("max35") === "true" || false);
+    setAflosFase(urlParams.get("aflosfase") || 1);
     setRentepercentage(
-      initialmax35 === "true" ? 2.56 : initialmax35 === "false" ? 2.95 : null
+      urlParams.get("rentepercentage") ||
+        (urlParams.get("max35") === "true" ? 2.56 : 2.95)
     );
-    setInkomen(initialInkomen ? initialInkomen : 1500);
-    setLeningpm(initialLeningpm ? initialLeningpm : 0);
-    setLeenduur(initialLeenduur ? initialLeenduur : 1);
-    setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
-    setGeleendPre2024(initialPre2024 ? initialPre2024 : 0);
+    setInkomen(urlParams.get("inkomen") || 1500);
+    setLeningpm(urlParams.get("leningpm") || 0);
+    setLeenduur(urlParams.get("leenduur") || 1);
+    setHypotheekRente(urlParams.get("hypotheekRente") || 4.5);
+    setGeleendPre2024(urlParams.get("geleendPre2024") || 0);
   }, []);
 
+  // Effect om schermoriëntatie te controleren en bij te werken
   useEffect(() => {
     const handleOrientationChange = () => {
+      // Controleer of de huidige oriëntatie staand (portrait) of liggend (landscape) is
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
-      if (isPortrait) {
-        setOrientation("Portrait");
-      } else {
-        setOrientation("Landscape");
-      }
+      // Zet de oriëntatie state op basis van de schermoriëntatie
+      setOrientation(isPortrait ? "Portrait" : "Landscape");
     };
 
+    // Roep de oriëntatiefunctie aan bij het laden en luister naar wijzigingen
     handleOrientationChange();
-
     window.addEventListener("resize", handleOrientationChange);
 
+    // Voorkom geheugenlekken door luisteraar te verwijderen bij het opruimen
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
   }, []);
 
+  // Effect voor het geleidelijk weergeven van een introductietekst
   useEffect(() => {
+    // Introductietekst instellen
     const headerText = `Tijdens je studie wordt elk jaar opnieuw bepaald wat het rentepercentage is. Als je klaar bent met studeren, kun je dit percentage steeds voor 5 jaar vastzetten (rentevaste periode). Sinds januari 2024 zijn de rentepercentages verhoogd. Namelijk SF15: 2,95% en SF35: 2,56%. Als je voor januari 2024 al hebt geleend, dat je de studieschuld tot deze tijd met een ander rentepercentage hebt opgebouwd:`;
 
+    // Variabele en interval voor het geleidelijk updaten van de getoonde tekst
     let index = 0;
     const interval = setInterval(() => {
       setDisplayedText(headerText.substring(0, index));
       index++;
+
+      // Stop het interval en geef antwoordstatus als de tekst compleet is
       if (index > headerText.length) {
         clearInterval(interval);
         setAntwoord(true);
       }
     }, 10);
 
+    // Voorkom geheugenlekken door interval te wissen bij het opruimen
     return () => clearInterval(interval);
   }, []);
 
+  // Effect om rentepercentages voor elk jaar te genereren op basis van het jaar van vóór 2024
   useEffect(() => {
     const generateRentePerJaar = (startJaar) => {
       const rentepercentages = [
@@ -115,23 +116,24 @@ const Step4 = () => {
       return jarenMetRente;
     };
 
+    // Genereer rentepercentages voor elk jaar en zet deze in de state
     const renteVoorJaren = generateRentePerJaar(geleendPre2024);
     setJarenPre2024(renteVoorJaren);
   }, [geleendPre2024]);
 
+  // Functie voor het bijwerken van het aantal geleende jaren voorafgaand aan 2024
   const handlePre2024 = (e) => {
     const updatedValue = parseFloat(e.target.value);
     setGeleendPre2024(updatedValue);
   };
 
+  // Functie om de weergave van rente-informatie te schakelen
   const handleRenteInfo = () => {
-    if (showRenteInfo == false) {
-      setShowRenteInfo(true);
-    } else if (showRenteInfo == true) {
-      setShowRenteInfo(false);
-    }
+    // Omgekeerde waarde van de huidige weergavestatus gebruiken om te schakelen
+    setShowRenteInfo(!showRenteInfo);
   };
 
+  // Functie voor het toevoegen van een explode-animatie aan het SVG-element
   const characterAnimation = () => {
     const svgElement = svgRef.current;
     if (svgElement) {
@@ -155,13 +157,19 @@ const Step4 = () => {
           <header>{displayedText}</header>
           {antwoord && (
             <section className="antwoord">
+              {/* Voorwaardelijke weergave op basis van showRenteInfo-status */}
               {!showRenteInfo && (
                 <>
-                  {" "}
+                  {/* Informatie over rente en totale leenduur vóór 2024 */}
                   <div>
                     <label>
                       Jouw rente vanaf 2024 is{" "}
+                      {/* Weergave van rentepercentage met kleurcodering en opmaak */}
                       <span style={{ color: "var(--red)" }}>
+                        {/*
+                          Controleer of rentepercentage geldig is en zet het om naar een opgemaakte string in het Nederlands
+                          met twee decimalen (minimaal en maximaal) en een percentage symbool.
+                        */}
                         {rentepercentage !== null &&
                         !isNaN(parseFloat(rentepercentage))
                           ? parseFloat(rentepercentage).toLocaleString(
@@ -178,15 +186,18 @@ const Step4 = () => {
                   <div>
                     <label>
                       Mijn totale leenduur is{" "}
+                      {/* Weergave van leenduur met kleurcodering */}
                       <span style={{ color: "var(--red)" }}>
                         {leenduur} jaar
                       </span>
                       , daarvan heb ik tot januari 2024 al{" "}
+                      {/* Weergave van geleendPre2024 met kleurcodering */}
                       <span style={{ color: "var(--red)" }}>
                         {geleendPre2024} jaar
                       </span>{" "}
                       geleend.
                     </label>
+                    {/* Invoerschuifregelaar voor het aanpassen van geleendPre2024 */}
                     <input
                       type="range"
                       min="0"
@@ -196,11 +207,13 @@ const Step4 = () => {
                       step="1"
                     />
                   </div>
+                  {/* Knop voor het weergeven van meer informatie */}
                   <button onClick={handleRenteInfo}>Vertel meer</button>
                 </>
               )}
               {showRenteInfo && (
                 <>
+                  {/* Gedetailleerde informatie over rentepercentages per jaar */}
                   <div>
                     <ul
                       style={{
@@ -208,14 +221,18 @@ const Step4 = () => {
                       }}
                     >
                       <li>
-                        {" "}
                         Dit zijn de rentepercentages die tijdens de opbouw van
                         je studieschuld in rekening worden gebracht:
                       </li>
                       {Object.entries(jarenPre2024).map(([jaar, rente]) => (
                         <li key={jaar}>
                           {jaar}:{" "}
+                          {/* Weergave van rentepercentage per jaar met kleurcodering en opmaak */}
                           <span style={{ color: "var(--red)" }}>
+                            {/*
+                            Zet het rentepercentage om naar een opgemaakte string in het Nederlands
+                            met twee decimalen (minimaal en maximaal) en een percentage symbool.
+                          */}
                             {parseFloat(rente).toLocaleString("nl-NL", {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,
@@ -224,9 +241,11 @@ const Step4 = () => {
                           rente
                         </li>
                       ))}
-                      {leenduur != geleendPre2024 ? (
+                      {/* Toon rentepercentage vanaf 2024 als leenduur niet gelijk is aan geleendPre2024 */}
+                      {leenduur !== geleendPre2024 ? (
                         <li>
                           Vanaf 2024:{" "}
+                          {/* Weergave van rentepercentage met kleurcodering en opmaak */}
                           <span style={{ color: "var(--red)" }}>
                             {parseFloat(rentepercentage).toLocaleString(
                               "nl-NL",
@@ -241,9 +260,11 @@ const Step4 = () => {
                       ) : null}
                     </ul>
                   </div>
+                  {/* Knop voor het verbergen van gedetailleerde informatie */}
                   <button onClick={handleRenteInfo}>
                     Geleend pré 2024 aanpassen
                   </button>
+                  {/* Navigatielink naar volgende stap met parameters in URL */}
                   <Link
                     href={`/step5?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
                     className="opslaan"
