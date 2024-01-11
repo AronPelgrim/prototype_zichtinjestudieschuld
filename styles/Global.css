@@ -105,7 +105,7 @@ body:has(.scroll) {
 }
 
 .logo:hover {
-  transform: rotate(-270deg) translateX(50%) translateY(10px);
+  opacity: 0.5;
   cursor: pointer;
 }
 
