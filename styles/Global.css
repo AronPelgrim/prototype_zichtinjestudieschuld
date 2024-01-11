@@ -232,6 +232,14 @@ header.onboarding::before {
   transform: translate(-50%, -50%);
 }
 
+.background-svg {
+  width: 100vw;
+  position: absolute;
+  opacity: 0.8;
+  z-index: -200;
+  bottom: 0;
+}
+
 .result {
   height: 100vh;
 }
@@ -388,35 +396,35 @@ header.onboarding::before {
 }
 
 .vorige-volgende {
-  top: 42%;
-  width: 96vw;
   display: flex;
-  justify-content: space-between;
-  margin: 0 2vw;
   align-items: center;
+  justify-content: space-between;
   position: fixed;
+  top: 42%;
   z-index: 2000;
-  overflow: visible;
+  width: 96vw;
+  margin: 0 2vw;
   transition-duration: 0.2s;
+  overflow: visible;
+}
+
+.vorige-volgende.onboarding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  position: fixed;
+  left: 50%;
+  bottom: 1vh;
+  z-index: 15000;
+  transform: translate(-50%, -0%);
+  transition-duration: 0.2s;
+  all: unset;
 }
 
 .vorige-volgende > a:nth-of-type(1) {
   background: var(--neutral);
-}
-
-.vorige-volgende.onboarding {
-  all: unset;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  z-index: 15000;
-  position: fixed;
-  bottom: 1vh;
-  left: 50%;
-  transform: translate(-50%, -0%);
-  transition-duration: 0.2s;
 }
 
 .resultIntro button {
@@ -612,14 +620,6 @@ input:checked + .label-toggle:after {
 .poor {
   animation: shrink 0.3s both;
   transform-origin: center;
-}
-
-.background {
-  width: 100vw;
-  position: absolute;
-  opacity: 0.8;
-  z-index: -200;
-  bottom: 0;
 }
 
 .vorige-volgende a,
