@@ -5,13 +5,13 @@
 }
 
 :root {
-  --orange: #fa8803;
+  --orange: #f79c5b;
   --yellow: #fade3e;
   --green: #58d880;
-  --blue: #087892;
-  --red: #f24f50;
+  --blue: #1f699e;
+  --red: #f33660;
   --pink: #f1c2e6;
-  --grey: #dfddde;
+  --grey: #d0d0d0;
   --neutral: #f7f0d6;
 }
 
@@ -489,15 +489,11 @@ input[type="number"] {
   width: 6ch;
   margin-left: 50%;
   transform: translate(-50%);
-  border-radius: 0.5em;
+  border-radius: 0.4em;
 }
 
 input[type="range"] {
   cursor: pointer;
-}
-
-.slider > div > input[type="range"] {
-  width: 200px;
 }
 
 input[type="range"]:active ~ .slider {
@@ -654,7 +650,7 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: clamp(0.7em, 1.4vw, 1.2em);
+  font-size: clamp(0.7em, 1.3vw, 1.2em);
   margin: 4px 2px;
   transition-duration: 0.1s;
   cursor: pointer;

@@ -260,7 +260,7 @@ const Result = () => {
                   {Object.entries(jarenPre2024).map(([jaar, rente]) => (
                     <li key={jaar}>
                       Jaar {jaar}:{" "}
-                      <span style={{ color: "var(--blue)" }}>
+                      <span style={{ color: "var(--red)" }}>
                         {parseFloat(rente).toLocaleString("nl-NL", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
@@ -272,7 +272,7 @@ const Result = () => {
                   {leenduur != geleendPre2024 ? (
                     <li>
                       Vanaf jaar 2024:{" "}
-                      <span style={{ color: "var(--blue)" }}>
+                      <span style={{ color: "var(--red)" }}>
                         {parseFloat(rentepercentage).toLocaleString("nl-NL", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
@@ -328,7 +328,7 @@ const Result = () => {
                 <p>
                   Dit is het bedrag dat je gaat betalen aan rente, met een
                   rentepercentage van{" "}
-                  <span style={{ color: "var(--blue)" }}>
+                  <span style={{ color: "var(--red)" }}>
                     {rentepercentage}%{" "}
                   </span>
                   als je {aflosFase} jaar doet over het aflossen van je

@@ -160,7 +160,7 @@ const Step4 = () => {
                   <div>
                     <label>
                       Jouw rente vanaf 2024 is{" "}
-                      <span style={{ color: "var(--blue)" }}>
+                      <span style={{ color: "var(--red)" }}>
                         {rentepercentage !== null &&
                         !isNaN(parseFloat(rentepercentage))
                           ? parseFloat(rentepercentage).toLocaleString(
@@ -177,11 +177,11 @@ const Step4 = () => {
                   <div>
                     <label>
                       Mijn totale leenduur is{" "}
-                      <span style={{ color: "var(--blue)" }}>
+                      <span style={{ color: "var(--red)" }}>
                         {leenduur} jaar
                       </span>
                       , daarvan heb ik tot januari 2024 al{" "}
-                      <span style={{ color: "var(--blue)" }}>
+                      <span style={{ color: "var(--red)" }}>
                         {geleendPre2024} jaar
                       </span>{" "}
                       geleend.
@@ -214,7 +214,7 @@ const Step4 = () => {
                       {Object.entries(jarenPre2024).map(([jaar, rente]) => (
                         <li key={jaar}>
                           {jaar}:{" "}
-                          <span style={{ color: "var(--blue)" }}>
+                          <span style={{ color: "var(--red)" }}>
                             {parseFloat(rente).toLocaleString("nl-NL", {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,
@@ -226,7 +226,7 @@ const Step4 = () => {
                       {leenduur != geleendPre2024 ? (
                         <li>
                           Vanaf 2024:{" "}
-                          <span style={{ color: "var(--blue)" }}>
+                          <span style={{ color: "var(--red)" }}>
                             {parseFloat(rentepercentage).toLocaleString(
                               "nl-NL",
                               {
