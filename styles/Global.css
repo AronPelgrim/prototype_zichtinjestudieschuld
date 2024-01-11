@@ -77,6 +77,19 @@ header.onboarding::before {
   animation: none;
 }
 
+.portretMode {
+  display: flex;
+  align-items: center;
+  width: 90vw;
+  height: 90vh;
+  margin: 5vh 5vw;
+  text-align: center;
+}
+
+.portretMode h1 {
+  font-size: 3.5em;
+}
+
 .logo {
   position: fixed;
   right: 0;
@@ -200,6 +213,23 @@ header.onboarding::before {
 
 .antwoord li {
   padding: 0.2em;
+}
+
+.character {
+  position: fixed;
+  left: 7em;
+  bottom: 2vh;
+  width: 14vw;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.character.onboarding {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 14vw;
+  transform: translate(-50%, -50%);
 }
 
 .result {
@@ -357,7 +387,7 @@ header.onboarding::before {
   background-color: rgba(241, 194, 230, 0.6);
 }
 
-.prevenext {
+.vorige-volgende {
   top: 42%;
   width: 96vw;
   display: flex;
@@ -370,11 +400,11 @@ header.onboarding::before {
   transition-duration: 0.2s;
 }
 
-.prevenext > a:nth-of-type(1) {
+.vorige-volgende > a:nth-of-type(1) {
   background: var(--neutral);
 }
 
-.prevenext.onboarding {
+.vorige-volgende.onboarding {
   all: unset;
   display: flex;
   flex-direction: column;
@@ -407,11 +437,11 @@ header.onboarding::before {
   box-shadow: none;
 }
 
-.prevenext.onboarding > a:nth-of-type(1) {
+.vorige-volgende.onboarding > a:nth-of-type(1) {
   background: var(--green);
 }
 
-.prevenext.onboarding > a:nth-of-type(2) {
+.vorige-volgende.onboarding > a:nth-of-type(2) {
   background-color: var(--neutral);
 }
 
@@ -547,23 +577,6 @@ input:checked + .label-toggle:after {
   width: 100px;
 }
 
-.character1 {
-  width: 14vw;
-  position: fixed;
-  bottom: 2vh;
-  left: 7em;
-  cursor: pointer;
-  overflow: visible;
-}
-
-.character2 {
-  width: 14vw;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .appearing {
   animation: appear1 0.5s ease-in both;
 }
@@ -609,7 +622,7 @@ input:checked + .label-toggle:after {
   bottom: 0;
 }
 
-.prevenext a,
+.vorige-volgende a,
 .opslaan,
 .antwoord a,
 button {
@@ -642,7 +655,7 @@ button {
   background-color: var(--neutral);
 }
 
-.prevenext a:active,
+.vorige-volgende a:active,
 .opslaan:active,
 .antwoord a:active,
 .antwoord button:active,
@@ -652,19 +665,6 @@ button {
 .open .info-icon:active {
   box-shadow: none;
   transform: translateY(0.2em);
-}
-
-.portretMode {
-  width: 90vw;
-  text-align: center;
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  margin: 5vh 5vw;
-}
-
-.portretMode > h1 {
-  font-size: 3.5em;
 }
 
 @keyframes slide-right {
@@ -963,12 +963,12 @@ button {
   .slider:has(input:active) button {
     opacity: 1;
   }
-  .prevenext {
+  .vorige-volgende {
     top: 50%;
   }
 
-  .progress-container {
-    gap: calc(9.09% - 25px);
+  .completeness-container {
+    gap: calc(9.09% - 26px);
   }
 
   .circle {

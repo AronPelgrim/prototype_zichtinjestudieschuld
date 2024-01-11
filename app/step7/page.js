@@ -149,7 +149,7 @@ const Step7 = () => {
               </Link>
             </section>
           )}
-          <section className="prevenext">
+          <section className="vorige-volgende">
             <Link
               href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
             >
@@ -163,7 +163,7 @@ const Step7 = () => {
             data-name="Laag 1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 506.78 775.059"
-            className="character1 sliding-right"
+            className="character sliding-right"
             onClick={characterAnimation}
           >
             <path

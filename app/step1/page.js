@@ -131,7 +131,7 @@ const Step1 = () => {
               </Link>
             </section>
           )}
-          <section className="prevenext">
+          <section className="vorige-volgende">
             <Link href={`/`}>Vorige</Link>
           </section>
           <Backg1></Backg1>
@@ -140,7 +140,7 @@ const Step1 = () => {
             data-name="Laag 1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 506.78 775.059"
-            className="character1 sliding-right"
+            className="character sliding-right"
             onClick={characterAnimation}
             ref={svgRef}
           >
