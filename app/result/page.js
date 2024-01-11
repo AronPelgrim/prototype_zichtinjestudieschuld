@@ -232,7 +232,7 @@ const Result = () => {
       {" "}
       {orientation === "Landscape" ? (
         <>
-          <section className="scroll">
+          <section className="result">
             <Progressbar
               progressWidth={progressWidth}
               currentPage={currentPage}

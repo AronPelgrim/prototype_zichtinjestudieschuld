@@ -34,23 +34,23 @@ body {
   overflow: hidden;
 }
 
-body:has(.scroll) {
+body:has(.result) {
   height: auto;
   overflow: visible;
 }
 
-.scroll {
+.result {
   height: 100vh;
 }
 
-.scroll:has(header) .slider,
-.scroll:has(header) .result-grid section {
+.result:has(header) .slider,
+.result:has(header) .result-grid section {
   opacity: 0.08;
   pointer-events: none;
   touch-action: none;
 }
 
-.scroll .open {
+.result .open {
   position: fixed;
   display: flex;
   align-items: center;
@@ -71,15 +71,15 @@ body:has(.scroll) {
   font-family: "Montserrat", sans-serif;
 }
 
-.scroll .open * {
+.result .open * {
   max-width: 40vw;
 }
 
-.scroll .open svg:not(.character1) {
+.result .open svg:not(.character1) {
   max-width: 25%;
 }
 
-.scroll .open ul {
+.result .open ul {
   margin-top: -2em;
   display: flex;
   flex-wrap: wrap;
@@ -631,7 +631,7 @@ input:checked + .label-toggle:after {
   bottom: 0;
 }
 
-.scroll .background {
+.result .background {
   min-width: 100vw;
   opacity: 1;
   position: relative;
@@ -1007,11 +1007,11 @@ button {
     padding: 2px;
   }
 
-  .scroll .open {
+  .result .open {
     gap: 1em;
   }
 
-  .scroll .open ul {
+  .result .open ul {
     margin-top: -1em;
   }
 
