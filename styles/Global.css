@@ -5,10 +5,10 @@
 }
 
 :root {
-  --orange: #ee9335;
+  --orange: #f6a22b;
   --yellow: #facd01;
   --green: #00bc71;
-  --mint: #71b9a5;
+  --mint: #1ccdd5;
   --blue: #1a25ab;
   --red: #f24f50;
   --pink: #f1c2e6;
@@ -99,7 +99,7 @@ body:has(.scroll) {
   top: 50%;
   right: 0;
   padding: 1.15rem 0;
-  transition-duration: 0.4s;
+  transition-duration: 0.2s;
   opacity: 0.6;
   opacity: 1;
 }
@@ -268,7 +268,7 @@ header.onboarding::before {
   font-size: clamp(0.5em, 1.4vw, 1.2em);
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-  transition-duration: 0.4s;
+  transition-duration: 0.2s;
 }
 
 .moreInfo > a:hover {
@@ -286,11 +286,11 @@ header.onboarding::before {
   position: fixed;
   z-index: 2000;
   overflow: visible;
+  transition-duration: 0.2s;
 }
 
 .prevenext > a:nth-of-type(1) {
-  transition-duration: 0.4s;
-  background: var(--neutral);
+  background: var(--mint);
 }
 
 .prevenext.onboarding {
@@ -305,6 +305,7 @@ header.onboarding::before {
   bottom: 1vh;
   left: 50%;
   transform: translate(-50%, -0%);
+  transition-duration: 0.2s;
 }
 
 .resultIntro button {
@@ -320,14 +321,17 @@ header.onboarding::before {
   transform: translate(-50%, -50%) scale(1.03);
 }
 
+.resultIntro button:active {
+  transform: translate(-50%, -50%) translateY(0.2em);
+  box-shadow: none;
+}
+
 .prevenext.onboarding > a:nth-of-type(1) {
-  transition-duration: 0.4s;
   background: var(--green);
 }
 
 .prevenext.onboarding > a:nth-of-type(2) {
-  transition: 0.4s ease;
-  background-color: var(--neutral);
+  background-color: var(--mint);
 }
 
 .completeness-meter {
@@ -369,9 +373,9 @@ header.onboarding::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.4s ease;
+  transition: 0.2s ease;
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 5px;
+  box-shadow: 0 0.15em var(--grey);
   overflow: visible;
 }
 
@@ -380,7 +384,7 @@ header.onboarding::before {
 }
 
 .circle:hover {
-  background: #dedbcb;
+  transform: scale(1.1);
 }
 
 .circle.active {
@@ -426,14 +430,15 @@ header.onboarding::before {
   align-items: center;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.4s ease;
+  transition: 0.2s ease;
   font-family: "Montserrat", sans-serif;
   margin: 15px 0 0 15px;
+  box-shadow: 0 0.1em var(--grey);
+  border: 1px solid var(--grey);
 }
 
 .info-icon:hover {
-  background-color: var(--yellow);
-  opacity: 0.7;
+  transform: scale(1.1);
 }
 
 .slider button {
@@ -521,10 +526,15 @@ input[type="radio"] {
   border: 2px solid #000;
   outline: none;
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
 input[type="radio"]:checked {
   background-color: var(--blue);
+}
+
+input[type="radio"]:hover {
+  transform: scale(1.05);
 }
 
 .label-toggle {
@@ -654,7 +664,7 @@ button {
   font-weight: 700;
   overflow: visible;
   box-shadow: 0 0.2em var(--grey);
-  border: 3px solid var(--grey);
+  border: 2px solid var(--grey);
 }
 
 a:hover,
@@ -664,14 +674,17 @@ button:hover {
 
 .antwoord > a:not(.opslaan),
 button {
-  background-color: var(--neutral);
+  background-color: var(--mint);
 }
 
 .prevenext a:active,
 .opslaan:active,
 .antwoord a:active,
 .antwoord button:active,
-.slider button:active {
+.slider button:active,
+.circle:active,
+.result-grid .info-icon:active,
+.open .info-icon:active {
   box-shadow: none;
   transform: translateY(0.2em);
 }
