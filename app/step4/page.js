@@ -8,9 +8,10 @@ import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step4 = () => {
-  const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
+
+  const [displayedText, setDisplayedText] = useState("");
   const progressWidth = "36.36%";
   const currentPage = 3;
   const [antwoord, setAntwoord] = useState(false);
@@ -55,22 +56,6 @@ const Step4 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Tijdens je studie wordt elk jaar opnieuw bepaald wat het rentepercentage is. Als je klaar bent met studeren, kun je dit percentage steeds voor 5 jaar vastzetten (rentevaste periode). Sinds januari 2024 zijn de rentepercentages verhoogd. Namelijk SF15: 2,95% en SF35: 2,56%. Als je voor januari 2024 al hebt geleend, dat je de studieschuld tot deze tijd met een ander rentepercentage hebt opgebouwd:`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(headerText.substring(0, index));
-      index++;
-      if (index > headerText.length) {
-        clearInterval(interval);
-        setAntwoord(true);
-      }
-    }, 10);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     const handleOrientationChange = () => {
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
@@ -88,6 +73,22 @@ const Step4 = () => {
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
+  }, []);
+
+  useEffect(() => {
+    const headerText = `Tijdens je studie wordt elk jaar opnieuw bepaald wat het rentepercentage is. Als je klaar bent met studeren, kun je dit percentage steeds voor 5 jaar vastzetten (rentevaste periode). Sinds januari 2024 zijn de rentepercentages verhoogd. Namelijk SF15: 2,95% en SF35: 2,56%. Als je voor januari 2024 al hebt geleend, dat je de studieschuld tot deze tijd met een ander rentepercentage hebt opgebouwd:`;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(headerText.substring(0, index));
+      index++;
+      if (index > headerText.length) {
+        clearInterval(interval);
+        setAntwoord(true);
+      }
+    }, 10);
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
