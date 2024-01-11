@@ -109,14 +109,12 @@ const Step5 = () => {
               <Link
                 href={`/step6?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=ja&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
               >
-                <span style={{ color: "var(--blue)" }}>Ja!</span> Handig om het
-                afbetalen nog even te kunnen uitstellen.
+                Ja! Handig om het afbetalen nog even te kunnen uitstellen.
               </Link>
               <Link
                 href={`/step6?step7?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=nee&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
               >
-                <span style={{ color: "var(--blue)" }}>Nee!</span> Ik betaal de
-                schuld zo snel mogelijk af!
+                Nee! Ik betaal de schuld zo snel mogelijk af!
               </Link>
             </section>
           )}
