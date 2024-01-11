@@ -478,7 +478,7 @@ const Result = () => {
                   de onderstaande knop om het controlepaneel te openen en je
                   gegevens te bewerken.
                 </header>
-                <section className="resultIntro">
+                <section className="result-intro">
                   <button
                     onClick={() =>
                       setIntroOpen(introOpen == false ? true : false)

@@ -267,7 +267,7 @@ const Step4 = () => {
             data-name="Laag 1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 506.78 775.059"
-            className="character sliding-right"
+            className="character walking"
             onClick={characterAnimation}
           >
             <path
