@@ -1,35 +1,37 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import "../../styles/Global.css";
 import AflosSVG from "../components/aflossvg";
+import Character from "../components/character";
 import HypotheekSVG from "../components/hypotheeksvg";
+import KoopkrachtSVG from "../components/koopkrachtsvg";
 import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 import RenteBetaaldSVG from "../components/rentebetaaldsvg";
 import Slider from "../components/slider";
 import StudieschuldSVG from "../components/studieschuld";
-import KoopkrachtSVG from "../components/koopkrachtsvg";
-import Character from "../components/character";
-
-import Link from "next/link";
 
 const Result = () => {
   const [orientation, setOrientation] = useState("");
+
+  const progressWidth = "100%";
+  const currentPage = 10;
+
+  const [introOpen, setIntroOpen] = useState(true);
   const [extraInfoSchuld, setExtraInfoSchuld] = useState(false);
   const [extraInfoAflos, setExtraInfoAflos] = useState(false);
   const [extraInfoRente, setExtraInfoRente] = useState(false);
   const [extraInfoHypo, setExtraInfoHypo] = useState(false);
   const [extraInfoKoopkracht, setExtraInfoKoopkracht] = useState(false);
-  const [introOpen, setIntroOpen] = useState(true);
+
   const [studieSchuld, setStudieSchuld] = useState(0);
   const [hypotheek, setHypotheek] = useState(0);
   const [afloskosten, setAfloskosten] = useState(0);
   const [rentebetaald, setRentebetaald] = useState(0);
   const [koopkracht, setKoopkracht] = useState(0);
   const [jarenPre2024, setJarenPre2024] = useState({});
-  const progressWidth = "100%";
-  const currentPage = 10;
 
   const [aflosFase, setAflosFase] = useState(0);
   const [aanloopfase, setAanloopfase] = useState("");
@@ -61,11 +63,31 @@ const Result = () => {
     setRentepercentage(
       initialmax35 === "true" ? 2.56 : initialmax35 === "false" ? 2.95 : null
     );
-    setInkomen(initialInkomen ? initialInkomen : 0);
+    setInkomen(initialInkomen ? initialInkomen : 1500);
     setLeningpm(initialLeningpm ? initialLeningpm : 0);
     setLeenduur(initialLeenduur ? initialLeenduur : 1);
     setHypotheekRente(initialHypoRente ? initialHypoRente : 4.5);
     setGeleendPre2024(initialPre2024 ? initialPre2024 : 0);
+  }, []);
+
+  useEffect(() => {
+    const handleOrientationChange = () => {
+      const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+
+      if (isPortrait) {
+        setOrientation("Portrait");
+      } else {
+        setOrientation("Landscape");
+      }
+    };
+
+    handleOrientationChange();
+
+    window.addEventListener("resize", handleOrientationChange);
+
+    return () => {
+      window.removeEventListener("resize", handleOrientationChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -101,17 +123,6 @@ const Result = () => {
   }, [leningpm, leenduur, rentepercentage, aanloopfase, geleendPre2024]);
 
   useEffect(() => {
-    const monthlyRate = hypotheekRente / 100 / 12;
-    const loanTermMonths = 30 * 12;
-
-    const maxLoanAmount =
-      (afloskosten / monthlyRate) *
-      (1 - Math.pow(1 + monthlyRate, -loanTermMonths));
-
-    setHypotheek(maxLoanAmount.toFixed(2));
-  }, [afloskosten, hypotheekRente]);
-
-  useEffect(() => {
     const maandelijkseRente = rentepercentage / 12 / 100;
     const totaleBetalingen = aflosFase * 12;
 
@@ -121,6 +132,17 @@ const Result = () => {
 
     setAfloskosten(maandelijkseBetaling.toFixed(2));
   }, [studieSchuld, aflosFase, rentepercentage]);
+
+  useEffect(() => {
+    const monthlyRate = hypotheekRente / 100 / 12;
+    const loanTermMonths = 30 * 12;
+
+    const maxLoanAmount =
+      (afloskosten / monthlyRate) *
+      (1 - Math.pow(1 + monthlyRate, -loanTermMonths));
+
+    setHypotheek(maxLoanAmount.toFixed(2));
+  }, [afloskosten, hypotheekRente]);
 
   useEffect(() => {
     const totaleBetalingen = afloskosten * aflosFase * 12;
@@ -161,26 +183,6 @@ const Result = () => {
     const renteVoorJaren = generateRentePerJaar(geleendPre2024);
     setJarenPre2024(renteVoorJaren);
   }, [geleendPre2024]);
-
-  useEffect(() => {
-    const handleOrientationChange = () => {
-      const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-
-      if (isPortrait) {
-        setOrientation("Portrait");
-      } else {
-        setOrientation("Landscape");
-      }
-    };
-
-    handleOrientationChange();
-
-    window.addEventListener("resize", handleOrientationChange);
-
-    return () => {
-      window.removeEventListener("resize", handleOrientationChange);
-    };
-  }, []);
 
   const formatToLocaleString = (value) => {
     return parseFloat(value).toLocaleString("nl-NL", {
