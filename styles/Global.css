@@ -214,24 +214,24 @@ header.onboarding::before {
 }
 
 .result .open {
-  position: fixed;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  gap: 2em;
-  top: 50%;
+  position: fixed;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
-  text-align: center;
-  height: 75vh;
-  border-radius: 0.5em;
+  top: 50%;
   z-index: 3000;
+  width: 90vw;
+  height: 75vh;
   border: 4px solid black;
+  border-radius: 0.5em;
   background: linear-gradient(var(--lightblue), #fff);
-  animation: appear1 0.4s ease-in;
   font-family: "Montserrat", sans-serif;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  animation: appear1 0.4s ease-in;
+  gap: 1em;
 }
 
 .result .open * {
@@ -243,14 +243,22 @@ header.onboarding::before {
 }
 
 .result .open ul {
-  margin-top: -2em;
   display: flex;
   flex-wrap: wrap;
-  gap: 0 1em;
   align-items: center;
   justify-content: center;
+  margin-top: -1em;
+  gap: 0 1em;
   overflow: visible;
   list-style-type: none;
+}
+
+.result .background {
+  position: relative;
+  min-width: 100vw;
+  max-height: 40vh;
+  margin-top: -100vh;
+  opacity: 1;
 }
 
 .result-grid {
@@ -599,14 +607,6 @@ input:checked + .label-toggle:after {
   opacity: 0.8;
   z-index: -200;
   bottom: 0;
-}
-
-.result .background {
-  min-width: 100vw;
-  opacity: 1;
-  position: relative;
-  max-height: 40vh;
-  margin-top: -100vh;
 }
 
 .prevenext a,
@@ -975,14 +975,6 @@ button {
     height: 20px;
     width: 20px;
     padding: 2px;
-  }
-
-  .result .open {
-    gap: 1em;
-  }
-
-  .result .open ul {
-    margin-top: -1em;
   }
 
   .result-grid .info-icon,
