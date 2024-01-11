@@ -8,9 +8,10 @@ import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
 const Step2 = () => {
-  const [displayedText, setDisplayedText] = useState("");
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
+
+  const [displayedText, setDisplayedText] = useState("");
   const progressWidth = "18.18%";
   const currentPage = 1;
   const [antwoord, setAntwoord] = useState(false);
@@ -50,22 +51,6 @@ const Step2 = () => {
   }, []);
 
   useEffect(() => {
-    const headerText = `Je studie zal waarschijnlijk een paar jaar duren. De duur van je lening hangt af van de duur van je studie, dus controleer dit eerst. Hoelang zou je graag willen lenen?`;
-
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(headerText.substring(0, index));
-      index++;
-      if (index > headerText.length) {
-        clearInterval(interval);
-        setAntwoord(true);
-      }
-    }, 10);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
     const handleOrientationChange = () => {
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
@@ -83,6 +68,22 @@ const Step2 = () => {
     return () => {
       window.removeEventListener("resize", handleOrientationChange);
     };
+  }, []);
+
+  useEffect(() => {
+    const headerText = `Je studie zal waarschijnlijk een paar jaar duren. De duur van je lening hangt af van de duur van je studie, dus controleer dit eerst. Hoelang zou je graag willen lenen?`;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      setDisplayedText(headerText.substring(0, index));
+      index++;
+      if (index > headerText.length) {
+        clearInterval(interval);
+        setAntwoord(true);
+      }
+    }, 10);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleLeenduur = (e) => {
