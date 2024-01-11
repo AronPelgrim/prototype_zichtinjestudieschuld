@@ -56,6 +56,7 @@ const Onboarding1 = () => {
 
   return (
     <>
+      {/* Voorwaardelijke weergave op basis van schermoriëntatie */}
       {orientation === "Landscape" ? (
         <>
           <header className="onboarding">{displayedText}</header>
@@ -65,7 +66,9 @@ const Onboarding1 = () => {
               Vorige
             </Link>
           </section>
+          {/* Logo-component met specifieke stijl voor onboarding */}
           <Logo onboarding={"onboarding"} />
+          {/* Character SVG-element met specifieke attributen en stijl voor onboarding */}
           <svg
             id="Laag_1"
             data-name="Laag 1"
@@ -276,6 +279,7 @@ const Onboarding1 = () => {
           </svg>{" "}
         </>
       ) : orientation === "Portrait" ? (
+        /* Weergeef melding in staande oriëntatie */
         <section className="portretMode">
           <h1>Draai je scherm op Landscape mode!</h1>
         </section>
