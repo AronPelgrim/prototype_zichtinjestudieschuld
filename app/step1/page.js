@@ -144,7 +144,7 @@ const Step1 = () => {
             onClick={characterAnimation}
             ref={svgRef}
           >
-            <g className={`${leningpm > 500 ? "path-animation" : ""}`}>
+            <g className={`${leningpm > 500 ? "slide-animation" : ""}`}>
               <ellipse
                 cx="144.414"
                 cy="584.04"
@@ -339,7 +339,7 @@ const Step1 = () => {
               style={{
                 animation: antwoord
                   ? ""
-                  : "appear .5s ease-in infinite alternate",
+                  : "talking .5s ease-in infinite alternate",
               }}
             >
               <path
@@ -375,7 +375,7 @@ const Step1 = () => {
                 style={{ fill: "#201e32", strokeWidth: 0 }}
               />
             </g>
-            <g className={`${leningpm > 500 ? "path-animation" : ""}`}>
+            <g className={`${leningpm > 500 ? "slide-animation" : ""}`}>
               <path
                 d="M168.728,45.472c-9.847,18.718-4.352,57.651-3.195,78.751-2.937.449-5.861.035-8.786-.16-.255-.017-.127.641-.16.639-2.339-.176-2.205-1.496-2.556-3.355-1.259-6.666-2.092-26.606-1.917-34.024.134-5.692.734-11.277,1.278-16.932,3-9.352,6.842-19.219,15.335-24.919Z"
                 style={{ fill: "#5072a2", strokeWidth: 0 }}

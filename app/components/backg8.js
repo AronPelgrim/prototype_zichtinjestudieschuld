@@ -295,7 +295,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#ac1924",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.3s linear infinite both",
+                  animation: "fire-animation 0.3s linear infinite both",
                 }}
               />
               <path
@@ -305,7 +305,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#d5413f",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.4s linear 0.1s infinite both",
+                  animation: "fire-animation 0.4s linear 0.1s infinite both",
                 }}
               />
               <path
@@ -315,7 +315,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#c62e31",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.5s linear 0.1s infinite both",
+                  animation: "fire-animation 0.5s linear 0.1s infinite both",
                 }}
               />
               <path
@@ -325,7 +325,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#c62e31",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.5s linear 0.2s infinite both",
+                  animation: "fire-animation 0.5s linear 0.2s infinite both",
                 }}
               />
               <path
@@ -335,7 +335,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#ac1924",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.3s linear 0.2s infinite both",
+                  animation: "fire-animation 0.3s linear 0.2s infinite both",
                 }}
               />
               <path
@@ -345,7 +345,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#c62e31",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.3s linear infinite both",
+                  animation: "fire-animation 0.3s linear infinite both",
                 }}
               />
               <path
@@ -355,7 +355,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#faca68",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.3s linear 0.3s infinite both",
+                  animation: "fire-animation 0.3s linear 0.3s infinite both",
                 }}
               />
               <path
@@ -365,7 +365,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#faca68",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.3s linear 0.4s infinite both",
+                  animation: "fire-animation 0.3s linear 0.4s infinite both",
                 }}
               />
               <path
@@ -375,7 +375,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#faca68",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.3s linear 0.7s infinite both",
+                  animation: "fire-animation 0.3s linear 0.7s infinite both",
                 }}
               />
               <path
@@ -385,7 +385,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#fcb656",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.2s linear 0.6s infinite both",
+                  animation: "fire-animation 0.2s linear 0.6s infinite both",
                 }}
               />
               <path
@@ -395,7 +395,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#faca68",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.3s linear 0.1s infinite both",
+                  animation: "fire-animation 0.3s linear 0.1s infinite both",
                 }}
               />
               <path
@@ -405,7 +405,7 @@ const Backg8 = () => {
                 style={{
                   fill: "#fcb656",
                   strokeWidth: 0,
-                  animation: "jello-horizontal 0.2s linear 0.6s infinite both",
+                  animation: "fire-animation 0.2s linear 0.6s infinite both",
                 }}
               />
               <path

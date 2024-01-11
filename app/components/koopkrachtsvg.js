@@ -11,7 +11,7 @@ const KoopkrachtSVG = ({ inkomen }) => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1344 767.469"
         style={{
-          animation: inkomen == 10000 ? "explosion 0.5s both" : "",
+          animation: inkomen == 10000 ? "character-explosion 0.5s both" : "",
         }}
       >
         <g>

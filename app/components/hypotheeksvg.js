@@ -12,7 +12,7 @@ const HypotheekSVG = ({ leningpm }) => {
         xmlnsXlink="http://www.w3.org/1999/xlink"
         viewBox="0 0 1344 767.469"
         style={{
-          animation: leningpm == 1000 ? "explosion 0.5s both" : "",
+          animation: leningpm == 1000 ? "character-explosion 0.5s both" : "",
         }}
       >
         <defs>

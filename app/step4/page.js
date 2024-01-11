@@ -203,7 +203,7 @@ const Step4 = () => {
                   <div>
                     <ul
                       style={{
-                        animation: "appear1 .2s ease-in",
+                        animation: "appear-left .2s ease-in",
                       }}
                     >
                       <li>
@@ -429,7 +429,7 @@ const Step4 = () => {
               style={{
                 animation: antwoord
                   ? ""
-                  : "appear .5s ease-in infinite alternate",
+                  : "talking .5s ease-in infinite alternate",
               }}
             >
               <path

@@ -467,7 +467,7 @@ const Result = () => {
                 {" "}
                 <header
                   style={{
-                    animation: "appear1 .5s ease-in",
+                    animation: "appear-left .5s ease-in",
                   }}
                 >
                   Fantastisch! Je hebt alle 10 stappen voltooid. Gedurende deze

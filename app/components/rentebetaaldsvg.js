@@ -11,7 +11,7 @@ const RenteBetaaldSVG = ({ aflosFase }) => {
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1344 767.469"
         style={{
-          animation: aflosFase == 35 ? "explosion 0.5s both" : "",
+          animation: aflosFase == 35 ? "character-explosion 0.5s both" : "",
         }}
       >
         <g>

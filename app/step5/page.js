@@ -525,7 +525,7 @@ const Step5 = () => {
                 style={{
                   animation: antwoord
                     ? ""
-                    : "appear .5s ease-in infinite alternate",
+                    : "talking .5s ease-in infinite alternate",
                 }}
               >
                 <path
@@ -564,7 +564,7 @@ const Step5 = () => {
               <g
                 style={{
                   opacity: antwoord ? "1" : "0",
-                  animation: antwoord ? "appear1 .5s ease-in" : "",
+                  animation: antwoord ? "appear-left .5s ease-in" : "",
                 }}
               >
                 <path

@@ -331,7 +331,7 @@ const Step10 = () => {
               style={{
                 animation: antwoord
                   ? ""
-                  : "appear .5s ease-in infinite alternate",
+                  : "talking .5s ease-in infinite alternate",
               }}
             >
               <path

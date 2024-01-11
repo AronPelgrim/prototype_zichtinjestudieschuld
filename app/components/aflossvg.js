@@ -12,7 +12,7 @@ const AflosSVG = ({ aflosFase }) => {
         xmlnsXlink="http://www.w3.org/1999/xlink"
         viewBox="0 0 1344 767.469"
         style={{
-          animation: aflosFase == 35 ? "explosion 0.5s both" : "",
+          animation: aflosFase == 35 ? "character-explosion 0.5s both" : "",
         }}
       >
         <defs>

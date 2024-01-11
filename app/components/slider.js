@@ -182,7 +182,7 @@ const Slider = ({
           onClick={() => setHidePanel(hidePanel == false ? true : false)}
           style={{
             animation: hidePanel
-              ? "heartbeat 1.5s ease-in-out infinite both"
+              ? "button-animation 1.5s ease-in-out infinite both"
               : "none",
           }}
         >
