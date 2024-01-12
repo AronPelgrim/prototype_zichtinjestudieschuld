@@ -78,18 +78,25 @@ const SliderPanel = ({
     };
   }, []);
 
-  // Effect om touchstart en touchend gebeurtenissen aan de slider toe te voegen
   useEffect(() => {
     // Functie die wordt uitgevoerd bij het beginnen van een aanraking (touchstart)
     const handleTouchStart = () => {
-      // Pas de achtergrondkleur van de slider aan tijdens aanraking
-      sliderRef.current.style.backgroundColor = "rgba(241, 194, 230, 0.6)";
+      // Past de achtergrondkleur van de slider aan tijdens aanraking
+      sliderRef.current.style.backgroundColor = "rgba(241, 194, 230, 0.3)";
+
+      // Past de stijl van de button aan wanneer de slider wordt aangeraakt
+      const buttonSlider = document.getElementById("buttonSliderPanel");
+      buttonSlider.style.opacity = "0";
     };
 
     // Functie die wordt uitgevoerd bij het beëindigen van een aanraking (touchend)
     const handleTouchEnd = () => {
       // Herstel de oorspronkelijke achtergrondkleur van de slider na aanraking
       sliderRef.current.style.backgroundColor = "rgba(241, 194, 230, 1)";
+
+      // Past de stijl van de button aan wanneer de slider wordt aangeraakt
+      const buttonSlider = document.getElementById("buttonSliderPanel");
+      buttonSlider.style.opacity = "1";
     };
 
     // Voeg event listeners toe voor touchstart en touchend aan de slider
@@ -206,6 +213,7 @@ const SliderPanel = ({
       >
         {/* Knop voor het tonen/verbergen van het schuifpaneel */}
         <button
+          id="buttonSliderPanel"
           onClick={() => setHidePanel(!hidePanel)} // Wissel de status van het paneel bij elke klik
           style={{
             animation: hidePanel

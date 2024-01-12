@@ -10,7 +10,7 @@ import KoopkrachtSVG from "../components/koopkrachtsvg";
 import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 import RenteBetaaldSVG from "../components/rentebetaaldsvg";
-import SliderPanel from "../components/slider";
+import SliderPanel from "../components/sliderpanel";
 import StudieschuldSVG from "../components/studieschuld";
 
 const Result = () => {

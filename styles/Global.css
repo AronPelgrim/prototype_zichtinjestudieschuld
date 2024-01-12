@@ -976,6 +976,9 @@ input[type="range"]::-moz-range-thumb {
   .result .open * {
     max-width: 80vw;
   }
+  .result .open .character-svg {
+    max-width: 12%;
+  }
 
   .result-grid .info-icon,
   .open .info-icon {
