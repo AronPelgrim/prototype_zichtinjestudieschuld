@@ -3,6 +3,7 @@
 import "../../styles/Global.css";
 
 const ResultFlag = () => {
+  // SVG voor het resultatenvlaggetje in de progressiebalk
   return (
     <>
       <svg

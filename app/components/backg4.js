@@ -3,6 +3,7 @@
 import "../../styles/Global.css";
 
 const Backg4 = () => {
+  // SVG gebruikt als achtergrond bij één van de stappen
   return (
     <>
       <svg

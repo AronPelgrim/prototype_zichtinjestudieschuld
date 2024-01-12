@@ -3,6 +3,7 @@
 import "../../styles/Global.css";
 
 const Logo = ({ onboarding }) => {
+  // SVG gebruikt als logo over de pagina's
   return (
     <svg
       id="Laag_1"

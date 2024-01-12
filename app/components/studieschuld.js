@@ -3,6 +3,7 @@
 import "../../styles/Global.css";
 
 const StudieschuldSVG = ({ leningpm }) => {
+  // SVG gebruikt bij aantonen van de studieschuld
   return (
     <>
       <svg

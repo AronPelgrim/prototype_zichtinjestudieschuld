@@ -3,6 +3,7 @@
 import "../../styles/Global.css";
 
 const Character = () => {
+  // SVG die dient als het uitlegpoppetje
   return (
     <>
       <svg

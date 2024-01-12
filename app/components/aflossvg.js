@@ -3,6 +3,7 @@
 import "../../styles/Global.css";
 
 const AflosSVG = ({ aflosFase }) => {
+  // SVG gebruikt voor de maandelijkse afloskosten
   return (
     <>
       <svg

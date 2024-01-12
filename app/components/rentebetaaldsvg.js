@@ -3,6 +3,7 @@
 import "../../styles/Global.css";
 
 const RenteBetaaldSVG = ({ aflosFase }) => {
+  // SVG gebruikt voor het bedrag betaald aan rente
   return (
     <>
       <svg

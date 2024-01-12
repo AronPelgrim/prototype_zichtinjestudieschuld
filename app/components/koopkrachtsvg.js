@@ -3,6 +3,7 @@
 import "../../styles/Global.css";
 
 const KoopkrachtSVG = ({ inkomen }) => {
+  // SVG gebruikt voor de koopkracht na je maandelijkse aflossing
   return (
     <>
       <svg

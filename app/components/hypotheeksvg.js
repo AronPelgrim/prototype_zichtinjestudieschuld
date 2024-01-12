@@ -3,6 +3,7 @@
 import "../../styles/Global.css";
 
 const HypotheekSVG = ({ leningpm }) => {
+  // SVG gebruikt voor de vermindering maximale hypotheekbedrag
   return (
     <>
       <svg
