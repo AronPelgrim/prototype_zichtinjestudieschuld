@@ -67,7 +67,7 @@ const Step8 = () => {
   // Effect voor het geleidelijk weergeven van een introductietekst
   useEffect(() => {
     // Introductietekst instellen
-    const headerText = `Om een hogere hypotheek te kunnen krijgen, verzwijgen veel mensen hun studieschuld. Hierdoor kunnen ze geen aanspraak maken op de Nationale Hypotheek Garantie (NHG). De NHG is mogelijk bij een koopsom of getaxeerde waarde van een woning lager dan € 435.000.`;
+    const headerText = `Om een hogere hypotheek te kunnen krijgen, verzwijgen veel mensen hun studieschuld. Hierdoor kunnen ze geen aanspraak maken op de Nationale Hypotheek Garantie (NHG). De NHG is mogelijk bij een woning, met een waarde lager dan € 435.000.`;
 
     // Variabele en interval voor het geleidelijk updaten van de getoonde tekst
     let index = 0;

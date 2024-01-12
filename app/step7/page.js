@@ -67,7 +67,7 @@ const Step7 = () => {
   // Effect voor het geleidelijk weergeven van een introductietekst
   useEffect(() => {
     // Introductietekst instellen
-    const headerText = `Een studieschuld beïnvloedt je maximale hypotheekbedrag. Hoeveel minder hypotheek je kan krijgen wordt berekend op basis van je studieschuld, specifiek met je maandelijkse afloskosten, de hypotheekrente en nog een aantal factoren. De gemiddelde hypotheekrente is nu 4,5%, maar kan maandelijks veranderen, dus je kunt deze aanpassen als je een nog specifieker bedrag wil!`;
+    const headerText = `Een studieschuld beïnvloedt je maximale hypotheekbedrag. Hoeveel minder hypotheek je kan krijgen wordt berekend op basis van je studieschuld, specifiek met je maandelijkse afloskosten, de hypotheekrente en nog een aantal factoren. De gemiddelde hypotheekrente is nu 4,5%, maar kan maandelijks veranderen, dus je kunt deze aanpassen als je wil!`;
 
     // Variabele en interval voor het geleidelijk updaten van de getoonde tekst
     let index = 0;
