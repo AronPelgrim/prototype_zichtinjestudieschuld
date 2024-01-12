@@ -221,7 +221,7 @@ const SliderPanel = ({
               : "none",
           }}
         >
-          Klik voor het {hidePanel ? "verbergen" : "bewerken"} van je verzamelde
+          Klik voor het {hidePanel ? "bewerken" : "verbergen"} van je verzamelde
           gegevens
         </button>
         {/* Sectie met slider-inhoud voor lening per maand */}
