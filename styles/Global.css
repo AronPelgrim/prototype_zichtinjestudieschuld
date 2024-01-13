@@ -1,380 +1,771 @@
+/*
+  Reset de standaardmarges en padding voor alle elementen op de pagina,
+  en voorkom horizontale scroll door overflow-x op hidden te zetten.
+*/
 * {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
+/*
+  Definieer kleurvariabelen in de :root selector voor hergebruik in de hele stylesheet.
+  Dit maakt het gemakkelijk om consistente kleuren te gebruiken en ze indien nodig te wijzigen.
+*/
+:root {
+  --blue: #1a25ab;
+  --lightblue: #cadfdf;
+  --green: #00bc71;
+  --grey: #dfddde;
+  --neutral: #f1ecd1;
+  --orange: #f6936c;
+  --pink: #f1c2e6;
+  --red: #f24f50;
+  --yellow: #ffd726;
+}
+
+/*
+  Pas de stijl van de scrollbar aan. 
+*/
 ::-webkit-scrollbar {
-  width: 1em;
-  cursor: pointer;
+  width: 0.5em;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #0075ff;
   border-radius: 0.5em;
+  background: var(--lightblue);
 }
 
-::-webkit-scrollbar-track {
-  background: #d88dc7;
-  border-radius: 0.5em;
-}
-
-.logo {
-  opacity: 0.6;
-  width: 94vw;
-  height: fit-content;
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  z-index: -100;
-  margin: 2vw;
-}
-
-header {
-  color: white;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 1em;
-  margin: 0.5em;
-  font-size: clamp(0.5em, 1.8vw, 1.7em);
-  border-radius: 0.5em;
-}
-
-header.onboarding {
-  width: fit-content;
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translate(-50%);
-}
-
+/*
+  Stijlen voor de body van de pagina.
+*/
 body {
   height: 100vh;
-  letter-spacing: 1px;
+  background: linear-gradient(var(--lightblue), #fff);
   font-family: "lores-12", sans-serif;
-  font-weight: 700;
   font-style: normal;
-  background: linear-gradient(#beedf7, #fff);
-}
-
-.studieschuldCalculator,
-.hypotheekCalculator {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  bottom: 2vh;
-  left: 50%;
-  transform: translate(-50%);
-  font-size: 1em;
-  text-align: center;
-  width: max-content;
-  border-radius: 0.5em;
-  gap: 0.3em;
-  padding: 1.5em;
-  background: rgba(255, 96, 96);
-}
-
-.hypotheekCalculator {
-  background: rgb(250, 215, 66);
-}
-
-.studieschuldCalculator > h1,
-.hypotheekCalculator > h1 {
-  text-decoration: underline;
-  padding-bottom: 0.2em;
-  font-size: clamp(0.5em, 1.8vw, 1.7em);
-}
-
-.studieschuldCalculator > p,
-.hypotheekCalculator > p {
-  font-size: clamp(0.5em, 1.5vw, 1.2em);
-}
-
-.studieschuldCalculator.stap5 {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.4em;
-  text-align: center;
-  height: fit-content;
-  border-radius: 0.5em;
-  gap: 0.5em;
-  padding: 1.2em;
-  background: rgba(255, 96, 96);
-}
-
-.hypotheekCalculator.stap8 {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.4em;
-  text-align: center;
-  height: fit-content;
-  border-radius: 0.5em;
-  gap: 0.5em;
-  padding: 1.5em;
-  background: rgb(250, 215, 66);
-}
-
-section:has(.hypotheekCalculator.stap8) > .hypotheekCalculator {
-  left: 80%;
-}
-
-section:has(.hypotheekCalculator.stap8) > .studieschuldCalculator {
-  left: 20%;
-}
-
-.moreInfo {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  bottom: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: max-content;
-}
-
-.moreInfo > a {
-  font-size: clamp(0.5em, 1.4vw, 1.2em);
-  background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-  transition-duration: 0.4s;
-}
-
-.moreInfo > a:hover {
-  background-color: black;
-  color: white;
-}
-
-.prevenext {
-  top: 42%;
-  width: 96vw;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 2vw;
-  align-items: center;
-  position: absolute;
-  z-index: 0;
-}
-
-.prevenext > a:nth-of-type(1) {
-  transition-duration: 0.4s;
-  background: linear-gradient(#beedf7, #fff);
-  box-shadow: inset 0 0 0 3px #46f7bf;
-}
-
-.prevenext > a:hover {
-  box-shadow: none;
-  box-shadow: inset 0 0 0 3px #000;
-}
-
-.prevenext.onboarding {
-  all: unset;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  z-index: 0;
-  position: fixed;
-  bottom: 1vh;
-  left: 50%;
-  transform: translate(-50%, -0%);
-}
-
-.prevenext.onboarding > a:nth-of-type(1) {
-  transition-duration: 0.4s;
-  background: #46f7bf;
-}
-
-.prevenext.onboarding > a:nth-of-type(2) {
-  transition-duration: 0.4s;
-  background-color: transparent;
-  box-shadow: inset 0 0 0 3px #46f7bf;
-}
-
-.prevenext.onboarding > a:nth-of-type(2):hover {
-  box-shadow: none;
-  box-shadow: inset 0 0 0 3px #000;
-}
-
-.completeness-meter {
-  height: 10px;
-  background-color: white;
-  position: relative;
+  font-weight: 600;
+  letter-spacing: 1px;
   overflow: hidden;
-  margin: 2em 1em 1em 1em;
-  border-radius: 0.5em;
+}
+/*
+  Voor als de body een element bevat met de class "result". 
+  Bedoelt voor de body op de result pagina.
+*/
+body:has(.result) {
+  height: auto;
+  overflow: visible;
 }
 
-.completeness-meter > p {
-  position: fixed;
-  font-size: clamp(0.5em, 1.8vw, 1.2em);
-  padding: 0.2em;
-  border-radius: 0.5em;
-  margin-top: -1.7em;
-  text-align: center;
-  width: 100%;
+/*
+  Stijlen voor het header-element, de zwarte balk bovenaan de pagina waar de tekst verschijnt.
+*/
+header {
+  position: relative;
+  margin: 0.5em;
+  padding: 1em;
+  background-color: #000;
+  font-size: clamp(0.5em, 1.9vw, 1.7em);
+  color: #fff;
+  overflow: visible;
+  line-height: 1.3;
 }
-
-.completeness-meter::before {
+/*
+  Een driehoekig patroon met een animatie, die de header laat wijzen naar de character.
+*/
+header::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-color: #46f7bf;
-  width: var(--progress-width);
-  border-radius: 0.5em;
-  animation: increaseProgress 0.5s ease-in both;
-  transform-origin: left;
+  left: calc(6em + 7vh - 25px);
+  bottom: -23px;
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-top: 25px solid #000;
+  animation: walk 1.2s linear both;
 }
-
-.slider {
-  display: flex;
-  overflow: auto;
-  flex-direction: column;
-  white-space: nowrap;
+/*
+  Specifieke stijlen voor het header-element met de class "onboarding".
+*/
+header.onboarding::before {
+  content: "";
   position: absolute;
-  gap: 2em;
-  bottom: 2vh;
-  right: 2vw;
-  background-color: #f1c2e6;
-  padding: 1.5em;
-  border-radius: 0.5em;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  align-items: center;
-  width: fit-content;
+  left: calc(50% - 25px);
+  bottom: -23px;
+  width: 0;
+  height: 0;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-top: 25px solid #000;
+  animation: none;
 }
 
-.slider div {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  width: fit-content;
-  flex-shrink: 0;
-  scroll-snap-align: center;
-}
-
-.slider div label {
-  font-size: 1em;
-}
-
-input[type="text"] {
-  border-radius: 0.5em;
-  font-size: 1em;
-  text-align: left;
-  border: none;
-  padding: 0.2em 0.2em;
-  font-family: "lores-12", sans-serif;
-  font-weight: 700;
-  text-align: center;
-}
-
-input[type="range"] {
-  cursor: pointer;
-}
-
-.character1 {
-  width: 14vw;
-  position: fixed;
-  bottom: 2vh;
-  left: 4em;
-}
-
-.character2 {
-  width: 14vw;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.sliding-right {
-  animation: slide-right 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-.slide-out {
-  animation: slide-out 1s ease-in both;
-}
-
-.slide-in {
-  animation: slide-in 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-.path-animation {
-  animation: jello 0.9s both;
-}
-
-.wobble {
-  animation: wobble 0.8s both;
-}
-
-.poor {
-  animation: shrink 0.3s both;
-  transform-origin: center;
-}
-
-.background {
-  width: 100vw;
-  position: fixed;
-  opacity: 0.6;
-  z-index: -200;
-  bottom: 0;
-}
-
-a,
-button {
-  background-color: #46f7bf;
-  border: none;
-  color: black;
-  padding: 12px 30px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: clamp(0.5em, 1.5vw, 1.2em);
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  border-radius: 0.5em;
-  font-family: "lores-12", sans-serif;
-  font-weight: 700;
-}
-
-a:hover {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-}
-
+/*
+  Stijlen voor elementen met de class "portretMode".
+  Class die wordt ingezet als het beeldscherm op portret komt ipv landscape.
+*/
 .portretMode {
-  width: 90vw;
-  text-align: center;
-  height: 90vh;
   display: flex;
   align-items: center;
+  width: 90vw;
+  height: 90vh;
   margin: 5vh 5vw;
+  text-align: center;
 }
-
-.portretMode > h1 {
+.portretMode h1 {
   font-size: 3.5em;
 }
 
-@keyframes slide-right {
+/*
+  Stijlen voor het logo van ZichtInJeStudieschuld.
+*/
+.logo {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  width: 50vh;
+  padding: 1.15rem 0;
+  transform: rotate(-270deg) translateX(50%);
+  transform-origin: right top;
+  transition-duration: 0.2s;
+  opacity: 0.6;
+  opacity: 1;
+}
+.logo:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+.logo.onboarding {
+  position: absolute;
+  top: 50%;
+  z-index: -100;
+  width: 94vw;
+  height: fit-content;
+  margin: 2vw;
+  transform: translate(0, -50%);
+  opacity: 0.6;
+}
+
+/*
+  Stijlen voor het poppetje die de gebruiker de uitleg geeft en in het scherm komt lopen.
+*/
+.character-svg {
+  position: fixed;
+  left: 7em;
+  bottom: 2vh;
+  width: 14vw;
+  cursor: pointer;
+  overflow: visible;
+}
+.character-svg.onboarding {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 14vw;
+  transform: translate(-50%, -50%);
+}
+
+/*
+  Stijlen voor de illustratieve achtergronden op de pagina.
+*/
+.background-svg {
+  position: absolute;
+  bottom: 0;
+  z-index: -200;
+  width: 100vw;
+  opacity: 0.8;
+}
+
+/*
+  Stijlen voor de oranje porgressiebalk die bovenaan de pagina te zien is.
+*/
+.completeness-meter {
+  position: relative;
+  height: 10px;
+  margin: 1.3em 1em;
+  background-color: #fff;
+  overflow: visible;
+}
+.completeness-meter::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--progress-width);
+  height: 100%;
+  background-color: var(--orange);
+  transform-origin: left;
+  animation: increase-progress 0.5s ease-in both;
+}
+.completeness-container {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  transform: translateY(-34%);
+  gap: calc(9.09% - 32px);
+  overflow: visible;
+}
+/* 
+  Stijlen voor de klikbare cirkel-elementen binnen "completeness-container".
+*/
+.completeness-container > .circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  transition: 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 0.15em var(--grey);
+  overflow: visible;
+  border: 1px solid var(--grey);
+}
+.circle:hover {
+  transform: scale(1.1);
+}
+.circle.active {
+  background-color: var(--orange);
+  color: #fff;
+}
+
+/*
+  Stijlen voor elementen met de class "antwoord". 
+  Het element waarin de de gebruiker een actie kan doen als reactie op de vraag in de header.
+*/
+.antwoord {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 60%;
+  bottom: 10%;
+  z-index: 10000;
+  max-width: 50%;
+  max-height: 40%;
+  padding: 1em;
+  border: 0.4em solid #000;
+  background: #fff;
+  font-size: clamp(0.5em, 1.9vw, 1.7em);
+  text-align: center;
+  transform: translate(-50%, 0);
+  animation: appear-left 0.3s ease-in both;
+  gap: 0.5em;
+}
+.antwoord div {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 1em;
+}
+.antwoord ul {
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+}
+.antwoord label,
+.antwoord li {
+  line-height: 1.3;
+}
+.antwoord li {
+  padding: 0.2em;
+}
+
+/*
+  Stijlen voor de button binnen het element met de class "result-intro".
+  Dit is de overlay op de result pagina, met een korte uitleg over de resultaten.
+*/
+.result-intro button:hover {
+  transform: translate(-50%, -50%) scale(1.03);
+}
+.result-intro button:active {
+  transform: translate(-50%, -50%) translateY(0.2em);
+  box-shadow: none;
+}
+.result-intro button {
+  position: absolute;
+  position: fixed;
+  left: 50%;
+  top: 55%;
+  z-index: 15000;
+  transform: translate(-50%, -50%);
+}
+
+/*
+  Stijlen voor elementen met de class "result" op de resultpagina.
+*/
+.result {
+  height: 100vh;
+}
+/*
+  Zolang de class "result" de overlay bevat, 
+  verminderd de doorzichtigheid en schakeld pointer-events uit voor elementen met de classes ".slider-panel" en ".result-grid section".
+  Voorkomt ook aanrakingsevenementen op deze elementen.
+*/
+.result:has(.result-intro) .slider-panel,
+.result:has(.result-intro) .result-grid section {
+  opacity: 0.08;
+  pointer-events: none;
+  touch-action: none;
+}
+
+/*
+  Stijlen voor de sections die te zien zijn als de gebruiker op het "i" knopje klikt, voor meer info.
+*/
+.result .open {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 3000;
+  width: 90vw;
+  height: 75vh;
+  border: 4px solid black;
+  border-radius: 0.5em;
+  background: linear-gradient(var(--lightblue), #fff);
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  animation: appear-left 0.4s ease-in;
+  gap: 1em;
+}
+.result .open * {
+  max-width: 40vw;
+}
+.result .open svg:not(.character-svg) {
+  max-width: 25%;
+}
+.result .open ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: -1em;
+  gap: 0 1em;
+  overflow: visible;
+  list-style-type: none;
+}
+
+/*
+  Stijlen voor de grid met de cijfer resultaten op de resultatenpagina.
+*/
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 90vw;
+  height: 75vh;
+  font-family: "Montserrat", sans-serif;
+  transform: translate(-50%, -50%);
+  animation: appear-left 0.5s ease-in both;
+  gap: 1em;
+  overflow: visible;
+}
+.result-grid > section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 4px solid black;
+  border-radius: 0.5em;
+  text-align: center;
+  gap: 1em;
+  overflow: hidden;
+}
+.result-grid section:nth-of-type(1) {
+  grid-area: 1 / 1 / 3 / 1;
+  gap: 3.5em;
+}
+.result-grid section h1,
+.open h1 {
+  font-size: clamp(1.2em, 3vw, 5em);
+  overflow: visible;
+}
+.result-grid section p,
+.open p,
+.open li {
+  max-width: 70%;
+  font-size: clamp(0.7em, 1.1vw, 5em);
+  line-height: 1.5;
+  overflow: visible;
+}
+.result-grid section svg {
+  max-width: 55%;
+  margin: -1.5em 0;
+}
+
+/*
+  Stijlen voor het "i" knopje op de resultatenpagina.
+*/
+.result-grid .info-icon,
+.open .info-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  margin: 15px 0 0 15px;
+  border: 1px solid var(--grey);
+  border-radius: 50%;
+  background-color: var(--yellow);
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  transition: 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 0.1em var(--grey);
+}
+.info-icon:hover {
+  transform: scale(1.1);
+}
+
+/*
+  Stijlen voor het roze sliderpaneel op de resultatenpagina, gevuld met sliders die weer reageren op de resultaten.
+*/
+.slider-panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  z-index: 10000;
+  width: 90vw;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  background-color: var(--pink);
+  transform: translate(-50%);
+  overflow: auto;
+  white-space: nowrap;
+  overflow: visible;
+}
+.slider-panel section {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+  padding: 1em;
+  border-radius: 0.5em;
+  gap: 1em;
+  overflow: visible;
+}
+.slider-panel section label:not(.label-aanloopfase) {
+  padding-bottom: 0.5em;
+  font-size: 1em;
+}
+.slider-panel:has(input:active) {
+  background-color: rgba(241, 194, 230, 0.6);
+}
+.slider-panel button {
+  justify-self: center;
+  position: absolute;
+  top: -3.5em;
+  z-index: -100;
+  margin: auto;
+  padding: 1em 1em 1em 1em;
+  border-radius: 0.5em;
+  overflow: visible;
+}
+.slider-panel:has(input:active) button {
+  opacity: 0;
+}
+
+/*
+  Stijlen voor de class ".vorige-volgende". Deze klas bevat de "vertel meer" en "vorige" buttons in de onboarding, en
+  de "vorige" button op de rest van de pagina. Vooral noodzakelijk voor positionering.
+*/
+.vorige-volgende {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 42%;
+  z-index: 2000;
+  width: 96vw;
+  margin: 0 2vw;
+  transition-duration: 0.2s;
+  overflow: visible;
+}
+.vorige-volgende.onboarding {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  position: fixed;
+  left: 50%;
+  bottom: 1vh;
+  z-index: 15000;
+  transform: translate(-50%, -0%);
+  transition-duration: 0.2s;
+}
+.vorige-volgende > a:nth-of-type(1) {
+  background: var(--neutral);
+}
+.vorige-volgende.onboarding > a:nth-of-type(1) {
+  background: var(--green);
+}
+.vorige-volgende.onboarding > a:nth-of-type(2) {
+  background-color: var(--neutral);
+}
+
+/*
+  Algemene stijlen voor die de links en de buttons allemaal overeen hebben.
+*/
+.vorige-volgende a,
+.antwoord a,
+button {
+  display: inline-block;
+  margin: 4px 2px;
+  padding: 12px 30px;
+  border: none;
+  border: 2px solid var(--grey);
+  border-radius: 0.5em;
+  background-color: var(--green);
+  font-family: "lores-12", sans-serif;
+  font-size: clamp(0.7em, 1.3vw, 1.2em);
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  transition-duration: 0.1s;
+  cursor: pointer;
+  overflow: visible;
+  box-shadow: 0 0.2em var(--grey);
+}
+/*
+  Algemene stijlen voor die de link hovers en de button hovers.
+*/
+a:hover,
+button:hover {
+  transform: scale(1.03);
+}
+/*
+  Algemene stijlen voor de ":active", om een soort 3d klik effect te krijgen. 
+*/
+.vorige-volgende a:active,
+.opslaan:active,
+.antwoord a:active,
+.antwoord button:active,
+.slider-panel button:active,
+.circle:active,
+.result-grid .info-icon:active,
+.open .info-icon:active {
+  transform: translateY(0.2em);
+  box-shadow: none;
+}
+/*
+  Neutrale kleur voor links die niet de class ".opslaan hebben"
+*/
+.antwoord > a:not(.opslaan),
+button {
+  background-color: var(--neutral);
+}
+
+/*
+  Stijl voor de input "number" die ik gebruik voor het opvragen van het hypotheek-rentepercentage.
+*/
+input[type="number"] {
+  width: 6ch;
+  margin-left: 50%;
+  padding: 5px;
+  border: 2px solid #000;
+  border-radius: 0.4em;
+  font-family: "lores-12", sans-serif;
+  font-size: clamp(0.5em, 1.3vw, 1.2em);
+  font-weight: 700;
+  text-align: center;
+  transform: translate(-50%);
+}
+
+/*
+  Stijlen voor de checkbox die ik gebruik om de aanloopfase toggle-switch te maken.
+*/
+input[type="checkbox"] {
+  width: 0px;
+  height: 0px;
+  margin-top: -5px;
+  visibility: hidden;
+}
+.label-aanloopfase {
+  display: block;
+  position: relative;
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--grey);
+  text-indent: -9999px;
+  cursor: pointer;
+}
+.label-aanloopfase:after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  border-radius: 90px;
+  background: #fff;
+  transition: 0.3s;
+}
+.label-aanloopfase:active:after {
+  width: 100px;
+}
+input:checked + .label-aanloopfase {
+  background: var(--blue);
+}
+input:checked + .label-aanloopfase:after {
+  left: calc(100% - 2px);
+  transform: translateX(-100%);
+}
+
+/*
+  Stijlen die ik gebruik voor de radiobuttons om de aflosregeling te bepalen.
+*/
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  outline: none;
+  transition: 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+input[type="radio"]:checked {
+  background-color: var(--blue);
+}
+input[type="radio"]:hover {
+  transform: scale(1.05);
+}
+
+/*
+  Stijlen voor de range sliders die ik gebruik op de resultatenpagina.
+*/
+input[type="range"] {
+  width: 100%;
+  border-radius: 16px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: grab;
+  overflow: hidden;
+}
+/*
+  Stijlen voor de actieve state van input "range".
+*/
+input[type="range"]:active {
+  cursor: grabbing;
+}
+/*
+  Stijlen voor de track van input "range" voor verschillende browsers.
+*/
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 15px;
+  border-radius: 16px;
+  background: var(--grey);
+}
+input[type="range"]::-moz-range-track {
+  height: 15px;
+  border-radius: 16px;
+  background: var(--grey);
+}
+/*
+  Stijlen voor de duim (thumb) van input "range" voor verschillende browsers.
+*/
+input[type="range"]::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+  background-color: #fff;
+  -webkit-appearance: none;
+  appearance: none;
+  box-shadow: -407px 0 0 400px var(--blue);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--blue);
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: -407px 0 0 400px var(--blue);
+}
+
+/*
+  Classes die een animatie bevatten, die ik op voorwaardes in de HTML inzet op bepaalde elementen.
+*/
+.walking {
+  animation: walk 1.2s linear both;
+}
+.slide-animation {
+  animation: slider-shock 0.9s both;
+}
+.explode {
+  animation: character-explosion 1s ease-in both;
+}
+
+/*
+  Keyframes voor de animatie die het poppetje het scherm in laat lopen.
+*/
+@keyframes walk {
   0% {
-    transform: translateX(-200px);
+    transform: translateX(-300px) rotate(-5deg);
+  }
+  10% {
+    transform: translateX(-265px) rotate(5deg);
+  }
+  20% {
+    transform: translateX(-230px) rotate(-5deg);
+  }
+  30% {
+    transform: translateX(-195px) rotate(5deg);
+  }
+  40% {
+    transform: translateX(-160px) rotate(-5deg);
+  }
+  50% {
+    transform: translateX(-125px) rotate(5deg);
+  }
+  60% {
+    transform: translateX(-90px) rotate(-5deg);
+  }
+  70% {
+    transform: translateX(-55px) rotate(5deg);
+  }
+  80% {
+    transform: translateX(-20px) rotate(-5deg);
+  }
+  90% {
+    transform: translateX(15px) rotate(5deg);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(0) rotate(0deg);
   }
 }
 
-@keyframes explosion {
+/*
+  Keyframes voor de animatie die activeerd als je op het poppetje klikt.
+*/
+@keyframes character-explosion {
   0% {
     transform: translate(0);
     visibility: visible;
@@ -413,7 +804,10 @@ a:hover {
   }
 }
 
-@keyframes appear {
+/* 
+  Keyframes voor de animatie die een aantal elementen op een soepele manier in het beeld laat verschijnen.
+*/
+@keyframes appear-left {
   0% {
     clip-path: polygon(0 0, -50% 0, 0 100%, 0 100%);
   }
@@ -423,7 +817,10 @@ a:hover {
   }
 }
 
-@keyframes jello {
+/* 
+  Keyframes voor de animatie die activeert als je op een bepaalde waarde komt met de range slider en het poppetje laat schrikken.
+*/
+@keyframes slider-shock {
   0% {
     transform: scale3d(1, 1, 1);
   }
@@ -447,33 +844,10 @@ a:hover {
   }
 }
 
-@keyframes slide-out {
-  0% {
-    transform: translateY(0) rotateX(0) scale(1);
-    transform-origin: 50% 1400px;
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-600px) rotateX(-30deg) scale(0);
-    transform-origin: 50% 100%;
-    opacity: 1;
-  }
-}
-
-@keyframes slide-in {
-  0% {
-    transform: translateY(-600px) rotateX(-30deg) scale(0);
-    transform-origin: 50% 100%;
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0) rotateX(0) scale(1);
-    transform-origin: 50% 1400px;
-    opacity: 1;
-  }
-}
-
-@keyframes jello-horizontal {
+/* 
+  Keyframes voor de vuur-animatie op stap 8.
+*/
+@keyframes fire-animation {
   0% {
     transform: translate(0);
   }
@@ -493,42 +867,11 @@ a:hover {
     transform: translate(0);
   }
 }
-@keyframes wobble {
-  0%,
-  100% {
-    transform: translateX(0%);
-    transform-origin: 50% 50%;
-  }
-  15% {
-    transform: translateX(-30px) rotate(-6deg);
-  }
-  30% {
-    transform: translateX(15px) rotate(6deg);
-  }
-  45% {
-    transform: translateX(-15px) rotate(-3.6deg);
-  }
-  60% {
-    transform: translateX(9px) rotate(2.4deg);
-  }
-  75% {
-    transform: translateX(-6px) rotate(-1.2deg);
-  }
-}
 
-@keyframes shrink {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.8) rotate(50deg);
-  }
-  100% {
-    transform: scale(0.6);
-  }
-}
-
-@keyframes increaseProgress {
+/* 
+  Keyframes voor de animatie die de progressiebalk laat verschijnen.
+*/
+@keyframes increase-progress {
   0% {
     transform: scaleX(0);
   }
@@ -537,97 +880,110 @@ a:hover {
   }
 }
 
-@keyframes appear {
+/* 
+  Keyframes voor de animatie die het poppetje laat praten als die in het beeld verschijnt en uitleg aan het geven is.
+*/
+@keyframes talking {
   0% {
     clip-path: circle(10% at 0% 0%);
-    filter: grayscale(5);
   }
   25% {
     clip-path: circle(25% at 50% 50%);
   }
   50% {
     clip-path: circle(30% at 12% 84%);
-    filter: grayscale(5);
   }
   75% {
     clip-path: circle(25% at 75% 51%);
   }
   100% {
     clip-path: circle(100% at 50% 50%);
-    filter: grayscale(0);
     opacity: 1;
   }
 }
 
+/* 
+  Keyframes voor de animatie die de aandacht doet geven voor de button op de resultatenpagina, om het slider paneel
+  tevoorschijn te laten komen.
+*/
+@keyframes button-animation {
+  from {
+    transform: scale(1);
+    transform-origin: center center;
+    animation-timing-function: ease-out;
+  }
+  10% {
+    transform: scale(0.95);
+    animation-timing-function: ease-in;
+  }
+  17% {
+    transform: scale(0.98);
+    animation-timing-function: ease-out;
+  }
+  33% {
+    transform: scale(0.93);
+    animation-timing-function: ease-in;
+  }
+  45% {
+    transform: scale(1);
+    animation-timing-function: ease-out;
+  }
+}
+
+/* 
+  Een aantal stukjes code die zorgen voor de responsiveness van de UI.
+*/
 @media only screen and (max-width: 1000px) {
-  .slider {
-    display: flex;
-    overflow: auto;
-    flex-direction: column;
-    white-space: nowrap;
-    position: absolute;
-    bottom: 2vh;
-    right: 2vw;
-    gap: 0;
-    background-color: rgb(241, 194, 230, 0.7);
-    border-radius: 0.5em;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-    align-items: flex-end;
-    width: fit-content;
+  header::before {
+    left: calc(7.5em + 7vh - 20px);
+    bottom: -18px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid black;
+  }
+  header.onboarding::before {
+    bottom: -18px;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid black;
+  }
+
+  .completeness-container {
+    gap: calc(9.09% - 26px);
+  }
+  .completeness-container > .circle.circle {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+  }
+
+  .antwoord {
+    bottom: 0.3em;
+  }
+
+  .slider-panel {
+    width: 100vw;
+    gap: 0.5em 0;
+  }
+  .slider-panel > section {
     padding: 0.8em;
   }
 
-  .slider div {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    flex-shrink: 0;
-    gap: 0.5em;
-    scroll-snap-align: center;
-    align-items: flex-end;
+  .vorige-volgende {
+    top: 50%;
   }
 
-  .slider div label {
-    font-size: clamp(0.5em, 1.5vw, 1.2em);
-    padding-bottom: clamp(0.6em, 1.3vw, 1.2em);
+  .result .open * {
+    max-width: 80vw;
+  }
+  .result .open .character-svg {
+    max-width: 12%;
   }
 
-  input[type="text"] {
-    border-radius: 0.5em;
-    font-size: 1em;
-    text-align: left;
-    border: none;
-    padding: 0.2em 0.2em;
-    font-family: "lores-12", sans-serif;
-    font-weight: 700;
-    text-align: center;
-    font-size: clamp(0.5em, 1.4vw, 1.2em);
-    width: 50%;
-  }
-
-  input[type="range"] {
-    cursor: pointer;
-  }
-
-  .studieschuldCalculator,
-  .hypotheekCalculator {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    bottom: 2vh;
-    left: 50%;
-    transform: translate(-50%);
-    font-size: 1em;
-    text-align: center;
-    width: max-content;
-    border-radius: 0.5em;
-    gap: 0.3em;
-    padding: 1.5em;
-    background: rgba(255, 96, 96, 0.8);
-  }
-
-  .hypotheekCalculator {
-    background: rgb(250, 215, 66, 0.8);
+  .result-grid .info-icon,
+  .open .info-icon {
+    width: 25px;
+    height: 25px;
+    margin: 5px 0 0 5px;
   }
 }

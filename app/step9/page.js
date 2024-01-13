@@ -3,17 +3,17 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import "../../styles/Global.css";
-import Backg7 from "../components/backg7";
+import Backg9 from "../components/backg9";
 import Logo from "../components/logo";
 import Progressbar from "../components/progressbar";
 
-const Step7 = () => {
+const Step9 = () => {
   // State hooks voor het bijhouden van schermoriëntatie, getoonde tekst, antwoordstatus en verschillende parameters
   const [orientation, setOrientation] = useState("");
   const svgRef = useRef(null);
   const [displayedText, setDisplayedText] = useState("");
-  const progressWidth = "63.63%";
-  const currentPage = 6;
+  const progressWidth = "81.81%";
+  const currentPage = 8;
   const [antwoord, setAntwoord] = useState(false);
 
   // State hooks voor parameters gerelateerd aan studieschuld en hypotheek
@@ -24,7 +24,7 @@ const Step7 = () => {
   const [leningpm, setLeningpm] = useState(0);
   const [leenduur, setLeenduur] = useState(0);
   const [max35, setMax35] = useState(null);
-  const [hypotheekRente, setHypotheekRente] = useState(4.5); // Standaardwaarde voor hypotheekrente
+  const [hypotheekRente, setHypotheekRente] = useState(0);
   const [geleendPre2024, setGeleendPre2024] = useState(0);
 
   // Effect om initiële waarden in te stellen op basis van query parameters in de URL
@@ -34,7 +34,7 @@ const Step7 = () => {
 
     // Haal query parameters op en zet deze als initiële waarden voor de states
     setAanloopfase(urlParams.get("aanloopfase") || "nee");
-    setMax35(urlParams.get("max35") === "false" ? false : true);
+    setMax35(urlParams.get("max35") === "true" || false);
     setAflosFase(urlParams.get("aflosfase") || 1);
     setRentepercentage(urlParams.get("rentepercentage") || 0);
     setInkomen(urlParams.get("inkomen") || 1500);
@@ -67,7 +67,8 @@ const Step7 = () => {
   // Effect voor het geleidelijk weergeven van een introductietekst
   useEffect(() => {
     // Introductietekst instellen
-    const headerText = `Een studieschuld beïnvloedt je maximale hypotheekbedrag. Hoeveel minder hypotheek je kan krijgen wordt berekend op basis van je studieschuld, specifiek met je maandelijkse afloskosten, de hypotheekrente en nog een aantal factoren. De gemiddelde hypotheekrente is nu 4,5%, maar kan maandelijks veranderen, dus je kunt deze aanpassen als je wil!`;
+    const headerText = `Onderzoek wijst uit dat studenten die lenen vaak te maken hebben met vermoeidheid, emotionele uitputting en zorgen over een burn-out. 
+  Wees hiervan bewust wanneer je de lening aanvraagt!`;
 
     // Variabele en interval voor het geleidelijk updaten van de getoonde tekst
     let index = 0;
@@ -86,19 +87,6 @@ const Step7 = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Functie om hypotheekrente bij te werken op basis van invoer met regex-validatie
-  const handleHypotheekrente = (e) => {
-    const inputValue = e.target.value;
-
-    // Regex-patroon voor geldige invoer van hypotheekrente
-    const regex = /^\d*\.?\d{0,2}$/;
-
-    // Valideer invoer en update staat alleen als de invoer geldig is
-    if (regex.test(inputValue) || inputValue === "") {
-      setHypotheekRente(inputValue);
-    }
-  };
-
   // Animatiefunctie voor karakter
   const characterAnimation = () => {
     // Haal het SVG-element op met behulp van de ref
@@ -112,9 +100,9 @@ const Step7 = () => {
 
   return (
     <>
+      {" "}
       {orientation === "Landscape" ? (
         <>
-          {" "}
           <Link href={`/`}>
             <Logo />
           </Link>
@@ -123,44 +111,23 @@ const Step7 = () => {
             currentPage={currentPage}
           ></Progressbar>
           <header>{displayedText}</header>
-          {/* Voorwaardelijke weergave van antwoordsectie */}
+          {/* Voorwaardelijke weergave van antwoordsectie (indien beschikbaar) */}
           {antwoord && (
             <section className="antwoord">
-              <div>
-                {/* Label voor Hypotheekrente */}
-                <label>
-                  Hypotheekrente:{" "}
-                  {/* Condities voor het tonen van hypotheekrente met juiste opmaak */}
-                  {hypotheekRente !== null && !isNaN(parseFloat(hypotheekRente))
-                    ? parseFloat(hypotheekRente).toLocaleString("nl-NL", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      }) + "%"
-                    : "0,00%"}
-                </label>
-                {/* Inputveld voor het invoeren van hypotheekrente */}
-                <input
-                  type="number"
-                  value={hypotheekRente}
-                  onChange={handleHypotheekrente}
-                  placeholder="0,00"
-                  step={0.01}
-                />
-              </div>
-              {/* Opslaan-link met doorverwijzing naar de volgende stap */}
+              {/* Externe link naar ISO-website voor meer informatie over lenen en studentenwelzijn */}
               <Link
-                href={`/step8?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
-                className="opslaan"
-              >
-                Opslaan
-              </Link>
-              {/* Link naar externe bron voor meer informatie over hypotheek */}
-              <Link
-                href={`https://hypotheco.nl/blog/hypotheekadvies/hypotheek-en-studieschuld/`}
+                href={`https://iso.nl/2019/01/onderzoek-groot-aandeel-lenende-studenten-ervaart-prestatiedruk-en-psychische-klachten-door-leenstelsel/`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Meer info over de hypotheek
+                Het complete onderzoek over lenen en studentenwelzijn.
+              </Link>
+
+              {/* Navigatielink naar de volgende stap met parameters in URL */}
+              <Link
+                href={`/step10?leningpm=${leningpm}&leenduur=${leenduur}&aanloopfase=${aanloopfase}&max35=${max35}&aflosfase=${aflosFase}&rentepercentage=${rentepercentage}&hypotheekRente=${hypotheekRente}&inkomen=${inkomen}&geleendPre2024=${geleendPre2024}`}
+              >
+                Helder verhaal, door naar de volgende!
               </Link>
             </section>
           )}
@@ -171,9 +138,7 @@ const Step7 = () => {
               Vorige
             </Link>{" "}
           </section>
-          {/* Component voor de achtergrondillustratie */}
-          <Backg7></Backg7>
-          {/* SVG voor het poppetje */}{" "}
+          <Backg9></Backg9>
           <svg
             ref={svgRef}
             id="Laag_1"
@@ -185,11 +150,7 @@ const Step7 = () => {
           >
             <path
               d="m385.539,492.19s.054-9.322-9.268-10.169c-9.322-.847-27.119-3.742-27.119-3.742h-175.696l-27.694,9.674s-7.627-3.39-7.627,8.475v171.186s-3.39,11.017,6.78,12.712c10.169,1.695,49.26,0,49.26,0v67.797h43.827c.829-4.887,1.662-9.774,2.553-14.65,1.655-9.056,3.683-17.942,4.695-27.104.93-8.417,2.123-16.499,5.517-24.329.517-1.192,1.283-1.925,2.153-2.301.404-.56.935-1.029,1.591-1.359.562-1.781,2.215-2.705,4.008-2.807,1.645-.88,3.648-.759,5.185,1.218,10.714,13.787,11.378,32.338,16.507,48.457,2.445,7.685,5.08,15.305,7.851,22.875h41.841v-63.559l43.893-.847s11.602,0,11.699-10.169,0-79.661,0-79.661l.043-101.695Z"
-              style={{
-                fill: "#201f32",
-                transition: "fill .2s ease-in-out",
-                strokeWidth: 0,
-              }}
+              style={{ fill: "#201f32", strokeWidth: 0 }}
             />
             <path
               d="m224.176,660.834h71.587v-148.91s-25.378,25.463-71.587,4.559v144.35Z"
@@ -353,7 +314,7 @@ const Step7 = () => {
                 d="m173.456,401.512s62.999,155.288,180.025-4.983l-180.025,4.983Z"
                 style={{
                   fill: "#fff",
-                  transition: "fill .2s ease-in-out",
+                  transition: "fill 0.5s ease-in-out",
                   strokeMiterlimit: 10,
                 }}
               />
@@ -397,4 +358,4 @@ const Step7 = () => {
   );
 };
 
-export default Step7;
+export default Step9;
