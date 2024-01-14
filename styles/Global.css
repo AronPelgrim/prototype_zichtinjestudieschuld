@@ -169,7 +169,7 @@ header.onboarding::before {
   Stijlen voor de illustratieve achtergronden op de pagina.
 */
 .background-svg {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   z-index: -200;
   width: 100vw;
@@ -240,7 +240,7 @@ header.onboarding::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
+  position: fixed;
   left: 60%;
   bottom: 10%;
   z-index: 10000;
